@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1068616860894738}
+  m_IsPrefabParent: 1
+--- !u!1 &1068616860894738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4163979825090454}
+  - component: {fileID: 114522056803074082}
+  - component: {fileID: 114069557465405260}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4163979825090454
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 942.55035, y: 1350.6505, z: 20.234375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114069557465405260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f70dcd5a0a0a4fbc978ac8cc83d798c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LeftHolder: {fileID: 0}
+  m_RightHolder: {fileID: 0}
+  m_UpHolder: {fileID: 0}
+  m_DownHolder: {fileID: 0}
+  m_Foods:
+  - {fileID: 114386339984757956, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
+  - {fileID: 114290334311141516, guid: 662c268fbdc654a30be225ad2574ab8c, type: 2}
+  - {fileID: 114229284537995520, guid: 11ed9c28a4de54720a0aa40a1e66a7ac, type: 2}
+--- !u!114 &114522056803074082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712842e11850541218d2371029cb73e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
