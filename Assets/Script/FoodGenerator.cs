@@ -21,6 +21,10 @@ public class FoodGenerator : MonoBehaviour
 	//There are four different sides
 	Food[] m_ChosenFood = new Food[4];
 
+	public Food[] GetChosenFood() {
+		return m_ChosenFood;
+	}
+
 	#region Generation
 	public void ChooseFourRandomFood()
 	{
@@ -86,11 +90,27 @@ public class FoodGenerator : MonoBehaviour
 
 	#region Debug
 	public void DebugPrintEachSide() {
-		for (int i = 0; i < 4; i++){
-			Debug.Log((Direction)i + " : " + m_ChosenFood[i].name);
-		}
+		string printingLog = "                 " + m_ChosenFood [2].name + "             \n";
+		printingLog += m_ChosenFood [0].name + "                            " + m_ChosenFood [1].name + "\n"; 
+		string printingLog_2 = "                 " + m_ChosenFood [3].name + "             \n";
+		Debug.Log (printingLog);
+		Debug.Log (printingLog_2);
+		Debug.Log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		DebugUIEachSide ();
 	}
     
+	void DebugUIEachSide(){
+		DebugManager.instance.SetTop (m_ChosenFood [2].name);
+		DebugManager.instance.SetBottom (m_ChosenFood [3].name);
+		DebugManager.instance.SetLeft (m_ChosenFood [0].name);
+		DebugManager.instance.SetRight (m_ChosenFood [1].name);
+
+		string listOfFood = "";
+		for (int i = 0; i < m_ChosenFood.Length; i++) {
+			listOfFood += m_ChosenFood [i].name + ",";
+		}
+		DebugManager.instance.SetListOfFood (listOfFood);
+	}
 	#endregion
 
 

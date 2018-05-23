@@ -52,10 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f70dcd5a0a0a4fbc978ac8cc83d798c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LeftHolder: {fileID: 0}
-  m_RightHolder: {fileID: 0}
-  m_UpHolder: {fileID: 0}
-  m_DownHolder: {fileID: 0}
+  m_LeftHolder: {fileID: 1580572330080208, guid: 1610001edfc8b41479ae10c177904c37,
+    type: 2}
+  m_RightHolder: {fileID: 1780989007009876, guid: 1610001edfc8b41479ae10c177904c37,
+    type: 2}
+  m_UpHolder: {fileID: 1596047426719704, guid: 1610001edfc8b41479ae10c177904c37, type: 2}
+  m_DownHolder: {fileID: 1720931296618062, guid: 1610001edfc8b41479ae10c177904c37,
+    type: 2}
   m_Foods:
   - {fileID: 114386339984757956, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
   - {fileID: 114290334311141516, guid: 662c268fbdc654a30be225ad2574ab8c, type: 2}

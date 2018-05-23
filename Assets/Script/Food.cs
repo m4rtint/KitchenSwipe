@@ -7,5 +7,10 @@ public class Food : MonoBehaviour {
 	string m_FoodName;
 	[SerializeField]
 	Ingredient[] m_Ingredients;
+
+
+	public Ingredient[] GetIngredients() {
+		return m_Ingredients;
+	}
 }
 
