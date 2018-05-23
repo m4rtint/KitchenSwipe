@@ -37,18 +37,12 @@ public class FoodGenerator : MonoBehaviour
 
 	void ChooseRandomFood(int index)
 	{
-		do
-		{
-			int randomFoodIndex = Random.Range(0, m_Foods.Length);
-			m_ChosenFood[index] = m_Foods[randomFoodIndex];
-
-		} while (IsChosenFoodAlreadyIn(index));
+        int randomFoodIndex = Random.Range(0, m_Foods.Length);
+		m_ChosenFood[index] = m_Foods[randomFoodIndex];
 	}
 
 	bool IsChosenFoodAlreadyIn(int index)
 	{
-		return false;
-        //DEBUG
 		if (m_ChosenFood.Length <= 1) { return false; }
 
 		for (int i = 0; i < index; i++)
@@ -62,7 +56,7 @@ public class FoodGenerator : MonoBehaviour
 	}
 	#endregion
 
-	#region 
+	#region Holder
 	void PlaceFoodInHolder(int index) {
 		GameObject holder;
 		switch(index){
