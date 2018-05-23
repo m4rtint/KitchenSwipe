@@ -22,6 +22,7 @@ public class GameEngine : MonoBehaviour {
 
 		m_IngredientGenerator.SetupIngredientStack (m_FoodGenerator.GetChosenFood ());
 		m_CurrentIngredient = m_IngredientGenerator.RandomlyChooseIngredient ();
+		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
 	}
 
 	#region Actions

@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Bottom: {fileID: 0}
   m_Left: {fileID: 0}
   m_Right: {fileID: 0}
+  m_Center: {fileID: 0}
 --- !u!224 &224184904549700648
 RectTransform:
   m_ObjectHideFlags: 1
