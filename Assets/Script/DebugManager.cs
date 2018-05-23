@@ -48,5 +48,28 @@ public class DebugManager : MonoBehaviour {
 		m_Center.GetComponent<Text> ().text = s;
 	}
 
+	public void DebugPrintEachSide(Food[] m_ChosenFood) {
+		string printingLog = "                 " + m_ChosenFood [2].name + "             \n";
+		printingLog += m_ChosenFood [0].name + "                            " + m_ChosenFood [1].name + "\n"; 
+		string printingLog_2 = "                 " + m_ChosenFood [3].name + "             \n";
+		Debug.Log (printingLog);
+		Debug.Log (printingLog_2);
+		Debug.Log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		DebugUIEachSide (m_ChosenFood);
+	}
+
+	void DebugUIEachSide(Food[] m_ChosenFood){
+		SetTop (m_ChosenFood [2].name);
+		SetBottom (m_ChosenFood [3].name);
+		SetLeft (m_ChosenFood [0].name);
+		SetRight (m_ChosenFood [1].name);
+
+		string listOfFood = "";
+		for (int i = 0; i < m_ChosenFood.Length; i++) {
+			listOfFood += m_ChosenFood [i].name + ",";
+		}
+		SetListOfFood (listOfFood);
+	}
+
 
 }
