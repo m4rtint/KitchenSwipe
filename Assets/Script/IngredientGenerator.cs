@@ -6,10 +6,10 @@ public class IngredientGenerator : MonoBehaviour {
 
 	Stack[] Ingredients;
 
-	Stack<Ingredient> m_UpStack;
-	Stack<Ingredient> m_LeftStack;
-	Stack<Ingredient> m_BottomStack;
-	Stack<Ingredient> m_RightStack;
+	Stack<Ingredient> m_UpStack = new Stack<Ingredient>();
+	Stack<Ingredient> m_LeftStack= new Stack<Ingredient>();
+	Stack<Ingredient> m_BottomStack= new Stack<Ingredient>();
+	Stack<Ingredient> m_RightStack= new Stack<Ingredient>();
 
 
 	public void SetupIngredientStack(Food[] foods){
