@@ -65,6 +65,7 @@ public class GameEngine : MonoBehaviour {
 			//Wrong ingredient
 			m_IngredientsGenerator.WrongSwiped();
 		}
+		DebugManager.instance.DebugPrintEachSide (m_FoodGenerator.GetChosenFood());
 
 		ChooseNewCurrentIngredient ();
 	}

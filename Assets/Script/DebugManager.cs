@@ -73,7 +73,7 @@ public class DebugManager : MonoBehaviour {
 
 	string ListOfIngredients(Food food) {
 		string ingredients = "";
-		for (int i = food.GetIngredientLevel()-1; i >= 0 ;i--) {
+		for (int i = 0; i <= food.GetIngredientLevel() ;i++) {
 			ingredients += food.GetIngredients () [i].Get_IngredientName() + "\n";
 		}
 		return ingredients;

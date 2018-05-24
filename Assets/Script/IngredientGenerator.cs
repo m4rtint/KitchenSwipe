@@ -68,7 +68,6 @@ public class IngredientGenerator : MonoBehaviour {
 	public void CorrectlySwiped(Direction dir, Food food){
 		food.PlacedIngredient();
 		if (food.GetIngredientLevel() == -1) {
-			Destroy (food.gameObject);
 			//New Food creation
 			thisDelegate(dir);
 		} 
