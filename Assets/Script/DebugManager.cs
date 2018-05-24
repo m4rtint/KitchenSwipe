@@ -20,6 +20,9 @@ public class DebugManager : MonoBehaviour {
 	[SerializeField]
 	GameObject m_Center;
 
+	public bool C_SideFood;
+	public bool C_Direction;
+
 	void Awake() {
 		instance = this;
 	}
@@ -49,12 +52,14 @@ public class DebugManager : MonoBehaviour {
 	}
 
 	public void DebugPrintEachSide(Food[] m_ChosenFood) {
-		string printingLog = "                 " + m_ChosenFood [2].name + "             \n";
-		printingLog += m_ChosenFood [0].name + "                            " + m_ChosenFood [1].name + "\n"; 
-		string printingLog_2 = "                 " + m_ChosenFood [3].name + "             \n";
-		Debug.Log (printingLog);
-		Debug.Log (printingLog_2);
-		Debug.Log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		if (C_SideFood) {
+			string printingLog = "                 " + m_ChosenFood [2].name + "             \n";
+			printingLog += m_ChosenFood [0].name + "                            " + m_ChosenFood [1].name + "\n"; 
+			string printingLog_2 = "                 " + m_ChosenFood [3].name + "             \n";
+			Debug.Log (printingLog);
+			Debug.Log (printingLog_2);
+			Debug.Log ("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		}
 		DebugUIEachSide (m_ChosenFood);
 	}
 
