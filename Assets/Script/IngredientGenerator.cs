@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class IngredientGenerator : MonoBehaviour {
 
+	public delegate void IngredientGeneratorDelegate(Direction dir);
+	public IngredientGeneratorDelegate thisDelegate;
+
 	//Food Holder
 	[SerializeField]
 	GameObject m_LeftHolder;
@@ -15,44 +18,17 @@ public class IngredientGenerator : MonoBehaviour {
 	GameObject m_DownHolder;
 
 	//Chosen Ingredients setup to be chosen for the puzzle
-	Stack[] Ingredients;
-	Stack<Ingredient> m_UpStack = new Stack<Ingredient>();
-	Stack<Ingredient> m_LeftStack= new Stack<Ingredient>();
-	Stack<Ingredient> m_BottomStack= new Stack<Ingredient>();
-	Stack<Ingredient> m_RightStack= new Stack<Ingredient>();
+	Ingredient[] Ingredients = new Ingredient[4];
 
 	#region SetupIngredients
 	public void SetupIngredientStack(Food[] foods){
 		for (int i = 0; i < foods.Length; i++) {
-			PlaceFoodInStack (foods [i], GetStackFromIndex (i));
+//			PlaceFoodInStack (foods [i], GetStackFromIndex (i));
 			InstantiateFoodInHolder(foods, i);
 		}
 	}
 	#endregion
 
-	#region Stacks
-	Stack<Ingredient> GetStackFromIndex(int foodIndex) {
-		if (foodIndex == 0) {
-			return m_LeftStack;
-		} else if (foodIndex == 1) {
-			return m_RightStack;
-		} else if (foodIndex == 2) {
-			return m_UpStack;
-		} else {
-			return m_BottomStack;
-		}
-	}
-			
-	void PlaceFoodInStack(Food food, Stack<Ingredient> stack) {
-		for (int i = 0; i < food.GetIngredients ().Length; i++) {
-			stack.Push (food.GetIngredients () [i]);
-		}
-	}
-
-	public Ingredient GetIngredientOnStack(int index) {
-		return GetStackFromIndex (index).Peek ();
-	}
-	#endregion
 
 	#region Holder
 	void InstantiateFoodInHolder(Food[] foods, int index) {
@@ -80,25 +56,26 @@ public class IngredientGenerator : MonoBehaviour {
 	#endregion
 
 	#region PlayerActions
-	public Ingredient RandomlyChooseIngredient(){
+	public Ingredient RandomlyChooseIngredient(Food[] food){
 		int index = Random.Range (0, 3);
-		return GetStackFromIndex (index).Peek ();
+		return GetIngredientOnTop (food[index]);
 	}
 
-
-	//
-	public void CorrectlySwiped(Direction dir){
-		//Pop Ingredient
-		//If 0 - choose random food and place it back into stack/array
-		Stack<Ingredient> currentStack = GetStackFromIndex((int)dir);
-		currentStack.Pop ();
-		if (currentStack.Count == 0) {
-			//New food in stack
-
+	public Ingredient GetIngredientOnTop(Food food) {
+		return food.GetNeededIngredient();
+	}
+		
+	public void CorrectlySwiped(Direction dir, Food food){
+		food.PlacedIngredient();
+		if (food.GetIngredientLevel() == -1) {
+			Destroy (food.gameObject);
+			//New Food creation
+			thisDelegate(dir);
 		} 
 	}
 
 	public void WrongSwiped() {
+		//TODO - buzzer wrong sound? 
 
 	}
 	#endregion

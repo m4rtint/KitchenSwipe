@@ -717,6 +717,36 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114477764198788796, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114327849666206140, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114419386678370854, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114602976709853082, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114465514971665364, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114465514971665364, guid: 451df1fb9e84a4d95af1454f9ad8ce12,
+        type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 451df1fb9e84a4d95af1454f9ad8ce12, type: 2}
   m_IsPrefabParent: 0
@@ -890,6 +920,11 @@ Prefab:
       propertyPath: m_FoodHolder
       value: 
       objectReference: {fileID: 1107386293}
+    - target: {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_PlayerInput
+      value: 
+      objectReference: {fileID: 207547547}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabParent: 0

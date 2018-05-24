@@ -12,24 +12,27 @@ public enum Direction {
 
 public class UserInput:MonoBehaviour{
 
+	public delegate void InputDelegate(Direction dir);
+	public InputDelegate thisDelegate;
+
     //TODO - Temperary swipe detection. Fix
-	private void Update()
+	void Update()
 	{
 		if (Input.GetKeyUp(KeyCode.LeftArrow))
 		{
-			Debug.Log("Left");
+			thisDelegate (Direction.Left);
 		}
 		else if (Input.GetKeyUp(KeyCode.RightArrow))
 		{
-			Debug.Log("Right");
+			thisDelegate (Direction.Right);
 		}
 		else if (Input.GetKeyUp(KeyCode.UpArrow))
 		{
-			Debug.Log("Up");
+			thisDelegate (Direction.Up);
 		}
 		else if (Input.GetKeyUp(KeyCode.DownArrow))
 		{
-			Debug.Log("Down");
+			thisDelegate (Direction.Down);
 		}
 	}
 }

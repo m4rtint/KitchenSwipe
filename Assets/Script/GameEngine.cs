@@ -13,11 +13,16 @@ public class GameEngine : MonoBehaviour {
 	GameObject m_FoodHolder;
 	IngredientGenerator m_IngredientsGenerator;
 
+	//Player Input
+	[SerializeField]
+	GameObject m_PlayerInput;
+
 	#region Mono
 	// Use this for initialization
 	void Awake () {
 		m_FoodGenerator = GetComponent<FoodGenerator>();
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
+		SetupDelegate ();
 	}
 
 	void Start()
@@ -29,23 +34,39 @@ public class GameEngine : MonoBehaviour {
 		#endif
 
 		m_IngredientsGenerator.SetupIngredientStack (m_FoodGenerator.GetChosenFood ());
-		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
+		ChooseNewCurrentIngredient ();
 
+	}
 
+	void SetupDelegate(){
+		m_IngredientsGenerator.thisDelegate += m_FoodGenerator.ChooseRandomFood;
+		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
+	}
+	#endregion
+
+	#region Ingredients
+	void ChooseNewCurrentIngredient(){
+		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient (m_FoodGenerator.GetChosenFood());
+		SetCenterIngredientView ();
+	}
+
+	void SetCenterIngredientView() {
 		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
-
 	}
 	#endregion
 
 	#region Actions
-	public void PlayerSwiped(Direction dir) {
-		if (IsIngredientMatch(m_CurrentIngredient, m_IngredientsGenerator.GetIngredientOnStack((int)dir))) {
+	void PlayerSwiped(Direction dir) {
+		Food food = m_FoodGenerator.GetChosenFood () [(int)dir];
+		if (IsIngredientMatch(m_CurrentIngredient, m_IngredientsGenerator.GetIngredientOnTop(food))) {
 			//It is the same ingredient
-			m_IngredientsGenerator.CorrectlySwiped(dir);
+			m_IngredientsGenerator.CorrectlySwiped(dir, food);
 		} else {
 			//Wrong ingredient
 			m_IngredientsGenerator.WrongSwiped();
 		}
+
+		ChooseNewCurrentIngredient ();
 	}
 
 	bool IsIngredientMatch(Ingredient answer, Ingredient swiped) {

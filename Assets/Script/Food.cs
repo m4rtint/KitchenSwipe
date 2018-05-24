@@ -8,9 +8,31 @@ public class Food : MonoBehaviour {
 	[SerializeField]
 	Ingredient[] m_Ingredients;
 
+	int m_Level;
 
+	#region Getter/Setter
 	public Ingredient[] GetIngredients() {
 		return m_Ingredients;
 	}
+
+	public Ingredient GetNeededIngredient() {
+		return m_Ingredients [m_Level];
+	}
+
+	public int GetIngredientLevel() {
+		return m_Level;
+	}
+
+	public void SetupIngredientLevel() {
+		m_Level = m_Ingredients.Length-1;
+	}
+	#endregion
+
+
+	#region UserAction
+	public void PlacedIngredient() {
+		m_Level--;
+	}
+	#endregion
 }
 

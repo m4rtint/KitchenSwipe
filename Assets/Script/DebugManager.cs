@@ -59,16 +59,24 @@ public class DebugManager : MonoBehaviour {
 	}
 
 	void DebugUIEachSide(Food[] m_ChosenFood){
-		SetTop (m_ChosenFood [2].name);
-		SetBottom (m_ChosenFood [3].name);
-		SetLeft (m_ChosenFood [0].name);
-		SetRight (m_ChosenFood [1].name);
+		SetTop (ListOfIngredients(m_ChosenFood [2]));
+		SetBottom (ListOfIngredients(m_ChosenFood [3]));
+		SetLeft (ListOfIngredients(m_ChosenFood [0]));
+		SetRight (ListOfIngredients(m_ChosenFood [1]));
 
 		string listOfFood = "";
 		for (int i = 0; i < m_ChosenFood.Length; i++) {
 			listOfFood += m_ChosenFood [i].name + ",";
 		}
 		SetListOfFood (listOfFood);
+	}
+
+	string ListOfIngredients(Food food) {
+		string ingredients = "";
+		for (int i = food.GetIngredientLevel()-1; i >= 0 ;i--) {
+			ingredients += food.GetIngredients () [i].Get_IngredientName() + "\n";
+		}
+		return ingredients;
 	}
 
 

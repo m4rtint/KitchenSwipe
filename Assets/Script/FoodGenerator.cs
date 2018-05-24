@@ -19,14 +19,15 @@ public class FoodGenerator : MonoBehaviour
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			ChooseRandomFood(i);
+			ChooseRandomFood((Direction)i);
 		}
 	}
 
-	void ChooseRandomFood(int index)
+	public void ChooseRandomFood(Direction dir)
 	{
         int randomFoodIndex = Random.Range(0, m_Foods.Length);
-		m_ChosenFood[index] = m_Foods[randomFoodIndex];
+		m_ChosenFood[(int)dir] = m_Foods[randomFoodIndex];
+		m_ChosenFood[(int)dir].SetupIngredientLevel ();
 	}
 
 	bool IsChosenFoodAlreadyIn(int index)
