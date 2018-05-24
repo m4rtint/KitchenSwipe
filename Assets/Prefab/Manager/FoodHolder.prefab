@@ -167,7 +167,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c0d8323baf44f0ea2383e4cfba62d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LeftHolder: {fileID: 1580572330080208}
-  m_RightHolder: {fileID: 1780989007009876}
-  m_UpHolder: {fileID: 1596047426719704}
-  m_DownHolder: {fileID: 1720931296618062}
