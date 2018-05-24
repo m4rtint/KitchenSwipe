@@ -11,6 +11,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1874318654978662}
   m_IsPrefabParent: 1
+--- !u!1 &1580114357559196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4122567382287502}
+  - component: {fileID: 114407674739576926}
+  m_Layer: 0
+  m_Name: Bread_Bottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1681366038087708
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,6 +36,22 @@ GameObject:
   m_Component:
   - component: {fileID: 4165947602405250}
   - component: {fileID: 114102181918323460}
+  m_Layer: 0
+  m_Name: Bread_Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1751455537797614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4530512184559356}
+  - component: {fileID: 114087435153999226}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Untagged
@@ -76,6 +108,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4122567382287502
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580114357559196}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4891817406350652}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4165947602405250
 Transform:
   m_ObjectHideFlags: 1
@@ -100,7 +145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4891817406350652}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4472609299868590
 Transform:
@@ -109,6 +154,19 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1826613204740308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4891817406350652}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4530512184559356
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751455537797614}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -126,8 +184,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4165947602405250}
+  - {fileID: 4530512184559356}
   - {fileID: 4472609299868590}
   - {fileID: 4283376223636940}
+  - {fileID: 4122567382287502}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,6 +203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IngredientName: Egg
+--- !u!114 &114087435153999226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751455537797614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IngredientName: Tomato
 --- !u!114 &114087925270616538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Tomato
+  m_IngredientName: Bread_Top
 --- !u!114 &114229284537995520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,8 +253,10 @@ MonoBehaviour:
   m_FoodName: Sandwhich
   m_Ingredients:
   - {fileID: 114102181918323460}
+  - {fileID: 114087435153999226}
   - {fileID: 114055105735250094}
-  - {fileID: 114087925270616538}
+  - {fileID: 114403165134825734}
+  - {fileID: 114407674739576926}
 --- !u!114 &114403165134825734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,3 +269,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IngredientName: Ham
+--- !u!114 &114407674739576926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580114357559196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IngredientName: Bread_Bottom
