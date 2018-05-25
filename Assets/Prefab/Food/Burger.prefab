@@ -244,6 +244,7 @@ MonoBehaviour:
   - {fileID: 114763653196946138}
   - {fileID: 114041501688372850}
   - {fileID: 114297170882655406}
+  m_SecondsToComplete: 50
 --- !u!114 &114763653196946138
 MonoBehaviour:
   m_ObjectHideFlags: 1

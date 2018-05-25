@@ -33,13 +33,10 @@ public class Food : MonoBehaviour {
 	public void SetupIngredientLevel() {
 		m_Level = m_Ingredients.Length-1;
 	}
-
-	public void DecrementSecondsBy(float seconds) {
-		m_SecondsToComplete -= seconds;
-	}
     
+	//For Order timing on top
 	public float GetSecondsToComplete() {
-		return m_SecondsToComplete;
+		return m_SecondsToComplete+Random.Range(3,10);
 	}
 	#endregion
 

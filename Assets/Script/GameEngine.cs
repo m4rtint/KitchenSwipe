@@ -5,10 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(FoodGenerator))]
 public class GameEngine : MonoBehaviour {
 
+	//========================Local
 	Ingredient m_CurrentIngredient;
+
+	[SerializeField]
+	int m_NumberOfFood;
+
+	//========================Dependencies
+	//Food Generator
 	FoodGenerator m_FoodGenerator;
 
-	//Ingredients Holder + Generator
+	//Ingredients Generator
 	[SerializeField]
 	GameObject m_FoodHolder;
 	IngredientGenerator m_IngredientsGenerator;
@@ -27,15 +34,20 @@ public class GameEngine : MonoBehaviour {
 
 	void Start()
 	{
-		m_FoodGenerator.ChooseFourRandomFood();
+		m_FoodGenerator.FillListWithRandomFood(m_NumberOfFood);
+		//Send 4 food from stack into Ingredient Generator
 
 		#if UNITY_EDITOR
-		DebugManager.instance.DebugPrintEachSide(m_FoodGenerator.GetChosenFood ());
+//		DebugManager.instance.DebugPrintEachSide(m_IngredientsGenerator.getfood);
 		#endif
 
-		m_IngredientsGenerator.SetupIngredientStack (m_FoodGenerator.GetChosenFood ());
 		ChooseNewCurrentIngredient ();
 
+	}
+	void SetupIngredients() {
+		for (int i = 0; i < 4; i++) {
+			m_IngredientsGenerator.inser
+		}
 	}
 
 	void SetupDelegate(){
@@ -44,15 +56,12 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void Update() {
-		//Decrement all timer of food
-		for (int i = 0; i < m_FoodGenerator.GetChosenFood ().Length; i++) {
-			Food food = m_FoodGenerator.GetChosenFood()[i];
-			food.DecrementSecondsBy(Time.deltaTime);
+		RunDownOrderTimer ();
+	}
 
-			if (food.GetSecondsToComplete() < 0) {
-                
-			}
-		}
+	void RunDownOrderTimer() {
+		//Decrement all timer of food
+
 	}
 	#endregion
 

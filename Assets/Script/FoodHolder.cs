@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class FoodHolder : MonoBehaviour {
 
-	Food m_CurrentFood;
-	bool m_Completed = false;
+	public Direction dir;
+	Food m_StoredFood;
+
+	bool m_IsEmpty = true;
+
+	public bool IsEmpty(){
+		return m_IsEmpty;
+	}
+
+	public void SetStoredFood(Food food) {
+		m_StoredFood = food;
+	}
+
+	public Food GetStoredFood(){
+		return m_StoredFood;
+	}
 }
