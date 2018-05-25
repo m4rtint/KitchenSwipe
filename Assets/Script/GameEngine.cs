@@ -45,8 +45,13 @@ public class GameEngine : MonoBehaviour {
 
 	void Update() {
 		//Decrement all timer of food
-		for (int i = 0; m_FoodGenerator.GetChosenFood ().Length; i++) {
-			m_FoodGenerator.GetChosenFood()[i].
+		for (int i = 0; i < m_FoodGenerator.GetChosenFood ().Length; i++) {
+			Food food = m_FoodGenerator.GetChosenFood()[i];
+			food.DecrementSecondsBy(Time.deltaTime);
+
+			if (food.GetSecondsToComplete() < 0) {
+                
+			}
 		}
 	}
 	#endregion

@@ -7,15 +7,7 @@ public class IngredientGenerator : MonoBehaviour {
 	public delegate void IngredientGeneratorDelegate(Direction dir);
 	public IngredientGeneratorDelegate thisDelegate;
 
-	#region SetupIngredients
-	public void SetupIngredientStack(Food[] foods){
-		for (int i = 0; i < foods.Length; i++) {
-//			PlaceFoodInStack (foods [i], GetStackFromIndex (i));
-//			InstantiateFoodInHolder(foods, i);
-		}
-	}
-	#endregion
-
+   
 	#region PlayerActions
 	public Ingredient RandomlyChooseIngredient(Food[] food){
 		int index = Random.Range (0, 3);

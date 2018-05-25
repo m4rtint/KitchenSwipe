@@ -37,9 +37,9 @@ public class Food : MonoBehaviour {
 	public void DecrementSecondsBy(float seconds) {
 		m_SecondsToComplete -= seconds;
 	}
-
-	public void GetSecondsToComplete() {
-
+    
+	public float GetSecondsToComplete() {
+		return m_SecondsToComplete;
 	}
 	#endregion
 
