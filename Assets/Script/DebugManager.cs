@@ -8,7 +8,18 @@ public class DebugManager : MonoBehaviour {
 	public static DebugManager instance = null;
 
 	[SerializeField]
-	GameObject m_ListOfFood;
+	GameObject m_ListOfFood_1;
+	[SerializeField]
+	GameObject m_ListOfFood_2;
+	[SerializeField]
+	GameObject m_ListOfFood_3;
+	[SerializeField]
+	GameObject m_ListOfFood_4;
+	[SerializeField]
+	GameObject m_ListOfFood_5;
+
+
+
 	[SerializeField]
 	GameObject m_Top;
 	[SerializeField]
@@ -27,10 +38,29 @@ public class DebugManager : MonoBehaviour {
 		instance = this;
 	}
 
-	public void SetListOfFood(string s){
-		m_ListOfFood.GetComponent<Text> ().text = s;
+	#region Food List
+	public void SetListOfFood_1(string s){
+		m_ListOfFood_1.GetComponent<Text> ().text = s;
 	}
 
+	public void SetListOfFood_2(string s){
+		m_ListOfFood_2.GetComponent<Text> ().text = s;
+	}
+
+	public void SetListOfFood_3(string s){
+		m_ListOfFood_3.GetComponent<Text> ().text = s;
+	}
+
+	public void SetListOfFood_4(string s){
+		m_ListOfFood_4.GetComponent<Text> ().text = s;
+	}
+
+	public void SetListOfFood_5(string s){
+		m_ListOfFood_5.GetComponent<Text> ().text = s;
+	}
+	#endregion
+
+	#region Sides
 	public void SetTop(string s){
 		m_Top.GetComponent<Text> ().text = s;
 	}
@@ -68,12 +98,6 @@ public class DebugManager : MonoBehaviour {
 		SetBottom (ListOfIngredients(m_ChosenFood [3]));
 		SetLeft (ListOfIngredients(m_ChosenFood [0]));
 		SetRight (ListOfIngredients(m_ChosenFood [1]));
-
-		string listOfFood = "";
-		for (int i = 0; i < m_ChosenFood.Length; i++) {
-			listOfFood += m_ChosenFood [i].name + ",";
-		}
-		SetListOfFood (listOfFood);
 	}
 
 	string ListOfIngredients(Food food) {
@@ -83,6 +107,6 @@ public class DebugManager : MonoBehaviour {
 		}
 		return ingredients;
 	}
-
+	#endregion
 
 }

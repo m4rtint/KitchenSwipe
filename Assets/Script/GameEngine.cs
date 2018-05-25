@@ -42,7 +42,15 @@ public class GameEngine : MonoBehaviour {
 		m_IngredientsGenerator.thisDelegate += m_FoodGenerator.ChooseRandomFood;
 		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
 	}
+
+	void Update() {
+		//Decrement all timer of food
+		for (int i = 0; m_FoodGenerator.GetChosenFood ().Length; i++) {
+			m_FoodGenerator.GetChosenFood()[i].
+		}
+	}
 	#endregion
+
 
 	#region Ingredients
 	void ChooseNewCurrentIngredient(){

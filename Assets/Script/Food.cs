@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Food : MonoBehaviour {
+
 	[SerializeField]
 	string m_FoodName;
 	[SerializeField]
 	Ingredient[] m_Ingredients;
+	[SerializeField]
+	float m_SecondsToComplete;
 
 	int m_Level;
 
 	#region Getter/Setter
+	public string GetFoodName() {
+		return m_FoodName;
+	}
+
 	public Ingredient[] GetIngredients() {
 		return m_Ingredients;
 	}
@@ -25,6 +32,14 @@ public class Food : MonoBehaviour {
 
 	public void SetupIngredientLevel() {
 		m_Level = m_Ingredients.Length-1;
+	}
+
+	public void DecrementSecondsBy(float seconds) {
+		m_SecondsToComplete -= seconds;
+	}
+
+	public void GetSecondsToComplete() {
+
 	}
 	#endregion
 
