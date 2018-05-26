@@ -58,9 +58,10 @@ public class GameEngine : MonoBehaviour {
 
 	void SetupDelegate(){
 		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
-        for (int i = 0; i < m_IngredientsGenerator.GetFoodHolder().Length; i++)
+        foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
         {
-            m_IngredientsGenerator.GetFoodHolder()[i].thisDelegate += GetRandomFood;
+            holder.thisDelegate += GetRandomFood;
+            holder.holderOrderDelegate += RemoveOrders;
         }
 	}
 
@@ -93,6 +94,13 @@ public class GameEngine : MonoBehaviour {
 	void SetCenterIngredientView() {
 		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
 	}
+    #endregion
+
+    #region Orders
+    void RemoveOrders(Direction dir, Food food)
+    {
+        Debug.Log("Remove Orders");
+    }
     #endregion
 
     #region Actions

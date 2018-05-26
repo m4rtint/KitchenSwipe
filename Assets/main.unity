@@ -412,6 +412,11 @@ Prefab:
       propertyPath: m_Center
       value: 
       objectReference: {fileID: 712194826}
+    - target: {fileID: 114026183736786406, guid: e50843f45351a4caab1baeb2187bbf7c,
+        type: 2}
+      propertyPath: C_Direction
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e50843f45351a4caab1baeb2187bbf7c, type: 2}
   m_IsPrefabParent: 0
