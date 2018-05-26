@@ -39,8 +39,9 @@ public class FoodHolder : MonoBehaviour {
         //Decrement level of ingredient
         m_StoredFood.PlacedIngredient();
         if (m_StoredFood.GetIngredientLevel() == -1)
-        {
+		{
             Destroy(m_StoredFood.gameObject);
+			m_StoredFood = null;
             thisDelegate();
         } 
         UpdateListOfIngredientsView();
