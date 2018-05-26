@@ -78,9 +78,11 @@ public class GameEngine : MonoBehaviour {
 	#region Ingredients
     void GetRandomFood()
     {
-        Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
-        m_FoodOrderManager.InsertFoodOrder(chosenFood);
-        m_IngredientsGenerator.InsertFoodIntoHolder(chosenFood);
+		if (m_FoodGenerator.GetChosenFood().Count > 0) {
+            Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
+            m_FoodOrderManager.InsertFoodOrder(chosenFood);
+            m_IngredientsGenerator.InsertFoodIntoHolder(chosenFood);
+		}
     }
 
 	void ChooseNewCurrentIngredient(){

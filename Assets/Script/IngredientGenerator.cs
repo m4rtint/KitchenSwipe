@@ -74,7 +74,7 @@ public class IngredientGenerator : MonoBehaviour {
         {
             //Incorrectyl swiped
         }
-        return ingredient;
+		return RandomlyChooseIngredient();
     }
 
     bool IsIngredientMatch(Direction dir, Ingredient swiped)

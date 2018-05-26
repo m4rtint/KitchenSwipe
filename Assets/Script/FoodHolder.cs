@@ -42,10 +42,9 @@ public class FoodHolder : MonoBehaviour {
         {
             Destroy(m_StoredFood.gameObject);
             thisDelegate();
-        } else
-        {
-            UpdateListOfIngredientsView();
-        }
+        } 
+        UpdateListOfIngredientsView();
+        
     }
     #endregion
 }

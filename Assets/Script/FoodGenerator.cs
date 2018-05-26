@@ -31,20 +31,6 @@ public class FoodGenerator : MonoBehaviour
 	
 	}
 
-	//TODO Change this
-//	bool IsChosenFoodAlreadyIn(int index)
-//	{
-//		if (index == 0) { return false; }
-//
-//		for (int i = 0; i < index; i++)
-//		{
-//			if (m_ChosenFood[i].name == m_ChosenFood[index].name)
-//			{
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 	#endregion
 
 }
