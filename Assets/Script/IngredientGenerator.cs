@@ -31,13 +31,14 @@ public class IngredientGenerator : MonoBehaviour {
 	public void InsertFoodIntoHolder(Food food) {
 		//Check which holder is free.
 		for (int i = 0; i < m_FoodHolders.Length; i++) {
-			if (m_FoodHolders [i].IsEmpty ()) {
+			if (m_FoodHolders [i].GetStoredFood() == null) {
 				//Create New food - instantiate;
 				Food generatedFood = InstantiateFoodInHolder(food, i);
 				//Store
 				m_FoodHolders [i].SetStoredFood (generatedFood);
                 //View
                 m_FoodHolders[i].UpdateListOfIngredientsView();
+                return;
 			}
 		}
 
@@ -45,7 +46,7 @@ public class IngredientGenerator : MonoBehaviour {
 	#endregion
 
 	#region PlayerActions
-    public Food GetFoodFromHolder(Direction dir)
+    Food GetFoodFromHolder(Direction dir)
     {
         return m_FoodHolders[(int)dir].GetStoredFood();
     }
@@ -55,11 +56,30 @@ public class IngredientGenerator : MonoBehaviour {
 		return GetIngredientOnTop (m_FoodHolders[index].GetStoredFood());
 	}
 
-	public Ingredient GetIngredientOnTop(Food food) {
+	Ingredient GetIngredientOnTop(Food food) {
 		return food.GetNeededIngredient();
 	}
-		
-	public void CorrectlySwiped(Direction dir, Food food){
+	
+    
+    public Ingredient UserSwiped(Ingredient ingredient, Direction dir)
+    {
+        if (IsIngredientMatch(dir, ingredient))
+        {
+            //Correctly Swiped
+        } else
+        {
+            //Incorrectyl swiped
+        }
+        return ingredient;
+    }
+
+    bool IsIngredientMatch(Direction dir, Ingredient swiped)
+    {
+        return GetFoodFromHolder(dir).GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+    }
+
+    
+	void CorrectlySwiped(Direction dir, Food food){
 		food.PlacedIngredient();
 		if (food.GetIngredientLevel() == -1) {
 			Destroy (food.gameObject);
@@ -68,14 +88,15 @@ public class IngredientGenerator : MonoBehaviour {
 		} 
 	}
 
-	public void WrongSwiped() {
+	void WrongSwiped() {
 		//TODO - buzzer wrong sound? 
 
 	}
-	#endregion
+    
+    #endregion
 
-	#region Instantiate
-	Food InstantiateFoodInHolder(Food food, int index) {
+    #region Instantiate
+    Food InstantiateFoodInHolder(Food food, int index) {
 		GameObject holder = m_FoodHolderObject[index];
 		GameObject generatedFood = Instantiate (food.gameObject, holder.transform);
 		return generatedFood.GetComponent<Food> ();

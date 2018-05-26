@@ -28,6 +28,7 @@ public class FoodOrdersManager : MonoBehaviour
 		for (int i = 0; i < FoodOrdersObjects.Length; i++) {
 			if (m_FoodOrders [i].GetIsEmpty()) {
 				m_FoodOrders [i].SetFood (GenerateFoodId(food, i),food.GetSecondsToComplete());
+                return;
 			}
 		}
 	}

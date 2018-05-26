@@ -82,27 +82,15 @@ public class GameEngine : MonoBehaviour {
 	void SetCenterIngredientView() {
 		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
 	}
-	#endregion
+    #endregion
 
-	#region Actions
-	void PlayerSwiped(Direction dir) {
-		Food food = m_IngredientsGenerator.GetFoodFromHolder(dir);
-		if (IsIngredientMatch(m_CurrentIngredient, m_IngredientsGenerator.GetIngredientOnTop(food))) {
-			//It is the same ingredient
-			m_IngredientsGenerator.CorrectlySwiped(dir, food);
-		} else {
-			//Wrong ingredient
-			m_IngredientsGenerator.WrongSwiped();
-		}
-        //Update each side with new ingredients
-		//DebugManager.instance.DebugPrintEachSide (m_FoodGenerator.GetChosenFood());
+    #region Actions
+    void PlayerSwiped(Direction dir)
+    {
+        m_CurrentIngredient = m_IngredientsGenerator.UserSwiped(m_CurrentIngredient, dir);
 
-		ChooseNewCurrentIngredient ();
-	}
-
-	bool IsIngredientMatch(Ingredient answer, Ingredient swiped) {
-		return answer.Get_IngredientName() == swiped.Get_IngredientName();
-	}
+        SetCenterIngredientView();
+    }
 
 	#endregion
 

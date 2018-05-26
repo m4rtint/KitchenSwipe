@@ -28,6 +28,7 @@ public class FoodOrdered : MonoBehaviour{
 
     public void UpdateOrderView(float seconds)
     {
+        if (isEmpty) { return; }
         DecrementSecondsBy(seconds);
         SetOrderView();
     }
