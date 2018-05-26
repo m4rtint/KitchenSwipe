@@ -8,7 +8,7 @@ public class FoodGenerator : MonoBehaviour
 	Food[] m_Foods;
 
 	Stack<Food> m_ChosenFoodStack = new Stack<Food>();
-
+   
 	public Stack<Food> GetChosenFood() {
 		return m_ChosenFoodStack;	
 	}
@@ -28,7 +28,6 @@ public class FoodGenerator : MonoBehaviour
         int randomFoodIndex = Random.Range(0, m_Foods.Length);
 		//Store
 		m_ChosenFoodStack.Push (m_Foods[randomFoodIndex]);
-	
 	}
 
 	#endregion

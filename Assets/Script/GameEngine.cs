@@ -54,6 +54,9 @@ public class GameEngine : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
             GetRandomFood();
         }
+        
+        //Orders are 5 slots, need to peek stack to fill in 5th order
+		m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Peek());
 	}
 
 	void SetupDelegate(){
