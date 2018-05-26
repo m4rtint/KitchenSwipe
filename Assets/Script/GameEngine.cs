@@ -99,7 +99,7 @@ public class GameEngine : MonoBehaviour {
     #region Orders
     void RemoveOrders(Direction dir, Food food)
     {
-        Debug.Log("Remove Orders");
+		m_FoodOrderManager.RemoveFoodOrder(food, dir);
     }
     #endregion
 

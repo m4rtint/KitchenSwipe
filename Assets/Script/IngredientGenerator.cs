@@ -49,19 +49,20 @@ public class IngredientGenerator : MonoBehaviour {
 	#endregion
 
 	#region PlayerActions
-    Food GetFoodFromHolder(Direction dir)
-    {
-        return m_FoodHolders[(int)dir].GetStoredFood();
-    }
-
-	Ingredient GetIngredientOnTop(Food food) {
+   	Ingredient GetIngredientOnTop(Food food) {
 		return food.GetNeededIngredient();
 	}
 
     public Ingredient RandomlyChooseIngredient()
     {
-        int index = Random.Range(0, 3);
-        return GetIngredientOnTop(m_FoodHolders[index].GetStoredFood());
+		Food food;
+		do{
+			int index = Random.Range(0, 3);
+			food = m_FoodHolders[index].GetStoredFood();
+		} while (food == null);
+        
+        //TODO-Grab only available ingredients - other holders might be empty
+		return GetIngredientOnTop(food);
     }
 
     public Ingredient UserSwiped(Ingredient ingredient, Direction dir)
@@ -72,6 +73,7 @@ public class IngredientGenerator : MonoBehaviour {
             m_FoodHolders[(int)dir].CorrectlySwiped();
         } else
         {
+			Debug.Log("Incorrectly Swiped");
             //Incorrectyl swiped
         }
 		return RandomlyChooseIngredient();
@@ -79,7 +81,13 @@ public class IngredientGenerator : MonoBehaviour {
 
     bool IsIngredientMatch(Direction dir, Ingredient swiped)
     {
-        return GetFoodFromHolder(dir).GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+		Food food = GetFoodFromHolder(dir);
+		return food != null && food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+    }
+
+	Food GetFoodFromHolder(Direction dir)
+    {
+        return m_FoodHolders[(int)dir].GetStoredFood();
     }
 
     #endregion

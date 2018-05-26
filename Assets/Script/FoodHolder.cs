@@ -28,13 +28,18 @@ public class FoodHolder : MonoBehaviour {
     #region View
     public void UpdateListOfIngredientsView()
     {
+		if (m_StoredFood == null) { return; }
         string ingredients = "";
         for (int i = 0; i <= m_StoredFood.GetIngredientLevel(); i++)
         {
             ingredients += m_StoredFood.GetIngredients()[i].Get_IngredientName() + "\n";
         }
-        GetComponent<Text>().text = ingredients;
+		SetIngredientsView(ingredients);
     }
+
+	void SetIngredientsView(string ingredients) {
+		GetComponent<Text>().text = ingredients;
+	}
     #endregion
 
     #region UserAction
@@ -48,6 +53,7 @@ public class FoodHolder : MonoBehaviour {
             holderOrderDelegate(dir, m_StoredFood);
             m_StoredFood = null;
             thisDelegate();
+			SetIngredientsView("");
         } 
         UpdateListOfIngredientsView();
         

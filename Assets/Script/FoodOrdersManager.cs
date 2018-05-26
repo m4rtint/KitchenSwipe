@@ -37,6 +37,14 @@ public class FoodOrdersManager : MonoBehaviour
     {
         return food.GetFoodName() + holder.ToString();
     }
+
+	public void RemoveFoodOrder(Food food, Direction dir) {
+		foreach(FoodOrdered order in m_FoodOrders) {
+			if (order.GetFoodId() == GenerateFoodId(food,(int)dir)) {
+				order.RemoveFood();
+			}
+		}      
+	}
     #endregion
 
     #region Orders
