@@ -56,10 +56,6 @@ MonoBehaviour:
   - {fileID: 114386339984757956, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
   - {fileID: 114290334311141516, guid: 662c268fbdc654a30be225ad2574ab8c, type: 2}
   - {fileID: 114229284537995520, guid: 11ed9c28a4de54720a0aa40a1e66a7ac, type: 2}
-  m_LeftHolder: {fileID: 0}
-  m_RightHolder: {fileID: 0}
-  m_UpHolder: {fileID: 0}
-  m_DownHolder: {fileID: 0}
 --- !u!114 &114522056803074082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,5 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712842e11850541218d2371029cb73e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NumberOfFood: 5
   m_FoodHolder: {fileID: 0}
   m_PlayerInput: {fileID: 0}

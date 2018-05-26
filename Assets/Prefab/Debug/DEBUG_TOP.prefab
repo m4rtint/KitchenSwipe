@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222862878361111606}
   - component: {fileID: 114607077855044906}
   m_Layer: 5
-  m_Name: ListOfFood_3
+  m_Name: Order_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222017641975594518}
   - component: {fileID: 114525371585493070}
   m_Layer: 5
-  m_Name: ListOfFood_5
+  m_Name: Order_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222832241309554086}
   - component: {fileID: 114695964740276204}
   m_Layer: 5
-  m_Name: ListOfFood_1
+  m_Name: Order_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,6 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224941593482756362}
+  - component: {fileID: 114719385799670070}
   m_Layer: 5
   m_Name: DEBUG_TOP
   m_TagString: Untagged
@@ -88,7 +89,7 @@ GameObject:
   - component: {fileID: 222479706491628994}
   - component: {fileID: 114659787972514780}
   m_Layer: 5
-  m_Name: ListOfFood_2
+  m_Name: Order_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +106,7 @@ GameObject:
   - component: {fileID: 222077428961240852}
   - component: {fileID: 114879445459224322}
   m_Layer: 5
-  m_Name: ListOfFood_4
+  m_Name: Order_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,6 +244,23 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Food
+--- !u!114 &114719385799670070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488566719120472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e9a4cb99ea744838512f7220ca36db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodOrdersObjects:
+  - {fileID: 1369328572438788}
+  - {fileID: 1626952957724566}
+  - {fileID: 1003747025577538}
+  - {fileID: 1903094119860824}
+  - {fileID: 1122550109533794}
 --- !u!114 &114879445459224322
 MonoBehaviour:
   m_ObjectHideFlags: 1

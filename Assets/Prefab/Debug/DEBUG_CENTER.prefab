@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 224634724878352352}
   - component: {fileID: 222821591650856714}
   - component: {fileID: 114465514971665364}
+  - component: {fileID: 114764021690565564}
   m_Layer: 5
-  m_Name: Bottom
+  m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +39,9 @@ GameObject:
   - component: {fileID: 224743359339841514}
   - component: {fileID: 222360998952186992}
   - component: {fileID: 114327849666206140}
+  - component: {fileID: 114043161227123504}
   m_Layer: 5
-  m_Name: Top
+  m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +55,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224240920913256332}
+  - component: {fileID: 114747649382610120}
   m_Layer: 5
   m_Name: DEBUG_CENTER
   m_TagString: Untagged
@@ -87,6 +90,7 @@ GameObject:
   - component: {fileID: 224332149965236812}
   - component: {fileID: 222795666771133520}
   - component: {fileID: 114602976709853082}
+  - component: {fileID: 114799424298537924}
   m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
@@ -104,6 +108,7 @@ GameObject:
   - component: {fileID: 224322851106676852}
   - component: {fileID: 222472620136580942}
   - component: {fileID: 114419386678370854}
+  - component: {fileID: 114377433789127938}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -141,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DragDistance: 200
+--- !u!114 &114043161227123504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332305576823110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 2
 --- !u!114 &114147176123895646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,6 +218,18 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Food
+--- !u!114 &114377433789127938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749093362251452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 0
 --- !u!114 &114419386678370854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,6 +362,46 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Food
+--- !u!114 &114747649382610120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386208501253642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c0d8323baf44f0ea2383e4cfba62d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FoodHolderObject:
+  - {fileID: 1332305576823110}
+  - {fileID: 1749093362251452}
+  - {fileID: 1479390501873526}
+  - {fileID: 1150147601573718}
+--- !u!114 &114764021690565564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150147601573718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 3
+--- !u!114 &114799424298537924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1479390501873526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 1
 --- !u!222 &222076771948503668
 CanvasRenderer:
   m_ObjectHideFlags: 1

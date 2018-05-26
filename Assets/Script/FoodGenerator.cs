@@ -14,7 +14,7 @@ public class FoodGenerator : MonoBehaviour
 	}
 
 	#region Generation
-	public void FillListWithRandomFood(int num)
+	public void FillStackWithRandomFood(int num)
 	{
 		for (int i = 0; i < num; i++)
 		{
@@ -26,7 +26,6 @@ public class FoodGenerator : MonoBehaviour
 	{
 		//Choose random
         int randomFoodIndex = Random.Range(0, m_Foods.Length);
-
 		//Store
 		m_ChosenFoodStack.Push (m_Foods[randomFoodIndex]);
 	

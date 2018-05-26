@@ -11,7 +11,12 @@ public class GameEngine : MonoBehaviour {
 	[SerializeField]
 	int m_NumberOfFood;
 
-	//========================Dependencies
+    //========================Dependencies
+    //Food Orders
+    [SerializeField]
+    GameObject m_FoodOrdersObject;
+    FoodOrdersManager m_FoodOrderManager;
+
 	//Food Generator
 	FoodGenerator m_FoodGenerator;
 
@@ -29,46 +34,48 @@ public class GameEngine : MonoBehaviour {
 	void Awake () {
 		m_FoodGenerator = GetComponent<FoodGenerator>();
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
-		SetupDelegate ();
+        m_FoodOrderManager = m_FoodOrdersObject.GetComponent<FoodOrdersManager>();
+
+        SetupDelegate ();
 	}
 
 	void Start()
 	{
-		m_FoodGenerator.FillListWithRandomFood(m_NumberOfFood);
-		//Send 4 food from stack into Ingredient Generator
+        //Get Stack of Food
+		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 
-		#if UNITY_EDITOR
-//		DebugManager.instance.DebugPrintEachSide(m_IngredientsGenerator.getfood);
-		#endif
+        //Place First 4 food onto each side
+        SetupIngredients();
 
-		ChooseNewCurrentIngredient ();
-
+        //Choose a random current ingredient
+        ChooseNewCurrentIngredient ();
 	}
 	void SetupIngredients() {
 		for (int i = 0; i < 4; i++) {
-			m_IngredientsGenerator.InsertFoodIntoHolder (m_FoodGenerator.GetChosenFood ().Pop);
+            Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
+            m_FoodOrderManager.InsertFoodOrder(chosenFood);
+            m_IngredientsGenerator.InsertFoodIntoHolder (chosenFood);
 		}
 	}
 
 	void SetupDelegate(){
-		m_IngredientsGenerator.thisDelegate += m_FoodGenerator.ChooseRandomFood;
 		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
 	}
 
 	void Update() {
-		RunDownOrderTimer ();
+		RunDownOrderTimer (Time.deltaTime);
 	}
 
-	void RunDownOrderTimer() {
-		//Decrement all timer of food
-
-	}
+	void RunDownOrderTimer(float seconds) {
+        //Decrement all timer of food
+        m_FoodOrderManager.UpdateOrders(seconds);
+    }
 	#endregion
 
 
 	#region Ingredients
 	void ChooseNewCurrentIngredient(){
-		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient (m_FoodGenerator.GetChosenFood());
+		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
 		SetCenterIngredientView ();
 	}
 
@@ -79,7 +86,7 @@ public class GameEngine : MonoBehaviour {
 
 	#region Actions
 	void PlayerSwiped(Direction dir) {
-		Food food = m_FoodGenerator.GetChosenFood () [(int)dir];
+		Food food = m_IngredientsGenerator.GetFoodFromHolder(dir);
 		if (IsIngredientMatch(m_CurrentIngredient, m_IngredientsGenerator.GetIngredientOnTop(food))) {
 			//It is the same ingredient
 			m_IngredientsGenerator.CorrectlySwiped(dir, food);
@@ -87,7 +94,8 @@ public class GameEngine : MonoBehaviour {
 			//Wrong ingredient
 			m_IngredientsGenerator.WrongSwiped();
 		}
-		DebugManager.instance.DebugPrintEachSide (m_FoodGenerator.GetChosenFood());
+        //Update each side with new ingredients
+		//DebugManager.instance.DebugPrintEachSide (m_FoodGenerator.GetChosenFood());
 
 		ChooseNewCurrentIngredient ();
 	}
