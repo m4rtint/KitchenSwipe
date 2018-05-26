@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class IngredientGenerator : MonoBehaviour {
 
-	public delegate void IngredientGeneratorDelegate(Direction dir);
-	public IngredientGeneratorDelegate thisDelegate;
-
 	//Food Holder
 	[SerializeField]
 	GameObject[] m_FoodHolderObject;
 
     FoodHolder[] m_FoodHolders;
 
+    #region getter/setter
+    public FoodHolder[] GetFoodHolder()
+    {
+        return m_FoodHolders;
+    }
+    #endregion
 
-	#region Mono
-	void Awake() {
+    #region Mono
+    void Awake() {
 		InitializeFoodHolders ();
 	}
 
@@ -51,21 +54,22 @@ public class IngredientGenerator : MonoBehaviour {
         return m_FoodHolders[(int)dir].GetStoredFood();
     }
 
-	public Ingredient RandomlyChooseIngredient(){
-		int index = Random.Range (0, 3);
-		return GetIngredientOnTop (m_FoodHolders[index].GetStoredFood());
-	}
-
 	Ingredient GetIngredientOnTop(Food food) {
 		return food.GetNeededIngredient();
 	}
-	
-    
+
+    public Ingredient RandomlyChooseIngredient()
+    {
+        int index = Random.Range(0, 3);
+        return GetIngredientOnTop(m_FoodHolders[index].GetStoredFood());
+    }
+
     public Ingredient UserSwiped(Ingredient ingredient, Direction dir)
     {
         if (IsIngredientMatch(dir, ingredient))
         {
             //Correctly Swiped
+            m_FoodHolders[(int)dir].CorrectlySwiped();
         } else
         {
             //Incorrectyl swiped
@@ -78,21 +82,6 @@ public class IngredientGenerator : MonoBehaviour {
         return GetFoodFromHolder(dir).GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
     }
 
-    
-	void CorrectlySwiped(Direction dir, Food food){
-		food.PlacedIngredient();
-		if (food.GetIngredientLevel() == -1) {
-			Destroy (food.gameObject);
-			//New Food creation
-			thisDelegate(dir);
-		} 
-	}
-
-	void WrongSwiped() {
-		//TODO - buzzer wrong sound? 
-
-	}
-    
     #endregion
 
     #region Instantiate

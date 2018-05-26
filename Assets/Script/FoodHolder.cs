@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class FoodHolder : MonoBehaviour {
 
-	Food m_StoredFood;
+    public delegate void FoodHolderDelegate();
+    public FoodHolderDelegate thisDelegate;
+
+    Food m_StoredFood;
 
     #region Getters/Setter
 
@@ -18,6 +21,7 @@ public class FoodHolder : MonoBehaviour {
 	}
     #endregion
 
+    #region View
     public void UpdateListOfIngredientsView()
     {
         string ingredients = "";
@@ -27,4 +31,21 @@ public class FoodHolder : MonoBehaviour {
         }
         GetComponent<Text>().text = ingredients;
     }
+    #endregion
+
+    #region UserAction
+    public void CorrectlySwiped()
+    {
+        //Decrement level of ingredient
+        m_StoredFood.PlacedIngredient();
+        if (m_StoredFood.GetIngredientLevel() == -1)
+        {
+            Destroy(m_StoredFood.gameObject);
+            thisDelegate();
+        } else
+        {
+            UpdateListOfIngredientsView();
+        }
+    }
+    #endregion
 }

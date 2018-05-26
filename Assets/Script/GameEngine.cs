@@ -52,14 +52,16 @@ public class GameEngine : MonoBehaviour {
 	}
 	void SetupIngredients() {
 		for (int i = 0; i < 4; i++) {
-            Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
-            m_FoodOrderManager.InsertFoodOrder(chosenFood);
-            m_IngredientsGenerator.InsertFoodIntoHolder (chosenFood);
-		}
+            GetRandomFood();
+        }
 	}
 
 	void SetupDelegate(){
 		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
+        for (int i = 0; i < m_IngredientsGenerator.GetFoodHolder().Length; i++)
+        {
+            m_IngredientsGenerator.GetFoodHolder()[i].thisDelegate += GetRandomFood;
+        }
 	}
 
 	void Update() {
@@ -74,6 +76,13 @@ public class GameEngine : MonoBehaviour {
 
 
 	#region Ingredients
+    void GetRandomFood()
+    {
+        Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
+        m_FoodOrderManager.InsertFoodOrder(chosenFood);
+        m_IngredientsGenerator.InsertFoodIntoHolder(chosenFood);
+    }
+
 	void ChooseNewCurrentIngredient(){
 		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
 		SetCenterIngredientView ();
