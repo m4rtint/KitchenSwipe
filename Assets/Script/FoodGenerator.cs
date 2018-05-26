@@ -9,7 +9,7 @@ public class FoodGenerator : MonoBehaviour
 
 	Stack<Food> m_ChosenFoodStack = new Stack<Food>();
 
-	public List<Food> GetChosenFood() {
+	public Stack<Food> GetChosenFood() {
 		return m_ChosenFoodStack;	
 	}
 

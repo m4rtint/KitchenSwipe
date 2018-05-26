@@ -10,7 +10,6 @@ public class IngredientGenerator : MonoBehaviour {
 	//Food Holder
 	[SerializeField]
 	GameObject[] m_FoodHolderObject;
-
 	FoodHolder[] m_FoodHolders;
 
 
@@ -33,8 +32,6 @@ public class IngredientGenerator : MonoBehaviour {
 			if (m_FoodHolders [i].IsEmpty ()) {
 				//Create New food - instantiate;
 				Food generatedFood = InstantiateFoodInHolder(food, i);
-
-				generatedFood.SetupIngredientLevel ();
 				//Store
 				m_FoodHolders [i].SetStoredFood (generatedFood);
 			}
@@ -71,9 +68,8 @@ public class IngredientGenerator : MonoBehaviour {
 	#region Instantiate
 	Food InstantiateFoodInHolder(Food food, int index) {
 		GameObject holder = m_FoodHolderObject[index];
-		GameObject generatedFood = Instantiate(food.gameObject,holder.transform);
+		GameObject generatedFood = Instantiate (food.gameObject, holder.transform);
 		return generatedFood.GetComponent<Food> ();
-
 	}
 	#endregion
 }

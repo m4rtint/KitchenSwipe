@@ -13,6 +13,12 @@ public class Food : MonoBehaviour {
 
 	int m_Level;
 
+	#region Mono
+	void Awake(){
+		SetupIngredientLevel ();
+	}
+	#endregion
+
 	#region Getter/Setter
 	public string GetFoodName() {
 		return m_FoodName;
@@ -30,7 +36,7 @@ public class Food : MonoBehaviour {
 		return m_Level;
 	}
 
-	public void SetupIngredientLevel() {
+	void SetupIngredientLevel() {
 		m_Level = m_Ingredients.Length-1;
 	}
     

@@ -46,7 +46,7 @@ public class GameEngine : MonoBehaviour {
 	}
 	void SetupIngredients() {
 		for (int i = 0; i < 4; i++) {
-			m_IngredientsGenerator.inser
+			m_IngredientsGenerator.InsertFoodIntoHolder (m_FoodGenerator.GetChosenFood ().Pop);
 		}
 	}
 
