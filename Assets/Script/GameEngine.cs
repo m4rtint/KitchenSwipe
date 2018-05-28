@@ -56,6 +56,7 @@ public class GameEngine : MonoBehaviour {
         }
         
         //Orders are 5 slots, need to peek stack to fill in 5th order
+        //PROBLEM - when pop, will over take another order
 		m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Peek());
 	}
 

@@ -37,7 +37,11 @@ public class FoodOrdered : MonoBehaviour
 
 	public void UpdateOrderView(float seconds)
 	{
-		if (isEmpty) { return; }
+		if (isEmpty)
+        {
+            SetOrderEmptyView();
+            return;
+        }
 		DecrementSecondsBy(seconds);
 		SetOrderView();
 	}
@@ -52,7 +56,6 @@ public class FoodOrdered : MonoBehaviour
 		m_FoodId = id;
 		m_SecondsForComplete = seconds;
 		isEmpty = false;
-		SetOrderEmptyView();
 	}
 
 	void SetOrderView()
