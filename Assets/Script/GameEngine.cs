@@ -65,7 +65,7 @@ public class GameEngine : MonoBehaviour {
         foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
         {
             holder.thisDelegate += GetRandomFood;
-            holder.holderOrderDelegate += RemoveOrders;
+            holder.OrderDelegate += ComleteOrder;
         }
 	}
 
@@ -101,9 +101,18 @@ public class GameEngine : MonoBehaviour {
     #endregion
 
     #region Orders
-    void RemoveOrders(Direction dir, Food food)
+    void ComleteOrder(Food food)
     {
-		m_FoodOrderManager.RemoveFoodOrder(food, dir);
+		m_FoodOrderManager.RemoveFoodOrder(food);
+        if (m_FoodGenerator.GetChosenFood().Count > 0)
+        {
+            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Pop());
+        }
+
+        if (m_FoodOrderManager.GetFoodQueue().Count > 0)
+        {
+            m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodOrderManager.GetFoodQueue().Dequeue());
+        }
     }
     #endregion
 
