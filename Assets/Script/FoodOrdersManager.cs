@@ -9,8 +9,16 @@ public class FoodOrdersManager : MonoBehaviour
 	GameObject[] FoodOrdersObjects;
 	FoodOrdered[] m_FoodOrders;
 
-	#region Mono
-	void Awake()
+    Queue<Food> m_FoodQueue = new Queue<Food>();
+    #region getter/setter
+    public Queue<Food> GetFoodQueue()
+    {
+        return m_FoodQueue;
+    }
+    #endregion
+
+    #region Mono
+    void Awake()
 	{
         InitializeOrderComponents();
 	}
@@ -25,25 +33,38 @@ public class FoodOrdersManager : MonoBehaviour
 
 	#region Food
 	public void InsertFoodOrder(Food food) {
-		for (int i = 0; i < FoodOrdersObjects.Length; i++) {
-			if (m_FoodOrders [i].GetIsEmpty()) {
-				m_FoodOrders [i].SetFood (GenerateFoodId(food, i),food.GetSecondsToComplete());
+        foreach(FoodOrdered order in m_FoodOrders)
+        {
+            if (order.IsEmpty())
+            {
+                order.SetFood(food);
+                m_FoodQueue.Enqueue(food);
                 return;
-			}
-		}
+            }
+        }
 	}
 
-    string GenerateFoodId(Food food, int holder)
-    {
-        return food.GetFoodName() + holder.ToString();
-    }
 
-	public void RemoveFoodOrder(Food food, Direction dir) {
-		foreach(FoodOrdered order in m_FoodOrders) {
-			if (order.GetFoodId() == GenerateFoodId(food,(int)dir)) {
-				order.RemoveFood();
-			}
-		}      
+	public void RemoveFoodOrder(Food food) {
+        float timeUntilComplete = float.MaxValue;
+        FoodOrdered chosenOrder = null;
+        foreach(FoodOrdered order in m_FoodOrders)
+        {
+            Food orderFood = order.GetFood();
+
+            if (orderFood != null && 
+                orderFood.GetFoodName() == food.GetFoodName() &&
+                orderFood.GetSecondsToComplete() < timeUntilComplete) 
+            {
+                chosenOrder = order;
+                timeUntilComplete = chosenOrder.GetFood().GetSecondsToComplete();
+            }
+        }
+
+        if (chosenOrder != null)
+        {
+            chosenOrder.RemoveFood();
+        }
 	}
     #endregion
 

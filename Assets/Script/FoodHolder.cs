@@ -8,10 +8,9 @@ public class FoodHolder : MonoBehaviour {
     public delegate void FoodHolderDelegate();
     public FoodHolderDelegate thisDelegate;
 
-    public delegate void FoodHolderOrderDelegate(Direction dir, Food food);
-    public FoodHolderOrderDelegate holderOrderDelegate;
+    public delegate void FoodHolderOrderDelegate( Food food);
+    public FoodHolderOrderDelegate OrderDelegate;
 
-    public Direction dir;
     Food m_StoredFood;
 
     #region Getters/Setter
@@ -49,14 +48,21 @@ public class FoodHolder : MonoBehaviour {
         m_StoredFood.PlacedIngredient();
         if (m_StoredFood.GetIngredientLevel() == -1)
 		{
-            Destroy(m_StoredFood.gameObject);
-            holderOrderDelegate(dir, m_StoredFood);
-            m_StoredFood = null;
-            thisDelegate();
-			SetIngredientsView("");
+            OrderDelegate(m_StoredFood);
+            RemoveFood();
         } 
         UpdateListOfIngredientsView();
         
+    }
+
+    void RemoveFood()
+    {
+
+        Destroy(m_StoredFood.gameObject);
+
+        m_StoredFood = null;
+        thisDelegate();
+        SetIngredientsView("");
     }
     #endregion
 }

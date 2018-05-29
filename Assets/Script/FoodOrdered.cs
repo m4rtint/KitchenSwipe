@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class FoodOrdered : MonoBehaviour
 {
-
-	string m_FoodId;
-	bool isEmpty = true;
+    Food m_Food;
+	bool m_IsEmpty = true;
 	float m_SecondsForComplete;
 
 	#region Setter/Getter
@@ -16,28 +15,28 @@ public class FoodOrdered : MonoBehaviour
 		m_SecondsForComplete = seconds;
 	}
 
-	public bool GetIsEmpty()
+	public bool IsEmpty()
 	{
-		return isEmpty;
+		return m_IsEmpty;
 	}
 
-	public string GetFoodId()
-	{
-		return m_FoodId;
-	}
+    public Food GetFood()
+    {
+        return m_Food;
+    }
 	#endregion
 
 
 	#region View
 	public void RemoveFood(){
-		m_FoodId = "";
-		m_SecondsForComplete = 0;
-		isEmpty = true;
+        m_Food = null;
+        m_SecondsForComplete = 0;
+		m_IsEmpty = true;
 	}
 
 	public void UpdateOrderView(float seconds)
 	{
-		if (isEmpty) { return; }
+		if (m_IsEmpty) { return; }
 		DecrementSecondsBy(seconds);
 		SetOrderView();
 	}
@@ -47,17 +46,17 @@ public class FoodOrdered : MonoBehaviour
 		m_SecondsForComplete -= seconds;
 	}
 
-	public void SetFood(string id, float seconds)
+	public void SetFood(Food food)
 	{
-		m_FoodId = id;
-		m_SecondsForComplete = seconds;
-		isEmpty = false;
+        this.m_Food = food;
+		m_SecondsForComplete = food.GetSecondsToComplete();
+		m_IsEmpty = false;
 		SetOrderEmptyView();
 	}
 
 	void SetOrderView()
 	{
-		GetComponent<Text>().text = (int)m_SecondsForComplete + "\n" + m_FoodId;
+		GetComponent<Text>().text = (int)m_SecondsForComplete + "\n" + m_Food.GetFoodName();
 	}
 
 	void SetOrderEmptyView() {
