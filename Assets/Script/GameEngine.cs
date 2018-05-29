@@ -44,6 +44,9 @@ public class GameEngine : MonoBehaviour {
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 
+        //Get New Orders
+        SetupOrders();
+
         //Place First 4 food onto each side
         SetupIngredients();
 
@@ -51,21 +54,25 @@ public class GameEngine : MonoBehaviour {
         ChooseNewCurrentIngredient ();
 	}
 	void SetupIngredients() {
-		for (int i = 0; i < 4; i++) {
-            GetRandomFood();
+		for(int i = 0; i < 4; i++)
+        {
+            GetNewIngredients();
         }
-        
-        //Orders are 5 slots, need to peek stack to fill in 5th order
-        //PROBLEM - when pop, will over take another order
-		m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Peek());
 	}
+
+    void SetupOrders()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GetNewOrder();
+        }
+    }
 
 	void SetupDelegate(){
 		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
         foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
         {
-            holder.thisDelegate += GetRandomFood;
-            holder.OrderDelegate += ComleteOrder;
+            holder.OrderDelegate += CompleteOrder;
         }
 	}
 
@@ -81,15 +88,6 @@ public class GameEngine : MonoBehaviour {
 
 
 	#region Ingredients
-    void GetRandomFood()
-    {
-		if (m_FoodGenerator.GetChosenFood().Count > 0) {
-            Food chosenFood = m_FoodGenerator.GetChosenFood().Pop();
-            m_FoodOrderManager.InsertFoodOrder(chosenFood);
-            m_IngredientsGenerator.InsertFoodIntoHolder(chosenFood);
-		}
-    }
-
 	void ChooseNewCurrentIngredient(){
 		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
 		SetCenterIngredientView ();
@@ -98,20 +96,29 @@ public class GameEngine : MonoBehaviour {
 	void SetCenterIngredientView() {
 		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
 	}
-    #endregion
 
-    #region Orders
-    void ComleteOrder(Food food)
+    void GetNewIngredients()
     {
-		m_FoodOrderManager.RemoveFoodOrder(food);
-        if (m_FoodGenerator.GetChosenFood().Count > 0)
-        {
-            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Pop());
-        }
-
         if (m_FoodOrderManager.GetFoodQueue().Count > 0)
         {
             m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodOrderManager.GetFoodQueue().Dequeue());
+        }
+    }
+    #endregion
+
+    #region Orders
+    void CompleteOrder(Food food)
+    {
+		m_FoodOrderManager.RemoveFoodOrder(food);
+        GetNewOrder();
+        GetNewIngredients();
+    }
+
+    void GetNewOrder()
+    {
+        if (m_FoodGenerator.GetChosenFood().Count > 0)
+        {
+            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Pop());
         }
     }
     #endregion

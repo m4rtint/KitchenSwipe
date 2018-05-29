@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class FoodHolder : MonoBehaviour {
 
-    public delegate void FoodHolderDelegate();
-    public FoodHolderDelegate thisDelegate;
 
     public delegate void FoodHolderOrderDelegate( Food food);
     public FoodHolderOrderDelegate OrderDelegate;
@@ -61,7 +59,6 @@ public class FoodHolder : MonoBehaviour {
         Destroy(m_StoredFood.gameObject);
 
         m_StoredFood = null;
-        thisDelegate();
         SetIngredientsView("");
     }
     #endregion
