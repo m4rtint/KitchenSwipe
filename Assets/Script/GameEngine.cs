@@ -116,9 +116,9 @@ public class GameEngine : MonoBehaviour {
 
     void GetNewOrder()
     {
-        if (m_FoodGenerator.GetChosenFood().Count > 0)
+        if (m_FoodGenerator.GetChosenFoodStack().Count > 0)
         {
-            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFood().Pop());
+            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFoodStack().Pop());
         }
     }
     #endregion

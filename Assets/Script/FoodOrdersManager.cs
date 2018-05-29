@@ -57,7 +57,7 @@ public class FoodOrdersManager : MonoBehaviour
                 orderFood.GetSecondsToComplete() < timeUntilComplete) 
             {
                 chosenOrder = order;
-                timeUntilComplete = chosenOrder.GetFood().GetSecondsToComplete();
+				timeUntilComplete = order.GetSecondsForComplete ();
             }
         }
 

@@ -15,6 +15,10 @@ public class FoodOrdered : MonoBehaviour
 		m_SecondsForComplete = seconds;
 	}
 
+	public float GetSecondsForComplete(){
+		return m_SecondsForComplete;
+	}
+
 	public bool IsEmpty()
 	{
 		return m_IsEmpty;
