@@ -55,6 +55,8 @@ public class IngredientGenerator : MonoBehaviour {
 
     public Ingredient RandomlyChooseIngredient()
     {
+		if (IsAllEmptyHolders()) {return null;}
+
 		Food food;
 		do{
 			int index = Random.Range(0, 3);
@@ -64,6 +66,15 @@ public class IngredientGenerator : MonoBehaviour {
         //TODO-Grab only available ingredients - other holders might be empty
 		return GetIngredientOnTop(food);
     }
+
+	bool IsAllEmptyHolders(){
+		for (int i = 0; i < m_FoodHolders.Length; i++) {
+			if (m_FoodHolders [i].GetStoredFood () != null) {
+				return false;
+			}
+		}
+		return true;
+	}
 
     public Ingredient UserSwiped(Ingredient ingredient, Direction dir)
     {

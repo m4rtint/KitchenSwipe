@@ -94,7 +94,11 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void SetCenterIngredientView() {
-		DebugManager.instance.SetCenter (m_CurrentIngredient.Get_IngredientName ());
+		string ingredient = "Empty";
+		if (m_CurrentIngredient != null) {
+			ingredient = m_CurrentIngredient.Get_IngredientName ();
+		}
+		DebugManager.instance.SetCenter (ingredient);
 	}
 
     void GetNewIngredients()
@@ -127,7 +131,6 @@ public class GameEngine : MonoBehaviour {
     void PlayerSwiped(Direction dir)
     {
         m_CurrentIngredient = m_IngredientsGenerator.UserSwiped(m_CurrentIngredient, dir);
-
         SetCenterIngredientView();
     }
 
