@@ -53,17 +53,17 @@ public class IngredientGenerator : MonoBehaviour {
 		return food.GetNeededIngredient();
 	}
 
+
+	//Place all filled holders into an array , randomly choose
     public Ingredient RandomlyChooseIngredient()
     {
 		if (IsAllEmptyHolders()) {return null;}
-
 		Food food;
 		do{
-			int index = Random.Range(0, 3);
+			int index = Random.Range(0, 4);
 			food = m_FoodHolders[index].GetStoredFood();
 		} while (food == null);
         
-        //TODO-Grab only available ingredients - other holders might be empty
 		return GetIngredientOnTop(food);
     }
 
