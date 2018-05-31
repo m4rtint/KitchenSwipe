@@ -46,8 +46,9 @@ public class FoodHolder : MonoBehaviour {
         m_StoredFood.PlacedIngredient();
         if (m_StoredFood.GetIngredientLevel() == -1)
 		{
-            OrderDelegate(m_StoredFood);
-            RemoveFood();
+			Food tempStoredFood = m_StoredFood;
+			RemoveFood();
+			OrderDelegate(tempStoredFood);
         } 
         UpdateListOfIngredientsView();
         
@@ -59,7 +60,7 @@ public class FoodHolder : MonoBehaviour {
         Destroy(m_StoredFood.gameObject);
 
         m_StoredFood = null;
-        SetIngredientsView("");
+        SetIngredientsView("Empty");
     }
     #endregion
 }
