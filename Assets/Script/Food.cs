@@ -49,6 +49,7 @@ public class Food : MonoBehaviour {
 
 	#region UserAction
 	public void PlacedIngredient() {
+		m_Ingredients [m_Level].gameObject.SetActive(false);
 		m_Level--;
 	}
 	#endregion
