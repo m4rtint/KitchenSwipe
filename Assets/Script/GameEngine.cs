@@ -98,7 +98,7 @@ public class GameEngine : MonoBehaviour {
 		if (m_CurrentIngredient != null) {
 			ingredient = m_CurrentIngredient.Get_IngredientName ();
 		}
-		DebugManager.instance.SetCenter (ingredient);
+        DebugManager.instance.SetCenter (m_CurrentIngredient.GetColor());
 	}
 
     void GetNewIngredients()

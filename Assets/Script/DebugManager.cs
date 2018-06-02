@@ -17,8 +17,8 @@ public class DebugManager : MonoBehaviour {
 	}
 
 	#region Sides
-	public void SetCenter(string s) {
-		m_Center.GetComponent<Text> ().text = s;
+    public void SetCenter(Color color) {
+        m_Center.GetComponent<Image>().color = color;
 	}
   
 	#endregion
