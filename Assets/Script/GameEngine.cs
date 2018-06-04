@@ -86,7 +86,6 @@ public class GameEngine : MonoBehaviour {
     }
 	#endregion
 
-
 	#region Ingredients
 	void ChooseNewCurrentIngredient(){
 		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
@@ -94,10 +93,6 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void SetCenterIngredientView() {
-		string ingredient = "Empty";
-		if (m_CurrentIngredient != null) {
-			ingredient = m_CurrentIngredient.Get_IngredientName ();
-		}
         DebugManager.instance.SetCenter (m_CurrentIngredient.GetColor());
 	}
 
