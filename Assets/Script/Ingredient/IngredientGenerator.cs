@@ -82,10 +82,13 @@ public class IngredientGenerator : MonoBehaviour {
         {
             //Correctly Swiped
             m_FoodHolders[(int)dir].CorrectlySwiped();
+            //SCORE
+            ScoreManager.instance.IncrementScore();
         } else
         {
 			Debug.Log("Incorrectly Swiped");
-            //Incorrectyl swiped
+            //SCORE
+            ScoreManager.instance.DecrementScore();
         }
 		return RandomlyChooseIngredient();
     }

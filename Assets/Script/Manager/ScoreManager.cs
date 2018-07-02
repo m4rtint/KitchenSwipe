@@ -3,19 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
+    //Delegate
+    public delegate void ScoreDelegate();
+    public ScoreDelegate thisDelegate;
+
     //Player Pref keys
     readonly string InfiniteMode = "Infinite";
 
     public static ScoreManager instance = null;
 
-    readonly int BaseScore = 100;
+    [SerializeField]
+    float BaseScore;
+    [SerializeField]
+    float m_IncrementScoreVariable;
+    [SerializeField]
+    float m_DecrementScoreVariable;
+
     int m_Score;
-    int m_ScoreVariable;
 
     #region GetterSetter
     public void SetScoreVariable(int var)
     {
-        m_ScoreVariable = var;
+        m_IncrementScoreVariable = var;
     }
 
     public int GetScore()
@@ -43,7 +52,14 @@ public class ScoreManager : MonoBehaviour {
     #region Score
     public void IncrementScore()
     {
-        m_Score += (BaseScore * m_ScoreVariable);
+        m_Score += (int)(BaseScore * m_IncrementScoreVariable);
+        this.thisDelegate();
+    }
+
+    public void DecrementScore()
+    {
+        m_Score -= (int)(BaseScore * m_DecrementScoreVariable);
+        this.thisDelegate();
     }
 
     public void SaveScore()

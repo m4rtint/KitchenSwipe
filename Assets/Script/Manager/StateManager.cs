@@ -29,6 +29,5 @@ public class StateManager : MonoBehaviour {
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
         m_CurrentState = GameState.Menu;
-
     }
 }
