@@ -11,6 +11,8 @@ public class TimeManager : MonoBehaviour {
     [SerializeField]
     float m_GameTime;
    
+	[SerializeField]
+	float m_OrderPenaltyTime;
 
     public static TimeManager instance = null;
 
@@ -19,6 +21,10 @@ public class TimeManager : MonoBehaviour {
     {
         return m_GameTime.ToString("n" + dec);
     }
+
+	public float OrderPenaltyTime() {
+		return m_OrderPenaltyTime;
+	}
     #endregion
 
     #region Mono

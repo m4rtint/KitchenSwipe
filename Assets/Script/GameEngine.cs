@@ -73,6 +73,7 @@ public class GameEngine : MonoBehaviour {
         foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
         {
             holder.OrderDelegate += CompleteOrder;
+			holder.OrderTimerDelegate += IncorrectlySwipeIngredient;
         }
 	}
 
@@ -112,6 +113,11 @@ public class GameEngine : MonoBehaviour {
         GetNewOrder();
         GetNewIngredients();
     }
+
+	void IncorrectlySwipeIngredient(Food food)
+	{
+		m_FoodOrderManager.DecrementOrderTimer (food, TimeManager.instance.OrderPenaltyTime());
+	}
 
     void GetNewOrder()
     {

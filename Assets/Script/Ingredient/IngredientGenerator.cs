@@ -84,9 +84,7 @@ public class IngredientGenerator : MonoBehaviour {
             m_FoodHolders[(int)dir].CorrectlySwiped();
         } else
         {
-			Debug.Log("Incorrectly Swiped");
-            //SCORE
-            ScoreManager.instance.DecrementScore();
+			m_FoodHolders [(int)dir].IncorrectlySwiped ();
         }
 		return RandomlyChooseIngredient();
     }

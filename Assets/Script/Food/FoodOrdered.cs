@@ -48,7 +48,7 @@ public class FoodOrdered : MonoBehaviour
 
     }
 
-	void DecrementSecondsBy(float seconds)
+	public void DecrementSecondsBy(float seconds)
 	{
 		m_SecondsForComplete -= seconds;
 

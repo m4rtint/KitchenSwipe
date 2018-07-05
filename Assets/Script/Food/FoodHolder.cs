@@ -9,6 +9,9 @@ public class FoodHolder : MonoBehaviour {
     public delegate void FoodHolderOrderDelegate( Food food);
     public FoodHolderOrderDelegate OrderDelegate;
 
+	public delegate void FoodHolderOrderTimerDelegate( Food food);
+	public FoodHolderOrderTimerDelegate OrderTimerDelegate;
+
     Food m_StoredFood;
 
     #region Getters/Setter
@@ -55,6 +58,10 @@ public class FoodHolder : MonoBehaviour {
         UpdateListOfIngredientsView();
         
     }
+
+	public void IncorrectlySwiped(){
+		OrderTimerDelegate (m_StoredFood);
+	}
 
     void RemoveFood()
     {

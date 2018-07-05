@@ -44,7 +44,8 @@ public class FoodOrdersManager : MonoBehaviour
         }
 	}
 
-
+	//To find the order with the shortest amount of time.
+	//And remove the food from the orders
 	public void RemoveFoodOrder(Food food) {
         float timeUntilComplete = float.MaxValue;
         FoodOrdered chosenOrder = null;
@@ -66,6 +67,31 @@ public class FoodOrdersManager : MonoBehaviour
             chosenOrder.RemoveFood();
         }
 	}
+
+	//To find the order with the longest amount of time.
+	//And decrement "seconds" from the order
+	public void DecrementOrderTimer(Food food, float seconds) {
+		float timeUntilComplete = float.MinValue;
+		FoodOrdered chosenOrder = null;
+		foreach(FoodOrdered order in m_FoodOrders)
+		{
+			Food orderFood = order.GetFood();
+
+			if (orderFood != null && 
+				orderFood.GetFoodName() == food.GetFoodName() &&
+				orderFood.GetSecondsToComplete() > timeUntilComplete) 
+			{
+				chosenOrder = order;
+				timeUntilComplete = order.GetSecondsForComplete ();
+			}
+		}
+
+		if (chosenOrder != null)
+		{
+			chosenOrder.DecrementSecondsBy (seconds);
+		}
+	}
+
     #endregion
 
     #region Orders
