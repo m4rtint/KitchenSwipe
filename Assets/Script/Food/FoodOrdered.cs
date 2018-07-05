@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class FoodOrdered : MonoBehaviour
 {
     Food m_Food;
-	bool m_IsEmpty = true;
 	float m_SecondsForComplete;
-    float m_RecordedSecondsForComplete;
 
 	#region Setter/Getter
 	public float GetSecondsForComplete(){
@@ -17,7 +15,7 @@ public class FoodOrdered : MonoBehaviour
 
 	public bool IsEmpty()
 	{
-		return m_IsEmpty;
+		return m_Food == null;
 	}
 
     public Food GetFood()
@@ -31,13 +29,12 @@ public class FoodOrdered : MonoBehaviour
 	public void RemoveFood(){
         m_Food = null;
         m_SecondsForComplete = 0;
-		m_IsEmpty = true;
 	}
 
 	public void UpdateOrderView(float seconds)
 	{
 
-		if (m_IsEmpty)
+		if (IsEmpty())
         {
             SetOrderEmptyView();
             return;
@@ -58,8 +55,6 @@ public class FoodOrdered : MonoBehaviour
 	{
         this.m_Food = food;
 		m_SecondsForComplete = food.GetSecondsToComplete();
-
-		m_IsEmpty = false;
 		SetOrderEmptyView();
 	}
 

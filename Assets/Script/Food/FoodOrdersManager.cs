@@ -75,11 +75,9 @@ public class FoodOrdersManager : MonoBehaviour
 		FoodOrdered chosenOrder = null;
 		foreach(FoodOrdered order in m_FoodOrders)
 		{
-			Food orderFood = order.GetFood();
-
-			if (orderFood != null && 
-				orderFood.GetFoodName() == food.GetFoodName() &&
-				orderFood.GetSecondsToComplete() > timeUntilComplete) 
+			if (!order.IsEmpty() && 
+				order.GetFood().GetFoodName() == food.GetFoodName() &&
+				order.GetSecondsForComplete() > timeUntilComplete) 
 			{
 				chosenOrder = order;
 				timeUntilComplete = order.GetSecondsForComplete ();
