@@ -5,6 +5,7 @@ public enum GameState
 {
     Menu,
     Game,
+    Pause,
     GameOver
 }
 public class StateManager : MonoBehaviour {

@@ -49,6 +49,8 @@ public class FoodHolder : MonoBehaviour {
 			Food tempStoredFood = m_StoredFood;
 			RemoveFood();
 			OrderDelegate(tempStoredFood);
+            //SCORE
+            ScoreManager.instance.IncrementScore();
         } 
         UpdateListOfIngredientsView();
         
@@ -56,7 +58,6 @@ public class FoodHolder : MonoBehaviour {
 
     void RemoveFood()
     {
-
         Destroy(m_StoredFood.gameObject);
 
         m_StoredFood = null;
