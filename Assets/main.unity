@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameTime: 100
-  m_OrderPenaltyTime: 50
+  m_OrderPenaltyTime: 5
 --- !u!1 &2021354266 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1756389705431086, guid: 1610001edfc8b41479ae10c177904c37,
