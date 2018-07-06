@@ -11,6 +11,8 @@ public enum GameState
 public class StateManager : MonoBehaviour {
 
     public static StateManager instance = null;
+
+	[SerializeField]
     GameState m_CurrentState;
 
     void Awake()
@@ -29,6 +31,25 @@ public class StateManager : MonoBehaviour {
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-        m_CurrentState = GameState.Menu;
-    }
+	}
+		
+	public void PauseOrStartGame(){
+		if (InGame ()) {
+			m_CurrentState = GameState.Pause;
+		} else {
+			m_CurrentState = GameState.Game;
+		}
+	}
+
+	public void EndGame() {
+		m_CurrentState = GameState.GameOver;
+	}
+
+	public bool InGame(){
+		return m_CurrentState == GameState.Game;
+	}
+
+	public bool Paused(){
+		return m_CurrentState == GameState.Pause;
+	}
 }

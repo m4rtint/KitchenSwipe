@@ -88,7 +88,9 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void Update() {
-		RunDownOrderTimer (Time.deltaTime * TimeManager.instance.m_OrderTimeVaryingSpeed);
+		if (StateManager.instance.InGame ()) {
+			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.m_OrderTimeVaryingSpeed);
+		}
 	}
 
 	void RunDownOrderTimer(float seconds) {

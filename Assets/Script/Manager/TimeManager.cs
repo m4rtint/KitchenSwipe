@@ -42,7 +42,9 @@ public class TimeManager : MonoBehaviour {
     }
     void Update()
     {
-        DecrementGameTime();
+		if (StateManager.instance.InGame()) {
+			DecrementGameTime ();
+		}
     }
 
     #endregion

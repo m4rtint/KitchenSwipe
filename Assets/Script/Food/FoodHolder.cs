@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class FoodHolder : MonoBehaviour {
 
+	#if UNITY_EDITOR
+	public bool DEBUG_FOOD_NAME;
+	#endif
 
     public delegate void FoodHolderOrderDelegate( Food food);
     public FoodHolderOrderDelegate OrderDelegate;
@@ -25,7 +28,7 @@ public class FoodHolder : MonoBehaviour {
 	}
     #endregion
 
-    #region View
+	#if UNITY_EDITOR
     public void UpdateListOfIngredientsView()
     {
 		if (m_StoredFood == null) { return; }
@@ -38,9 +41,12 @@ public class FoodHolder : MonoBehaviour {
     }
 
 	void SetIngredientsView(string ingredients) {
-		GetComponent<Text>().text = ingredients;
+		if (!DEBUG_FOOD_NAME) {
+			ingredients = "";
+		} 
+		GetComponent<Text> ().text = ingredients;
 	}
-    #endregion
+	#endif
 
     #region UserAction
     public void CorrectlySwiped()
@@ -57,7 +63,9 @@ public class FoodHolder : MonoBehaviour {
             //TIME
             TimeManager.instance.IncrementGameTime();
         } 
+		#if UNITY_EDITOR
         UpdateListOfIngredientsView();
+		#endif
         
     }
 

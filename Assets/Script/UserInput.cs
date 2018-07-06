@@ -41,15 +41,19 @@ public class UserInput  : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		return draggedDir;
 	}
 
+	bool Paused(){
+		return StateManager.instance.Paused ();
+	}
 
 
 	#region Events
 	//Do this when the user stops dragging this UI Element.
 	public void OnEndDrag(PointerEventData eventData)
 	{
+		
 		Vector2 displacement = eventData.position - eventData.pressPosition;
 		float distance = displacement.magnitude;
-		if (distance < m_DragDistance) {
+		if (distance < m_DragDistance || Paused()) {
 			return;
 		}
 
