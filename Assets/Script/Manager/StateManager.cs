@@ -10,6 +10,7 @@ public enum GameState
 }
 public class StateManager : MonoBehaviour {
 
+
     public static StateManager instance = null;
 
 	[SerializeField]
@@ -41,8 +42,8 @@ public class StateManager : MonoBehaviour {
 		}
 	}
 
-	public void EndGame() {
-		m_CurrentState = GameState.GameOver;
+	public void StartGame() {
+		m_CurrentState = GameState.Game;
 	}
 
 	public bool InGame(){
