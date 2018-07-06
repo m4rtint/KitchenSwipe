@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -110,8 +109,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &152293355
 Prefab:
@@ -798,11 +795,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!4 &1373963147
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,7 +1083,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GameTime: 100
   m_OrderPenaltyTime: 5
+  m_GameTimePenaltyTime: 5
   m_OrderSuccessGivenTime: 10
+  m_OrderTimeVaryingSpeed: 1
 --- !u!114 &1882693097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,10 +1097,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002145ac1c5516f48b8dd2911cdfe641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumberOfFood: 5
+  m_NumberOfFood: 10
   m_FoodOrdersObject: {fileID: 1641757591}
   m_FoodHolder: {fileID: 1393380005}
   m_PlayerInput: {fileID: 2021354266}
+  m_WaveSize: 3
 --- !u!1 &2021354266 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1756389705431086, guid: 1610001edfc8b41479ae10c177904c37,

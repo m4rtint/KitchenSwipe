@@ -18,6 +18,7 @@ public class ScoreUI : MonoBehaviour {
     {
         m_ScoreText = GetComponent<Text>();
         m_ScoreManager = ScoreManager.instance;
+		UpdateScore ();
     }
 
     void InitDelegate()
@@ -27,7 +28,7 @@ public class ScoreUI : MonoBehaviour {
 
     void UpdateScore()
     {
-        m_ScoreText.text = m_ScoreManager.GetScore().ToString();
+		m_ScoreText.text = m_ScoreManager.GetScore().ToString() + "\n"+"x"+m_ScoreManager.IncrementScoreVariable();
     }
 	
 }

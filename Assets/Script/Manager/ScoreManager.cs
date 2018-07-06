@@ -22,10 +22,18 @@ public class ScoreManager : MonoBehaviour {
     int m_Score;
 
     #region GetterSetter
-    public void SetScoreVariable(int var)
+    public void SetIncrementScoreVariable(float var)
     {
         m_IncrementScoreVariable = var;
     }
+
+	public void AddToIncrementScoreVariable(float score){
+		m_IncrementScoreVariable += score;
+	}
+
+	public float IncrementScoreVariable(){
+		return m_IncrementScoreVariable;
+	}
 
     public int GetScore()
     {

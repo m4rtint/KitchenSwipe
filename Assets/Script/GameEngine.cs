@@ -88,7 +88,7 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void Update() {
-		RunDownOrderTimer (Time.deltaTime);
+		RunDownOrderTimer (Time.deltaTime * TimeManager.instance.m_OrderTimeVaryingSpeed);
 	}
 
 	void RunDownOrderTimer(float seconds) {
@@ -117,7 +117,7 @@ public class GameEngine : MonoBehaviour {
     #endregion
 
     #region Orders
-    public virtual void CompleteOrder(Food food)
+    protected virtual void CompleteOrder(Food food)
     {
 		m_FoodOrderManager.RemoveFoodOrder(food);
         GetNewOrder();

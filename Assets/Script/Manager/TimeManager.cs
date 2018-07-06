@@ -19,7 +19,10 @@ public class TimeManager : MonoBehaviour {
 
     [SerializeField]
     float m_OrderSuccessGivenTime;
+
+	//Public variable
     public static TimeManager instance = null;
+	public float m_OrderTimeVaryingSpeed;
 
     #region Getter/Setter
     public string GameTime(int dec = 2)
@@ -33,11 +36,11 @@ public class TimeManager : MonoBehaviour {
     #endregion
 
     #region Mono
-    private void Awake()
+    void Awake()
     {
         instance = this;
     }
-    private void Update()
+    void Update()
     {
         DecrementGameTime();
     }
