@@ -6,5 +6,5 @@ using UnityEngine;
 [RequireComponent(typeof(TimeManager))]
 [RequireComponent(typeof(ScoreManager))]
 public class GameEngineInfinite : GameEngine {
-
+    int i;
 }
