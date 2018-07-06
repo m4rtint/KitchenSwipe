@@ -14,6 +14,8 @@ public class TimeManager : MonoBehaviour {
 	[SerializeField]
 	float m_OrderPenaltyTime;
 
+    [SerializeField]
+    float m_OrderSuccessGivenTime;
     public static TimeManager instance = null;
 
     #region Getter/Setter
@@ -46,8 +48,12 @@ public class TimeManager : MonoBehaviour {
         this.thisDelegate();
     }
 
-    public void IncrementGameTime(float time)
+    public void IncrementGameTime(float time = 0)
     {
+        if (time <= 0)
+        {
+            time = m_OrderSuccessGivenTime;
+        }
         m_GameTime += time;
         this.thisDelegate();
     }
