@@ -18,7 +18,7 @@ public class GameEngine : MonoBehaviour {
     FoodOrdersManager m_FoodOrderManager;
 
 	//Food Generator
-	FoodGenerator m_FoodGenerator;
+	protected FoodGenerator m_FoodGenerator;
 
 	//Ingredients Generator
 	[SerializeField]
@@ -29,9 +29,19 @@ public class GameEngine : MonoBehaviour {
 	[SerializeField]
 	GameObject m_PlayerInput;
 
-	#region Mono
-	// Use this for initialization
-	void Awake () {
+    #region getter/setter
+    protected int NumberOfFood() {
+        return m_NumberOfFood;
+    }
+
+    protected void NumberOfFood(int size){
+        m_NumberOfFood = size;
+    }
+    #endregion
+
+    #region Mono
+    // Use this for initialization
+    void Awake () {
 		m_FoodGenerator = GetComponent<FoodGenerator>();
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
         m_FoodOrderManager = m_FoodOrdersObject.GetComponent<FoodOrdersManager>();
@@ -39,7 +49,7 @@ public class GameEngine : MonoBehaviour {
         SetupDelegate ();
 	}
 
-	void Start()
+	protected virtual void Start()
 	{
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
@@ -107,7 +117,7 @@ public class GameEngine : MonoBehaviour {
     #endregion
 
     #region Orders
-    void CompleteOrder(Food food)
+    public virtual void CompleteOrder(Food food)
     {
 		m_FoodOrderManager.RemoveFoodOrder(food);
         GetNewOrder();
