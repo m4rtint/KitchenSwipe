@@ -54,6 +54,8 @@ public class FoodHolder : MonoBehaviour {
 			OrderDelegate(tempStoredFood);
             //SCORE
             ScoreManager.instance.IncrementScore();
+            //TIME
+            TimeManager.instance.IncrementGameTime();
         } 
         UpdateListOfIngredientsView();
         
