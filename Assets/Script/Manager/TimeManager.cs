@@ -15,6 +15,9 @@ public class TimeManager : MonoBehaviour {
 	float m_OrderPenaltyTime;
 
     [SerializeField]
+    float m_GameTimePenaltyTime;
+
+    [SerializeField]
     float m_OrderSuccessGivenTime;
     public static TimeManager instance = null;
 
@@ -45,6 +48,14 @@ public class TimeManager : MonoBehaviour {
     public void DecrementGameTime()
     {
         m_GameTime -= Time.deltaTime;
+
+        this.thisDelegate();
+    }
+
+    public void PenaltyGameTime()
+    {
+        m_GameTime -= m_GameTimePenaltyTime;
+
         this.thisDelegate();
     }
 

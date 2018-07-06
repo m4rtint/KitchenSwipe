@@ -1050,7 +1050,8 @@ Prefab:
       propertyPath: m_NumberOfFood
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1882693094 stripped
@@ -1086,6 +1087,21 @@ MonoBehaviour:
   m_GameTime: 100
   m_OrderPenaltyTime: 5
   m_OrderSuccessGivenTime: 10
+--- !u!114 &1882693097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882693094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002145ac1c5516f48b8dd2911cdfe641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NumberOfFood: 5
+  m_FoodOrdersObject: {fileID: 1641757591}
+  m_FoodHolder: {fileID: 1393380005}
+  m_PlayerInput: {fileID: 2021354266}
 --- !u!1 &2021354266 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1756389705431086, guid: 1610001edfc8b41479ae10c177904c37,

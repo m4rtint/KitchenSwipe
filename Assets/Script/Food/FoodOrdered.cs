@@ -79,7 +79,7 @@ public class FoodOrdered : MonoBehaviour
         if (m_SecondsForComplete <= 0)
         {
             ScoreManager.instance.DecrementScore();
-            TimeManager.instance.DecrementGameTime();
+            TimeManager.instance.PenaltyGameTime();
             ResetTimer();
         }
     }
