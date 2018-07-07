@@ -15,7 +15,7 @@ public class TransitionManager : MonoBehaviour {
 
     public void StartInfiniteGameScene() {
 		SceneManager.LoadScene ("InfiniteGameMode");
-		StateManager.instance.PauseGame ();
+        StateManager.instance.StartGame ();
 	}
 
     public void StartMainMenuScene()

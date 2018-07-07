@@ -18,7 +18,7 @@ public class GameTimeUI : MonoBehaviour {
 
     void InitDelegate()
     {
-        m_TimeManager.thisDelegate += UpdateTime;
+        m_TimeManager.UpdateTimerUIDelegate += UpdateTime;
     }
 
     void InitTimerUI()
