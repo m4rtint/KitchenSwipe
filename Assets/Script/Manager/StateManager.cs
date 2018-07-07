@@ -44,6 +44,11 @@ public class StateManager : MonoBehaviour {
         m_CurrentState = GameState.Pause;
     }
 
+    public void SetToMenu()
+    {
+        m_CurrentState = GameState.Menu;
+    }
+
 	public bool InGame(){
 		return m_CurrentState == GameState.Game;
 	}

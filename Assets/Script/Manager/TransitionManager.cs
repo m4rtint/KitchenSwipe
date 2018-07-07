@@ -5,8 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour {
 
-	public void StartInfiniteGameScene() {
-		SceneManager.LoadScene (1);
-		StateManager.instance.StartGame ();
+    public static TransitionManager instance = null;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+
+    public void StartInfiniteGameScene() {
+		SceneManager.LoadScene ("InfiniteGameMode");
+		StateManager.instance.PauseGame ();
 	}
+
+    public void StartMainMenuScene()
+    {
+        SceneManager.LoadScene(0);
+        StateManager.instance.SetToMenu();
+    }
 }
