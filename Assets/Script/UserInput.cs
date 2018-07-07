@@ -16,10 +16,17 @@ public class UserInput  : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	public delegate void InputDelegate(Direction dir);
 	public InputDelegate thisDelegate;
 
+    Vector3 startPosition;
+
 	[SerializeField]
 	float m_DragDistance;
 
-	Direction GetDragDirection(Vector3 dragVector)
+    private void Awake()
+    {
+        startPosition = transform.position;
+    }
+
+    Direction GetDragDirection(Vector3 dragVector)
 	{
 		float positiveX = Mathf.Abs(dragVector.x);
 		float positiveY = Mathf.Abs(dragVector.y);
@@ -64,7 +71,9 @@ public class UserInput  : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 	public void OnBeginDrag(PointerEventData data) {}
 
-	public void OnDrag(PointerEventData data){}
+	public void OnDrag(PointerEventData data){
+        transform.position = Input.mousePosition;
+    }
 	#endregion
 }
 
