@@ -329,6 +329,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1595193334}
+    - target: {fileID: 114883885288901570, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
+        type: 2}
+      propertyPath: m_DragDistance
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98e5ae7b9189d4d2d80435a30e0140e4, type: 2}
   m_IsPrefabParent: 0
@@ -574,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameTime: 20
+  m_GameTime: 200
   m_OrderPenaltyTime: 5
   m_GameTimePenaltyTime: 5
   m_OrderSuccessGivenTime: 10
@@ -600,3 +605,15 @@ GameObject:
   m_PrefabParentObject: {fileID: 1554819317486804, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
     type: 2}
   m_PrefabInternal: {fileID: 1188076725}
+--- !u!114 &2021354271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2021354266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3285ae56c020d4ec0ac93ec86018c80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TimeToReachTarget: 0.5

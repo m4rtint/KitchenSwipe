@@ -73,12 +73,16 @@ public class FoodHolder : MonoBehaviour {
 		OrderTimerDelegate (m_StoredFood);
 	}
 
+
     void RemoveFood()
     {
         Destroy(m_StoredFood.gameObject);
 
         m_StoredFood = null;
+#if UNITY_EDITOR
         SetIngredientsView("Empty");
+#endif
     }
-    #endregion
+
+#endregion
 }

@@ -17,7 +17,6 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public delegate void InputDelegate(Direction dir);
     public InputDelegate thisDelegate;
 
-
     [SerializeField]
     float m_DragDistance;
 
@@ -44,9 +43,9 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return draggedDir;
     }
 
-    bool Paused()
+    bool InGame()
     {
-        return StateManager.instance.Paused();
+        return StateManager.instance.InGame();
     }
 
 
@@ -54,32 +53,23 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     //Do this when the user stops dragging this UI Element.
     public void OnEndDrag(PointerEventData eventData)
     {
-
         Vector2 displacement = eventData.position - eventData.pressPosition;
+
+        Vector3 dragVectorDirection = displacement.normalized;
+        Direction dir = GetDragDirection(dragVectorDirection);
+
         float distance = displacement.magnitude;
-        if (distance < m_DragDistance || Paused())
+        if (distance > m_DragDistance && InGame())
         {
-            GetComponent<CenterIngredientMovement>().StartAnimation();
-            return;
-        }
+            GetComponent<CenterIngredientMovement>().StartSnapOffScreenAnimation(dir);
+            this.thisDelegate(dir);
+        } 
 
-        Vector3 dragVectorDirection = displacement.normalized;
-        Direction dir = GetDragDirection(dragVectorDirection);
-        this.thisDelegate(dir);
     }
 
-    public void OnBeginDrag(PointerEventData data) { }
+    public void OnBeginDrag(PointerEventData eventData) {}
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        Vector2 displacement = eventData.position - eventData.pressPosition;
-        Vector3 dragVectorDirection = displacement.normalized;
-        Direction dir = GetDragDirection(dragVectorDirection);
-
-
-        transform.position = Input.mousePosition;
-        //Algorithm to only allow up down left right
-    }
+    public void OnDrag(PointerEventData eventData){ }
     #endregion
 }
 
