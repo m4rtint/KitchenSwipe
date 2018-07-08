@@ -6,7 +6,8 @@ public class TimeManager : MonoBehaviour {
 
     //Delegate
     public delegate void TimerDelegate();
-    public TimerDelegate thisDelegate;
+    public TimerDelegate UpdateTimerUIDelegate;
+    public TimerDelegate CheckGameOverDelegate;
 
     [SerializeField]
     float m_GameTime;
@@ -53,15 +54,18 @@ public class TimeManager : MonoBehaviour {
     public void DecrementGameTime()
     {
         m_GameTime -= Time.deltaTime;
-
-        this.thisDelegate();
+        if (m_GameTime <= 0) {
+            m_GameTime = 0;
+            this.CheckGameOverDelegate();
+        }
+        this.UpdateTimerUIDelegate();
     }
 
     public void PenaltyGameTime()
     {
         m_GameTime -= m_GameTimePenaltyTime;
 
-        this.thisDelegate();
+        this.UpdateTimerUIDelegate();
     }
 
     public void IncrementGameTime(float time = 0)
@@ -71,7 +75,7 @@ public class TimeManager : MonoBehaviour {
             time = m_OrderSuccessGivenTime;
         }
         m_GameTime += time;
-        this.thisDelegate();
+        this.UpdateTimerUIDelegate();
     }
 
     #endregion
