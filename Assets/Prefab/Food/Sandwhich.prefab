@@ -166,6 +166,7 @@ MonoBehaviour:
   - {fileID: 114745028187897782}
   - {fileID: 114424496506193682}
   m_SecondsToComplete: 40
+  m_Image: {fileID: 21300000, guid: 3891ab7bfb70943d6afb2afbf1a9963f, type: 3}
 --- !u!114 &114339147995374426
 MonoBehaviour:
   m_ObjectHideFlags: 1

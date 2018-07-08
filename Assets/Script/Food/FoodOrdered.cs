@@ -8,6 +8,12 @@ public class FoodOrdered : MonoBehaviour
     Food m_Food;
 	float m_SecondsForComplete;
 
+    //Children GameObjects
+    [SerializeField]
+    GameObject m_TimerBarObject;
+    [SerializeField]
+    GameObject m_FoodGameObject;
+
 	#region Setter/Getter
 	public float GetSecondsForComplete(){
 		return m_SecondsForComplete;
@@ -40,7 +46,7 @@ public class FoodOrdered : MonoBehaviour
             return;
         }
 		DecrementSecondsBy(seconds);
-		SetOrderView();
+        UpdateOrderViewTimer();
         TimerAtZero();
 
     }
@@ -55,16 +61,18 @@ public class FoodOrdered : MonoBehaviour
 	{
         this.m_Food = food;
 		m_SecondsForComplete = food.GetSecondsToComplete();
-		SetOrderEmptyView();
+        m_FoodGameObject.GetComponent<Image>().sprite = this.m_Food.GetImage();
+		//SetOrderEmptyView();
 	}
 
-	void SetOrderView()
+	void UpdateOrderViewTimer()
 	{
-		GetComponent<Text>().text = (int)m_SecondsForComplete + "\n" + m_Food.GetFoodName();
+        float ratio = m_SecondsForComplete / m_Food.GetSecondsToComplete();
+        m_TimerBarObject.GetComponent<RectTransform>().localScale = new Vector3(ratio, 1, 1);
 	}
 
 	void SetOrderEmptyView() {
-		GetComponent<Text>().text = "Empty";
+        m_FoodGameObject.GetComponent<Image>().sprite = null;
 	}
     #endregion
 

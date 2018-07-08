@@ -10,6 +10,8 @@ public class Food : MonoBehaviour {
 	Ingredient[] m_Ingredients;
 	[SerializeField]
 	float m_SecondsToComplete;
+    [SerializeField]
+    Sprite m_Image;
 
 	int m_Level;
 
@@ -20,6 +22,10 @@ public class Food : MonoBehaviour {
 	#endregion
 
 	#region Getter/Setter
+    public Sprite GetImage(){
+        return m_Image;
+    }
+
 	public string GetFoodName() {
 		return m_FoodName;
 	}
@@ -38,11 +44,12 @@ public class Food : MonoBehaviour {
 
 	void SetupIngredientLevel() {
 		m_Level = m_Ingredients.Length-1;
+        m_SecondsToComplete += Random.Range(3, 10);
 	}
     
 	//For Order timing on top
 	public float GetSecondsToComplete() {
-		return m_SecondsToComplete+Random.Range(3,10);
+        return m_SecondsToComplete;
 	}
 	#endregion
 
