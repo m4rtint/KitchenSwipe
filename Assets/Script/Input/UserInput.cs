@@ -15,7 +15,9 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
 
     public delegate void InputDelegate(Direction dir);
-    public InputDelegate thisDelegate;
+    public InputDelegate swipeDelegate;
+
+    Direction currentDirection;
 
     [SerializeField]
     float m_DragDistance;
@@ -48,6 +50,11 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return StateManager.instance.InGame();
     }
 
+    public void RunSwipeDelegate()
+    {
+        this.swipeDelegate(currentDirection);
+    }
+
 
     #region Events
     //Do this when the user stops dragging this UI Element.
@@ -56,20 +63,21 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector2 displacement = eventData.position - eventData.pressPosition;
 
         Vector3 dragVectorDirection = displacement.normalized;
-        Direction dir = GetDragDirection(dragVectorDirection);
+        currentDirection = GetDragDirection(dragVectorDirection);
 
         float distance = displacement.magnitude;
         if (distance > m_DragDistance && InGame())
         {
-            GetComponent<CenterIngredientMovement>().StartSnapOffScreenAnimation(dir);
-            this.thisDelegate(dir);
+            GetComponent<CenterIngredientMovement>().StartSnapOffScreenAnimation(currentDirection);
         } 
-
     }
 
     public void OnBeginDrag(PointerEventData eventData) {}
 
     public void OnDrag(PointerEventData eventData){ }
     #endregion
+
+    
+
 }
 

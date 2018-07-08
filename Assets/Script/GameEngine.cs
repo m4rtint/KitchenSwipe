@@ -79,7 +79,7 @@ public class GameEngine : MonoBehaviour {
     }
 
 	void SetupDelegate(){
-		m_PlayerInput.GetComponent<UserInput> ().thisDelegate += PlayerSwiped;
+		m_PlayerInput.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
         foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
         {
             holder.OrderDelegate += CompleteOrder;

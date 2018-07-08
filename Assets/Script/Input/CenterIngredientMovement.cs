@@ -30,7 +30,7 @@ public class CenterIngredientMovement : MonoBehaviour
 
     #endregion
 
-    #region Setter
+    #region GetterSetter
     public void StartSnapOffScreenAnimation(Direction dir)
     {
         switch (dir)
@@ -53,6 +53,10 @@ public class CenterIngredientMovement : MonoBehaviour
         m_StartSnapOffScreenAnimation = true;
     }
 
+    public float TimeToReachTarget()
+    {
+        return m_TimeToReachTarget;
+    }
     #endregion
 
     #region Movement
@@ -68,6 +72,7 @@ public class CenterIngredientMovement : MonoBehaviour
                 m_StartSnapOffScreenAnimation = false;
                 transform.position = m_StartPosition;
                 m_Speed = 0;
+                GetComponent<UserInput>().RunSwipeDelegate();
             }
         }
     }
