@@ -35,13 +35,6 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             draggedDir = (dragVector.y > 0) ? Direction.Up : Direction.Down;
         }
-
-#if UNITY_EDITOR
-        if (DebugManager.instance.C_Direction)
-        {
-            Debug.Log(draggedDir);
-        }
-#endif
         return draggedDir;
     }
 

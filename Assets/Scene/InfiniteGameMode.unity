@@ -386,68 +386,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 49090925}
---- !u!1 &87504609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1752738059473778, guid: 8cb3b5f08f108fc4a930c3ef01f84f87,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120425491}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 87504612}
-  - component: {fileID: 87504611}
-  - component: {fileID: 87504610}
-  m_Layer: 0
-  m_Name: Burger_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &87504610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114262003192208472, guid: 8cb3b5f08f108fc4a930c3ef01f84f87,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120425491}
-  m_GameObject: {fileID: 87504609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IngredientName: 
-  m_IngredientCenterImage: {fileID: 0}
---- !u!114 &87504611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114730865115314650, guid: 8cb3b5f08f108fc4a930c3ef01f84f87,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120425491}
-  m_GameObject: {fileID: 87504609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e4dba0fc0bc4cb69aefb40af2ab54f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FoodName: Burger_2
-  m_Ingredients: []
-  m_SecondsToComplete: 0
-  m_FoodOrderSprite: {fileID: 0}
---- !u!4 &87504612
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120425491}
-  m_GameObject: {fileID: 87504609}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 785.64905, y: 1316.0358, z: -17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &103368468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,9 +1595,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 819621559}
-  - component: {fileID: 819621562}
   - component: {fileID: 819621560}
-  - component: {fileID: 819621561}
   m_Layer: 5
   m_Name: Up
   m_TagString: Untagged
@@ -1698,47 +1634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_FOOD_NAME: 0
---- !u!114 &819621561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 819621558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 224
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 256
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Food
---- !u!222 &819621562
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222909306883407646, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 819621558}
 --- !u!1 &851273031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,8 +1763,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1089617438}
-  - component: {fileID: 1089617441}
-  - component: {fileID: 1089617440}
   - component: {fileID: 1089617439}
   m_Layer: 5
   m_Name: Left
@@ -1909,48 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_FOOD_NAME: 0
---- !u!114 &1089617440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114640322373310682, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1089617437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 200
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 50
-    m_MaxSize: 200
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Food
---- !u!222 &1089617441
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222365909294417466, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1089617437}
 --- !u!1 &1089948115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,48 +1870,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1089948115}
---- !u!1001 &1120425491
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 785.64905
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1316.0358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4133269425056908, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8cb3b5f08f108fc4a930c3ef01f84f87, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1158596710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,8 +2713,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1512541803}
-  - component: {fileID: 1512541806}
-  - component: {fileID: 1512541805}
   - component: {fileID: 1512541804}
   m_Layer: 5
   m_Name: Down
@@ -2945,48 +2752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_FOOD_NAME: 0
---- !u!114 &1512541805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114697276765562826, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1512541802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 200
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 50
-    m_MaxSize: 200
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Food
---- !u!222 &1512541806
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222022314615252720, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1512541802}
 --- !u!1 &1528325225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,8 +3549,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1994437783}
-  - component: {fileID: 1994437786}
-  - component: {fileID: 1994437785}
   - component: {fileID: 1994437784}
   m_Layer: 5
   m_Name: Right
@@ -3825,48 +3588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84de1c15b58be445ca736ae7e76e2950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_FOOD_NAME: 0
---- !u!114 &1994437785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114827764260666956, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1994437782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 200
-    m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 50
-    m_MaxSize: 200
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Food
---- !u!222 &1994437786
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222929188339740904, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1994437782}
 --- !u!1 &1996331569
 GameObject:
   m_ObjectHideFlags: 0
