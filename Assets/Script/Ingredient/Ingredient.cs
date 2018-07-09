@@ -5,12 +5,14 @@ using UnityEngine.UI;
 public class Ingredient:MonoBehaviour {
 	[SerializeField]
 	string m_IngredientName;
+    [SerializeField]
+    Sprite m_IngredientCenterImage;
 
 	public string Get_IngredientName() {
 		return m_IngredientName;
 	}
 
-    public Color GetColor(){
-        return GetComponent<Image>().color;
+    public Sprite CenterSpriteImage(){
+        return m_IngredientCenterImage;
     }
 }

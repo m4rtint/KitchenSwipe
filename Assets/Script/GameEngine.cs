@@ -106,7 +106,7 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void SetCenterIngredientView() {
-        DebugManager.instance.SetCenter (m_CurrentIngredient.GetColor());
+       m_PlayerInput.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
 	}
 
     void GetNewIngredients()

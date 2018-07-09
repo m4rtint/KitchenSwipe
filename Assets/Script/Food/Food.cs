@@ -11,7 +11,7 @@ public class Food : MonoBehaviour {
 	[SerializeField]
 	float m_SecondsToComplete;
     [SerializeField]
-    Sprite m_Image;
+    Sprite m_FoodOrderSprite;
 
 	int m_Level;
 
@@ -23,7 +23,7 @@ public class Food : MonoBehaviour {
 
 	#region Getter/Setter
     public Sprite GetImage(){
-        return m_Image;
+        return m_FoodOrderSprite;
     }
 
 	public string GetFoodName() {
@@ -58,7 +58,10 @@ public class Food : MonoBehaviour {
 	public void PlacedIngredient() {
 		m_Ingredients [m_Level].gameObject.SetActive(false);
 		m_Level--;
-	}
+        if (m_Level > -1) { 
+            m_Ingredients[m_Level].gameObject.SetActive(true);
+        }
+    }
 	#endregion
 }
 
