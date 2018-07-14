@@ -212,7 +212,7 @@ MonoBehaviour:
   - {fileID: 114698580495241958}
   - {fileID: 114945991145351454}
   m_SecondsToComplete: 30
-  m_FoodOrderSprite: {fileID: 21300000, guid: c7f02ad08fd3d4b2ab25f0b7b0a76cfb, type: 3}
+  m_FoodOrderSprite: {fileID: 0}
 --- !u!114 &114695815721428572
 MonoBehaviour:
   m_ObjectHideFlags: 1
