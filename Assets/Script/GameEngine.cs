@@ -29,6 +29,10 @@ public class GameEngine : MonoBehaviour {
 	[SerializeField]
 	GameObject m_PlayerInput;
 
+    //Center
+    [SerializeField]
+    GameObject m_Center;
+
     #region getter/setter
     protected int NumberOfFood() {
         return m_NumberOfFood;
@@ -108,7 +112,7 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void SetCenterIngredientView() {
-       m_PlayerInput.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
+        m_Center.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
 	}
 
     void GetNewIngredients(Direction dir)

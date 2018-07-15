@@ -16,6 +16,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public delegate void InputDelegate(Direction dir);
     public InputDelegate swipeDelegate;
+    public InputDelegate snapOffDelegate;
 
     Direction currentDirection;
 
@@ -61,7 +62,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         float distance = displacement.magnitude;
         if (distance > m_DragDistance && InGame())
         {
-            GetComponent<CenterIngredientMovement>().StartSnapOffScreenAnimation(currentDirection);
+            this.snapOffDelegate(currentDirection);
         } 
     }
 
