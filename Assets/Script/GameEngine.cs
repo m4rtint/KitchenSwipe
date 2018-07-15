@@ -46,7 +46,7 @@ public class GameEngine : MonoBehaviour {
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
         m_FoodOrderManager = m_FoodOrdersObject.GetComponent<FoodOrdersManager>();
 
-        SetupDelegate ();
+        SetupHolders ();
 	}
 
 	protected virtual void Start()
@@ -66,7 +66,7 @@ public class GameEngine : MonoBehaviour {
 	void SetupIngredients() {
 		for(int i = 0; i < 4; i++)
         {
-            GetNewIngredients();
+            GetNewIngredients((Direction)i);
         }
 	}
 
@@ -78,12 +78,14 @@ public class GameEngine : MonoBehaviour {
         }
     }
 
-	void SetupDelegate(){
+	void SetupHolders(){
 		m_PlayerInput.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
-        foreach(FoodHolder holder in m_IngredientsGenerator.GetFoodHolder())
+        FoodHolder[] holders = m_IngredientsGenerator.GetFoodHolder();
+        for (int i = 0; i < holders.Length; i++)
         {
-            holder.OrderDelegate += CompleteOrder;
-			holder.OrderTimerDelegate += IncorrectlySwipeIngredient;
+            holders[i].SetDirection(i);
+            holders[i].OrderDelegate += CompleteOrder;
+            holders[i].OrderTimerDelegate += IncorrectlySwipeIngredient;
         }
 	}
 
@@ -109,26 +111,23 @@ public class GameEngine : MonoBehaviour {
        m_PlayerInput.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
 	}
 
-    void GetNewIngredients()
+    void GetNewIngredients(Direction dir)
     {
-        if (m_FoodOrderManager.GetFoodQueue().Count > 0)
-        {
-            m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodOrderManager.GetFoodQueue().Dequeue());
-        }
+        m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodOrderManager.GetFoodFromOrder(dir));
     }
     #endregion
 
     #region Orders
-    protected virtual void CompleteOrder(Food food)
+    protected virtual void CompleteOrder(Direction dir)
     {
-		m_FoodOrderManager.RemoveFoodOrder(food);
+		m_FoodOrderManager.RemoveFoodOrder(dir);
         GetNewOrder();
-        GetNewIngredients();
+        GetNewIngredients(dir);
     }
 
-	void IncorrectlySwipeIngredient(Food food)
+	void IncorrectlySwipeIngredient(Direction dir)
 	{
-		m_FoodOrderManager.DecrementOrderTimer (food, TimeManager.instance.OrderPenaltyTime());
+		m_FoodOrderManager.DecrementOrderTimer (dir, TimeManager.instance.OrderPenaltyTime());
 	}
 
     void GetNewOrder()

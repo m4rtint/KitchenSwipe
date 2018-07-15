@@ -17,7 +17,6 @@ public class CenterIngredientMovement : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        Debug.Log("Start Position:" + transform.position);
         m_StartPosition = transform.position;
         m_StartSnapOffScreenAnimation = false;
     }

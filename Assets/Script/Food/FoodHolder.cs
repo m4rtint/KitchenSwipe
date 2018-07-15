@@ -5,15 +5,20 @@ using UnityEngine.UI;
 
 public class FoodHolder : MonoBehaviour {
 
-    public delegate void FoodHolderOrderDelegate( Food food);
+    public delegate void FoodHolderOrderDelegate( Direction dir);
     public FoodHolderOrderDelegate OrderDelegate;
 
-	public delegate void FoodHolderOrderTimerDelegate( Food food);
+	public delegate void FoodHolderOrderTimerDelegate(Direction dir);
 	public FoodHolderOrderTimerDelegate OrderTimerDelegate;
 
     Food m_StoredFood;
+    Direction direction;
 
     #region Getters/Setter
+    public void SetDirection(int dir)
+    {
+        this.direction = (Direction)dir;
+    }
 
 	public void SetStoredFood(Food food) {
 		m_StoredFood = food;
@@ -31,9 +36,8 @@ public class FoodHolder : MonoBehaviour {
         m_StoredFood.PlacedIngredient();
         if (m_StoredFood.GetIngredientLevel() == -1)
 		{
-			Food tempStoredFood = m_StoredFood;
 			RemoveFood();
-			OrderDelegate(tempStoredFood);
+			OrderDelegate(this.direction);
             //SCORE
             ScoreManager.instance.IncrementScore();
             //TIME
@@ -43,7 +47,7 @@ public class FoodHolder : MonoBehaviour {
     }
 
 	public void IncorrectlySwiped(){
-		OrderTimerDelegate (m_StoredFood);
+		OrderTimerDelegate (this.direction);
 	}
 
 

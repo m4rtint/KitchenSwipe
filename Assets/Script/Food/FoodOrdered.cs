@@ -62,7 +62,6 @@ public class FoodOrdered : MonoBehaviour
         this.m_Food = food;
 		m_SecondsForComplete = food.GetSecondsToComplete();
         m_FoodGameObject.GetComponent<Image>().sprite = this.m_Food.GetImage();
-		//SetOrderEmptyView();
 	}
 
 	void UpdateOrderViewTimer()

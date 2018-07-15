@@ -39,11 +39,6 @@ public class IngredientGenerator : MonoBehaviour {
 				Food generatedFood = InstantiateFoodInHolder(food, i);
 				//Store
 				m_FoodHolders [i].SetStoredFood (generatedFood);
-#if UNITY_EDITOR
-                //View
-               // m_FoodHolders[i].UpdateListOfIngredientsView();
-                //return;
-#endif
                 return;
             }
 		}

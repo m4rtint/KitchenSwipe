@@ -8,12 +8,11 @@ public class FoodOrdersManager : MonoBehaviour
 	[SerializeField]
 	GameObject[] FoodOrdersObjects;
 	FoodOrdered[] m_FoodOrders;
-
-    Queue<Food> m_FoodQueue = new Queue<Food>();
+    
     #region getter/setter
-    public Queue<Food> GetFoodQueue()
+    public Food GetFoodFromOrder(Direction dir)
     {
-        return m_FoodQueue;
+        return m_FoodOrders[(int)dir].GetFood();
     }
     #endregion
 
@@ -38,56 +37,19 @@ public class FoodOrdersManager : MonoBehaviour
             if (order.IsEmpty())
             {
                 order.SetFood(food);
-                m_FoodQueue.Enqueue(food);
                 return;
             }
         }
 	}
 
-	//To find the order with the shortest amount of time.
-	//And remove the food from the orders
-	public void RemoveFoodOrder(Food food) {
-        float timeUntilComplete = float.MaxValue;
-        FoodOrdered chosenOrder = null;
-        foreach(FoodOrdered order in m_FoodOrders)
-        {
-            Food orderFood = order.GetFood();
-
-            if (orderFood != null && 
-                orderFood.GetFoodName() == food.GetFoodName() &&
-                orderFood.GetSecondsToComplete() < timeUntilComplete) 
-            {
-                chosenOrder = order;
-				timeUntilComplete = order.GetSecondsForComplete ();
-            }
-        }
-
-        if (chosenOrder != null)
-        {
-            chosenOrder.RemoveFood();
-        }
+	public void RemoveFoodOrder(Direction dir) {
+        m_FoodOrders[(int)dir].RemoveFood();
 	}
 
 	//To find the order with the longest amount of time.
 	//And decrement "seconds" from the order
-	public void DecrementOrderTimer(Food food, float seconds) {
-		float timeUntilComplete = float.MinValue;
-		FoodOrdered chosenOrder = null;
-		foreach(FoodOrdered order in m_FoodOrders)
-		{
-			if (!order.IsEmpty() && 
-				order.GetFood().GetFoodName() == food.GetFoodName() &&
-				order.GetSecondsForComplete() > timeUntilComplete) 
-			{
-				chosenOrder = order;
-				timeUntilComplete = order.GetSecondsForComplete ();
-			}
-		}
-
-		if (chosenOrder != null)
-		{
-			chosenOrder.DecrementSecondsBy (seconds);
-		}
+	public void DecrementOrderTimer(Direction dir, float seconds) {
+		m_FoodOrders[(int)dir].DecrementSecondsBy (seconds);
 	}
 
     #endregion

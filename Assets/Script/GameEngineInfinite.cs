@@ -23,7 +23,7 @@ public class GameEngineInfinite : GameEngine {
     }
 		
 	#endregion
-    protected override void CompleteOrder(Food food)
+    protected override void CompleteOrder(Direction food)
     {
         m_NumberOfCompletedOrder++;
 
