@@ -5,13 +5,9 @@ using UnityEngine;
 public class Food : MonoBehaviour {
 
 	[SerializeField]
-	string m_FoodName;
-	[SerializeField]
 	Ingredient[] m_Ingredients;
 	[SerializeField]
 	float m_SecondsToComplete;
-    [SerializeField]
-    Sprite m_FoodOrderSprite;
 
 	int m_Level;
 
@@ -22,13 +18,6 @@ public class Food : MonoBehaviour {
 	#endregion
 
 	#region Getter/Setter
-    public Sprite GetImage(){
-        return m_FoodOrderSprite;
-    }
-
-	public string GetFoodName() {
-		return m_FoodName;
-	}
 
 	public Ingredient[] GetIngredients() {
 		return m_Ingredients;
@@ -53,14 +42,18 @@ public class Food : MonoBehaviour {
 	}
 	#endregion
 
-
 	#region UserAction
 	public void PlacedIngredient() {
-		m_Ingredients [m_Level].gameObject.SetActive(false);
+        SetIngredientColor(m_Ingredients[m_Level]);
 		m_Level--;
         if (m_Level > -1) { 
             m_Ingredients[m_Level].gameObject.SetActive(true);
         }
+    }
+    
+    void SetIngredientColor(Ingredient ingredient)
+    {
+        ingredient.SetSolidAlpha();
     }
 	#endregion
 }

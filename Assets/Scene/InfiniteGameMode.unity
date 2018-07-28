@@ -459,7 +459,7 @@ Prefab:
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -517,14 +517,13 @@ Prefab:
         type: 2}
       propertyPath: m_Foods.Array.data[1]
       value: 
-      objectReference: {fileID: 114616331042142058, guid: 662c268fbdc654a30be225ad2574ab8c,
+      objectReference: {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5,
         type: 2}
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.data[2]
       value: 
-      objectReference: {fileID: 114362798341884210, guid: 20b7dc30debc8bc418506ba2a845ad9c,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.data[0]
