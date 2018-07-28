@@ -7,13 +7,33 @@ public class IngredientGenerator : MonoBehaviour {
 	//Food Holder
 	[SerializeField]
 	GameObject[] m_FoodHolderObject;
-
-    FoodHolder[] m_FoodHolders;
+    FoodHolder[] m_FoodHolders = new FoodHolder[4];
+    FoodTimer[] m_FoodTimers = new FoodTimer[4];
 
     #region getter/setter
     public FoodHolder[] GetFoodHolder()
     {
         return m_FoodHolders;
+    }
+
+    Food GetFoodFromHolder(Direction dir)
+    {
+        return m_FoodHolders[(int)dir].GetStoredFood();
+    }
+
+    Ingredient GetIngredientOnTop(Food food)
+    {
+        return food.GetNeededIngredient();
+    }
+
+    public void RemoveFoodOrder(Direction dir)
+    {
+        m_FoodHolders[(int)dir].SetStoredFood(null);
+    }
+
+    public void DecrementOrderTimer(Direction dir, float seconds)
+    {
+        m_FoodTimers[(int)dir].DecrementTimeBy(seconds);
     }
     #endregion
 
@@ -23,35 +43,31 @@ public class IngredientGenerator : MonoBehaviour {
 	}
 
 	void InitializeFoodHolders() {
-        m_FoodHolders = new FoodHolder[m_FoodHolderObject.Length];
         for (int i = 0; i < m_FoodHolderObject.Length; i++) {
 			m_FoodHolders [i] = m_FoodHolderObject [i].GetComponent<FoodHolder> ();
+            m_FoodTimers[i] = m_FoodHolderObject[i].GetComponent<FoodTimer>();
 		}
 	}
+
+    public void UpdateFoodTimer(float seconds)
+    {
+        for(int i = 0; i < m_FoodTimers.Length; i++)
+        {
+            m_FoodTimers[i].UpdateTimer(seconds);
+        }
+    }
 	#endregion
 
 	#region SetupIngredients
-	public void InsertFoodIntoHolder(Food food) {
-		//Check which holder is free.
-		for (int i = 0; i < m_FoodHolders.Length; i++) {
-			if (m_FoodHolders [i].GetStoredFood() == null) {
-				//Create New food - instantiate;
-				Food generatedFood = InstantiateFoodInHolder(food, i);
-				//Store
-				m_FoodHolders [i].SetStoredFood (generatedFood);
-                return;
-            }
-		}
-
-	}
+	public void InsertFoodIntoHolder(Food food, Direction dir) {
+        //Create New food - instantiate;
+        Food generatedFood = InstantiateFoodInHolder(food, (int)dir);
+        //Store
+        m_FoodHolders[(int)dir].SetStoredFood(generatedFood);
+    }
 	#endregion
 
 	#region PlayerActions
-   	Ingredient GetIngredientOnTop(Food food) {
-		return food.GetNeededIngredient();
-	}
-
-
 	//Place all filled holders into an array , randomly choose
     public Ingredient RandomlyChooseIngredient()
     {
@@ -91,11 +107,6 @@ public class IngredientGenerator : MonoBehaviour {
     {
 		Food food = GetFoodFromHolder(dir);
 		return food != null && food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
-    }
-
-	Food GetFoodFromHolder(Direction dir)
-    {
-        return m_FoodHolders[(int)dir].GetStoredFood();
     }
 
     #endregion

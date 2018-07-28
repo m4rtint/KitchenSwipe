@@ -13,13 +13,13 @@ public class TimeManager : MonoBehaviour {
     float m_GameTime;
    
 	[SerializeField]
-	float m_OrderPenaltyTime;
+	float m_FoodPenaltyTime;
 
     [SerializeField]
     float m_GameTimePenaltyTime;
 
     [SerializeField]
-    float m_OrderSuccessGivenTime;
+    float m_FoodSuccessPrizeTime;
 
 	//Public variable
     public static TimeManager instance = null;
@@ -32,7 +32,7 @@ public class TimeManager : MonoBehaviour {
     }
 
 	public float OrderPenaltyTime() {
-		return m_OrderPenaltyTime;
+		return m_FoodPenaltyTime;
 	}
     #endregion
 
@@ -72,7 +72,7 @@ public class TimeManager : MonoBehaviour {
     {
         if (time <= 0)
         {
-            time = m_OrderSuccessGivenTime;
+            time = m_FoodSuccessPrizeTime;
         }
         m_GameTime += time;
         this.UpdateTimerUIDelegate();

@@ -12,11 +12,6 @@ public class GameEngine : MonoBehaviour {
 	int m_NumberOfFood;
 
     //========================Dependencies
-    //Food Orders
-    [SerializeField]
-    GameObject m_FoodOrdersObject;
-    FoodOrdersManager m_FoodOrderManager;
-
 	//Food Generator
 	protected FoodGenerator m_FoodGenerator;
 
@@ -48,7 +43,6 @@ public class GameEngine : MonoBehaviour {
     void Awake () {
 		m_FoodGenerator = GetComponent<FoodGenerator>();
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
-        m_FoodOrderManager = m_FoodOrdersObject.GetComponent<FoodOrdersManager>();
 
         SetupHolders ();
 	}
@@ -57,9 +51,6 @@ public class GameEngine : MonoBehaviour {
 	{
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
-
-        //Get New Orders
-        SetupOrders();
 
         //Place First 4 food onto each side
         SetupIngredients();
@@ -70,17 +61,9 @@ public class GameEngine : MonoBehaviour {
 	void SetupIngredients() {
 		for(int i = 0; i < 4; i++)
         {
-            GetNewIngredients((Direction)i);
+            SetNewFood((Direction)i);
         }
 	}
-
-    void SetupOrders()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            GetNewOrder();
-        }
-    }
 
 	void SetupHolders(){
 		m_PlayerInput.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
@@ -101,7 +84,7 @@ public class GameEngine : MonoBehaviour {
 
 	void RunDownOrderTimer(float seconds) {
         //Decrement all timer of food
-        m_FoodOrderManager.UpdateOrders(seconds);
+        m_IngredientsGenerator.UpdateFoodTimer(seconds);
     }
 	#endregion
 
@@ -115,32 +98,23 @@ public class GameEngine : MonoBehaviour {
         m_Center.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
 	}
 
-    void GetNewIngredients(Direction dir)
+    void SetNewFood(Direction dir)
     {
-        m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodOrderManager.GetFoodFromOrder(dir));
+        m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodGenerator.GetChosenFoodStack().Pop(),dir);
     }
     #endregion
 
     #region Orders
     protected virtual void CompleteOrder(Direction dir)
     {
-		m_FoodOrderManager.RemoveFoodOrder(dir);
-        GetNewOrder();
-        GetNewIngredients(dir);
+		m_IngredientsGenerator.RemoveFoodOrder(dir);
+        SetNewFood(dir);
     }
 
 	void IncorrectlySwipeIngredient(Direction dir)
 	{
-		m_FoodOrderManager.DecrementOrderTimer (dir, TimeManager.instance.OrderPenaltyTime());
+        m_IngredientsGenerator.DecrementOrderTimer (dir, TimeManager.instance.OrderPenaltyTime());
 	}
-
-    void GetNewOrder()
-    {
-        if (m_FoodGenerator.GetChosenFoodStack().Count > 0)
-        {
-            m_FoodOrderManager.InsertFoodOrder(m_FoodGenerator.GetChosenFoodStack().Pop());
-        }
-    }
     #endregion
 
     #region Actions
