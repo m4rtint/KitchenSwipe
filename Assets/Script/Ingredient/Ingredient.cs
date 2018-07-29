@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Image))]
 public class Ingredient:MonoBehaviour {
 	[SerializeField]
@@ -12,6 +11,26 @@ public class Ingredient:MonoBehaviour {
     [SerializeField]
     Sprite m_CenterImage;
 
+    bool m_PlacementAnimation;
+    protected readonly float m_PlacementAnimationSpeed = 2000;
+    Vector3 m_EndPosition;
+
+    RectTransform m_RectTrans;
+    #region Mono
+    private void Awake()
+    {
+        m_RectTrans = GetComponent<RectTransform>();
+        m_PlacementAnimation = false;
+        m_EndPosition = m_RectTrans.localPosition - new Vector3(0, 100);
+    }
+
+    private void Update()
+    {
+        FoodPlacementAnimation();
+    }
+    #endregion
+
+    #region GetterSetter
     public string Get_IngredientName() {
 		return m_IngredientName;
 	}
@@ -29,9 +48,25 @@ public class Ingredient:MonoBehaviour {
     {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
     }
+    #endregion
 
-    public void StartAnimation()
+    #region Animation
+    public virtual void StartAnimation()
     {
-        GetComponent<Animator>().SetTrigger("placed");
+        m_PlacementAnimation = true;
     }
+
+    protected virtual void FoodPlacementAnimation()
+    {
+        if (m_PlacementAnimation)
+        {
+            Vector3 currentPosition = m_RectTrans.transform.localPosition;
+            m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_PlacementAnimationSpeed * Time.deltaTime);
+            if (m_RectTrans.transform.localPosition == m_EndPosition)
+            {
+                m_PlacementAnimation = false;
+            }
+        }
+    }
+    #endregion
 }
