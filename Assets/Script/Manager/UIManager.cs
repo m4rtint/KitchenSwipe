@@ -18,13 +18,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject m_ScoreTextObject;
     [SerializeField]
-    GameObject m_GameTimeObject;
+    GameObject m_PlatesTextObject;
 
     #region Mono
     private void Awake()
     {
         InitManagers();
         InitDelegate();
+        InitializeUIText();
     }
 
     void InitManagers()
@@ -37,7 +38,12 @@ public class UIManager : MonoBehaviour
     {
         m_ScoreManager.thisDelegate += UpdateScore;
         m_TimeManager.CheckGameOverDelegate += ShowGameOverScreen;
-        m_TimeManager.UpdateTimerUIDelegate += UpdateTime;
+    }
+
+    void InitializeUIText()
+    {
+       m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n0";
+       m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n0";
     }
     #endregion
 
@@ -51,11 +57,8 @@ public class UIManager : MonoBehaviour
 
     #region Game Interface
     void UpdateScore(){
-        m_ScoreTextObject.GetComponent<Text>().text = m_ScoreManager.GetScore().ToString() + "\n" + "x" + m_ScoreManager.IncrementScoreVariable();
-    }
-
-    void UpdateTime() {
-        m_GameTimeObject.GetComponent<Text>().text = m_TimeManager.GameTime();
+        m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n"+m_ScoreManager.GetScore();
+        m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n" + m_ScoreManager.GetPlates();
     }
     #endregion
 

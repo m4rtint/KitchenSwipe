@@ -17,7 +17,7 @@ public class IngredientBun : Ingredient {
     {
         m_BackBun.SetActive(true);
         m_BackBunTrans = m_BackBun.GetComponent<RectTransform>();
-        bool m_BackbunPlacementAnimation = false;
+        m_BackbunPlacementAnimation = false;
         m_BackbunEndPosition = m_BackBunTrans.localPosition - new Vector3(0, 100);
     }
 
