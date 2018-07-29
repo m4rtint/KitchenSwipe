@@ -14,12 +14,23 @@ public class Food : MonoBehaviour {
 	#region Mono
 	void Awake(){
 		SetupIngredientLevel ();
+        SetupIngredientColor();
 	}
-	#endregion
 
-	#region Getter/Setter
+    void SetupIngredientColor()
+    {
+        foreach(Ingredient ingredient in m_Ingredients)
+        {
+            ingredient.SetAlpha(0.3f);
+            ingredient.gameObject.SetActive(false);
+        }
+        m_Ingredients[m_Ingredients.Length - 1].gameObject.SetActive(true);
+    }
+    #endregion
 
-	public Ingredient[] GetIngredients() {
+    #region Getter/Setter
+
+    public Ingredient[] GetIngredients() {
 		return m_Ingredients;
 	}
 
@@ -44,17 +55,13 @@ public class Food : MonoBehaviour {
 
 	#region UserAction
 	public void PlacedIngredient() {
-        SetIngredientColor(m_Ingredients[m_Level]);
-		m_Level--;
+        m_Ingredients[m_Level].SetAlpha(1);
+        m_Level--;
         if (m_Level > -1) { 
             m_Ingredients[m_Level].gameObject.SetActive(true);
         }
     }
-    
-    void SetIngredientColor(Ingredient ingredient)
-    {
-        ingredient.SetSolidAlpha();
-    }
+   
 	#endregion
 }
 

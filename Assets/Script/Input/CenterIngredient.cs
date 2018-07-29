@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(IngredientGenerator))]
 public class CenterIngredient : MonoBehaviour
 {
     [SerializeField]
@@ -15,7 +16,9 @@ public class CenterIngredient : MonoBehaviour
     Vector3 m_EndPosition;
 
     bool m_StartSnapOffScreenAnimation;
-    
+
+    [SerializeField]
+    GameObject m_IngredientGeneratorObj;
 
     #region Mono
     // Use this for initialization
@@ -42,24 +45,15 @@ public class CenterIngredient : MonoBehaviour
     #region GetterSetter
     void StartSnapOffScreenAnimation(Direction dir)
     {
-        switch (dir)
-        {
-            case Direction.Up:
-                m_EndPosition = new Vector3(m_StartPosition.x,Screen.height*1.2f);
-                break;
-            case Direction.Down:
-                m_EndPosition = new Vector3(m_StartPosition.x, -Screen.height*0.1f);
-                break;
-            case Direction.Left:
-                m_EndPosition = new Vector3(-Screen.width * 0.2f, m_StartPosition.y);
-                break;
-            case Direction.Right:
-                m_EndPosition = new Vector3(Screen.width*1.2f, m_StartPosition.y);
-                break;
-            default:
-                break;
-        }
+        m_EndPosition = GetIngredientPosition(dir);
         m_StartSnapOffScreenAnimation = true;
+    }
+
+    Vector3 GetIngredientPosition(Direction dir)
+    {
+        FoodHolder holder = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>().GetFoodHolder()[(int)dir];
+        GameObject ingredient = holder.GetStoredFood().GetNeededIngredient().gameObject;
+        return ingredient.transform.position;
     }
 
     public float TimeToReachTarget()

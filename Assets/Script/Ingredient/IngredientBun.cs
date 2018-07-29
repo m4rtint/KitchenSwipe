@@ -13,10 +13,10 @@ public class IngredientBun : Ingredient {
         m_BackBun.SetActive(true);
     }
 
-    public override void SetSolidAlpha()
+    public override void SetAlpha(float percent)
     {
-        base.SetSolidAlpha();
-        m_BackBun.GetComponent<Image>().color = Color.white;
+        base.SetAlpha(percent);
+        m_BackBun.GetComponent<Image>().color = new Color(1,1,1,percent);
     }
 
 }

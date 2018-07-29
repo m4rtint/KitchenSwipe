@@ -24,8 +24,8 @@ public class Ingredient:MonoBehaviour {
         }
     }
 
-    public virtual void SetSolidAlpha()
+    public virtual void SetAlpha(float percent)
     {
-        GetComponent<Image>().color = Color.white;
+        GetComponent<Image>().color = new Color(1, 1, 1, percent);
     }
 }

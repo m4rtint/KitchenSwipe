@@ -16,11 +16,6 @@ public class IngredientGenerator : MonoBehaviour {
         return m_FoodHolders;
     }
 
-    Food GetFoodFromHolder(Direction dir)
-    {
-        return m_FoodHolders[(int)dir].GetStoredFood();
-    }
-
     Ingredient GetIngredientOnTop(Food food)
     {
         return food.GetNeededIngredient();
@@ -105,8 +100,8 @@ public class IngredientGenerator : MonoBehaviour {
 
     bool IsIngredientMatch(Direction dir, Ingredient swiped)
     {
-		Food food = GetFoodFromHolder(dir);
-		return food != null && food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+        Food food = m_FoodHolders[(int)dir].GetStoredFood();
+        return food != null && food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
     }
 
     #endregion
