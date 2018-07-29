@@ -34,6 +34,11 @@ public class TimeManager : MonoBehaviour {
 	public float OrderPenaltyTime() {
 		return m_FoodPenaltyTime;
 	}
+
+    public float GameTimeF()
+    {
+        return m_GameTime;
+    }
     #endregion
 
     #region Mono
