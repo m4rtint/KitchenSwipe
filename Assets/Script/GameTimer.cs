@@ -37,7 +37,6 @@ public class GameTimer : MonoBehaviour {
         if (m_FullTime == -1)
         {
             m_FullTime = m_TimeManager.GameTimeF();
-            Debug.Log(m_FullTime);
         }
     }
 
@@ -62,8 +61,6 @@ public class GameTimer : MonoBehaviour {
 
     void UpdateRing()
     {
-        Debug.Log(m_TimeManager.GameTimeF());
-
         m_RingImage.fillAmount = m_TimeManager.GameTimeF() / m_FullTime;
     }
     #endregion

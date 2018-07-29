@@ -25,6 +25,7 @@ public class FoodTimer : MonoBehaviour {
 
     private void Start()
     {
+        ResetFoodTimer();
         m_HundredPercent = GetConvertColor(109, 255, 0);
         m_FourtyPercent = GetConvertColor(250,138,2);
         m_TwentyPercent = GetConvertColor(255,3,0);
