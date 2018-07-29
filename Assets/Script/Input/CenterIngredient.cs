@@ -15,17 +15,21 @@ public class CenterIngredient : MonoBehaviour
     Vector3 m_StartPosition;
     Vector3 m_EndPosition;
 
-    bool m_StartSnapOffScreenAnimation;
+    bool m_StartCenterIngredientAnimation;
 
     [SerializeField]
     GameObject m_IngredientGeneratorObj;
+    IngredientGenerator m_IngredientGenerator;
+
+    Direction m_SwipedDirection;
 
     #region Mono
     // Use this for initialization
     void Awake()
     {
         m_StartPosition = transform.position;
-        m_StartSnapOffScreenAnimation = false;
+        m_StartCenterIngredientAnimation = false;
+        m_IngredientGenerator = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>();
         SetupDelegate();
     }
 
@@ -45,15 +49,15 @@ public class CenterIngredient : MonoBehaviour
     #region GetterSetter
     void StartSnapOffScreenAnimation(Direction dir)
     {
-        m_EndPosition = GetIngredientPosition(dir);
-        m_StartSnapOffScreenAnimation = true;
+        this.m_SwipedDirection = dir;
+        m_EndPosition = GetIngredient().transform.position;
+        m_StartCenterIngredientAnimation = true;
     }
 
-    Vector3 GetIngredientPosition(Direction dir)
+    Ingredient GetIngredient()
     {
-        FoodHolder holder = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>().GetFoodHolder()[(int)dir];
-        GameObject ingredient = holder.GetStoredFood().GetNeededIngredient().gameObject;
-        return ingredient.transform.position;
+        FoodHolder holder = m_IngredientGenerator.GetFoodHolder()[(int)m_SwipedDirection];
+        return holder.GetStoredFood().GetNeededIngredient();
     }
 
     public float TimeToReachTarget()
@@ -71,19 +75,25 @@ public class CenterIngredient : MonoBehaviour
 
     void SnapOffScreenAnimation()
     {
-        if (m_StartSnapOffScreenAnimation)
+        if (m_StartCenterIngredientAnimation)
         {
             m_Speed += Time.deltaTime / m_TimeToReachTarget;
             transform.position = Vector3.Lerp(transform.position, m_EndPosition, m_Speed);
             if (transform.position == m_EndPosition)
             {
-                m_StartSnapOffScreenAnimation = false;
+                ResetCenterAnimation();
                 transform.position = m_StartPosition;
-                m_Speed = 0;
                 UserInput.GetComponent<UserInput>().RunSwipeDelegate();
             }
-        }
+        } 
     }
+
+    void ResetCenterAnimation()
+    {
+        m_StartCenterIngredientAnimation = false;
+        m_Speed = 0;
+    }
+    
     #endregion
 
 }

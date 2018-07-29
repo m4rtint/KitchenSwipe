@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Image))]
 public class Ingredient:MonoBehaviour {
 	[SerializeField]
@@ -27,5 +28,10 @@ public class Ingredient:MonoBehaviour {
     public virtual void SetAlpha(float percent)
     {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
+    }
+
+    public void StartAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("placed");
     }
 }

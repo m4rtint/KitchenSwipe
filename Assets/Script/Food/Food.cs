@@ -55,7 +55,8 @@ public class Food : MonoBehaviour {
 
 	#region UserAction
 	public void PlacedIngredient() {
-        m_Ingredients[m_Level].SetAlpha(1);
+        GetNeededIngredient().SetAlpha(1);
+        GetNeededIngredient().StartAnimation();
         m_Level--;
         if (m_Level > -1) { 
             m_Ingredients[m_Level].gameObject.SetActive(true);

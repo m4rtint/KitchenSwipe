@@ -89,7 +89,6 @@ public class IngredientGenerator : MonoBehaviour {
     {
         if (IsIngredientMatch(dir, ingredient))
         {
-            //Correctly Swiped
             m_FoodHolders[(int)dir].CorrectlySwiped();
         } else
         {
