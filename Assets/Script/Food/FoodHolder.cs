@@ -54,7 +54,8 @@ public class FoodHolder : MonoBehaviour {
 
     void RemoveFood()
     {
-        Destroy(m_StoredFood.gameObject);
+        //TODO Food animation
+        m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
         m_StoredFood = null;
     }
 

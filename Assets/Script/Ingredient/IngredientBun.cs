@@ -47,4 +47,9 @@ public class IngredientBun : Ingredient {
         m_BackbunPlacementAnimation = true;
     }
 
+    public override void SetCrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
+    {
+        base.SetCrossFadeAlpha(alpha, duration, ignoreTimeScale);
+        m_BackBun.GetComponent<Image>().CrossFadeAlpha(alpha, duration, ignoreTimeScale);
+    }
 }

@@ -58,8 +58,8 @@ public class Food : MonoBehaviour {
         GetNeededIngredient().SetAlpha(1);
         GetNeededIngredient().StartAnimation();
         m_Level--;
-        if (m_Level > -1) { 
-            m_Ingredients[m_Level].gameObject.SetActive(true);
+        if (m_Level > -1) {
+            GetNeededIngredient().gameObject.SetActive(true);
         }
     }
    

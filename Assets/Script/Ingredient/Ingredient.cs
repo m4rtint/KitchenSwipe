@@ -48,6 +48,11 @@ public class Ingredient:MonoBehaviour {
     {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
     }
+
+    public virtual void SetCrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
+    {
+        GetComponent<Image>().CrossFadeAlpha(alpha, duration, ignoreTimeScale);
+    }
     #endregion
 
     #region Animation
