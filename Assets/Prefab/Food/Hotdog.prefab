@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 224998739896330878}
   - component: {fileID: 222165307059548650}
   - component: {fileID: 114429300481039618}
-  - component: {fileID: 114670217348634336}
+  - component: {fileID: 114038689069870524}
   m_Layer: 0
   m_Name: Mustard
   m_TagString: Untagged
@@ -99,6 +99,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114038689069870524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468249924927124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ca05ea535f863489d999e97c3b9d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IngredientName: Mustard
+  m_CenterImage: {fileID: 21300000, guid: 6d1e434ad18c09c409832d4b0629a999, type: 3}
 --- !u!114 &114063441671626170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,19 +245,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114670217348634336
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1468249924927124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IngredientName: Mustard
-  m_CenterImage: {fileID: 0}
 --- !u!114 &114764485884926790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Ingredients:
-  - {fileID: 114670217348634336}
+  - {fileID: 114038689069870524}
   - {fileID: 114764485884926790}
   - {fileID: 114063441671626170}
   m_SecondsToComplete: 50
