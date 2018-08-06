@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class Ingredient:MonoBehaviour {
+    //Delegate
+    public delegate void IngredientAnimationDelegate();
+    public IngredientAnimationDelegate PlacementIngredientDelegate;
+
 	[SerializeField]
 	string m_IngredientName;
 
@@ -69,6 +73,7 @@ public class Ingredient:MonoBehaviour {
             m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_PlacementAnimationSpeed * Time.deltaTime);
             if (m_RectTrans.transform.localPosition == m_EndPosition)
             {
+                PlacementIngredientDelegate();
                 m_PlacementAnimation = false;
             }
         }
