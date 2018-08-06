@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FoodAnimation : MonoBehaviour {
-   
+
+
+    //Delegate
+    public delegate void FoodAnimationDelegate();
+    public FoodAnimationDelegate CompleteFoodAnimationDelegate;
+
     readonly float m_FinishAnimationSpeed = 50;
     readonly Vector3 m_RiseUp = new Vector3(0, 50, 0);
     bool m_FinishFoodAnimation = false;
@@ -37,6 +42,7 @@ public class FoodAnimation : MonoBehaviour {
             m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_FinishAnimationSpeed * Time.deltaTime);
             if (m_RectTrans.transform.localPosition == m_EndPosition)
             {
+                CompleteFoodAnimationDelegate();
                 Destroy(gameObject);
             }
         }

@@ -107,7 +107,6 @@ public class GameEngine : MonoBehaviour {
     #region Orders
     protected virtual void CompleteOrder(Direction dir)
     {
-		m_IngredientsGenerator.RemoveFoodOrder(dir);
         SetNewFood(dir);
     }
 

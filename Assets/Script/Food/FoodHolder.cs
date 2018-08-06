@@ -25,6 +25,14 @@ public class FoodHolder : MonoBehaviour {
 		m_StoredFood = food;
 	}
 
+    void SetDelegate()
+    {
+        if (m_StoredFood != null)
+        {
+            m_StoredFood.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate += RemoveFood;
+        }
+    }
+
 	public Food GetStoredFood(){
 		return m_StoredFood;
 	}
@@ -37,8 +45,10 @@ public class FoodHolder : MonoBehaviour {
         m_StoredFood.PlacedIngredient();
         if (m_StoredFood.GetIngredientLevel() == -1)
 		{
-			RemoveFood();
-			OrderDelegate(this.direction);
+            m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
+            m_StoredFood.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate -= RemoveFood;
+            m_StoredFood = null;
+            
             //SCORE
             ScoreManager.instance.IncrementScore();
             //TIME
@@ -54,9 +64,7 @@ public class FoodHolder : MonoBehaviour {
 
     void RemoveFood()
     {
-        //TODO Food animation
-        m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
-        m_StoredFood = null;
+        OrderDelegate(this.direction);
     }
 
 #endregion

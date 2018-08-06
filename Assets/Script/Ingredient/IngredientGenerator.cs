@@ -21,11 +21,6 @@ public class IngredientGenerator : MonoBehaviour {
         return food.GetNeededIngredient();
     }
 
-    public void RemoveFoodOrder(Direction dir)
-    {
-        m_FoodHolders[(int)dir].SetStoredFood(null);
-    }
-
     public void DecrementOrderTimer(Direction dir, float seconds)
     {
         m_FoodTimers[(int)dir].DecrementTimeBy(seconds);
