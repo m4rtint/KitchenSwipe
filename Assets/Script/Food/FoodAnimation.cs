@@ -5,7 +5,15 @@ using UnityEngine.UI;
 
 public class FoodAnimation : MonoBehaviour {
 
-    readonly float m_FinishAnimationSpeed = 50;
+
+    //Delegate
+    public delegate void FoodAnimationDelegate(FoodAnimation food);
+    public FoodAnimationDelegate CompleteFoodAnimationDelegate;
+
+    public delegate void IngredientPlacedDelegate();
+    public IngredientPlacedDelegate CompleteIngredientPlacementAnimationDelegate;
+
+    readonly float m_FinishAnimationSpeed = 50; 
     readonly Vector3 m_RiseUp = new Vector3(0, 50, 0);
     bool m_FinishFoodAnimation = false;
     Ingredient[] m_Ingredients;
@@ -18,6 +26,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         m_RectTrans = GetComponent<RectTransform>();
         m_Ingredients = GetComponent<Food>().GetIngredients();
+        SetupDelegate();
     }
 
     void Start()
@@ -25,18 +34,36 @@ public class FoodAnimation : MonoBehaviour {
         m_EndPosition = m_RectTrans.transform.localPosition + m_RiseUp;
     }
 
-    // Update is called once per frame
     void Update () {
-		if (m_FinishFoodAnimation)
+        MoveFoodUpwards();
+    }
+
+    void SetupDelegate()
+    {
+        foreach(Ingredient ingredient in m_Ingredients)
+        {
+            ingredient.PlacementIngredientDelegate += PlaceIngredientAnimComplete;
+        }
+    }
+
+    void PlaceIngredientAnimComplete()
+    {
+        CompleteIngredientPlacementAnimationDelegate();
+    }
+
+    void MoveFoodUpwards()
+    {
+        if (m_FinishFoodAnimation)
         {
             Vector3 currentPosition = m_RectTrans.transform.localPosition;
             m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_FinishAnimationSpeed * Time.deltaTime);
             if (m_RectTrans.transform.localPosition == m_EndPosition)
             {
+                CompleteFoodAnimationDelegate(this);
                 Destroy(gameObject);
             }
         }
-	}
+    }
     #endregion
 
     #region Public
