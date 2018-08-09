@@ -35,12 +35,22 @@ public class Food : MonoBehaviour {
 	}
 
 	public Ingredient GetNeededIngredient() {
+        if (!InPlay())
+        {
+            Debug.Log("Error - Tried to access -1 Ingredient");
+            m_Level = 0;
+        }
 		return m_Ingredients [m_Level];
 	}
 
 	public int GetIngredientLevel() {
 		return m_Level;
 	}
+
+    public bool InPlay()
+    {
+        return m_Level >= 0;
+    }
 
 	void SetupIngredientLevel() {
 		m_Level = m_Ingredients.Length-1;
@@ -58,7 +68,6 @@ public class Food : MonoBehaviour {
         GetNeededIngredient().SetAlpha(1);
         GetNeededIngredient().StartAnimation();
         m_Level--;
-        Debug.Log(m_Level);
         if (m_Level > -1) {
             GetNeededIngredient().gameObject.SetActive(true);
         }

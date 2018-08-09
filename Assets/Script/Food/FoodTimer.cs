@@ -21,21 +21,28 @@ public class FoodTimer : MonoBehaviour {
     private void Awake()
     {
         m_FoodHolder = GetComponent<FoodHolder>();
+        m_HundredPercent = GetConvertColor(109, 255, 0);
+        m_FourtyPercent = GetConvertColor(250, 138, 2);
+        m_TwentyPercent = GetConvertColor(255, 3, 0);
     }
 
     private void Start()
     {
         ResetFoodTimer();
-        m_HundredPercent = GetConvertColor(109, 255, 0);
-        m_FourtyPercent = GetConvertColor(250,138,2);
-        m_TwentyPercent = GetConvertColor(255,3,0);
     }
     #endregion
 
     #region InitFoodTimer
-    void ResetFoodTimer()
+    public void ResetFoodTimer()
     {
-        m_SecondsToComplete = m_FoodHolder.GetStoredFood().GetSecondsToComplete();
+        if (m_FoodHolder.GetStoredFood() != null)
+        {
+            m_SecondsToComplete = m_FoodHolder.GetStoredFood().GetSecondsToComplete();
+        }
+        else
+        {
+            Debug.Log("Failed to reset timer");
+        }
     }
     #endregion
 
@@ -63,6 +70,10 @@ public class FoodTimer : MonoBehaviour {
         if (FoodTime() > 0 && m_SecondsToComplete >= 0)
         {
             ratio = m_SecondsToComplete / FoodTime();
+            if (ratio > 1) { 
+                Debug.Log("Seconds to complete: " + m_SecondsToComplete);
+                Debug.Log("Food Time: " + FoodTime());
+            }
         }
         return ratio;
     }

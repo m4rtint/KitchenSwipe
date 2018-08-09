@@ -58,10 +58,16 @@ public class CenterIngredient : MonoBehaviour
     #endregion
 
     #region GetterSetter
-    Ingredient GetIngredientAtSwipedDirection()
+    Vector3 GetIngredientAtSwipedDirectionPosition()
     {
         FoodHolder holder = m_IngredientGenerator.GetFoodHolder()[(int)m_SwipedDirection];
-        return holder.GetStoredFood().GetNeededIngredient();
+        if (holder.GetStoredFood() != null)
+        {
+            return holder.GetStoredFood().GetNeededIngredient().transform.position;
+        } else
+        {
+            return holder.transform.position;
+        }
     }
 
     public float TimeToReachTarget()
@@ -80,7 +86,7 @@ public class CenterIngredient : MonoBehaviour
     void StartCenterAnimation(Direction dir)
     {
         this.m_SwipedDirection = dir;
-        m_EndPosition = GetIngredientAtSwipedDirection().transform.position;
+        m_EndPosition = GetIngredientAtSwipedDirectionPosition();
         if (m_CenterIngredient.GetType() == typeof(Sauce))
         {
             m_StartCenterRotatationAnimation = true;

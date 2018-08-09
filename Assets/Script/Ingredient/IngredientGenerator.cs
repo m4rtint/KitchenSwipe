@@ -66,7 +66,7 @@ public class IngredientGenerator : MonoBehaviour {
 		do{
 			int index = Random.Range(0, 4);
 			food = m_FoodHolders[index].GetStoredFood();
-		} while (food.GetIngredientLevel() < 0);
+		} while (food == null || !food.InPlay());
         
 		return GetIngredientOnTop(food);
     }
@@ -95,7 +95,12 @@ public class IngredientGenerator : MonoBehaviour {
     bool IsIngredientMatch(Direction dir, Ingredient swiped)
     {
         Food food = m_FoodHolders[(int)dir].GetStoredFood();
-        return food != null && food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+        if (food != null)
+        {
+            bool namesEqual = food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+            return food.InPlay() && namesEqual;
+        }
+        return false;
     }
 
     #endregion
