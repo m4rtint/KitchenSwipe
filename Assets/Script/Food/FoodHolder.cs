@@ -44,7 +44,7 @@ public class FoodHolder : MonoBehaviour {
     public void CorrectlySwiped()
     {
         //Decrement level of ingredient
-        m_StoredFood.PlacedIngredient();
+        m_StoredFood.PlaceIngredient();
     }
 
     void CompletedFood()

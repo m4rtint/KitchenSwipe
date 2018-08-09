@@ -54,7 +54,7 @@ public class Food : MonoBehaviour {
 	#endregion
 
 	#region UserAction
-	public void PlacedIngredient() {
+	public void PlaceIngredient() {
         GetNeededIngredient().SetAlpha(1);
         GetNeededIngredient().StartAnimation();
         m_Level--;

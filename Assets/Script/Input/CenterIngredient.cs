@@ -23,6 +23,7 @@ public class CenterIngredient : MonoBehaviour
 
     bool m_StartCenterIngredientAnimation;
     bool m_StartCenterRotatationAnimation;
+    Ingredient m_CenterIngredient;
 
     [SerializeField]
     GameObject m_IngredientGeneratorObj;
@@ -57,25 +58,7 @@ public class CenterIngredient : MonoBehaviour
     #endregion
 
     #region GetterSetter
-    void StartCenterAnimation(Direction dir)
-    {
-        this.m_SwipedDirection = dir;
-        m_EndPosition = GetIngredient().transform.position;
-        if (GetIngredient().GetType() == typeof(Sauce))
-        {
-            m_StartCenterRotatationAnimation = true;
-            if (dir == Direction.Left)
-            {
-                m_isRotateClockwise = false;
-            }
-        } else
-        {
-            m_StartCenterIngredientAnimation = true;
-        }
-        
-    }
-
-    Ingredient GetIngredient()
+    Ingredient GetIngredientAtSwipedDirection()
     {
         FoodHolder holder = m_IngredientGenerator.GetFoodHolder()[(int)m_SwipedDirection];
         return holder.GetStoredFood().GetNeededIngredient();
@@ -89,10 +72,30 @@ public class CenterIngredient : MonoBehaviour
     public void SetCenter(Ingredient ingredient)
     {
         GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
+        m_CenterIngredient = ingredient;
     }
     #endregion
 
     #region Movement
+    void StartCenterAnimation(Direction dir)
+    {
+        this.m_SwipedDirection = dir;
+        m_EndPosition = GetIngredientAtSwipedDirection().transform.position;
+        if (m_CenterIngredient.GetType() == typeof(Sauce))
+        {
+            m_StartCenterRotatationAnimation = true;
+            if (dir == Direction.Left)
+            {
+                m_isRotateClockwise = false;
+            }
+        }
+        else
+        {
+            m_StartCenterIngredientAnimation = true;
+        }
+
+    }
+
     void SnapToGhostAnimation()
     {
         if (m_StartCenterIngredientAnimation)

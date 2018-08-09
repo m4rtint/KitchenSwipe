@@ -60,7 +60,7 @@ public class FoodTimer : MonoBehaviour {
     float GetRatio()
     {
         float ratio = 0;
-        if (FoodTime() > 0)
+        if (FoodTime() > 0 && m_SecondsToComplete >= 0)
         {
             ratio = m_SecondsToComplete / FoodTime();
         }

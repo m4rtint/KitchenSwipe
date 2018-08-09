@@ -273,7 +273,7 @@ MonoBehaviour:
   - {fileID: 114038689069870524}
   - {fileID: 114764485884926790}
   - {fileID: 114063441671626170}
-  m_SecondsToComplete: 50
+  m_SecondsToComplete: 5
 --- !u!222 &222108800307832966
 CanvasRenderer:
   m_ObjectHideFlags: 1

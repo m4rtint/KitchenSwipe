@@ -66,7 +66,7 @@ public class IngredientGenerator : MonoBehaviour {
 		do{
 			int index = Random.Range(0, 4);
 			food = m_FoodHolders[index].GetStoredFood();
-		} while (food == null);
+		} while (food.GetIngredientLevel() < 0);
         
 		return GetIngredientOnTop(food);
     }
