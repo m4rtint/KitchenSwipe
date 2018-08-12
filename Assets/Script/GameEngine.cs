@@ -49,6 +49,9 @@ public class GameEngine : MonoBehaviour {
 
 	protected virtual void Start()
 	{
+        //Set State
+        StateManager.instance.StartGame();
+
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 

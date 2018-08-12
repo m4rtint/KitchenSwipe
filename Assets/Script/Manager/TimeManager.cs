@@ -61,6 +61,7 @@ public class TimeManager : MonoBehaviour {
         m_GameTime -= Time.deltaTime;
         if (m_GameTime <= 0) {
             m_GameTime = 0;
+            StateManager.instance.GameOver();
             this.CheckGameOverDelegate();
         }
         this.UpdateTimerUIDelegate();

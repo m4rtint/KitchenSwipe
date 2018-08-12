@@ -34,7 +34,7 @@ public class GameTimer : MonoBehaviour {
 
     void InitTimer()
     {
-        if (m_FullTime == -1)
+        if (m_FullTime <= -1)
         {
             m_FullTime = m_TimeManager.GameTimeF();
         }
