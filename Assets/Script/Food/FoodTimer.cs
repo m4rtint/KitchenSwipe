@@ -17,6 +17,8 @@ public class FoodTimer : MonoBehaviour {
     [SerializeField]
     GameObject m_TimerObject;
 
+
+
     #region mono
     private void Awake()
     {
@@ -28,20 +30,16 @@ public class FoodTimer : MonoBehaviour {
 
     private void Start()
     {
-        ResetFoodTimer();
+        ResetFoodTimerIfNeeded();
     }
     #endregion
 
     #region InitFoodTimer
-    public void ResetFoodTimer()
+    public void ResetFoodTimerIfNeeded()
     {
         if (m_FoodHolder.GetStoredFood() != null)
         {
             m_SecondsToComplete = m_FoodHolder.GetStoredFood().GetSecondsToComplete();
-        }
-        else
-        {
-            Debug.Log("Failed to reset timer");
         }
     }
     #endregion
@@ -70,10 +68,6 @@ public class FoodTimer : MonoBehaviour {
         if (FoodTime() > 0 && m_SecondsToComplete >= 0)
         {
             ratio = m_SecondsToComplete / FoodTime();
-            if (ratio > 1) { 
-                Debug.Log("Seconds to complete: " + m_SecondsToComplete);
-                Debug.Log("Food Time: " + FoodTime());
-            }
         }
         return ratio;
     }
@@ -82,10 +76,12 @@ public class FoodTimer : MonoBehaviour {
     #region view
     public void UpdateTimer(float seconds)
     {
-        DecrementTimeBy(seconds);
-        UpdateTimerUI();
-        UpdateTimerColor();
-        TimerAtZero();
+        if (m_FoodHolder.GetStoredFood() != null) {
+            DecrementTimeBy(seconds);
+            UpdateTimerUI();
+            UpdateTimerColor();
+            TimerAtZero();
+        }
     }
 
     void UpdateTimerUI()
@@ -114,7 +110,7 @@ public class FoodTimer : MonoBehaviour {
         {
             ScoreManager.instance.DecrementScore();
             TimeManager.instance.PenaltyGameTime();
-            ResetFoodTimer();
+            ResetFoodTimerIfNeeded();
         }
     }
     #endregion
