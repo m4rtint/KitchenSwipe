@@ -9,6 +9,10 @@ public class GameTimer : MonoBehaviour {
     GameObject m_RingLayerObject;
     Image m_RingImage;
 
+	[SerializeField]
+	GameObject m_RedRingLayerObject;
+	Image m_RedRingImage;
+
     [SerializeField]
     GameObject m_TimeTextObject;
     Text m_TimeText;
@@ -22,6 +26,7 @@ public class GameTimer : MonoBehaviour {
     private void Awake()
     {
         m_RingImage = m_RingLayerObject.GetComponent<Image>();
+		m_RedRingImage = m_RedRingLayerObject.GetComponent<Image>();
         m_TimeText = m_TimeTextObject.GetComponent<Text>();
         m_TimeManager = TimeManager.instance;
         InitDelegate();
@@ -61,6 +66,7 @@ public class GameTimer : MonoBehaviour {
 
     void UpdateRing()
     {
+		m_RedRingImage.fillAmount = m_TimeManager.RedTimeF () / m_FullTime;
         m_RingImage.fillAmount = m_TimeManager.GameTimeF() / m_FullTime;
     }
     #endregion

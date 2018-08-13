@@ -11,6 +11,8 @@ public class TimeManager : MonoBehaviour {
 
     [SerializeField]
     float m_GameTime;
+	float m_RedPenaltyTime;
+	readonly float m_PenaltySpeedUp = 10;
    
 	[SerializeField]
 	float m_FoodPenaltyTime;
@@ -39,26 +41,44 @@ public class TimeManager : MonoBehaviour {
     {
         return m_GameTime;
     }
+
+	public float RedTimeF()
+	{
+		return m_RedPenaltyTime;
+	}
     #endregion
 
     #region Mono
     void Awake()
     {
         instance = this;
+		m_RedPenaltyTime = m_GameTime;
     }
     void Update()
     {
 		if (StateManager.instance.InGame()) {
-			DecrementGameTime ();
+			DecrementGameTime (Time.deltaTime);
+			DecrementRedTime (Time.deltaTime);
 		}
     }
 
     #endregion
     
     #region Timing
-    public void DecrementGameTime()
+	void DecrementRedTime(float seconds) {
+		if (m_RedPenaltyTime > m_GameTime) {
+			seconds *= m_PenaltySpeedUp;
+		} else if (m_RedPenaltyTime < m_GameTime) {
+			m_RedPenaltyTime = m_GameTime;
+		}
+		m_RedPenaltyTime -= seconds;
+
+	}
+
+
+	void DecrementGameTime(float seconds)
     {
-        m_GameTime -= Time.deltaTime;
+		m_GameTime -= seconds;
         if (m_GameTime <= 0) {
             m_GameTime = 0;
             StateManager.instance.GameOver();
