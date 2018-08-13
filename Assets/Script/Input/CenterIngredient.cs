@@ -13,11 +13,6 @@ public class CenterIngredient : MonoBehaviour
     [SerializeField]
     float m_TimeToReachTarget;
     Vector3 m_StartPosition;
-
-    //Rotation
-    [SerializeField]
-    float m_RotationSpeed;
-    bool m_isRotateClockwise;
     
     bool m_StartCenterRotatationAnimation;
     Ingredient m_CenterIngredient;
@@ -33,8 +28,6 @@ public class CenterIngredient : MonoBehaviour
     void Awake()
     {
         m_StartPosition = transform.position;
-        m_StartCenterRotatationAnimation = false;
-        m_isRotateClockwise = true;
         m_IngredientGenerator = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>();
         SetupDelegate();
     }
@@ -42,12 +35,6 @@ public class CenterIngredient : MonoBehaviour
     void SetupDelegate()
     {
         UserInput.GetComponent<UserInput>().snapOffDelegate += StartCenterAnimation;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        RotateCenterAnimation();
     }
 
     #endregion
@@ -80,11 +67,7 @@ public class CenterIngredient : MonoBehaviour
         Vector3 m_EndPosition = GetIngredientAtSwipedDirectionPosition();
         if (m_CenterIngredient.GetType() == typeof(Sauce))
         {
-            m_StartCenterRotatationAnimation = true;
-            if (dir == Direction.Left)
-            {
-                m_isRotateClockwise = false;
-            }
+            RotateCenterIngredient(dir);
         }
         else
         {
@@ -93,66 +76,55 @@ public class CenterIngredient : MonoBehaviour
 
     }
 
+    void RotateCenterIngredient(Direction dir)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("z", AngleForRotation(dir));
+        ht.Add("easeType", "easeInOutBack");
+        ht.Add("time", m_TimeToReachTarget);
+        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        iTween.RotateBy(gameObject, ht);
+    }
+
+    float AngleForRotation(Direction dir)
+    {
+        float angle = -40;
+        switch (dir)
+        {
+            case Direction.Down:
+                angle = 140; break;
+            case Direction.Up:
+                angle = -40; break;
+            case Direction.Left:
+                angle = -130; break;
+            case Direction.Right:
+                angle = 50;break;
+        }
+        Debug.Log(angle / 360);
+        return -angle / 360;
+    }
+
     void MoveCenterToIngredient(Vector3 position)
     {
-        iTween.MoveBy(gameObject, iTween.Hash("x", position.x, "y", position.y, "easeType", "easeInOutExpo", "time", m_TimeToReachTarget));
-        IEnumerator coroutine = WaitAndRunMoveDelegate(m_TimeToReachTarget);
-        StartCoroutine(coroutine);
+        Hashtable ht = new Hashtable();
+        ht.Add("x", position.x);
+        ht.Add("y", position.y);
+        ht.Add("easeType", "easeInOutExpo");
+        ht.Add("time", m_TimeToReachTarget);
+        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        iTween.MoveBy(gameObject, ht);
     }
 
-    IEnumerator WaitAndRunMoveDelegate(float n)
+    void WaitAndRunMoveDelegate()
     {
-        yield return new WaitForSeconds(n);
         ResetCenterAnimation();
         UserInput.GetComponent<UserInput>().RunSwipeDelegate();
-    }
-
-    void RotateCenterAnimation()
-    {
-        if (m_StartCenterRotatationAnimation)
-        {
-            if (!IsAngleReached())
-                RotateCenter();
-            else { 
-                ResetCenterAnimation();
-                UserInput.GetComponent<UserInput>().RunSwipeDelegate();
-            }
-
-        }
-    }
-
-    void RotateCenter()
-    {
-       float speed = m_RotationSpeed * Time.deltaTime;
-      if (m_isRotateClockwise)
-         transform.Rotate(Vector3.back * speed);
-      else
-         transform.Rotate(Vector3.forward * speed);
-    }
-
-    bool IsAngleReached()
-    {
-        switch (this.m_SwipedDirection)
-        {
-            case Direction.Up:
-                return true;
-            case Direction.Left:
-                return transform.rotation.eulerAngles.z > 90;
-            case Direction.Right:
-                return transform.rotation.eulerAngles.z < 270 && transform.rotation.eulerAngles.z > 0;
-            case Direction.Down:
-                return transform.rotation.eulerAngles.z < 180 && transform.rotation.eulerAngles.z > 0;
-            default:
-                return false;
-        }
     }
 
     void ResetCenterAnimation()
     {
         transform.position = m_StartPosition;
         transform.rotation = Quaternion.identity;
-        m_StartCenterRotatationAnimation = false;
-        m_isRotateClockwise = true;
     }
     
     #endregion

@@ -28,14 +28,18 @@ public class IngredientBun : Ingredient {
     public override void StartAnimation()
     {
         base.StartAnimation();
-        iTween.MoveBy(m_BackBun, iTween.Hash("x", base.m_EndPosition.x, "y", base.m_EndPosition.y, "easeType", "easeInOutExpo", "time", base.m_TimeTakenToPlace));
-        StartCoroutine("WaitForPlaceDelegate");
+        Hashtable ht = new Hashtable();
+        ht.Add("x", m_BackbunEndPosition.x);
+        ht.Add("y", m_BackbunEndPosition.y);
+        ht.Add("easeType", "easeInOutExpo");
+        ht.Add("time", m_TimeTakenToPlace);
+        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        iTween.MoveBy(m_BackBun, ht);
     }
 
-    protected override IEnumerator WaitForPlaceDelegate()
+    protected override void WaitForPlaceDelegate()
     {
         base.WaitForPlaceDelegate();
-        yield return new WaitForSeconds(base.m_TimeTakenToPlace);
         PlacementIngredientDelegate();
     }
 

@@ -56,13 +56,17 @@ public class Ingredient:MonoBehaviour {
     #region Animation
     public virtual void StartAnimation()
     {
-        iTween.MoveBy(gameObject, iTween.Hash("x", m_EndPosition.x, "y", m_EndPosition.y, "easeType", "easeInOutExpo", "time", m_TimeTakenToPlace));
-        StartCoroutine("WaitForPlaceDelegate");
+        Hashtable ht = new Hashtable();
+        ht.Add("x", m_EndPosition.x);
+        ht.Add("y", m_EndPosition.y);
+        ht.Add("easeType", "easeInOutExpo");
+        ht.Add("time", m_TimeTakenToPlace);
+        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        iTween.MoveBy(gameObject, ht);
     }
 
-    protected virtual IEnumerator WaitForPlaceDelegate()
+    protected virtual void WaitForPlaceDelegate()
     {
-        yield return new WaitForSeconds(m_TimeTakenToPlace);
         PlacementIngredientDelegate();
     }
     #endregion
