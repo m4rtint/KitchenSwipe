@@ -16,7 +16,6 @@ public class IngredientBun : Ingredient {
     {
         m_BackBun.SetActive(true);
         m_BackBunTrans = m_BackBun.GetComponent<RectTransform>();
-        m_BackbunEndPosition = m_BackBunTrans.localPosition - new Vector3(0, 100);
     }
 
     public override void SetAlpha(float percent)
@@ -29,12 +28,11 @@ public class IngredientBun : Ingredient {
     {
         base.StartAnimation();
         Hashtable ht = new Hashtable();
-        ht.Add("x", m_BackbunEndPosition.x);
-        ht.Add("y", m_BackbunEndPosition.y);
+        ht.Add("y", -base.m_PlaceDownDistance);
         ht.Add("easeType", "easeInOutExpo");
         ht.Add("time", m_TimeTakenToPlace);
         ht.Add("oncomplete", "WaitForPlaceDelegate");
-        iTween.MoveBy(m_BackBun, ht);
+        iTween.MoveAdd(m_BackBun, ht);
     }
 
     protected override void WaitForPlaceDelegate()
@@ -44,9 +42,12 @@ public class IngredientBun : Ingredient {
     }
 
 
-    public override void SetCrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
+    public override void SetCrossFadeAlpha(float duration)
     {
-        base.SetCrossFadeAlpha(alpha, duration, ignoreTimeScale);
-        m_BackBun.GetComponent<Image>().CrossFadeAlpha(alpha, duration, ignoreTimeScale);
+        base.SetCrossFadeAlpha(duration);
+        Hashtable ht = new Hashtable();
+        ht.Add("a", 0);
+        ht.Add("time", duration);
+        iTween.ColorTo(gameObject, ht);
     }
 }

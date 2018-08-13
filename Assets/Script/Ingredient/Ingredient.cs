@@ -15,16 +15,14 @@ public class Ingredient:MonoBehaviour {
     [SerializeField]
     Sprite m_CenterImage;
 
-    protected float m_TimeTakenToPlace = 0.5f;
-    
-    protected Vector3 m_EndPosition;
+    readonly protected float m_TimeTakenToPlace = 0.5f;
+    readonly protected float m_PlaceDownDistance = 100;
 
     RectTransform m_RectTrans;
     #region Mono
     private void Awake()
     {
         m_RectTrans = GetComponent<RectTransform>();
-        m_EndPosition = m_RectTrans.localPosition - new Vector3(0, 100);
     }
     #endregion
 
@@ -47,9 +45,12 @@ public class Ingredient:MonoBehaviour {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
     }
 
-    public virtual void SetCrossFadeAlpha(float alpha, float duration, bool ignoreTimeScale)
+    public virtual void SetCrossFadeAlpha(float duration)
     {
-        GetComponent<Image>().CrossFadeAlpha(alpha, duration, ignoreTimeScale);
+        Hashtable ht = new Hashtable();
+        ht.Add("a", 0);
+        ht.Add("time", duration);
+        iTween.ColorTo(gameObject, ht);
     }
     #endregion
 
@@ -57,12 +58,11 @@ public class Ingredient:MonoBehaviour {
     public virtual void StartAnimation()
     {
         Hashtable ht = new Hashtable();
-        ht.Add("x", m_EndPosition.x);
-        ht.Add("y", m_EndPosition.y);
+        ht.Add("y",-m_PlaceDownDistance);
         ht.Add("easeType", "easeInOutExpo");
         ht.Add("time", m_TimeTakenToPlace);
         ht.Add("oncomplete", "WaitForPlaceDelegate");
-        iTween.MoveBy(gameObject, ht);
+        iTween.MoveAdd(gameObject, ht);
     }
 
     protected virtual void WaitForPlaceDelegate()

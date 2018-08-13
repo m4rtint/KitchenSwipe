@@ -14,7 +14,6 @@ public class CenterIngredient : MonoBehaviour
     float m_TimeToReachTarget;
     Vector3 m_StartPosition;
     
-    bool m_StartCenterRotatationAnimation;
     Ingredient m_CenterIngredient;
 
     [SerializeField]
@@ -88,20 +87,19 @@ public class CenterIngredient : MonoBehaviour
 
     float AngleForRotation(Direction dir)
     {
-        float angle = -40;
+        float angle = 40;
         switch (dir)
         {
             case Direction.Down:
-                angle = 140; break;
+                angle = -140; break;
             case Direction.Up:
-                angle = -40; break;
+                angle = 40; break;
             case Direction.Left:
-                angle = -130; break;
+                angle = 130; break;
             case Direction.Right:
-                angle = 50;break;
+                angle = -50;break;
         }
-        Debug.Log(angle / 360);
-        return -angle / 360;
+        return angle / 360;
     }
 
     void MoveCenterToIngredient(Vector3 position)

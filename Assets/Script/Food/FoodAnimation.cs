@@ -13,9 +13,10 @@ public class FoodAnimation : MonoBehaviour {
     public delegate void IngredientPlacedDelegate();
     public IngredientPlacedDelegate CompleteIngredientPlacementAnimationDelegate;
 
-    readonly float m_FinishAnimationSpeed = 50; 
-    readonly Vector3 m_RiseUp = new Vector3(0, 50, 0);
-    bool m_FinishFoodAnimation = false;
+    //Fade out
+    readonly float m_TimeTakenToFade = 1.0f;
+    readonly Vector3 m_RiseUp = new Vector3(0, 100, 0);
+
     Ingredient[] m_Ingredients;
 
     Vector3 m_EndPosition;
@@ -34,10 +35,6 @@ public class FoodAnimation : MonoBehaviour {
         m_EndPosition = m_RectTrans.transform.localPosition + m_RiseUp;
     }
 
-    void Update () {
-        MoveFoodUpwards();
-    }
-
     void SetupDelegate()
     {
         foreach(Ingredient ingredient in m_Ingredients)
@@ -51,25 +48,22 @@ public class FoodAnimation : MonoBehaviour {
         CompleteIngredientPlacementAnimationDelegate();
     }
 
-    void MoveFoodUpwards()
+    void CompletedMovingUp()
     {
-        if (m_FinishFoodAnimation)
-        {
-            Vector3 currentPosition = m_RectTrans.transform.localPosition;
-            m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_FinishAnimationSpeed * Time.deltaTime);
-            if (m_RectTrans.transform.localPosition == m_EndPosition)
-            {
-                CompleteFoodAnimationDelegate(this);
-                Destroy(gameObject);
-            }
-        }
+        CompleteFoodAnimationDelegate(this);
+        Destroy(gameObject);
+
     }
     #endregion
 
     #region Public
     public void StartFinishFoodAnimation()
     {
-        m_FinishFoodAnimation = true;
+        Hashtable ht = new Hashtable();
+        ht.Add("y", 50);
+        ht.Add("time", m_TimeTakenToFade / 2);
+        ht.Add("oncomplete", "CompletedMovingUp");
+        iTween.MoveAdd(gameObject, ht);
         SetAlpha();
     }
     #endregion
@@ -77,9 +71,9 @@ public class FoodAnimation : MonoBehaviour {
     #region Colour
     void SetAlpha()
     {
-        foreach(Ingredient ingredient in m_Ingredients)
+        foreach (Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetCrossFadeAlpha(0, 1f, false);
+            ingredient.SetCrossFadeAlpha(m_TimeTakenToFade);
         }
     }
     #endregion
