@@ -7,21 +7,18 @@ using UnityEngine.UI;
 public class CenterIngredient : MonoBehaviour
 {
     [SerializeField]
-    float m_TimeToReachTarget;
-    [SerializeField]
     GameObject UserInput;
 
     //Movement
-    float m_MovementSpeed;
+    [SerializeField]
+    float m_TimeToReachTarget;
     Vector3 m_StartPosition;
-    Vector3 m_EndPosition;
 
     //Rotation
     [SerializeField]
     float m_RotationSpeed;
     bool m_isRotateClockwise;
-
-    bool m_StartCenterIngredientAnimation;
+    
     bool m_StartCenterRotatationAnimation;
     Ingredient m_CenterIngredient;
 
@@ -36,7 +33,6 @@ public class CenterIngredient : MonoBehaviour
     void Awake()
     {
         m_StartPosition = transform.position;
-        m_StartCenterIngredientAnimation = false;
         m_StartCenterRotatationAnimation = false;
         m_isRotateClockwise = true;
         m_IngredientGenerator = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>();
@@ -51,7 +47,6 @@ public class CenterIngredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SnapToGhostAnimation();
         RotateCenterAnimation();
     }
 
@@ -63,16 +58,12 @@ public class CenterIngredient : MonoBehaviour
         FoodHolder holder = m_IngredientGenerator.GetFoodHolder()[(int)m_SwipedDirection];
         if (holder.GetStoredFood() != null)
         {
-            return holder.GetStoredFood().GetNeededIngredient().transform.position;
+            Ingredient ingredient = holder.GetStoredFood().GetNeededIngredient();
+            return ingredient.GetComponent<RectTransform>().position - m_StartPosition;
         } else
         {
             return holder.transform.position;
         }
-    }
-
-    public float TimeToReachTarget()
-    {
-        return m_TimeToReachTarget;
     }
 
     public void SetCenter(Ingredient ingredient)
@@ -86,7 +77,7 @@ public class CenterIngredient : MonoBehaviour
     void StartCenterAnimation(Direction dir)
     {
         this.m_SwipedDirection = dir;
-        m_EndPosition = GetIngredientAtSwipedDirectionPosition();
+        Vector3 m_EndPosition = GetIngredientAtSwipedDirectionPosition();
         if (m_CenterIngredient.GetType() == typeof(Sauce))
         {
             m_StartCenterRotatationAnimation = true;
@@ -97,23 +88,23 @@ public class CenterIngredient : MonoBehaviour
         }
         else
         {
-            m_StartCenterIngredientAnimation = true;
+            MoveCenterToIngredient(m_EndPosition);
         }
 
     }
 
-    void SnapToGhostAnimation()
+    void MoveCenterToIngredient(Vector3 position)
     {
-        if (m_StartCenterIngredientAnimation)
-        {
-            m_MovementSpeed += Time.deltaTime / m_TimeToReachTarget;
-            transform.position = Vector3.Lerp(transform.position, m_EndPosition, m_MovementSpeed);
-            if (transform.position == m_EndPosition)
-            {
-                ResetCenterAnimation();
-                UserInput.GetComponent<UserInput>().RunSwipeDelegate();
-            }
-        } 
+        iTween.MoveBy(gameObject, iTween.Hash("x", position.x, "y", position.y, "easeType", "easeInOutExpo", "time", m_TimeToReachTarget));
+        IEnumerator coroutine = WaitAndRunMoveDelegate(m_TimeToReachTarget);
+        StartCoroutine(coroutine);
+    }
+
+    IEnumerator WaitAndRunMoveDelegate(float n)
+    {
+        yield return new WaitForSeconds(n);
+        ResetCenterAnimation();
+        UserInput.GetComponent<UserInput>().RunSwipeDelegate();
     }
 
     void RotateCenterAnimation()
@@ -160,10 +151,8 @@ public class CenterIngredient : MonoBehaviour
     {
         transform.position = m_StartPosition;
         transform.rotation = Quaternion.identity;
-        m_StartCenterIngredientAnimation = false;
         m_StartCenterRotatationAnimation = false;
         m_isRotateClockwise = true;
-        m_MovementSpeed = 0;
     }
     
     #endregion

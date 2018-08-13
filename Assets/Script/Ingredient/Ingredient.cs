@@ -15,22 +15,16 @@ public class Ingredient:MonoBehaviour {
     [SerializeField]
     Sprite m_CenterImage;
 
-    bool m_PlacementAnimation;
-    protected readonly float m_PlacementAnimationSpeed = 2000;
-    Vector3 m_EndPosition;
+    protected float m_TimeTakenToPlace = 0.5f;
+    
+    protected Vector3 m_EndPosition;
 
     RectTransform m_RectTrans;
     #region Mono
     private void Awake()
     {
         m_RectTrans = GetComponent<RectTransform>();
-        m_PlacementAnimation = false;
         m_EndPosition = m_RectTrans.localPosition - new Vector3(0, 100);
-    }
-
-    private void Update()
-    {
-        FoodPlacementAnimation();
     }
     #endregion
 
@@ -62,21 +56,14 @@ public class Ingredient:MonoBehaviour {
     #region Animation
     public virtual void StartAnimation()
     {
-        m_PlacementAnimation = true;
+        iTween.MoveBy(gameObject, iTween.Hash("x", m_EndPosition.x, "y", m_EndPosition.y, "easeType", "easeInOutExpo", "time", m_TimeTakenToPlace));
+        StartCoroutine("WaitForPlaceDelegate");
     }
 
-    protected virtual void FoodPlacementAnimation()
+    protected virtual IEnumerator WaitForPlaceDelegate()
     {
-        if (m_PlacementAnimation)
-        {
-            Vector3 currentPosition = m_RectTrans.transform.localPosition;
-            m_RectTrans.transform.localPosition = Vector3.MoveTowards(currentPosition, m_EndPosition, m_PlacementAnimationSpeed * Time.deltaTime);
-            if (m_RectTrans.transform.localPosition == m_EndPosition)
-            {
-                PlacementIngredientDelegate();
-                m_PlacementAnimation = false;
-            }
-        }
+        yield return new WaitForSeconds(m_TimeTakenToPlace);
+        PlacementIngredientDelegate();
     }
     #endregion
 }
