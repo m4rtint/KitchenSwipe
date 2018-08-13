@@ -6,21 +6,25 @@ using UnityEngine.UI;
 [RequireComponent(typeof(IngredientGenerator))]
 public class CenterIngredient : MonoBehaviour
 {
+    [Header("Dependencies")]
     [SerializeField]
     GameObject UserInput;
-
-    //Movement
-    [SerializeField]
-    float m_TimeToReachTarget;
-    Vector3 m_StartPosition;
-    
-    Ingredient m_CenterIngredient;
-
     [SerializeField]
     GameObject m_IngredientGeneratorObj;
     IngredientGenerator m_IngredientGenerator;
 
+    [Header("Movement")]
+    [SerializeField]
+    float m_TimeToReachTarget;
+    Vector3 m_StartPosition;
+    [SerializeField]
+    float m_SauceFadeTime;
+    
+
+
+    Ingredient m_CenterIngredient;
     Direction m_SwipedDirection;
+
 
     #region Mono
     // Use this for initialization
@@ -84,7 +88,7 @@ public class CenterIngredient : MonoBehaviour
         ht.Add("z", AngleForRotation(dir));
         ht.Add("easeType", "easeInOutBack");
         ht.Add("time", m_TimeToReachTarget);
-        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        ht.Add("oncomplete", "FadeOutCenter");
         iTween.RotateBy(gameObject, ht);
     }
 
@@ -103,6 +107,15 @@ public class CenterIngredient : MonoBehaviour
                 angle = -50;break;
         }
         return angle / 360;
+    }
+
+    void FadeOutCenter()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("a", 0);
+        ht.Add("time", m_SauceFadeTime);
+        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        iTween.ColorTo(gameObject, ht);
     }
 
     void MoveCenterToIngredient(Vector3 position)
@@ -124,6 +137,7 @@ public class CenterIngredient : MonoBehaviour
 
     void ResetCenterAnimation()
     {
+        GetComponent<Image>().color = Color.white;
         transform.position = m_StartPosition;
         transform.rotation = Quaternion.identity;
     }
