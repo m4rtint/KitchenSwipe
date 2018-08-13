@@ -45,9 +45,6 @@ public class IngredientBun : Ingredient {
     public override void SetCrossFadeAlpha(float duration)
     {
         base.SetCrossFadeAlpha(duration);
-        Hashtable ht = new Hashtable();
-        ht.Add("a", 0);
-        ht.Add("time", duration);
-        iTween.ColorTo(gameObject, ht);
+        iTween.ColorTo(m_BackBun.gameObject, Color.clear, duration);
     }
 }

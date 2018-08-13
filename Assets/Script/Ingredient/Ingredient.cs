@@ -46,11 +46,8 @@ public class Ingredient:MonoBehaviour {
     }
 
     public virtual void SetCrossFadeAlpha(float duration)
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("a", 0);
-        ht.Add("time", duration);
-        iTween.ColorTo(gameObject, ht);
+    { 
+        iTween.ColorTo(gameObject, Color.clear, duration);
     }
     #endregion
 

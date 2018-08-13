@@ -61,7 +61,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("y", 50);
-        ht.Add("time", m_TimeTakenToFade / 2);
+        ht.Add("time", m_TimeTakenToFade);
         ht.Add("oncomplete", "CompletedMovingUp");
         iTween.MoveAdd(gameObject, ht);
         SetAlpha();
@@ -73,7 +73,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         foreach (Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetCrossFadeAlpha(m_TimeTakenToFade);
+            ingredient.SetCrossFadeAlpha(m_TimeTakenToFade/2);
         }
     }
     #endregion
