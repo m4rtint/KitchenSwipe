@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FoodAnimation))]
 public class Food : MonoBehaviour {
 
 	[SerializeField]
@@ -68,10 +69,15 @@ public class Food : MonoBehaviour {
         GetNeededIngredient().SetAlpha(1);
         GetNeededIngredient().StartAnimation();
         m_Level--;
-        if (m_Level > -1) {
+    }
+
+    public void activeTopIngredientIfNeeded(){
+        if (m_Level > -1)
+        {
             GetNeededIngredient().gameObject.SetActive(true);
         }
     }
+
    
 	#endregion
 }

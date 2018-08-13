@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Food))]
 public class FoodAnimation : MonoBehaviour {
 
 
@@ -18,6 +19,7 @@ public class FoodAnimation : MonoBehaviour {
     readonly Vector3 m_RiseUp = new Vector3(0, 100, 0);
 
     Ingredient[] m_Ingredients;
+    Food m_Food;
 
     Vector3 m_EndPosition;
     RectTransform m_RectTrans;
@@ -26,7 +28,8 @@ public class FoodAnimation : MonoBehaviour {
     void Awake()
     {
         m_RectTrans = GetComponent<RectTransform>();
-        m_Ingredients = GetComponent<Food>().GetIngredients();
+        m_Food = GetComponent<Food>();
+        m_Ingredients = m_Food.GetIngredients();
         SetupDelegate();
     }
 
@@ -46,6 +49,7 @@ public class FoodAnimation : MonoBehaviour {
     void PlaceIngredientAnimComplete()
     {
         CompleteIngredientPlacementAnimationDelegate();
+        m_Food.activeTopIngredientIfNeeded();
     }
 
     void CompletedMovingUp()
