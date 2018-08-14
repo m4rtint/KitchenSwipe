@@ -677,7 +677,7 @@ MonoBehaviour:
   m_PlacementTime: 0.25
   m_AscensionTime: 1
   m_RotationTime: 0.5
-  m_CenterFadeOutTime: 1
+  m_CenterFadeOutTime: 0.2
 --- !u!1 &2021354266 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1554819317486804, guid: 98e5ae7b9189d4d2d80435a30e0140e4,

@@ -107,7 +107,7 @@ public class CenterIngredient : MonoBehaviour
         Hashtable ht = new Hashtable();
         ht.Add("a", 0);
         ht.Add("time", animation.SauceFadeOutTime());
-        ht.Add("oncomplete", "SwipeDelegate");
+        ht.Add("oncomplete", "MoveCenterDelegate");
         iTween.ColorTo(gameObject, ht);
     }
 
@@ -118,11 +118,12 @@ public class CenterIngredient : MonoBehaviour
         ht.Add("y", position.y);
         ht.Add("easeType", "easeInOutExpo");
         ht.Add("time", animation.CenterMoveTime());
-        ht.Add("oncomplete", "SwipeDelegate");
+        ht.Add("oncomplete", "MoveCenterDelegate");
         iTween.MoveBy(gameObject, ht);
     }
 
-    void SwipeDelegate()
+
+    void MoveCenterDelegate()
     {
         ResetCenterAnimation();
         UserInput.GetComponent<UserInput>().RunSwipeDelegate();
