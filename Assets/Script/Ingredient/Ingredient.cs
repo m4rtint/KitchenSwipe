@@ -15,13 +15,13 @@ public class Ingredient:MonoBehaviour {
     [SerializeField]
     Sprite m_CenterImage;
 
-    readonly protected float m_TimeTakenToPlace = 0.5f;
     readonly protected float m_PlaceDownDistance = 100;
-
+    protected AnimationManager animation;
     RectTransform m_RectTrans;
     #region Mono
     private void Awake()
     {
+        animation = AnimationManager.instance;
         m_RectTrans = GetComponent<RectTransform>();
     }
     #endregion
@@ -57,7 +57,7 @@ public class Ingredient:MonoBehaviour {
         Hashtable ht = new Hashtable();
         ht.Add("y",-m_PlaceDownDistance);
         ht.Add("easeType", "easeInOutExpo");
-        ht.Add("time", m_TimeTakenToPlace);
+        ht.Add("time", animation.PlacementTime());
         ht.Add("oncomplete", "WaitForPlaceDelegate");
         iTween.MoveAdd(gameObject, ht);
     }

@@ -12,24 +12,17 @@ public class CenterIngredient : MonoBehaviour
     [SerializeField]
     GameObject m_IngredientGeneratorObj;
     IngredientGenerator m_IngredientGenerator;
-
-    [Header("Movement")]
-    [SerializeField]
-    float m_TimeToReachTarget;
-    Vector3 m_StartPosition;
-    [SerializeField]
-    float m_SauceFadeTime;
     
-
-
+    Vector3 m_StartPosition;
     Ingredient m_CenterIngredient;
     Direction m_SwipedDirection;
-
+    AnimationManager animation;
 
     #region Mono
     // Use this for initialization
     void Awake()
     {
+        animation = AnimationManager.instance;
         m_StartPosition = transform.position;
         m_IngredientGenerator = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>();
         SetupDelegate();
@@ -87,7 +80,7 @@ public class CenterIngredient : MonoBehaviour
         Hashtable ht = new Hashtable();
         ht.Add("z", AngleForRotation(dir));
         ht.Add("easeType", "easeInOutBack");
-        ht.Add("time", m_TimeToReachTarget);
+        ht.Add("time", animation.RotationTime());
         ht.Add("oncomplete", "FadeOutCenter");
         iTween.RotateBy(gameObject, ht);
     }
@@ -113,8 +106,8 @@ public class CenterIngredient : MonoBehaviour
     {
         Hashtable ht = new Hashtable();
         ht.Add("a", 0);
-        ht.Add("time", m_SauceFadeTime);
-        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        ht.Add("time", animation.SauceFadeOutTime());
+        ht.Add("oncomplete", "SwipeDelegate");
         iTween.ColorTo(gameObject, ht);
     }
 
@@ -124,12 +117,12 @@ public class CenterIngredient : MonoBehaviour
         ht.Add("x", position.x);
         ht.Add("y", position.y);
         ht.Add("easeType", "easeInOutExpo");
-        ht.Add("time", m_TimeToReachTarget);
-        ht.Add("oncomplete", "WaitAndRunMoveDelegate");
+        ht.Add("time", animation.CenterMoveTime());
+        ht.Add("oncomplete", "SwipeDelegate");
         iTween.MoveBy(gameObject, ht);
     }
 
-    void WaitAndRunMoveDelegate()
+    void SwipeDelegate()
     {
         ResetCenterAnimation();
         UserInput.GetComponent<UserInput>().RunSwipeDelegate();

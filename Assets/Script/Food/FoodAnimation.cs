@@ -15,18 +15,18 @@ public class FoodAnimation : MonoBehaviour {
     public IngredientPlacedDelegate CompleteIngredientPlacementAnimationDelegate;
 
     //Fade out
-    readonly float m_TimeTakenToFade = 1.0f;
     readonly Vector3 m_RiseUp = new Vector3(0, 100, 0);
 
     Ingredient[] m_Ingredients;
     Food m_Food;
-
+    AnimationManager animation;
     Vector3 m_EndPosition;
     RectTransform m_RectTrans;
 
     #region mono
     void Awake()
     {
+        animation = AnimationManager.instance;
         m_RectTrans = GetComponent<RectTransform>();
         m_Food = GetComponent<Food>();
         m_Ingredients = m_Food.GetIngredients();
@@ -65,7 +65,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("y", 50);
-        ht.Add("time", m_TimeTakenToFade);
+        ht.Add("time", animation.AscensionTime());
         ht.Add("oncomplete", "CompletedMovingUp");
         iTween.MoveAdd(gameObject, ht);
         SetAlpha();
@@ -77,7 +77,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         foreach (Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetCrossFadeAlpha(m_TimeTakenToFade/2);
+            ingredient.SetCrossFadeAlpha(animation.AscensionTime() / 2);
         }
     }
     #endregion
