@@ -36,11 +36,9 @@ public class Food : MonoBehaviour {
 	}
 
 	public Ingredient GetNeededIngredient() {
-        if (!InPlay())
-        {
-            Debug.Log("Error - Tried to access -1 Ingredient");
-            m_Level = 0;
-        }
+        if (!InPlay()){ Debug.Log("Error - Tried to access -1 Ingredient");}
+
+		m_Level = Mathf.Max (0, m_Level);
 		return m_Ingredients [m_Level];
 	}
 
