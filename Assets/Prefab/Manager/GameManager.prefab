@@ -19,8 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4163979825090454}
-  - component: {fileID: 114522056803074082}
   - component: {fileID: 114069557465405260}
+  - component: {fileID: 114900218454613518}
+  - component: {fileID: 114974761684145418}
+  - component: {fileID: 114320809374165192}
+  - component: {fileID: 114196023701877964}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -53,10 +56,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Foods:
-  - {fileID: 114386339984757956, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
-  - {fileID: 114290334311141516, guid: 662c268fbdc654a30be225ad2574ab8c, type: 2}
-  - {fileID: 114229284537995520, guid: 11ed9c28a4de54720a0aa40a1e66a7ac, type: 2}
---- !u!114 &114522056803074082
+  - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
+  - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
+--- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -64,9 +66,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 1068616860894738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712842e11850541218d2371029cb73e5, type: 3}
+  m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumberOfFood: 5
+  m_MoveTime: 0.25
+  m_PlacementTime: 0.25
+  m_AscensionTime: 1
+  m_RotationTime: 0.5
+  m_CenterFadeOutTime: 0.2
+--- !u!114 &114320809374165192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002145ac1c5516f48b8dd2911cdfe641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NumberOfFood: 10
   m_FoodHolder: {fileID: 0}
   m_PlayerInput: {fileID: 0}
+  m_Center: {fileID: 0}
+  m_WaveSize: 3
+--- !u!114 &114900218454613518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8cae08f9e137f43afb2e7bd0b762ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseScore: 100
+  m_IncrementScoreVariable: 1
+  m_DecrementScoreVariable: 0.5
+--- !u!114 &114974761684145418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GameTime: 200
+  m_FoodPenaltyTime: 20
+  m_GameTimePenaltyTime: 5
+  m_FoodSuccessPrizeTime: 10
+  m_OrderTimeVaryingSpeed: 1

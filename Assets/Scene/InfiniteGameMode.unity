@@ -533,11 +533,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 942.55035
@@ -570,114 +565,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f,
+    - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_FoodHolder
       value: 
       objectReference: {fileID: 1393380005}
-    - target: {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f,
+    - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_PlayerInput
       value: 
+      objectReference: {fileID: 141836061}
+    - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Center
+      value: 
       objectReference: {fileID: 2021354266}
-    - target: {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_FoodOrdersObject
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_NumberOfFood
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.data[1]
-      value: 
-      objectReference: {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5,
-        type: 2}
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.data[0]
-      value: 
-      objectReference: {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114522056803074082, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1882693094 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1068616860894738, guid: e0cc552f4d1004830acd96948944f79f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1882693093}
---- !u!114 &1882693095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1882693094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8cae08f9e137f43afb2e7bd0b762ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseScore: 100
-  m_IncrementScoreVariable: 1
-  m_DecrementScoreVariable: 0.5
---- !u!114 &1882693096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1882693094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_GameTime: 200
-  m_FoodPenaltyTime: 20
-  m_GameTimePenaltyTime: 5
-  m_FoodSuccessPrizeTime: 10
-  m_OrderTimeVaryingSpeed: 1
---- !u!114 &1882693097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1882693094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002145ac1c5516f48b8dd2911cdfe641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NumberOfFood: 10
-  m_FoodHolder: {fileID: 1393380005}
-  m_PlayerInput: {fileID: 141836061}
-  m_Center: {fileID: 2021354266}
-  m_WaveSize: 3
---- !u!114 &1882693098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1882693094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MoveTime: 0.25
-  m_PlacementTime: 0.25
-  m_AscensionTime: 1
-  m_RotationTime: 0.5
-  m_CenterFadeOutTime: 0.2
 --- !u!1 &2021354266 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1554819317486804, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
