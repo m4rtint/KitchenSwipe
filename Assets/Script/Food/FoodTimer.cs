@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(FoodHolder))]
 public class FoodTimer : MonoBehaviour {
 
-    float m_SecondsToComplete;
     Color m_HundredPercent;
     Color m_FourtyPercent;
     Color m_TwentyPercent;
@@ -16,6 +15,12 @@ public class FoodTimer : MonoBehaviour {
 
     [SerializeField]
     GameObject m_TimerObject;
+    float m_SecondsToComplete;
+
+    [SerializeField]
+    GameObject m_RedTimerObject;
+    float m_RedSecondsToComplete;
+    readonly float m_SpedUpSpeed = 10;
 
 
 
@@ -40,6 +45,7 @@ public class FoodTimer : MonoBehaviour {
         if (m_FoodHolder.GetStoredFood() != null)
         {
             m_SecondsToComplete = m_FoodHolder.GetStoredFood().GetSecondsToComplete();
+            m_RedSecondsToComplete = m_SecondsToComplete;
         }
     }
     #endregion
@@ -62,15 +68,28 @@ public class FoodTimer : MonoBehaviour {
         m_SecondsToComplete -= seconds;
     }
 
-    float GetRatio()
+    void DecrementRedTimeBy(float seconds)
+    {
+        if (m_RedSecondsToComplete > m_SecondsToComplete)
+        {
+            m_RedSecondsToComplete -= seconds*m_SpedUpSpeed;
+        } else if (m_RedSecondsToComplete < m_SecondsToComplete)
+        {
+            m_RedSecondsToComplete = m_SecondsToComplete;
+        }
+        m_RedSecondsToComplete -= seconds;
+    }
+
+    float GetRatio(float seconds)
     {
         float ratio = 0;
         if (FoodTime() > 0 && m_SecondsToComplete >= 0)
         {
-            ratio = m_SecondsToComplete / FoodTime();
+            ratio = seconds / FoodTime();
         }
         return ratio;
     }
+
     #endregion
 
     #region view
@@ -78,6 +97,7 @@ public class FoodTimer : MonoBehaviour {
     {
         if (m_FoodHolder.GetStoredFood() != null) {
             DecrementTimeBy(seconds);
+            DecrementRedTimeBy(seconds);
             UpdateTimerUI();
             UpdateTimerColor();
             TimerAtZero();
@@ -86,12 +106,13 @@ public class FoodTimer : MonoBehaviour {
 
     void UpdateTimerUI()
     {
-        m_TimerObject.GetComponent<RectTransform>().localScale = new Vector3(GetRatio(), 1, 1);
+        m_TimerObject.GetComponent<RectTransform>().localScale = new Vector3(GetRatio(m_SecondsToComplete), 1, 1);
+        m_RedTimerObject.GetComponent<RectTransform>().localScale = new Vector3(GetRatio(m_RedSecondsToComplete), 1, 1);
     }
 
     void UpdateTimerColor()
     {
-        float ratio = GetRatio();
+        float ratio = GetRatio(m_SecondsToComplete);
         if (ratio > 0.4)
         {
             m_TimerObject.GetComponent<Image>().color = m_HundredPercent;

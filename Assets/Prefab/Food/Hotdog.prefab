@@ -112,7 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Mustard
   m_CenterImage: {fileID: 21300000, guid: 6d1e434ad18c09c409832d4b0629a999, type: 3}
-  m_TimeTakenToPlace: 0
 --- !u!114 &114063441671626170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,7 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: HotDog_Bun
   m_CenterImage: {fileID: 21300000, guid: 08456b424a61c3747a22114681b7f7ba, type: 3}
-  m_TimeTakenToPlace: 0.5
   m_BackBun: {fileID: 1879535859867538}
 --- !u!114 &114188976407481198
 MonoBehaviour:
@@ -260,7 +258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Sausage
   m_CenterImage: {fileID: 0}
-  m_TimeTakenToPlace: 0
 --- !u!114 &114995058337330914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +273,7 @@ MonoBehaviour:
   - {fileID: 114038689069870524}
   - {fileID: 114764485884926790}
   - {fileID: 114063441671626170}
-  m_SecondsToComplete: 5
+  m_SecondsToComplete: 50
 --- !u!222 &222108800307832966
 CanvasRenderer:
   m_ObjectHideFlags: 1
