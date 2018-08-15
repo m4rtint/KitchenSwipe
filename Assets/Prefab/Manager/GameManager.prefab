@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Foods:
   - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
   - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
+  - {fileID: 114526596411210604, guid: d3378dccd59633246867d8992edf492c, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1

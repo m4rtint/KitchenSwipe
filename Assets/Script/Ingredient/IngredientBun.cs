@@ -18,6 +18,12 @@ public class IngredientBun : Ingredient {
         m_BackBunTrans = m_BackBun.GetComponent<RectTransform>();
     }
 
+    protected override void SetupPosition()
+    {
+        base.SetupPosition();
+        m_BackBun.transform.position += new Vector3(0, base.m_PlaceDownDistance, 0);
+    }
+
     public override void SetAlpha(float percent)
     {
         base.SetAlpha(percent);
