@@ -50,7 +50,7 @@ public class FoodHolder : MonoBehaviour {
 
     void CompletedFood()
     {
-        if (m_StoredFood.GetIngredientLevel() == -1)
+        if (!m_StoredFood.IsFoodInPlay())
         {
             m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
             m_StoredFood = null;

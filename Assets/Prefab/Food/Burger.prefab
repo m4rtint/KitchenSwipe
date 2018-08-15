@@ -274,11 +274,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Ingredients:
-  - {fileID: 114869467673699480}
-  - {fileID: 114386477880109676}
-  - {fileID: 114258536307752556}
-  - {fileID: 114707135943579238}
   - {fileID: 114675095451199780}
+  - {fileID: 114707135943579238}
+  - {fileID: 114258536307752556}
+  - {fileID: 114386477880109676}
+  - {fileID: 114869467673699480}
   m_SecondsToComplete: 40
 --- !u!114 &114869467673699480
 MonoBehaviour:

@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Ingredients:
-  - {fileID: 114038689069870524}
-  - {fileID: 114764485884926790}
   - {fileID: 114063441671626170}
+  - {fileID: 114764485884926790}
+  - {fileID: 114038689069870524}
   m_SecondsToComplete: 50
 --- !u!222 &222108800307832966
 CanvasRenderer:

@@ -18,6 +18,7 @@ public class Food : MonoBehaviour {
         SetupIngredientColor();
 	}
 
+
     void SetupIngredientColor()
     {
         foreach(Ingredient ingredient in m_Ingredients)
@@ -25,34 +26,34 @@ public class Food : MonoBehaviour {
             ingredient.SetAlpha(0.3f);
             ingredient.gameObject.SetActive(false);
         }
-        m_Ingredients[m_Ingredients.Length - 1].gameObject.SetActive(true);
+        m_Ingredients[0].gameObject.SetActive(true);
     }
     #endregion
 
     #region Getter/Setter
+    public int MaxIngredientLevel()
+    {
+        return GetIngredients().Length - 1;
+    }
 
     public Ingredient[] GetIngredients() {
 		return m_Ingredients;
 	}
 
 	public Ingredient GetNeededIngredient() {
-        if (!InPlay()){ Debug.Log("Error - Tried to access -1 Ingredient");}
+        if (!IsFoodInPlay()){ Debug.Log("Error - Tried to access index out of bounds Ingredient");}
 
-		m_Level = Mathf.Max (0, m_Level);
+		m_Level = Mathf.Min (MaxIngredientLevel(), m_Level);
 		return m_Ingredients [m_Level];
 	}
 
-	public int GetIngredientLevel() {
-		return m_Level;
-	}
-
-    public bool InPlay()
+    public bool IsFoodInPlay()
     {
-        return m_Level >= 0;
+        return m_Level <= MaxIngredientLevel();
     }
 
 	void SetupIngredientLevel() {
-		m_Level = m_Ingredients.Length-1;
+		m_Level = 0;
         m_SecondsToComplete += Random.Range(3, 10);
 	}
     
@@ -66,11 +67,11 @@ public class Food : MonoBehaviour {
 	public void PlaceIngredient() {
         GetNeededIngredient().SetAlpha(1);
         GetNeededIngredient().StartAnimation();
-        m_Level--;
+        m_Level++;
     }
 
     public void activeTopIngredientIfNeeded(){
-        if (m_Level > -1)
+        if (IsFoodInPlay())
         {
             GetNeededIngredient().gameObject.SetActive(true);
         }
