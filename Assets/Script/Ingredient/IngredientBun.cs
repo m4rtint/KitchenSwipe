@@ -32,13 +32,13 @@ public class IngredientBun : Ingredient {
 
     public override void StartAnimation()
     {
-        base.StartAnimation();
         Hashtable ht = new Hashtable();
         ht.Add("y", -base.m_PlaceDownDistance);
         ht.Add("easeType", "easeInOutExpo");
-        ht.Add("time", base.animation.PlacementTime());
+        ht.Add("time", base.animation.PlacementTime()+0.15);
         ht.Add("oncomplete", "ResizeAnimation");
         iTween.MoveAdd(m_BackBun, ht);
+        base.StartAnimation();
     }
 
     protected override void ResizeAnimation(){

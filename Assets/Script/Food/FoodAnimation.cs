@@ -67,8 +67,7 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("y", 75);
         ht.Add("time", animation.AscensionTime());
         ht.Add("easeType", "easeOutCubic");
-        //ht.Add("oncomplete", "CompletedMovingUp");
-        ht.Add("looptype", "loop");
+        ht.Add("oncomplete", "CompletedMovingUp");
         iTween.MoveAdd(gameObject, ht);
         SetAlpha();
     }
