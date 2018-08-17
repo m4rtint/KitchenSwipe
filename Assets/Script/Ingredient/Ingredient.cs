@@ -53,8 +53,9 @@ public class Ingredient:MonoBehaviour {
     }
 
     public virtual void SetCrossFadeAlpha(float duration)
-    { 
-        iTween.ColorTo(gameObject, Color.clear, duration);
+    {
+        Color white = new Color(1, 1, 1, 0);
+        iTween.ColorTo(gameObject, white, duration);
     }
     #endregion
 
@@ -63,11 +64,23 @@ public class Ingredient:MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("y",-m_PlaceDownDistance);
-        ht.Add("easeType", "easeInOutExpo");
+        ht.Add("easeType", "easeInQuint");
         ht.Add("time", animation.PlacementTime());
-        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        ht.Add("oncomplete", "ResizeAnimation");
         iTween.MoveAdd(gameObject, ht);
     }
+
+    protected virtual void ResizeAnimation()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", new Vector3(1.2f,1.2f,0));
+        ht.Add("time", animation.PlacementTime());
+        ht.Add("easeType", "spring");
+        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        iTween.ScaleFrom(gameObject, ht);
+    }
+
+
 
     protected virtual void WaitForPlaceDelegate()
     {

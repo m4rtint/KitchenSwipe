@@ -37,8 +37,19 @@ public class IngredientBun : Ingredient {
         ht.Add("y", -base.m_PlaceDownDistance);
         ht.Add("easeType", "easeInOutExpo");
         ht.Add("time", base.animation.PlacementTime());
-        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        ht.Add("oncomplete", "ResizeAnimation");
         iTween.MoveAdd(m_BackBun, ht);
+    }
+
+    protected override void ResizeAnimation(){
+        base.ResizeAnimation();
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
+        ht.Add("time", animation.PlacementTime());
+        ht.Add("easeType", "spring");
+        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        iTween.ScaleFrom(m_BackBun, ht);
+
     }
 
     protected override void WaitForPlaceDelegate()
@@ -50,7 +61,8 @@ public class IngredientBun : Ingredient {
 
     public override void SetCrossFadeAlpha(float duration)
     {
+        Color white = new Color(1, 1, 1, 1);
         base.SetCrossFadeAlpha(duration);
-        iTween.ColorTo(m_BackBun.gameObject, Color.clear, duration);
+        iTween.ColorTo(m_BackBun.gameObject, white, duration);
     }
 }

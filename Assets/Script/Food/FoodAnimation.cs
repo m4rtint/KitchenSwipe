@@ -64,9 +64,11 @@ public class FoodAnimation : MonoBehaviour {
     public void StartFinishFoodAnimation()
     {
         Hashtable ht = new Hashtable();
-        ht.Add("y", 50);
+        ht.Add("y", 75);
         ht.Add("time", animation.AscensionTime());
-        ht.Add("oncomplete", "CompletedMovingUp");
+        ht.Add("easeType", "easeOutCubic");
+        //ht.Add("oncomplete", "CompletedMovingUp");
+        ht.Add("looptype", "loop");
         iTween.MoveAdd(gameObject, ht);
         SetAlpha();
     }
