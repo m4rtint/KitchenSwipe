@@ -25,7 +25,6 @@ public class ScoreManager : MonoBehaviour {
     int reachingNumber;
     int m_Score = 0;
     int m_Plates = 0;
-    bool CanDecrementScore = false;
 
     #region GetterSetter
     public void SetIncrementScoreVariable(float var)
