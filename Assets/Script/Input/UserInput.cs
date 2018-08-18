@@ -39,9 +39,9 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return draggedDir;
     }
 
-    bool InGame()
+    bool CanSwipe()
     {
-        return StateManager.instance.InGame();
+        return StateManager.instance.InGame() && canSwipe;
     }
 
     public void RunSwipeDelegate()
@@ -56,15 +56,14 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector2 displacement = eventData.position - eventData.pressPosition;
-
         Vector3 dragVectorDirection = displacement.normalized;
-        currentDirection = GetDragDirection(dragVectorDirection);
 
         float distance = displacement.magnitude;
-        if (distance > m_DragDistance && InGame() && canSwipe)
+        if (distance > m_DragDistance && CanSwipe())
         {
-            this.snapOffDelegate(currentDirection);
             canSwipe = false;
+            currentDirection = GetDragDirection(dragVectorDirection);
+            this.snapOffDelegate(currentDirection);
         } 
     }
 

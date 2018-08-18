@@ -341,7 +341,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6f32901523825194f8ec5469f19d4df1,
+      objectReference: {fileID: 21300000, guid: 83b5ad700143ea64db01054e9ddbf772,
         type: 3}
     - target: {fileID: 224256924742149958, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
@@ -400,7 +400,7 @@ Prefab:
     - target: {fileID: 224124666899241340, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98e5ae7b9189d4d2d80435a30e0140e4, type: 2}
@@ -702,6 +702,12 @@ Prefab:
       propertyPath: m_AscensionTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[0]
+      value: 
+      objectReference: {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabParent: 0
