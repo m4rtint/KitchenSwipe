@@ -20,8 +20,12 @@ public class ScoreManager : MonoBehaviour {
     [SerializeField]
     float m_DecrementScoreVariable;
 
+    [SerializeField]
+    int m_ScoreSpeed;
+    int reachingNumber;
     int m_Score = 0;
     int m_Plates = 0;
+    bool CanDecrementScore = false;
 
     #region GetterSetter
     public void SetIncrementScoreVariable(float var)
@@ -52,21 +56,45 @@ public class ScoreManager : MonoBehaviour {
     private void Awake()
     {   
         instance = this;
+        reachingNumber = m_Score;
     }
+
+    private void Update()
+    {
+        AnimateChangeScore();
+    }
+
+    void AnimateChangeScore()
+    {
+
+        if (reachingNumber < m_Score)
+        {
+            m_Score -= m_ScoreSpeed;
+            this.thisDelegate();
+        } else if (reachingNumber > m_Score)
+        {
+            m_Score += m_ScoreSpeed;
+            this.thisDelegate();
+
+        } else if((reachingNumber-m_Score) < m_ScoreSpeed && reachingNumber != m_Score)
+        {
+            m_Score = reachingNumber;
+            this.thisDelegate();
+        }
+    }
+
     #endregion
 
     #region Score
     public void IncrementScore()
     {
         m_Plates++;
-        m_Score += (int)(BaseScore * m_IncrementScoreVariable);
-        this.thisDelegate();
+        reachingNumber += (int)(BaseScore * m_IncrementScoreVariable);
     }
 
     public void DecrementScore()
     {
-        m_Score -= (int)(BaseScore * m_DecrementScoreVariable);
-        this.thisDelegate();
+        reachingNumber -= (int)(BaseScore * m_DecrementScoreVariable);
     }
 
     public void SaveScore()
