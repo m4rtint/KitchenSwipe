@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
 
     void InitDelegate()
     {
-        m_ScoreManager.thisDelegate += UpdateScore;
+        m_ScoreManager.scoreDelegate += UpdateScore;
         m_TimeManager.CheckGameOverDelegate += ShowGameOverScreen;
     }
 

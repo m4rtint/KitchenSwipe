@@ -9,13 +9,11 @@ public class IngredientBun : Ingredient {
     [SerializeField]
     GameObject m_BackBun;
     Vector3 m_BackbunEndPosition;
-    RectTransform m_BackBunTrans;
     
 
     private void OnEnable()
     {
         m_BackBun.SetActive(true);
-        m_BackBunTrans = m_BackBun.GetComponent<RectTransform>();
     }
 
     protected override void SetupPosition()

@@ -17,13 +17,11 @@ public class Ingredient:MonoBehaviour {
 
     readonly protected float m_PlaceDownDistance = 100;
     protected AnimationManager animation;
-    RectTransform m_RectTrans;
 
     #region Mono
     private void Awake()
     {
         animation = AnimationManager.instance;
-        m_RectTrans = GetComponent<RectTransform>();
         SetupPosition();
     }
 

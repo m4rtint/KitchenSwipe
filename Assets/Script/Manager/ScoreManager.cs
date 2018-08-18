@@ -5,7 +5,8 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour {
     //Delegate
     public delegate void ScoreDelegate();
-    public ScoreDelegate thisDelegate;
+    public ScoreDelegate scoreDelegate;
+    public ScoreDelegate comboDelegate;
 
     //Player Pref keys
     readonly string InfiniteMode = "Infinite";
@@ -24,6 +25,8 @@ public class ScoreManager : MonoBehaviour {
     int m_ScoreSpeed;
     int reachingNumber;
     int m_Score = 0;
+
+    int combo = 0;
     int m_Plates = 0;
 
     #region GetterSetter
@@ -49,6 +52,20 @@ public class ScoreManager : MonoBehaviour {
     {
         return m_Plates;
     }
+
+    void ResetCombo()
+    {
+        combo = 0;
+    }
+
+    void IncrementCombo()
+    {
+        combo++;
+        if (combo >= 4)
+        {
+            this.comboDelegate();
+        }
+    }
     #endregion
 
     #region Mono
@@ -69,16 +86,16 @@ public class ScoreManager : MonoBehaviour {
         if (reachingNumber < m_Score)
         {
             m_Score -= m_ScoreSpeed;
-            this.thisDelegate();
+            this.scoreDelegate();
         } else if (reachingNumber > m_Score)
         {
             m_Score += m_ScoreSpeed;
-            this.thisDelegate();
+            this.scoreDelegate();
 
         } else if((reachingNumber-m_Score) < m_ScoreSpeed && reachingNumber != m_Score)
         {
             m_Score = reachingNumber;
-            this.thisDelegate();
+            this.scoreDelegate();
         }
     }
 
@@ -88,6 +105,7 @@ public class ScoreManager : MonoBehaviour {
     public void IncrementScore()
     {
         m_Plates++;
+        IncrementCombo();
         reachingNumber += (int)(BaseScore * m_IncrementScoreVariable);
     }
 
