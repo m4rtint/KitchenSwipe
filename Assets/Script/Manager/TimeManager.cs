@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour {
 	public float m_OrderTimeVaryingSpeed;
 
     #region Getter/Setter
-    public string GameTime(int dec = 2)
+    public string GameTime(int dec = 0)
     {
         return m_GameTime.ToString("n" + dec);
     }
