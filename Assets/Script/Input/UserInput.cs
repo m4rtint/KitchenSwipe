@@ -17,12 +17,12 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public delegate void InputDelegate(Direction dir);
     public InputDelegate swipeDelegate;
     public InputDelegate snapOffDelegate;
-
+    
     Direction currentDirection;
 
     [SerializeField]
     float m_DragDistance;
-
+    bool canSwipe = true;
     Direction GetDragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
@@ -47,6 +47,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void RunSwipeDelegate()
     {
         this.swipeDelegate(currentDirection);
+        canSwipe = true;
     }
 
 
@@ -60,9 +61,10 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         currentDirection = GetDragDirection(dragVectorDirection);
 
         float distance = displacement.magnitude;
-        if (distance > m_DragDistance && InGame())
+        if (distance > m_DragDistance && InGame() && canSwipe)
         {
             this.snapOffDelegate(currentDirection);
+            canSwipe = false;
         } 
     }
 
