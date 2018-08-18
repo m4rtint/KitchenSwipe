@@ -64,13 +64,14 @@ public class FoodAnimation : MonoBehaviour {
     public void StartFinishFoodAnimation()
     {
         Hashtable ht = new Hashtable();
-        ht.Add("y", 75);
+        ht.Add("y", animation.AscensionAmount());
         ht.Add("time", animation.AscensionTime());
         ht.Add("easeType", "easeOutCubic");
         ht.Add("oncomplete", "CompletedMovingUp");
         iTween.MoveAdd(gameObject, ht);
         SetAlpha();
     }
+
     #endregion
 
     #region Colour
@@ -78,7 +79,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         foreach (Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetCrossFadeAlpha(animation.AscensionTime() / 2);
+            ingredient.SetCrossFadeAlpha(animation.AscensionFade());
         }
     }
     #endregion

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(FoodTimer))]
+[RequireComponent(typeof(FoodScore))]
 public class FoodHolder : MonoBehaviour {
 
     public delegate void FoodHolderOrderDelegate( Direction dir);
@@ -52,11 +53,14 @@ public class FoodHolder : MonoBehaviour {
     {
         if (!m_StoredFood.IsFoodInPlay())
         {
+
             m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
             m_StoredFood = null;
 
             //SCORE
-            ScoreManager.instance.IncrementScore();
+            int score = ScoreManager.instance.IncrementScore();
+            GetComponent<FoodScore>().RisingScoreAnimation(score);
+            
             //TIME
             TimeManager.instance.IncrementGameTime();
         }

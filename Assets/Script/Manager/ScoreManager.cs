@@ -125,11 +125,13 @@ public class ScoreManager : MonoBehaviour {
     #endregion
 
     #region Score
-    public void IncrementScore()
+    public int IncrementScore()
     {
         m_Plates++;
         IncrementCombo();
-        reachingNumber += (int)(BaseScore * m_IncrementScoreVariable);
+        int score = (int)(BaseScore * m_IncrementScoreVariable);        
+        reachingNumber += score;
+        return score;
     }
 
     public void DecrementScore()

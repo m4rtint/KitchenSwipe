@@ -56,8 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Foods:
-  - {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a, type: 2}
-  - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
+  - {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,8 +71,13 @@ MonoBehaviour:
   m_MoveTime: 0.2
   m_PlacementTime: 0.25
   m_AscensionTime: 0.5
+  m_AscensionAmount: 75
+  m_AscensionFadeTime: 0.2
   m_RotationTime: 0.5
   m_CenterFadeOutTime: 0.2
+  m_ComboPopTime: 0.2
+  m_ScoreRiseTime: 0.2
+  m_ScoreRiseAmount: 100
 --- !u!114 &114320809374165192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,6 +108,8 @@ MonoBehaviour:
   BaseScore: 100
   m_IncrementScoreVariable: 1
   m_DecrementScoreVariable: 0.5
+  m_ComboStartNumber: 4
+  m_ScoreSpeed: 10
 --- !u!114 &114974761684145418
 MonoBehaviour:
   m_ObjectHideFlags: 1

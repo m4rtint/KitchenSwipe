@@ -15,6 +15,10 @@ public class AnimationManager : MonoBehaviour {
     [Header("Complete Food Ascension")]
     [SerializeField]
     float m_AscensionTime;
+    [SerializeField]
+    float m_AscensionAmount;
+    [SerializeField]
+    float m_AscensionFadeTime;
 
     [Header("Center Rotation Time")]
     [SerializeField]
@@ -28,12 +32,25 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float m_ComboPopTime;
 
+    [Header("Score Rise")]
+    [SerializeField]
+    float m_ScoreRiseTime;
+    [SerializeField]
+    float m_ScoreRiseAmount;
+
     public static AnimationManager instance = null;
 
     #region mono
     void Awake()
     {
         instance = this;
+        SetupAscensionFadedIfNeeded();
+    }
+
+    void SetupAscensionFadedIfNeeded()
+    {
+        if (m_AscensionFadeTime > m_AscensionTime) { m_AscensionFadeTime = m_AscensionTime / 2; }
+
     }
     #endregion
 
@@ -53,6 +70,16 @@ public class AnimationManager : MonoBehaviour {
         return m_AscensionTime;
     }
 
+    public float AscensionAmount()
+    {
+        return m_AscensionAmount;
+    }
+
+    public float AscensionFade()
+    {
+        return m_AscensionFadeTime;
+    }
+
     public float RotationTime()
     {
         return m_RotationTime;
@@ -67,5 +94,16 @@ public class AnimationManager : MonoBehaviour {
     {
         return m_ComboPopTime;
     }
+
+    public float ScoreRiseTime()
+    {
+        return m_ScoreRiseTime;
+    }
+
+    public float ScoreRiseAmount()
+    {
+        return m_ScoreRiseAmount;
+    }
+
     #endregion
 }
