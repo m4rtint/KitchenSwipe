@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     GameObject m_ScoreTextObject;
     [SerializeField]
     GameObject m_PlatesTextObject;
+    [SerializeField]
+    GameObject m_ComboTextObject;
 
     #region Mono
     private void Awake()
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
     void InitDelegate()
     {
         m_ScoreManager.scoreDelegate += UpdateScore;
+        m_ScoreManager.comboDelegate += UpdateCombo;
         m_TimeManager.CheckGameOverDelegate += ShowGameOverScreen;
     }
 
@@ -59,6 +62,25 @@ public class UIManager : MonoBehaviour
     void UpdateScore(){
         m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n"+m_ScoreManager.GetScore();
         m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n" + m_ScoreManager.GetPlates();
+    }
+
+    void UpdateCombo(){
+        if (m_ScoreManager.GetCombo() == 0) {
+            m_ComboTextObject.SetActive(false);
+            return;
+        }
+
+        m_ComboTextObject.SetActive(true);
+        m_ComboTextObject.GetComponent<Text>().text = "COMBO\n" + m_ScoreManager.GetCombo();
+        AnimateCombo();
+    }
+
+    void AnimateCombo(){
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
+        ht.Add("time", 5f);
+        ht.Add("easeType", "spring");
+        iTween.ScaleFrom(m_ComboTextObject, ht);
     }
     #endregion
 

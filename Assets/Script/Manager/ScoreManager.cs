@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour {
     int reachingNumber;
     int m_Score = 0;
 
-    int combo = 0;
+    int m_Combo = 0;
     int m_Plates = 0;
 
     #region GetterSetter
@@ -53,15 +53,21 @@ public class ScoreManager : MonoBehaviour {
         return m_Plates;
     }
 
+    public int GetCombo()
+    {
+        return m_Combo;
+    }
+
     void ResetCombo()
     {
-        combo = 0;
+        m_Combo = 0;
+        this.comboDelegate();
     }
 
     void IncrementCombo()
     {
-        combo++;
-        if (combo >= 4)
+        m_Combo++;
+        if (m_Combo >= 1)
         {
             this.comboDelegate();
         }
