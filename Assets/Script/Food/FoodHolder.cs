@@ -64,7 +64,8 @@ public class FoodHolder : MonoBehaviour {
 
 	public void IncorrectlySwiped(){
 		OrderTimerDelegate (this.direction);
-	}
+        ScoreManager.instance.ResetCombo();
+    }
 
 
     void RemoveFood(FoodAnimation food)

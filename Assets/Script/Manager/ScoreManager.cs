@@ -16,10 +16,14 @@ public class ScoreManager : MonoBehaviour {
 
     [SerializeField]
     float BaseScore;
+    [Header("Increment Score Variable")]
     [SerializeField]
     float m_IncrementScoreVariable;
+    [Header("Decrement Score Variable")]
     [SerializeField]
     float m_DecrementScoreVariable;
+    [SerializeField]
+    int m_ComboStartNumber;
 
     [SerializeField]
     int m_ScoreSpeed;
@@ -58,7 +62,7 @@ public class ScoreManager : MonoBehaviour {
         return m_Combo;
     }
 
-    void ResetCombo()
+    public void ResetCombo()
     {
         m_Combo = 0;
         this.comboDelegate();
@@ -67,7 +71,7 @@ public class ScoreManager : MonoBehaviour {
     void IncrementCombo()
     {
         m_Combo++;
-        if (m_Combo >= 1)
+        if (m_Combo >= m_ComboStartNumber)
         {
             this.comboDelegate();
         }
@@ -78,7 +82,21 @@ public class ScoreManager : MonoBehaviour {
     private void Awake()
     {   
         instance = this;
+        SetupScoreProperties();
+    }
+
+    void SetupScoreProperties()
+    {
         reachingNumber = m_Score;
+        if (m_ScoreSpeed == 0)
+        {
+            m_ScoreSpeed = 10;
+        }
+        if (m_ComboStartNumber == 0)
+        {
+            m_ComboStartNumber = 1;
+        }
+
     }
 
     private void Update()
@@ -88,19 +106,18 @@ public class ScoreManager : MonoBehaviour {
 
     void AnimateChangeScore()
     {
-
-        if (reachingNumber < m_Score)
+        if (reachingNumber - m_Score < m_ScoreSpeed && reachingNumber != m_Score) 
+        {
+            m_Score = reachingNumber;
+            this.scoreDelegate();
+        } else if (reachingNumber < m_Score)
         {
             m_Score -= m_ScoreSpeed;
             this.scoreDelegate();
-        } else if (reachingNumber > m_Score)
+        }
+        else if (reachingNumber > m_Score)
         {
             m_Score += m_ScoreSpeed;
-            this.scoreDelegate();
-
-        } else if((reachingNumber-m_Score) < m_ScoreSpeed && reachingNumber != m_Score)
-        {
-            m_Score = reachingNumber;
             this.scoreDelegate();
         }
     }

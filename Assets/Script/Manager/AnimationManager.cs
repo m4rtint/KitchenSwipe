@@ -24,9 +24,13 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float m_CenterFadeOutTime;
 
+    [Header("Combo Pop Time")]
+    [SerializeField]
+    float m_ComboPopTime;
+
     public static AnimationManager instance = null;
 
-#region mono
+    #region mono
     void Awake()
     {
         instance = this;
@@ -57,6 +61,11 @@ public class AnimationManager : MonoBehaviour {
     public float SauceFadeOutTime()
     {
         return m_CenterFadeOutTime;
+    }
+
+    public float ComboPopTime()
+    {
+        return m_ComboPopTime;
     }
     #endregion
 }

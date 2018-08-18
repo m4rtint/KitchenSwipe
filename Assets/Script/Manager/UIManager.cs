@@ -47,6 +47,7 @@ public class UIManager : MonoBehaviour
     {
        m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n0";
        m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n0";
+       m_ComboTextObject.SetActive(false);
     }
     #endregion
 
@@ -78,7 +79,7 @@ public class UIManager : MonoBehaviour
     void AnimateCombo(){
         Hashtable ht = new Hashtable();
         ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
-        ht.Add("time", 5f);
+        ht.Add("time", AnimationManager.instance.ComboPopTime());
         ht.Add("easeType", "spring");
         iTween.ScaleFrom(m_ComboTextObject, ht);
     }
