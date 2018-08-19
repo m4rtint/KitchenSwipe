@@ -799,6 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Authentication: {fileID: 1613307883737532, guid: ce508d27ca2d071458272189ae269c83,
     type: 2}
+  Database: {fileID: 1682547842338890, guid: 119a52af0ab4a8a4b913bcb3e7b84494, type: 2}
 --- !u!4 &986243786
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1271080463
 RectTransform:
   m_ObjectHideFlags: 0
