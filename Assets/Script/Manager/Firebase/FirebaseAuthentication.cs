@@ -7,7 +7,11 @@ public class FirebaseAuthentication : MonoBehaviour {
     //Delegate
     public delegate void FirebaseAuthDelegate();
     public FirebaseAuthDelegate anonAuthDelegate;
+    public FirebaseAuthDelegate emailAuthDelegate;
     public FirebaseAuthDelegate profileUpdateDelegate;
+
+    public delegate void FirebaseAuthErrorDelegate(string error);
+    public FirebaseAuthErrorDelegate errorDelegate;
 
     public static FirebaseAuthentication instance = null;
 
@@ -28,9 +32,10 @@ public class FirebaseAuthentication : MonoBehaviour {
         InitializeFirebase();
     }
 
+
     void InitializeFirebase()
     {
-        m_Auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        m_Auth = FirebaseAuth.DefaultInstance;
         m_Auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
     }
@@ -94,6 +99,28 @@ public class FirebaseAuthentication : MonoBehaviour {
             if (m_User.DisplayName != displayName) { 
                 UpdateProfile(displayName);
             }
+        });
+    }
+
+    public void EmailAuthentication(Dictionary<string,string> profile){
+        string email = profile["email"];
+        string password = profile["password"];
+        m_Auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                return;
+            }
+
+            // Firebase user has been created.
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("Firebase user created successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
         });
     }
 
