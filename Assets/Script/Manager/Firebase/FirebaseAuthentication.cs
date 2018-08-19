@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Auth;
+using System.Threading.Tasks;
 
 public class FirebaseAuthentication : MonoBehaviour {
     //Delegate
     public delegate void FirebaseAuthDelegate();
-    public FirebaseAuthDelegate anonAuthDelegate;
-    public FirebaseAuthDelegate emailAuthDelegate;
+    public FirebaseAuthDelegate AuthDelegate;
     public FirebaseAuthDelegate profileUpdateDelegate;
 
     public delegate void FirebaseAuthErrorDelegate(string error);
@@ -58,7 +58,7 @@ public class FirebaseAuthentication : MonoBehaviour {
                 photoUrl = user.PhotoUrl ?? "";
                 */
                 Debug.Log("Sign in");
-                anonAuthDelegate();
+                AuthDelegate();
             }
         }
     }
@@ -75,52 +75,58 @@ public class FirebaseAuthentication : MonoBehaviour {
     {
         return m_User.DisplayName;
     }
+
+    public string Email()
+    {
+        return m_User.Email;
+    }
     #endregion
 
     #region Public
+    //Anonymous Authentication
     public void AnonAuthentication(string displayName)
     {
         m_Auth.SignInAnonymouslyAsync().ContinueWith(task => {
-            if (task.IsCanceled)
+            if (AuthHasError(task))
             {
-                Debug.LogError("SignInAnonymouslyAsync was canceled.");
-                return;
-            }
-            if (task.IsFaulted)
-            {
-                Debug.LogError("SignInAnonymouslyAsync encountered an error: " + task.Exception);
                 return;
             }
 
             m_User = task.Result;
-           
-            Debug.LogFormat("User signed in successfully: {0} ({1})",
-                m_User.DisplayName, m_User.UserId);
+
             if (m_User.DisplayName != displayName) { 
                 UpdateProfile(displayName);
             }
         });
     }
 
-    public void EmailAuthentication(Dictionary<string,string> profile){
+    //Email Authentication
+    public void EmailRegistration(Dictionary<string,string> profile){
         string email = profile["email"];
         string password = profile["password"];
         m_Auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
-            if (task.IsCanceled)
+            if (AuthHasError(task))
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-                return;
-            }
-            if (task.IsFaulted)
-            {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
                 return;
             }
 
             // Firebase user has been created.
-            Firebase.Auth.FirebaseUser newUser = task.Result;
-            Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
+            m_User = task.Result;
+            UpdateProfile(profile["displayname"]);
+        });
+    }
+
+    public void EmailAuthentication(Dictionary<string, string> profile)
+    {
+        string email = profile["email"];
+        string password = profile["password"];
+        m_Auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+            if (AuthHasError(task))
+            {
+                return;
+            }
+
+            m_User = task.Result;
         });
     }
 
@@ -135,21 +141,34 @@ public class FirebaseAuthentication : MonoBehaviour {
             UserProfile profile = new UserProfile();
             profile.DisplayName = displayName;
             user.UpdateUserProfileAsync(profile).ContinueWith(task => {
-                if (task.IsCanceled)
+                if (AuthHasError(task))
                 {
-                    Debug.LogError("UpdateUserProfileAsync was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("UpdateUserProfileAsync encountered an error: " + task.Exception);
                     return;
                 }
 
                 profileUpdateDelegate();
-                Debug.Log("User profile updated successfully.");
             });
         }
+    }
+
+
+    bool AuthHasError(Task task)
+    {
+        bool isError = task.IsCanceled || task.IsFaulted;
+        if (isError)
+        {
+            Debug.Log("Error happened");
+            if (task.Exception.InnerExceptions.Count > 0)
+            {
+                errorDelegate(task.Exception.InnerExceptions[0].Message);
+
+            }
+            else
+            {
+                errorDelegate("An Error has occured");
+            }
+        }
+        return isError;
     }
     #endregion
 
