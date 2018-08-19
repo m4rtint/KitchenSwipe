@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "102751859610",
+    "firebase_url": "https://kitchen-swipe.firebaseio.com",
+    "project_id": "kitchen-swipe",
+    "storage_bucket": "kitchen-swipe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102751859610:android:1cf5347e163a1db4",
+        "android_client_info": {
+          "package_name": "com.MartinTsang.KitchenSwipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102751859610-ee71ufp46lfkn41c3qfe05aqcphmbd05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADMWDcxe_f7hQCe4vQECjkz8BCAVZg44k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
