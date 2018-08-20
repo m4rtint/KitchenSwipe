@@ -112,7 +112,7 @@ public class FirebaseAuthentication : MonoBehaviour {
 
             // Firebase user has been created.
             m_User = task.Result;
-            UpdateProfile(profile["displayname"]);
+			UpdateProfile(profile["displayname"]);
         });
     }
 
@@ -127,6 +127,7 @@ public class FirebaseAuthentication : MonoBehaviour {
             }
 
             m_User = task.Result;
+			profileUpdateDelegate();
         });
     }
 
@@ -157,11 +158,10 @@ public class FirebaseAuthentication : MonoBehaviour {
         bool isError = task.IsCanceled || task.IsFaulted;
         if (isError)
         {
-            Debug.Log("Error happened");
             if (task.Exception.InnerExceptions.Count > 0)
             {
-                errorDelegate(task.Exception.InnerExceptions[0].Message);
 
+                errorDelegate(task.Exception.InnerExceptions[0].Message);
             }
             else
             {

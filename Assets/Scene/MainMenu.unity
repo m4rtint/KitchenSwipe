@@ -529,17 +529,17 @@ Prefab:
     - target: {fileID: 224146121967344302, guid: 04e8056d0af9ca1489684f074303b275,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224146121967344302, guid: 04e8056d0af9ca1489684f074303b275,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224146121967344302, guid: 04e8056d0af9ca1489684f074303b275,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224146121967344302, guid: 04e8056d0af9ca1489684f074303b275,
         type: 2}
@@ -604,6 +604,41 @@ Prefab:
     - target: {fileID: 1625858021273534, guid: 04e8056d0af9ca1489684f074303b275, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224651791448304176, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04e8056d0af9ca1489684f074303b275, type: 2}
@@ -875,6 +910,40 @@ Prefab:
       propertyPath: m_ErrorObj
       value: 
       objectReference: {fileID: 800553233}
+    - target: {fileID: 114789724718117978, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2129243228}
+    - target: {fileID: 114789724718117978, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EmailSignIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658787146743310, guid: 85389e64d55af4245bb7208240cf8ae8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375745858282534, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 224015031348096876, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375745858282534, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375745858282534, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85389e64d55af4245bb7208240cf8ae8, type: 2}
   m_IsPrefabParent: 0
@@ -1114,3 +1183,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129243228 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114602040475131364, guid: 85389e64d55af4245bb7208240cf8ae8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1422098448}
+  m_Script: {fileID: 11500000, guid: 1ac58901738d13643afc885bae2e11bd, type: 3}

@@ -34,9 +34,8 @@ public class AuthManager : MonoBehaviour {
     private void Awake()
     {
         SetupInputFields();
-        SetupDependencies();
-        SetupDelegate();
-        SetupRandomUserName();
+		SetupDependencies();
+		SetupDelegate();
     }
 
     void SetupInputFields()
@@ -60,11 +59,6 @@ public class AuthManager : MonoBehaviour {
         auth.errorDelegate += OnError;
     }
 
-    void SetupRandomUserName()
-    {
-        int number = Random.Range(10, 1000);
-        m_LoginEmail.text = "Guest " + number;
-    }
     #endregion
 
     #region UserInteraction
