@@ -144,12 +144,14 @@ public class ScoreManager : MonoBehaviour {
         if (m_Score > GetHighScore())
         {
             PlayerPrefs.SetInt(InfiniteMode, m_Score);
+
         }
 
         if (m_Plates > GetHighScorePlate())
         {
             PlayerPrefs.SetInt(InfiniteMode_Plates, m_Plates);
         }
+		FirebaseDB.instance.InsertScoreEntry (m_Score, m_Plates);
     }
 
     public int GetHighScore()

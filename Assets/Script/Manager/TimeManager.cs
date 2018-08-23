@@ -83,6 +83,8 @@ public class TimeManager : MonoBehaviour {
             m_GameTime = 0;
             StateManager.instance.GameOver();
             this.CheckGameOverDelegate();
+			//TODO - This should call delegate and engine should handle everything
+			ScoreManager.instance.SaveScore ();
         }
         this.UpdateTimerUIDelegate();
     }

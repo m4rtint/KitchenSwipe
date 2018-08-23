@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
 using System.Threading.Tasks; 
 
 public class FirebaseLoader : MonoBehaviour {
@@ -24,7 +23,7 @@ public class FirebaseLoader : MonoBehaviour {
             Instantiate(Authentication);
         }
 
-        if (FirebaseDatabase.instance == null)
+		if (FirebaseDB.instance == null)
         {
             Instantiate(Database);
         }

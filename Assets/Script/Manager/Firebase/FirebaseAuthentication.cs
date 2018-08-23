@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Auth;
+using Firebase;
 using System.Threading.Tasks;
 
 public class FirebaseAuthentication : MonoBehaviour {
@@ -9,6 +10,7 @@ public class FirebaseAuthentication : MonoBehaviour {
     public delegate void FirebaseAuthDelegate();
     public FirebaseAuthDelegate AuthDelegate;
     public FirebaseAuthDelegate profileUpdateDelegate;
+	public FirebaseAuthDelegate SignOutDelegate;
 
     public delegate void FirebaseAuthErrorDelegate(string error);
     public FirebaseAuthErrorDelegate errorDelegate;
@@ -21,16 +23,13 @@ public class FirebaseAuthentication : MonoBehaviour {
     #region Mono
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        } else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-        InitializeFirebase();
+		instance = this;
     }
+
+	private void Start()
+	{
+		InitializeFirebase();
+	}
 
 
     void InitializeFirebase()
@@ -40,24 +39,20 @@ public class FirebaseAuthentication : MonoBehaviour {
         AuthStateChanged(this, null);
     }
 
+
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
         if (m_Auth.CurrentUser != m_User)
         {
-            bool signedIn = m_User != m_Auth.CurrentUser && m_Auth.CurrentUser != null;
+            bool signedIn = m_Auth.CurrentUser != null;
             if (!signedIn && m_User != null)
             {
                 Debug.Log("Signed out " + m_User.UserId);
+				SignOutDelegate ();
             }
             m_User = m_Auth.CurrentUser;
             if (signedIn)
             {
-                /*
-                displayName = user.DisplayName ?? "";
-                emailAddress = user.Email ?? "";
-                photoUrl = user.PhotoUrl ?? "";
-                */
-                Debug.Log("Sign in");
                 AuthDelegate();
             }
         }
@@ -80,6 +75,11 @@ public class FirebaseAuthentication : MonoBehaviour {
     {
         return m_User.Email;
     }
+
+	public string UserID()
+	{
+		return m_User.UserId;
+	}
     #endregion
 
     #region Public
@@ -113,6 +113,8 @@ public class FirebaseAuthentication : MonoBehaviour {
             // Firebase user has been created.
             m_User = task.Result;
 			UpdateProfile(profile["displayname"]);
+			FirebaseDB.instance.CreateNewUser(profile,m_User.UserId);
+		
         });
     }
 
@@ -130,6 +132,10 @@ public class FirebaseAuthentication : MonoBehaviour {
 			profileUpdateDelegate();
         });
     }
+
+	public void LogOut(){
+		m_Auth.SignOut ();
+	}
 
     #endregion
 

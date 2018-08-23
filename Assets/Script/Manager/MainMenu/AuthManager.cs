@@ -50,6 +50,9 @@ public class AuthManager : MonoBehaviour {
 
     void SetupDependencies()
     {
+		if (FirebaseAuthentication.instance == null) {
+			OnError ("Auth is null");
+		}
         auth = FirebaseAuthentication.instance;
     }
 
