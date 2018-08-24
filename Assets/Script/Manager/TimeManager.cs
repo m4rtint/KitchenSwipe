@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour {
     //Delegate
     public delegate void TimerDelegate();
     public TimerDelegate UpdateTimerUIDelegate;
-    public TimerDelegate CheckGameOverDelegate;
+    public TimerDelegate IsGameOverDelegate;
 
     [SerializeField]
     float m_GameTime;
@@ -78,14 +78,15 @@ public class TimeManager : MonoBehaviour {
 
 	void DecrementGameTime(float seconds)
     {
-		m_GameTime -= seconds;
-        if (m_GameTime <= 0) {
+        if (m_GameTime - seconds <= 0) {
             m_GameTime = 0;
             StateManager.instance.GameOver();
-            this.CheckGameOverDelegate();
+            this.IsGameOverDelegate();
 			//TODO - This should call delegate and engine should handle everything
 			ScoreManager.instance.SaveScore ();
         }
+        m_GameTime -= seconds;
+
         this.UpdateTimerUIDelegate();
     }
 

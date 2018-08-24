@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     {
         m_ScoreManager.scoreDelegate += UpdateScore;
         m_ScoreManager.comboDelegate += UpdateCombo;
-        m_TimeManager.CheckGameOverDelegate += ShowGameOverScreen;
+        m_TimeManager.IsGameOverDelegate += ShowGameOverScreen;
     }
 
     void InitializeUIText()
