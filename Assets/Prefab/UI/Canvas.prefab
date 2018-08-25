@@ -619,7 +619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1554819317486804
 GameObject:
   m_ObjectHideFlags: 1
@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 223526566731750830}
   - component: {fileID: 114139328754202612}
   - component: {fileID: 114827282135910352}
-  - component: {fileID: 114894504461148008}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -841,7 +840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1920077855743338
 GameObject:
   m_ObjectHideFlags: 1
@@ -909,7 +908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1994040809748452
 GameObject:
   m_ObjectHideFlags: 1
@@ -1237,7 +1236,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114894504461148008}
+      - m_Target: {fileID: 0}
         m_MethodName: ShowPauseScreen
         m_Mode: 1
         m_Arguments:
@@ -1689,7 +1688,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114894504461148008}
+      - m_Target: {fileID: 0}
         m_MethodName: HidePauseScreen
         m_Mode: 1
         m_Arguments:
@@ -1928,7 +1927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1937,11 +1936,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f3fb852ddd9f92e448b9fd7e32c7dfe8, type: 3}
-    m_FontSize: 93
+    m_FontSize: 181
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 144
+    m_MaxSize: 193
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2457,23 +2456,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114894504461148008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1589268651156328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9f07e7f197146bbb1fa32ab24bb87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FadedBackgroundObject: {fileID: 1973923226878876}
-  m_GameOverObject: {fileID: 1108275139417036}
-  m_PauseScreenObject: {fileID: 1859190139262616}
-  m_ScoreTextObject: {fileID: 1217518934894396}
-  m_PlatesTextObject: {fileID: 1068248345342666}
-  m_ComboTextObject: {fileID: 1949235345879288}
 --- !u!114 &114927575373900190
 MonoBehaviour:
   m_ObjectHideFlags: 1

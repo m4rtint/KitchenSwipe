@@ -57,9 +57,7 @@ public class UIManager : MonoBehaviour
         m_GameOverObject.SetActive(true);
         m_FadedBackgroundObject.SetActive(true);
     }
-    #endregion
-
-    #region Game Interface
+ 
     void UpdateScore(){
         m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n"+m_ScoreManager.GetScore();
         m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n" + m_ScoreManager.GetPlates();

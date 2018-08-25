@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114974761684145418}
   - component: {fileID: 114320809374165192}
   - component: {fileID: 114196023701877964}
+  - component: {fileID: 114609220818088158}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -57,6 +58,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Foods:
   - {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e, type: 2}
+  - {fileID: 114526596411210604, guid: d3378dccd59633246867d8992edf492c, type: 2}
+  - {fileID: 114908631789422314, guid: bbe7cb02e91bdde4b9c30449c527da1d, type: 2}
+  - {fileID: 114018333196988096, guid: 23a50759ba584754abfffb941aa19b46, type: 2}
+  - {fileID: 114252949969684318, guid: 97ecc6bcc94487b488ee0948274a4d0b, type: 2}
+  - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
+  - {fileID: 114284633115062736, guid: 1b4019c17bcd66f468c970437db0641a, type: 2}
+  - {fileID: 114919761922864740, guid: 5f59d7bc42b4f804faccde64ca19b97f, type: 2}
+  - {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a, type: 2}
+  - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,6 +104,23 @@ MonoBehaviour:
   m_PlayerInput: {fileID: 0}
   m_Center: {fileID: 0}
   m_WaveSize: 3
+--- !u!114 &114609220818088158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1068616860894738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9f07e7f197146bbb1fa32ab24bb87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FadedBackgroundObject: {fileID: 0}
+  m_GameOverObject: {fileID: 0}
+  m_PauseScreenObject: {fileID: 0}
+  m_ScoreTextObject: {fileID: 0}
+  m_PlatesTextObject: {fileID: 0}
+  m_ComboTextObject: {fileID: 0}
 --- !u!114 &114900218454613518
 MonoBehaviour:
   m_ObjectHideFlags: 1
