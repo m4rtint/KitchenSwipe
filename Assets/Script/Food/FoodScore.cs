@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FoodScore : MonoBehaviour {
 
     [SerializeField]
     GameObject m_ScoreObject;
-    Text m_ScoreText;
+    TextMeshProUGUI m_ScoreText;
 
     Vector3 originalPlacement;
     AnimationManager animation;
@@ -15,7 +16,7 @@ public class FoodScore : MonoBehaviour {
     #region Mono
     private void Awake()
     {
-        m_ScoreText = m_ScoreObject.GetComponent<Text>();
+        m_ScoreText = m_ScoreObject.GetComponent<TextMeshProUGUI>();
         originalPlacement = m_ScoreObject.transform.position;
         animation = AnimationManager.instance;
         SetScoreActive(false);
@@ -44,7 +45,7 @@ public class FoodScore : MonoBehaviour {
     void SetScoreText(int score)
     {
         SetScoreActive(true);
-        m_ScoreText.text = score.ToString();
+        m_ScoreText.text = score.ToString()+"pts";
     }
 
     void ResetScoreAnimation()
