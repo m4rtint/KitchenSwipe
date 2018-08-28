@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject m_ScoreTextObject;
     [SerializeField]
-    GameObject m_PlatesTextObject;
-    [SerializeField]
     GameObject m_ComboTextObject;
 
     #region Mono
@@ -45,8 +43,7 @@ public class UIManager : MonoBehaviour
 
     void InitializeUIText()
     {
-       m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n0";
-       m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n0";
+       m_ScoreTextObject.GetComponent<Text>().text = "000000000\n0 Dishes";
        m_ComboTextObject.SetActive(false);
     }
     #endregion
@@ -59,8 +56,7 @@ public class UIManager : MonoBehaviour
     }
  
     void UpdateScore(){
-        m_ScoreTextObject.GetComponent<Text>().text = "SCORE\n"+m_ScoreManager.GetScore();
-        m_PlatesTextObject.GetComponent<Text>().text = "PLATES\n" + m_ScoreManager.GetPlates();
+        m_ScoreTextObject.GetComponent<Text>().text = m_ScoreManager.GetScore() + "\n"+ m_ScoreManager.GetPlates() + " Dishes";
     }
 
     void UpdateCombo(){

@@ -23,7 +23,7 @@ public class Food : MonoBehaviour {
     {
         foreach(Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetAlpha(0.3f);
+            ingredient.SetAlpha(0.7f);
             ingredient.gameObject.SetActive(false);
         }
         m_Ingredients[0].gameObject.SetActive(true);
