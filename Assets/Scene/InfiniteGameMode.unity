@@ -537,6 +537,11 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114282998485316636, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
+        type: 2}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98e5ae7b9189d4d2d80435a30e0140e4, type: 2}
   m_IsPrefabAsset: 0
@@ -825,7 +830,7 @@ Prefab:
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -908,19 +913,19 @@ Prefab:
         type: 2}
       propertyPath: m_Foods.Array.data[0]
       value: 
-      objectReference: {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a,
+      objectReference: {fileID: 114526596411210604, guid: d3378dccd59633246867d8992edf492c,
         type: 2}
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.data[1]
       value: 
-      objectReference: {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1,
+      objectReference: {fileID: 114526596411210604, guid: d3378dccd59633246867d8992edf492c,
         type: 2}
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: m_Foods.Array.data[2]
       value: 
-      objectReference: {fileID: 114908631789422314, guid: bbe7cb02e91bdde4b9c30449c527da1d,
+      objectReference: {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e,
         type: 2}
     - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}

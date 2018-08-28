@@ -55,6 +55,7 @@ public class CenterIngredient : MonoBehaviour
     public void SetCenter(Ingredient ingredient)
     {
         GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
+        GetComponent<Image>().SetNativeSize();
         m_CenterIngredient = ingredient;
     }
     #endregion
