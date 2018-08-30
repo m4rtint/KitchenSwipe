@@ -32,11 +32,11 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float m_ComboPopTime;
 
-    [Header("Score Rise")]
+    [Header("Score Pop")]
     [SerializeField]
-    float m_ScoreRiseTime;
+    float m_ScoreDelayTime;
     [SerializeField]
-    float m_ScoreRiseAmount;
+    float m_ScorePopTime;
 
     public static AnimationManager instance = null;
 
@@ -95,14 +95,14 @@ public class AnimationManager : MonoBehaviour {
         return m_ComboPopTime;
     }
 
-    public float ScoreRiseTime()
+    public float ScoreDelayTime()
     {
-        return m_ScoreRiseTime;
+        return m_ScoreDelayTime;
     }
 
-    public float ScoreRiseAmount()
+    public float ScorePopTime()
     {
-        return m_ScoreRiseAmount;
+        return m_ScorePopTime;
     }
 
     #endregion
