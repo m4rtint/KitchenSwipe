@@ -73,9 +73,9 @@ public class GameEngine : MonoBehaviour {
         FoodHolder[] holders = m_IngredientsGenerator.FoodHolders();
         for (int i = 0; i < holders.Length; i++)
         {
-            holders[i].SetDirection(i);
-            holders[i].OrderDelegate += CompleteOrder;
-            holders[i].OrderTimerDelegate += IncorrectlySwipeIngredient;
+            holders[i].Direction(i);
+            holders[i].orderDelegate += CompleteOrder;
+            holders[i].orderTimerDelegate += IncorrectlySwipeIngredient;
         }
 	}
 

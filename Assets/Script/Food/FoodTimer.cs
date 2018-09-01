@@ -42,9 +42,9 @@ public class FoodTimer : MonoBehaviour {
     #region InitFoodTimer
     public void ResetFoodTimerIfNeeded()
     {
-        if (m_FoodHolder.GetStoredFood() != null)
+        if (m_FoodHolder.StoredFood() != null)
         {
-            m_SecondsToComplete = m_FoodHolder.GetStoredFood().GetSecondsToComplete();
+            m_SecondsToComplete = m_FoodHolder.StoredFood().GetSecondsToComplete();
             m_RedSecondsToComplete = m_SecondsToComplete;
         }
     }
@@ -53,7 +53,7 @@ public class FoodTimer : MonoBehaviour {
     #region gettersetter
     float FoodTime()
     {
-        Food food = m_FoodHolder.GetStoredFood();
+        Food food = m_FoodHolder.StoredFood();
         if (food == null)
         {
             return -1;
@@ -95,7 +95,7 @@ public class FoodTimer : MonoBehaviour {
     #region view
     public void UpdateTimer(float seconds)
     {
-        if (m_FoodHolder.GetStoredFood() != null) {
+        if (m_FoodHolder.StoredFood() != null) {
             DecrementTimeBy(seconds);
             DecrementRedTimeBy(seconds);
             UpdateTimerUI();

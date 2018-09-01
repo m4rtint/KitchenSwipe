@@ -39,7 +39,7 @@ public class IngredientGenerator : MonoBehaviour {
 		Food food;
 		do{
 			int index = Random.Range(0, 4);
-			food = foodHolders[index].GetStoredFood();
+			food = foodHolders[index].StoredFood();
 		} while (food == null || !food.IsFoodInPlay());
         
 		return ingredientOnTop(food);
@@ -54,10 +54,10 @@ public class IngredientGenerator : MonoBehaviour {
     {
         if (isIngredientMatch(dir, ingredient))
         {
-            foodHolders[(int)dir].CorrectlySwiped();
+            foodHolders[(int)dir].correctlySwiped();
         } else
         {
-			foodHolders [(int)dir].IncorrectlySwiped ();
+			foodHolders [(int)dir].incorrectlySwiped ();
         }
 		return randomlyChooseIngredient();
     }
@@ -67,7 +67,7 @@ public class IngredientGenerator : MonoBehaviour {
         //Create New food - instantiate;
         Food generatedFood = instantiateFoodInHolder(food, (int)dir);
         //Store
-        foodHolders[(int)dir].SetStoredFood(generatedFood);
+        foodHolders[(int)dir].StoredFood(generatedFood);
     }
 
     public void updateFoodTimer(float seconds)
@@ -87,7 +87,7 @@ public class IngredientGenerator : MonoBehaviour {
 
     bool isIngredientMatch(Direction dir, Ingredient swiped)
     {
-        Food food = foodHolders[(int)dir].GetStoredFood();
+        Food food = foodHolders[(int)dir].StoredFood();
         if (food != null)
         {
             bool namesEqual = food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
@@ -100,7 +100,7 @@ public class IngredientGenerator : MonoBehaviour {
     {
         for (int i = 0; i < foodHolders.Length; i++)
         {
-            if (foodHolders[i].GetStoredFood() != null)
+            if (foodHolders[i].StoredFood() != null)
             {
                 return false;
             }
