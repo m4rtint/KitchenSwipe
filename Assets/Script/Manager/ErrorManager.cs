@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ErrorManager : MonoBehaviour {
 
     [SerializeField]
-    GameObject m_ErrorTextObj;
+    GameObject errorTextObj;
 
 
-    public void SetErrorText(string text)
+    public void setErrorText(string text)
     {
-        m_ErrorTextObj.GetComponent<Text>().text = text;
+        errorTextObj.GetComponent<Text>().text = text;
     }
 }

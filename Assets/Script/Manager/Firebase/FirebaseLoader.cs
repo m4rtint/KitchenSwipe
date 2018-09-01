@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 public class FirebaseLoader : MonoBehaviour {
 
     [SerializeField]
-    GameObject Authentication;
+    GameObject authentication;
 
     [SerializeField]
-    GameObject Database;
+    GameObject database;
 
     private void Awake()
     {
-		InstantiateFirebaseModules();
+		instantiateFirebaseModules();
     }
 		
-    void InstantiateFirebaseModules()
+    void instantiateFirebaseModules()
     {
         if (FirebaseAuthentication.instance == null)
         {
-            Instantiate(Authentication);
+            Instantiate(authentication);
         }
 
 		if (FirebaseDB.instance == null)
         {
-            Instantiate(Database);
+            Instantiate(database);
         }
     }
 

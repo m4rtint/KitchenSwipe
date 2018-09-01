@@ -41,7 +41,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     bool CanSwipe()
     {
-        return StateManager.instance.InGame() && canSwipe;
+        return StateManager.instance.isInGame() && canSwipe;
     }
 
     public void RunSwipeDelegate()

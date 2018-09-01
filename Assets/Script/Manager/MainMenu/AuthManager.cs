@@ -9,97 +9,97 @@ public class AuthManager : MonoBehaviour {
 
     [Header("Login")]
     [SerializeField]
-    GameObject m_LoginEmailObj;
-    InputField m_LoginEmail;
+    GameObject loginEmailFieldObj;
+    InputField loginEmail;
     [SerializeField]
-    GameObject m_LoginPassObj;
-    InputField m_LoginPass;
+    GameObject loginPasswordFieldObj;
+    InputField loginPass;
 
     [Header("Registration")]
     [SerializeField]
-    GameObject m_RegiEmailObj;
-    InputField m_RegiEmail;
+    GameObject registerEmailFieldObj;
+    InputField registerEmail;
     [SerializeField]
-    GameObject m_RegiPassObj;
-    InputField m_RegiPass;
+    GameObject registerPasswordFieldObj;
+    InputField registerPass;
     [SerializeField]
-    GameObject m_RegiDisplayObj;
-    InputField m_RegiDisplay;
+    GameObject registerDisplayNameFieldObj;
+    InputField registerDisplayName;
 
     [Header("Error")]
     [SerializeField]
-    GameObject m_ErrorObj;
+    GameObject errorObj;
 
     #region mono
     private void Awake()
     {
-        SetupInputFields();
-		SetupDependencies();
-		SetupDelegate();
+        setupInputFields();
+		setupDependencies();
+		setupDelegate();
     }
 
-    void SetupInputFields()
+    void setupInputFields()
     {
-        m_LoginEmail = m_LoginEmailObj.GetComponent<InputField>();
-        m_LoginPass = m_LoginPassObj.GetComponent<InputField>();
-        m_RegiEmail =  m_RegiEmailObj.GetComponent<InputField>();
-        m_RegiPass = m_RegiPassObj.GetComponent<InputField>();
-        m_RegiDisplay = m_RegiDisplayObj.GetComponent<InputField>();
+        loginEmail = loginEmailFieldObj.GetComponent<InputField>();
+        loginPass = loginPasswordFieldObj.GetComponent<InputField>();
+        registerEmail =  registerEmailFieldObj.GetComponent<InputField>();
+        registerPass = registerPasswordFieldObj.GetComponent<InputField>();
+        registerDisplayName = registerDisplayNameFieldObj.GetComponent<InputField>();
 
     }
 
-    void SetupDependencies()
+    void setupDependencies()
     {
 		if (FirebaseAuthentication.instance == null) {
-			OnError ("Auth is null");
+			onError ("Auth is null");
 		}
         auth = FirebaseAuthentication.instance;
     }
 
-    void SetupDelegate()
+    void setupDelegate()
     {
-        auth.AuthDelegate += OnAuthenticate;
-        auth.errorDelegate += OnError;
+        auth.authDelegate += onAuthenticate;
+        auth.errorDelegate += onError;
     }
 
     #endregion
 
     #region UserInteraction
-    public void AnonSignIn()
+    public void anonSignIn()
     {
-        string name = m_LoginEmail.text;
-        FirebaseAuthentication.instance.AnonAuthentication(name);
+        string anonName = loginEmail.text;
+        FirebaseAuthentication.instance.anonAuthentication(anonName);
     }
 
-    public void EmailSignIn()
+    public void emailSignIn()
     {
         Dictionary<string, string> profile = new Dictionary<string, string>();
-        profile["email"] = m_LoginEmail.text;
-        profile["password"] = m_LoginPass.text;
-        FirebaseAuthentication.instance.EmailAuthentication(profile);
+        profile["email"] = loginEmail.text;
+        profile["password"] = loginPass.text;
+        FirebaseAuthentication.instance.emailAuthentication(profile);
     }
 
-    public void EmailRegistration()
+    public void emailRegistration()
     {
         Dictionary<string, string> profile = new Dictionary<string, string>();
-        profile["email"] = m_RegiEmail.text;
-        profile["password"] = m_RegiPass.text;
-        profile["displayname"] = m_RegiDisplay.text;
-        FirebaseAuthentication.instance.EmailRegistration(profile);
+        profile["email"] = registerEmail.text;
+        profile["password"] = registerPass.text;
+        profile["displayname"] = registerDisplayName.text;
+        FirebaseAuthentication.instance.emailRegistration(profile);
     }
 
     #endregion
 
     #region DelegateFunctions
-    void OnAuthenticate()
+    void onAuthenticate()
     {
         gameObject.SetActive(false);
     }
 
-    void OnError(string description)
+    void onError(string description)
     {
-        m_ErrorObj.GetComponent<ErrorManager>().SetErrorText(description);
-        m_ErrorObj.SetActive(true);
+        errorObj.GetComponent<ErrorManager>().setErrorText(description);
+        errorObj.SetActive(true);
     }
 
     #endregion

@@ -56,7 +56,7 @@ public class TimeManager : MonoBehaviour {
     }
     void Update()
     {
-		if (StateManager.instance.InGame()) {
+		if (StateManager.instance.isInGame()) {
 			DecrementGameTime (Time.deltaTime);
 			DecrementRedTime (Time.deltaTime);
 		}
@@ -80,7 +80,7 @@ public class TimeManager : MonoBehaviour {
     {
         if (m_GameTime - seconds <= 0) {
             m_GameTime = 0;
-            StateManager.instance.GameOver();
+            StateManager.instance.gameOver();
             this.IsGameOverDelegate();
 			//TODO - This should call delegate and engine should handle everything
 			ScoreManager.instance.SaveScore ();

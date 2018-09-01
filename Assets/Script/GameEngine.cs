@@ -50,7 +50,7 @@ public class GameEngine : MonoBehaviour {
 	protected virtual void Start()
 	{
         //Set State
-        StateManager.instance.StartGame();
+        StateManager.instance.startGame();
 
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
@@ -80,7 +80,7 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	void Update() {
-		if (StateManager.instance.InGame ()) {
+		if (StateManager.instance.isInGame ()) {
 			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.m_OrderTimeVaryingSpeed);
 		}
 	}
