@@ -70,7 +70,7 @@ public class GameEngine : MonoBehaviour {
 
 	void SetupHolders(){
 		m_PlayerInput.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
-        FoodHolder[] holders = m_IngredientsGenerator.GetFoodHolder();
+        FoodHolder[] holders = m_IngredientsGenerator.FoodHolders();
         for (int i = 0; i < holders.Length; i++)
         {
             holders[i].SetDirection(i);
@@ -87,13 +87,13 @@ public class GameEngine : MonoBehaviour {
 
 	void RunDownOrderTimer(float seconds) {
         //Decrement all timer of food
-        m_IngredientsGenerator.UpdateFoodTimer(seconds);
+        m_IngredientsGenerator.updateFoodTimer(seconds);
     }
 	#endregion
 
 	#region Ingredients
 	void ChooseNewCurrentIngredient(){
-		currentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
+		currentIngredient = m_IngredientsGenerator.randomlyChooseIngredient ();
 		SetCenterIngredientView ();
 	}
 
@@ -103,7 +103,7 @@ public class GameEngine : MonoBehaviour {
 
     void SetNewFood(Direction dir)
     {
-        m_IngredientsGenerator.InsertFoodIntoHolder(m_FoodGenerator.GetChosenFoodStack().Pop(),dir);
+        m_IngredientsGenerator.insertFoodIntoHolder(m_FoodGenerator.GetChosenFoodStack().Pop(),dir);
     }
     #endregion
 
@@ -115,14 +115,14 @@ public class GameEngine : MonoBehaviour {
 
 	void IncorrectlySwipeIngredient(Direction dir)
 	{
-        m_IngredientsGenerator.DecrementOrderTimer (dir, TimeManager.instance.FoodPenaltyTime());
+        m_IngredientsGenerator.decrementOrderTimer (dir, TimeManager.instance.FoodPenaltyTime());
 	}
     #endregion
 
     #region Actions
     void PlayerSwiped(Direction dir)
     {
-        currentIngredient = m_IngredientsGenerator.UserSwiped(currentIngredient, dir);
+        currentIngredient = m_IngredientsGenerator.userSwiped(currentIngredient, dir);
         SetCenterIngredientView();
     }
 
