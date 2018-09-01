@@ -26,7 +26,7 @@ public class FoodHolder : MonoBehaviour
     {
         storedFood = food;
         setDelegate();
-        GetComponent<FoodTimer>().ResetFoodTimerIfNeeded();
+        GetComponent<FoodTimer>().resetFoodTimerIfNeeded();
     }
 
     public Food StoredFood()

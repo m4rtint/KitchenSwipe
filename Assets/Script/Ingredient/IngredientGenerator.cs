@@ -47,7 +47,7 @@ public class IngredientGenerator : MonoBehaviour {
 
     public void decrementOrderTimer(Direction dir, float seconds)
     {
-        foodTimers[(int)dir].DecrementTimeBy(seconds);
+        foodTimers[(int)dir].decrementTimeBy(seconds);
     }
 
     public Ingredient userSwiped(Ingredient ingredient, Direction dir)
@@ -74,7 +74,7 @@ public class IngredientGenerator : MonoBehaviour {
     {
         for (int i = 0; i < foodTimers.Length; i++)
         {
-            foodTimers[i].UpdateTimer(seconds);
+            foodTimers[i].updateTimer(seconds);
         }
     }
     #endregion

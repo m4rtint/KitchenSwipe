@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222134960527619942}
   - component: {fileID: 114870995882432272}
   m_Layer: 5
-  m_Name: ActiveTimer
+  m_Name: GreenTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 222968592199500156}
   - component: {fileID: 114809912861869566}
   m_Layer: 5
-  m_Name: ActiveTimer
+  m_Name: GreenTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 222500386063768814}
   - component: {fileID: 114958048933043556}
   m_Layer: 5
-  m_Name: ActiveTimer
+  m_Name: GreenTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 222746117365306880}
   - component: {fileID: 114557860499061642}
   m_Layer: 5
-  m_Name: ActiveTimer
+  m_Name: GreenTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,8 +1100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0407f2514c8552d44a17739720a3cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimerObject: {fileID: 1536867751480718}
-  m_RedTimerObject: {fileID: 1118141522920594}
+  greenTimerObject: {fileID: 1536867751480718}
+  redTimerObject: {fileID: 1118141522920594}
 --- !u!114 &114203446762296162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1531,8 +1531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0407f2514c8552d44a17739720a3cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimerObject: {fileID: 1229858504035800}
-  m_RedTimerObject: {fileID: 1208433753475828}
+  greenTimerObject: {fileID: 1229858504035800}
+  redTimerObject: {fileID: 1208433753475828}
 --- !u!114 &114334486690655322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2020,8 +2020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0407f2514c8552d44a17739720a3cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimerObject: {fileID: 1920077855743338}
-  m_RedTimerObject: {fileID: 1131403074216748}
+  greenTimerObject: {fileID: 1920077855743338}
+  redTimerObject: {fileID: 1131403074216748}
 --- !u!114 &114600017120256018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2199,8 +2199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0407f2514c8552d44a17739720a3cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TimerObject: {fileID: 1057982372284764}
-  m_RedTimerObject: {fileID: 1785155959404176}
+  greenTimerObject: {fileID: 1057982372284764}
+  redTimerObject: {fileID: 1785155959404176}
 --- !u!114 &114663799343760692
 MonoBehaviour:
   m_ObjectHideFlags: 1
