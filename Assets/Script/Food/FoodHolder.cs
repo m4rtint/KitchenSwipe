@@ -58,17 +58,17 @@ public class FoodHolder : MonoBehaviour {
             m_StoredFood = null;
 
             //SCORE
-            int score = ScoreManager.instance.IncrementScore();
+            int score = ScoreManager.instance.incrementScore();
             GetComponent<FoodScore>().RisingScoreAnimation(score);
             
             //TIME
-            TimeManager.instance.IncrementGameTime();
+            TimeManager.instance.incrementGameTime();
         }
     }
 
 	public void IncorrectlySwiped(){
 		OrderTimerDelegate (this.direction);
-        ScoreManager.instance.ResetCombo();
+        ScoreManager.instance.resetCombo();
     }
 
 

@@ -129,8 +129,8 @@ public class FoodTimer : MonoBehaviour {
     {
         if (m_SecondsToComplete <= 0)
         {
-            ScoreManager.instance.DecrementScore();
-            TimeManager.instance.PenaltyGameTime();
+            ScoreManager.instance.decrementScore();
+            TimeManager.instance.penaltyGameTime();
             ResetFoodTimerIfNeeded();
         }
     }

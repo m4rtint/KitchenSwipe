@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     {
         m_ScoreManager.scoreDelegate += UpdateScore;
         m_ScoreManager.comboDelegate += UpdateCombo;
-        m_TimeManager.IsGameOverDelegate += ShowGameOverScreen;
+        m_TimeManager.isGameOverDelegate += ShowGameOverScreen;
     }
 
     void InitializeUIText()
@@ -56,17 +56,17 @@ public class UIManager : MonoBehaviour
     }
  
     void UpdateScore(){
-        m_ScoreTextObject.GetComponent<Text>().text = m_ScoreManager.GetScore() + "\n"+ m_ScoreManager.GetPlates() + " Dishes";
+        m_ScoreTextObject.GetComponent<Text>().text = m_ScoreManager.Score() + "\n"+ m_ScoreManager.Plates() + " Dishes";
     }
 
     void UpdateCombo(){
-        if (m_ScoreManager.GetCombo() == 0) {
+        if (m_ScoreManager.Combo() == 0) {
             m_ComboTextObject.SetActive(false);
             return;
         }
 
         m_ComboTextObject.SetActive(true);
-        m_ComboTextObject.GetComponent<Text>().text = "COMBO\n" + m_ScoreManager.GetCombo();
+        m_ComboTextObject.GetComponent<Text>().text = "COMBO\n" + m_ScoreManager.Combo();
         AnimateCombo();
     }
 

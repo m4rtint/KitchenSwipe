@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour {
 
 	//========================Local
-	Ingredient m_CurrentIngredient;
+    Ingredient currentIngredient;
 
 	[SerializeField]
 	int m_NumberOfFood;
@@ -81,7 +81,7 @@ public class GameEngine : MonoBehaviour {
 
 	void Update() {
 		if (StateManager.instance.isInGame ()) {
-			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.m_OrderTimeVaryingSpeed);
+			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.orderTimeVaryingSpeed);
 		}
 	}
 
@@ -93,12 +93,12 @@ public class GameEngine : MonoBehaviour {
 
 	#region Ingredients
 	void ChooseNewCurrentIngredient(){
-		m_CurrentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
+		currentIngredient = m_IngredientsGenerator.RandomlyChooseIngredient ();
 		SetCenterIngredientView ();
 	}
 
 	void SetCenterIngredientView() {
-        m_Center.GetComponent<CenterIngredient>().SetCenter (m_CurrentIngredient);
+        m_Center.GetComponent<CenterIngredient>().SetCenter (currentIngredient);
 	}
 
     void SetNewFood(Direction dir)
@@ -115,14 +115,14 @@ public class GameEngine : MonoBehaviour {
 
 	void IncorrectlySwipeIngredient(Direction dir)
 	{
-        m_IngredientsGenerator.DecrementOrderTimer (dir, TimeManager.instance.OrderPenaltyTime());
+        m_IngredientsGenerator.DecrementOrderTimer (dir, TimeManager.instance.FoodPenaltyTime());
 	}
     #endregion
 
     #region Actions
     void PlayerSwiped(Direction dir)
     {
-        m_CurrentIngredient = m_IngredientsGenerator.UserSwiped(m_CurrentIngredient, dir);
+        currentIngredient = m_IngredientsGenerator.UserSwiped(currentIngredient, dir);
         SetCenterIngredientView();
     }
 

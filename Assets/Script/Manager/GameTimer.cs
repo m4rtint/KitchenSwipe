@@ -41,14 +41,14 @@ public class GameTimer : MonoBehaviour {
     {
         if (m_FullTime <= -1)
         {
-            m_FullTime = m_TimeManager.GameTimeF();
+            m_FullTime = m_TimeManager.GameTime();
         }
     }
 
     void InitDelegate()
     {
-        m_TimeManager.UpdateTimerUIDelegate += UpdateText;
-        m_TimeManager.UpdateTimerUIDelegate += UpdateRing;
+        m_TimeManager.updateTimerUIDelegate += UpdateText;
+        m_TimeManager.updateTimerUIDelegate += UpdateRing;
     }
 
     void Update()
@@ -61,13 +61,13 @@ public class GameTimer : MonoBehaviour {
     #region UI
     void UpdateText()
     {
-        m_TimeText.text = m_TimeManager.GameTime();
+        m_TimeText.text = ((int)m_TimeManager.GameTime()).ToString();
     }
 
     void UpdateRing()
     {
-		m_RedRingImage.fillAmount = m_TimeManager.RedTimeF () / m_FullTime;
-        m_RingImage.fillAmount = m_TimeManager.GameTimeF() / m_FullTime;
+		m_RedRingImage.fillAmount = m_TimeManager.RedTime () / m_FullTime;
+        m_RingImage.fillAmount = m_TimeManager.GameTime() / m_FullTime;
     }
     #endregion
 
