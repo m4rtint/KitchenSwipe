@@ -69,16 +69,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveTime: 0.2
-  m_PlacementTime: 0.25
-  m_AscensionTime: 0.5
-  m_AscensionAmount: 75
-  m_AscensionFadeTime: 0.2
-  m_RotationTime: 0.5
-  m_CenterFadeOutTime: 0.2
-  m_ComboPopTime: 0.2
-  m_ScoreDelayTime: 0.2
-  m_ScorePopTime: 0.5
+  moveTime: 0.2
+  placementTime: 0.25
+  ascensionTime: 0.5
+  ascensionAmount: 75
+  ascentionFadeTime: 0.2
+  rotationTime: 0.5
+  centerFadeOutTime: 0.2
+  comboPopTime: 0.2
+  scoreDelayTime: 0.2
+  scorePopTime: 0.5
 --- !u!114 &114320809374165192
 MonoBehaviour:
   m_ObjectHideFlags: 1
