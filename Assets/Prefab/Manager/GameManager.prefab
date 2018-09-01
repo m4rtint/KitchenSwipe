@@ -106,11 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9f07e7f197146bbb1fa32ab24bb87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FadedBackgroundObject: {fileID: 0}
-  m_GameOverObject: {fileID: 0}
-  m_PauseScreenObject: {fileID: 0}
-  m_ScoreTextObject: {fileID: 0}
-  m_ComboTextObject: {fileID: 0}
+  fadedBackgroundObject: {fileID: 0}
+  gameOverObject: {fileID: 0}
+  pauseScreenObject: {fileID: 0}
+  scoreTextObject: {fileID: 0}
+  comboTextObject: {fileID: 0}
 --- !u!114 &114900218454613518
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1595193334}
-        m_MethodName: StartMainMenuScene
+        m_MethodName: startMainMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1203,7 +1203,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1595193334}
-        m_MethodName: StartMainMenuScene
+        m_MethodName: startMainMenuScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2720,7 +2720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1018310697}
-        m_MethodName: ShowPauseScreen
+        m_MethodName: showPauseScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3269,8 +3269,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HidePauseScreen
+      - m_Target: {fileID: 1018310697}
+        m_MethodName: hidePauseScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3629,7 +3629,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1595193334}
-        m_MethodName: StartInfiniteGameScene
+        m_MethodName: startInfiniteGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4626,27 +4626,27 @@ Prefab:
       objectReference: {fileID: 2021354266}
     - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
-      propertyPath: m_FadedBackgroundObject
+      propertyPath: fadedBackgroundObject
       value: 
       objectReference: {fileID: 424378569}
     - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
-      propertyPath: m_GameOverObject
+      propertyPath: gameOverObject
       value: 
       objectReference: {fileID: 673128778}
     - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
-      propertyPath: m_PauseScreenObject
+      propertyPath: pauseScreenObject
       value: 
       objectReference: {fileID: 1725301295}
     - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
-      propertyPath: m_ScoreTextObject
+      propertyPath: scoreTextObject
       value: 
       objectReference: {fileID: 1464047552}
     - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
-      propertyPath: m_ComboTextObject
+      propertyPath: comboTextObject
       value: 
       objectReference: {fileID: 210320935}
     m_RemovedComponents: []
