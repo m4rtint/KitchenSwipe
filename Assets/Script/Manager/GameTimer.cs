@@ -6,68 +6,68 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour {
 
     [SerializeField]
-    GameObject m_RingLayerObject;
-    Image m_RingImage;
+    GameObject greenRingObject;
+    Image greenRingImage;
 
 	[SerializeField]
-	GameObject m_RedRingLayerObject;
-	Image m_RedRingImage;
+    GameObject redRingObject;
+    Image redRingImage;
 
     [SerializeField]
-    GameObject m_TimeTextObject;
-    Text m_TimeText;
+    GameObject timeTextObject;
+    Text timeText;
 
     //Dependencies
-    TimeManager m_TimeManager;
+    TimeManager timeManager;
 
-    float m_FullTime = -1;
+    float fullTime = -1;
 
     #region Mono
     private void Awake()
     {
-        m_RingImage = m_RingLayerObject.GetComponent<Image>();
-		m_RedRingImage = m_RedRingLayerObject.GetComponent<Image>();
-        m_TimeText = m_TimeTextObject.GetComponent<Text>();
-        m_TimeManager = TimeManager.instance;
-        InitDelegate();
+        greenRingImage = greenRingObject.GetComponent<Image>();
+		redRingImage = redRingObject.GetComponent<Image>();
+        timeText = timeTextObject.GetComponent<Text>();
+        timeManager = TimeManager.instance;
+        initDelegate();
     }
 
     private void Start()
     {
-        InitTimer();
+        initTimer();
     }
 
-    void InitTimer()
+    void initTimer()
     {
-        if (m_FullTime <= -1)
+        if (fullTime <= -1)
         {
-            m_FullTime = m_TimeManager.GameTime();
+            fullTime = timeManager.GameTime();
         }
     }
 
-    void InitDelegate()
+    void initDelegate()
     {
-        m_TimeManager.updateTimerUIDelegate += UpdateText;
-        m_TimeManager.updateTimerUIDelegate += UpdateRing;
+        timeManager.updateTimerUIDelegate += updateText;
+        timeManager.updateTimerUIDelegate += updateRing;
     }
 
     void Update()
     {
-        UpdateText();
-        UpdateRing();
+        updateText();
+        updateRing();
     }
     #endregion
 
     #region UI
-    void UpdateText()
+    void updateText()
     {
-        m_TimeText.text = ((int)m_TimeManager.GameTime()).ToString();
+        timeText.text = ((int)timeManager.GameTime()).ToString();
     }
 
-    void UpdateRing()
+    void updateRing()
     {
-		m_RedRingImage.fillAmount = m_TimeManager.RedTime () / m_FullTime;
-        m_RingImage.fillAmount = m_TimeManager.GameTime() / m_FullTime;
+		redRingImage.fillAmount = timeManager.RedTime () / fullTime;
+        greenRingImage.fillAmount = timeManager.GameTime() / fullTime;
     }
     #endregion
 
