@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efac6f51c66da5b48a66d0f07144e7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScoreObject: {fileID: 1620383730661518}
+  scoreObject: {fileID: 1620383730661518}
 --- !u!114 &114427588557856096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2187,7 +2187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efac6f51c66da5b48a66d0f07144e7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScoreObject: {fileID: 1330024161485534}
+  scoreObject: {fileID: 1330024161485534}
 --- !u!114 &114660346441322890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efac6f51c66da5b48a66d0f07144e7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScoreObject: {fileID: 1325155581405682}
+  scoreObject: {fileID: 1325155581405682}
 --- !u!114 &114700424916056912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2862,7 +2862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efac6f51c66da5b48a66d0f07144e7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScoreObject: {fileID: 1561561342108120}
+  scoreObject: {fileID: 1561561342108120}
 --- !u!114 &114941104983364260
 MonoBehaviour:
   m_ObjectHideFlags: 1

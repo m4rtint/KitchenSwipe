@@ -69,7 +69,7 @@ public class FoodHolder : MonoBehaviour
 
             //SCORE
             int score = ScoreManager.instance.incrementScore();
-            GetComponent<FoodScore>().RisingScoreAnimation(score);
+            GetComponent<FoodScore>().risingScoreAnimation(score);
 
             //TIME
             TimeManager.instance.incrementGameTime();
