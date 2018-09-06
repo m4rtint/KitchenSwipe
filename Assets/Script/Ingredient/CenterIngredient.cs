@@ -38,12 +38,12 @@ public class CenterIngredient : MonoBehaviour
     #region GetterSetter
     Vector3 GetIngredientAtSwipedDirectionPosition()
     {
-        FoodHolder holder = m_IngredientGenerator.GetFoodHolder()[(int)m_SwipedDirection];
-        Food food = holder.GetStoredFood();
+        FoodHolder holder = m_IngredientGenerator.FoodHolders()[(int)m_SwipedDirection];
+        Food food = holder.StoredFood();
         if (food != null)
         {
             if (food.IsFoodInPlay()){
-                Ingredient ingredient = holder.GetStoredFood().GetNeededIngredient();
+                Ingredient ingredient = holder.StoredFood().GetNeededIngredient();
                 return ingredient.GetComponent<RectTransform>().position - m_StartPosition;
             }
         } 

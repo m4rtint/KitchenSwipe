@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Ingredients:
   - {fileID: 114545190068971756}
-  m_SecondsToComplete: 50
+  m_SecondsToComplete: 1
 --- !u!114 &114819256169489306
 MonoBehaviour:
   m_ObjectHideFlags: 1

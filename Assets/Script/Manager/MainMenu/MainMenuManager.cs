@@ -6,38 +6,38 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject DisplayNameObject;
+    GameObject displayNameObject;
 	[SerializeField]
-	GameObject AuthenticationObject;
+	GameObject authenticationObject;
 
     #region Mono
     private void Awake()
     {
-        SetupDelegate();
+        setupDelegate();
     }
 
-    void SetupDelegate()
+    void setupDelegate()
     {
-        FirebaseAuthentication.instance.profileUpdateDelegate += UpdateDisplayName;
-		FirebaseAuthentication.instance.SignOutDelegate += DisplayAuth;
+        FirebaseAuthentication.instance.profileUpdateDelegate += updateDisplayName;
+		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
     }
     #endregion
 
 	#region Public
 	public void LogOut(){
-		FirebaseAuthentication.instance.LogOut ();
+		FirebaseAuthentication.instance.logOut ();
 	}
 	#endregion
 
     #region Delegate
-    void UpdateDisplayName()
+    void updateDisplayName()
     {
-        DisplayNameObject.GetComponent<Text>().text = FirebaseAuthentication.instance.DisplayName();
+        displayNameObject.GetComponent<Text>().text = FirebaseAuthentication.instance.displayName();
     }
 
-	void DisplayAuth()
+	void displayAuth()
 	{
-		AuthenticationObject.SetActive (true);
+		authenticationObject.SetActive (true);
 	}
     #endregion
 }

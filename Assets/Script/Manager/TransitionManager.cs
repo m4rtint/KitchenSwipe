@@ -13,14 +13,14 @@ public class TransitionManager : MonoBehaviour {
     }
 
 
-    public void StartInfiniteGameScene() {
+    public void startInfiniteGameScene() {
 		SceneManager.LoadScene ("InfiniteGameMode");
-        StateManager.instance.StartGame ();
+        StateManager.instance.startGame ();
 	}
 
-    public void StartMainMenuScene()
+    public void startMainMenuScene()
     {
         SceneManager.LoadScene(0);
-        StateManager.instance.SetToMenu();
+        StateManager.instance.setToMenu();
     }
 }

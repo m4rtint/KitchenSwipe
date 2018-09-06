@@ -10,88 +10,88 @@ public class UIManager : MonoBehaviour
     ScoreManager m_ScoreManager;
 
     [SerializeField]
-    GameObject m_FadedBackgroundObject;
+    GameObject fadedBackgroundObject;
     [SerializeField]
-    GameObject m_GameOverObject;
+    GameObject gameOverObject;
     [SerializeField]
-    GameObject m_PauseScreenObject;
+    GameObject pauseScreenObject;
     [SerializeField]
-    GameObject m_ScoreTextObject;
+    GameObject scoreTextObject;
     [SerializeField]
-    GameObject m_ComboTextObject;
+    GameObject comboTextObject;
 
     #region Mono
     private void Awake()
     {
-        InitManagers();
-        InitDelegate();
-        InitializeUIText();
+        initManagers();
+        initDelegate();
+        initializeUIText();
     }
 
-    void InitManagers()
+    void initManagers()
     {
         m_TimeManager = TimeManager.instance;
         m_ScoreManager = ScoreManager.instance;
     }
 
-    void InitDelegate()
+    void initDelegate()
     {
-        m_ScoreManager.scoreDelegate += UpdateScore;
-        m_ScoreManager.comboDelegate += UpdateCombo;
-        m_TimeManager.IsGameOverDelegate += ShowGameOverScreen;
+        m_ScoreManager.scoreDelegate += updateScore;
+        m_ScoreManager.comboDelegate += updateCombo;
+        m_TimeManager.isGameOverDelegate += showGameOverScreen;
     }
 
-    void InitializeUIText()
+    void initializeUIText()
     {
-       m_ScoreTextObject.GetComponent<Text>().text = "000000000\n0 Dishes";
-       m_ComboTextObject.SetActive(false);
+       scoreTextObject.GetComponent<Text>().text = "000000000\n0 Dishes";
+       comboTextObject.SetActive(false);
     }
     #endregion
 
     #region DelegateMethods
-    void ShowGameOverScreen()
+    void showGameOverScreen()
     {
-        m_GameOverObject.SetActive(true);
-        m_FadedBackgroundObject.SetActive(true);
+        gameOverObject.SetActive(true);
+        fadedBackgroundObject.SetActive(true);
     }
  
-    void UpdateScore(){
-        m_ScoreTextObject.GetComponent<Text>().text = m_ScoreManager.GetScore() + "\n"+ m_ScoreManager.GetPlates() + " Dishes";
+    void updateScore(){
+        scoreTextObject.GetComponent<Text>().text = m_ScoreManager.Score() + "\n"+ m_ScoreManager.Plates() + " Dishes";
     }
 
-    void UpdateCombo(){
-        if (m_ScoreManager.GetCombo() == 0) {
-            m_ComboTextObject.SetActive(false);
+    void updateCombo(){
+        if (m_ScoreManager.Combo() == 0) {
+            comboTextObject.SetActive(false);
             return;
         }
 
-        m_ComboTextObject.SetActive(true);
-        m_ComboTextObject.GetComponent<Text>().text = "COMBO\n" + m_ScoreManager.GetCombo();
-        AnimateCombo();
+        comboTextObject.SetActive(true);
+        comboTextObject.GetComponent<Text>().text = "COMBO\n" + m_ScoreManager.Combo();
+        animateCombo();
     }
 
-    void AnimateCombo(){
+    void animateCombo(){
         Hashtable ht = new Hashtable();
         ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
         ht.Add("time", AnimationManager.instance.ComboPopTime());
         ht.Add("easeType", "spring");
-        iTween.ScaleFrom(m_ComboTextObject, ht);
+        iTween.ScaleFrom(comboTextObject, ht);
     }
     #endregion
 
     #region Pause Panels
 
-    public void ShowPauseScreen()
+    public void showPauseScreen()
     {
-        StateManager.instance.PauseGame();
-        m_PauseScreenObject.SetActive(true);
-        m_FadedBackgroundObject.SetActive(true);
+        StateManager.instance.pauseGame();
+        pauseScreenObject.SetActive(true);
+        fadedBackgroundObject.SetActive(true);
     }
 
-    public void HidePauseScreen() {
-        StateManager.instance.StartGame();
-        m_PauseScreenObject.SetActive(false);
-        m_FadedBackgroundObject.SetActive(false);
+    public void hidePauseScreen() {
+        StateManager.instance.startGame();
+        pauseScreenObject.SetActive(false);
+        fadedBackgroundObject.SetActive(false);
     }
 
     #endregion

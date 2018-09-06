@@ -9,69 +9,65 @@ public class ScoreManager : MonoBehaviour {
     public ScoreDelegate comboDelegate;
 
     //Player Pref keys
-    readonly string InfiniteMode = "Infinite";
-    readonly string InfiniteMode_Plates = "Infinte_Plate";
+    readonly string INFINITE_MODE_SCORE = "Infinite";
+    readonly string INFINITE_MODE_PLATE = "Infinte_Plate";
 
     public static ScoreManager instance = null;
 
     [SerializeField]
-    float BaseScore;
-    [Header("Increment Score Variable")]
+    float baseScore;
+    [Header("Score Multiplier")]
     [SerializeField]
-    float m_IncrementScoreVariable;
+    float scoreMultiplier;
     [Header("Decrement Score Variable")]
     [SerializeField]
-    float m_DecrementScoreVariable;
+    float decrementScoreVariable;
     [SerializeField]
-    int m_ComboStartNumber;
+    int comboStartNumber;
 
     [SerializeField]
-    int m_ScoreSpeed;
+    int scoreSpeed;
     int reachingNumber;
-    int m_Score = 0;
+    int score = 0;
 
-    int m_Combo = 0;
-    int m_Plates = 0;
+    int combo = 0;
+    int plates = 0;
 
     #region GetterSetter
-    public void SetIncrementScoreVariable(float var)
+    public void setScoreMultiplier(float var)
     {
-        m_IncrementScoreVariable = var;
+        scoreMultiplier = var;
     }
 
-	public void AddToIncrementScoreVariable(float score){
-		m_IncrementScoreVariable += score;
+	public void addToScoreMultiplier(float score){
+		scoreMultiplier += score;
 	}
 
-	public float IncrementScoreVariable(){
-		return m_IncrementScoreVariable;
-	}
-
-    public int GetScore()
+    public int Score()
     {
-        return m_Score;
+        return score;
     }
 
-    public int GetPlates()
+    public int Plates()
     {
-        return m_Plates;
+        return plates;
     }
 
-    public int GetCombo()
+    public int Combo()
     {
-        return m_Combo;
+        return combo;
     }
 
-    public void ResetCombo()
+    public void resetCombo()
     {
-        m_Combo = 0;
+        combo = 0;
         this.comboDelegate();
     }
 
-    void IncrementCombo()
+    void incrementCombo()
     {
-        m_Combo++;
-        if (m_Combo >= m_ComboStartNumber)
+        combo++;
+        if (combo >= comboStartNumber)
         {
             this.comboDelegate();
         }
@@ -82,42 +78,42 @@ public class ScoreManager : MonoBehaviour {
     private void Awake()
     {   
         instance = this;
-        SetupScoreProperties();
+        setupScoreProperties();
     }
 
-    void SetupScoreProperties()
+    void setupScoreProperties()
     {
-        reachingNumber = m_Score;
-        if (m_ScoreSpeed == 0)
+        reachingNumber = score;
+        if (scoreSpeed == 0)
         {
-            m_ScoreSpeed = 10;
+            scoreSpeed = 10;
         }
-        if (m_ComboStartNumber == 0)
+        if (comboStartNumber == 0)
         {
-            m_ComboStartNumber = 1;
+            comboStartNumber = 1;
         }
 
     }
 
     private void Update()
     {
-        AnimateChangeScore();
+        animateChangeScore();
     }
 
-    void AnimateChangeScore()
+    void animateChangeScore()
     {
-        if (reachingNumber - m_Score < m_ScoreSpeed && reachingNumber != m_Score) 
+        if (reachingNumber - score < scoreSpeed && reachingNumber != score) 
         {
-            m_Score = reachingNumber;
+            score = reachingNumber;
             this.scoreDelegate();
-        } else if (reachingNumber < m_Score)
+        } else if (reachingNumber < score)
         {
-            m_Score -= m_ScoreSpeed;
+            score -= scoreSpeed;
             this.scoreDelegate();
         }
-        else if (reachingNumber > m_Score)
+        else if (reachingNumber > score)
         {
-            m_Score += m_ScoreSpeed;
+            score += scoreSpeed;
             this.scoreDelegate();
         }
     }
@@ -125,46 +121,48 @@ public class ScoreManager : MonoBehaviour {
     #endregion
 
     #region Score
-    public int IncrementScore()
+    public int incrementScore()
     {
-        m_Plates++;
-        IncrementCombo();
-        int score = (int)(BaseScore * m_IncrementScoreVariable);        
-        reachingNumber += score;
-        return score;
+        plates++;
+        incrementCombo();
+        int incrementingScore = (int)(baseScore * scoreMultiplier);        
+        reachingNumber += incrementingScore;
+        return incrementingScore;
     }
 
-    public void DecrementScore()
+    public void decrementScore()
     {
-        reachingNumber -= (int)(BaseScore * m_DecrementScoreVariable);
+        reachingNumber -= (int)(baseScore * decrementScoreVariable);
     }
 
-    public void SaveScore()
+    public void saveScore()
     {
-        if (m_Score > GetHighScore())
+        if (score > HighScore())
         {
-            PlayerPrefs.SetInt(InfiniteMode, m_Score);
+            PlayerPrefs.SetInt(INFINITE_MODE_SCORE, score);
 
         }
 
-        if (m_Plates > GetHighScorePlate())
+        if (plates > GetHighScorePlate())
         {
-            PlayerPrefs.SetInt(InfiniteMode_Plates, m_Plates);
+            PlayerPrefs.SetInt(INFINITE_MODE_PLATE, plates);
         }
-		FirebaseDB.instance.InsertScoreEntry (m_Score, m_Plates);
+		FirebaseDB.instance.InsertScoreEntry (score, plates);
     }
+    #endregion
 
-    public int GetHighScore()
+    #region playerprefs
+    public int HighScore()
     {
-        return GetStoredScoresWith(InfiniteMode);
+        return StoredValues(INFINITE_MODE_SCORE);
     }
 
     public int GetHighScorePlate()
     {
-        return GetStoredScoresWith(InfiniteMode_Plates);
+        return StoredValues(INFINITE_MODE_PLATE);
     }
 
-    int GetStoredScoresWith(string key)
+    int StoredValues(string key)
     {
         if (!PlayerPrefs.HasKey(key))
         {

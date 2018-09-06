@@ -6,95 +6,88 @@ public class IngredientGenerator : MonoBehaviour {
 
 	//Food Holder
 	[SerializeField]
-	GameObject[] m_FoodHolderObject;
-    FoodHolder[] m_FoodHolders = new FoodHolder[4];
-    FoodTimer[] m_FoodTimers = new FoodTimer[4];
+    GameObject[] foodHolderObjects;
+    FoodHolder[] foodHolders = new FoodHolder[4];
+    FoodTimer[] foodTimers = new FoodTimer[4];
 
     #region getter/setter
-    public FoodHolder[] GetFoodHolder()
+    public FoodHolder[] FoodHolders()
     {
-        return m_FoodHolders;
-    }
-
-    Ingredient GetIngredientOnTop(Food food)
-    {
-        return food.GetNeededIngredient();
-    }
-
-    public void DecrementOrderTimer(Direction dir, float seconds)
-    {
-        m_FoodTimers[(int)dir].DecrementTimeBy(seconds);
+        return foodHolders;
     }
     #endregion
 
     #region Mono
     void Awake() {
-		InitializeFoodHolders ();
+        initializeFoodHolders ();
 	}
 
-	void InitializeFoodHolders() {
-        for (int i = 0; i < m_FoodHolderObject.Length; i++) {
-			m_FoodHolders [i] = m_FoodHolderObject [i].GetComponent<FoodHolder> ();
-            m_FoodTimers[i] = m_FoodHolderObject[i].GetComponent<FoodTimer>();
+	void initializeFoodHolders() {
+        for (int i = 0; i < foodHolderObjects.Length; i++) {
+			foodHolders [i] = foodHolderObjects [i].GetComponent<FoodHolder> ();
+            foodTimers[i] = foodHolderObjects[i].GetComponent<FoodTimer>();
 		}
 	}
 
-    public void UpdateFoodTimer(float seconds)
-    {
-        for(int i = 0; i < m_FoodTimers.Length; i++)
-        {
-            m_FoodTimers[i].UpdateTimer(seconds);
-        }
-    }
-	#endregion
-
-	#region SetupIngredients
-	public void InsertFoodIntoHolder(Food food, Direction dir) {
-        //Create New food - instantiate;
-        Food generatedFood = InstantiateFoodInHolder(food, (int)dir);
-        //Store
-        m_FoodHolders[(int)dir].SetStoredFood(generatedFood);
-    }
 	#endregion
 
 	#region PlayerActions
 	//Place all filled holders into an array , randomly choose
-    public Ingredient RandomlyChooseIngredient()
+    public Ingredient randomlyChooseIngredient()
     {
-		if (IsAllEmptyHolders()) {return null;}
+		if (isEmptyHolders()) {return null;}
 		Food food;
 		do{
 			int index = Random.Range(0, 4);
-			food = m_FoodHolders[index].GetStoredFood();
+			food = foodHolders[index].StoredFood();
 		} while (food == null || !food.IsFoodInPlay());
         
-		return GetIngredientOnTop(food);
+		return ingredientOnTop(food);
     }
 
-	bool IsAllEmptyHolders(){
-		for (int i = 0; i < m_FoodHolders.Length; i++) {
-			if (m_FoodHolders [i].GetStoredFood () != null) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-    public Ingredient UserSwiped(Ingredient ingredient, Direction dir)
+    public void decrementOrderTimer(Direction dir, float seconds)
     {
-        if (IsIngredientMatch(dir, ingredient))
+        foodTimers[(int)dir].decrementTimeBy(seconds);
+    }
+
+    public Ingredient userSwiped(Ingredient ingredient, Direction dir)
+    {
+        if (isIngredientMatch(dir, ingredient))
         {
-            m_FoodHolders[(int)dir].CorrectlySwiped();
+            foodHolders[(int)dir].correctlySwiped();
         } else
         {
-			m_FoodHolders [(int)dir].IncorrectlySwiped ();
+			foodHolders [(int)dir].incorrectlySwiped ();
         }
-		return RandomlyChooseIngredient();
+		return randomlyChooseIngredient();
     }
 
-    bool IsIngredientMatch(Direction dir, Ingredient swiped)
+    public void insertFoodIntoHolder(Food food, Direction dir)
     {
-        Food food = m_FoodHolders[(int)dir].GetStoredFood();
+        //Create New food - instantiate;
+        Food generatedFood = instantiateFoodInHolder(food, (int)dir);
+        //Store
+        foodHolders[(int)dir].StoredFood(generatedFood);
+    }
+
+    public void updateFoodTimer(float seconds)
+    {
+        for (int i = 0; i < foodTimers.Length; i++)
+        {
+            foodTimers[i].updateTimer(seconds);
+        }
+    }
+    #endregion
+
+    #region helper
+    Ingredient ingredientOnTop(Food food)
+    {
+        return food.GetNeededIngredient();
+    }
+
+    bool isIngredientMatch(Direction dir, Ingredient swiped)
+    {
+        Food food = foodHolders[(int)dir].StoredFood();
         if (food != null)
         {
             bool namesEqual = food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
@@ -103,11 +96,23 @@ public class IngredientGenerator : MonoBehaviour {
         return false;
     }
 
+    bool isEmptyHolders()
+    {
+        for (int i = 0; i < foodHolders.Length; i++)
+        {
+            if (foodHolders[i].StoredFood() != null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     #endregion
 
     #region Instantiate
-    Food InstantiateFoodInHolder(Food food, int index) {
-		GameObject holder = m_FoodHolderObject[index];
+    Food instantiateFoodInHolder(Food food, int index) {
+		GameObject holder = foodHolderObjects[index];
 		GameObject generatedFood = Instantiate (food.gameObject, holder.transform);
 		return generatedFood.GetComponent<Food> ();
 	}

@@ -61,8 +61,8 @@ public class FirebaseDB : MonoBehaviour {
 	}
 
 	public void InsertScoreEntry(int score, int plates){
-		string uid = FirebaseAuthentication.instance.UserID ();
-		string displayName = FirebaseAuthentication.instance.DisplayName ();
+		string uid = FirebaseAuthentication.instance.userID ();
+		string displayName = FirebaseAuthentication.instance.displayName ();
 
 		Leaderboard entry = new Leaderboard (displayName, score, plates);
 		string json = JsonUtility.ToJson (entry);

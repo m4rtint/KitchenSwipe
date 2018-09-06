@@ -6,37 +6,37 @@ public class AnimationManager : MonoBehaviour {
 
     [Header("Center Movement")]
     [SerializeField]
-    float m_MoveTime;
+    float moveTime;
 
     [Header("Ingredient Placement")]
     [SerializeField]
-    float m_PlacementTime;
+    float placementTime;
 
     [Header("Complete Food Ascension")]
     [SerializeField]
-    float m_AscensionTime;
+    float ascensionTime;
     [SerializeField]
-    float m_AscensionAmount;
+    float ascensionAmount;
     [SerializeField]
-    float m_AscensionFadeTime;
+    float ascentionFadeTime;
 
     [Header("Center Rotation Time")]
     [SerializeField]
-    float m_RotationTime;
+    float rotationTime;
 
     [Header("Sauce Fadeout Time")]
     [SerializeField]
-    float m_CenterFadeOutTime;
+    float centerFadeOutTime;
 
     [Header("Combo Pop Time")]
     [SerializeField]
-    float m_ComboPopTime;
+    float comboPopTime;
 
     [Header("Score Pop")]
     [SerializeField]
-    float m_ScoreDelayTime;
+    float scoreDelayTime;
     [SerializeField]
-    float m_ScorePopTime;
+    float scorePopTime;
 
     public static AnimationManager instance = null;
 
@@ -49,7 +49,7 @@ public class AnimationManager : MonoBehaviour {
 
     void SetupAscensionFadedIfNeeded()
     {
-        if (m_AscensionFadeTime > m_AscensionTime) { m_AscensionFadeTime = m_AscensionTime / 2; }
+        if (ascentionFadeTime > ascensionTime) { ascentionFadeTime = ascensionTime / 2; }
 
     }
     #endregion
@@ -57,52 +57,52 @@ public class AnimationManager : MonoBehaviour {
     #region Getter
     public float CenterMoveTime()
     {
-        return m_MoveTime;
+        return moveTime;
     }
 
     public float PlacementTime()
     {
-        return m_PlacementTime;
+        return placementTime;
     }
 
     public float AscensionTime()
     {
-        return m_AscensionTime;
+        return ascensionTime;
     }
 
     public float AscensionAmount()
     {
-        return m_AscensionAmount;
+        return ascensionAmount;
     }
 
     public float AscensionFade()
     {
-        return m_AscensionFadeTime;
+        return ascentionFadeTime;
     }
 
     public float RotationTime()
     {
-        return m_RotationTime;
+        return rotationTime;
     }
 
     public float SauceFadeOutTime()
     {
-        return m_CenterFadeOutTime;
+        return centerFadeOutTime;
     }
 
     public float ComboPopTime()
     {
-        return m_ComboPopTime;
+        return comboPopTime;
     }
 
     public float ScoreDelayTime()
     {
-        return m_ScoreDelayTime;
+        return scoreDelayTime;
     }
 
     public float ScorePopTime()
     {
-        return m_ScorePopTime;
+        return scorePopTime;
     }
 
     #endregion

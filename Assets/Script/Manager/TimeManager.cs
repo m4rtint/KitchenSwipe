@@ -6,45 +6,40 @@ public class TimeManager : MonoBehaviour {
 
     //Delegate
     public delegate void TimerDelegate();
-    public TimerDelegate UpdateTimerUIDelegate;
-    public TimerDelegate IsGameOverDelegate;
+    public TimerDelegate updateTimerUIDelegate;
+    public TimerDelegate isGameOverDelegate;
 
     [SerializeField]
-    float m_GameTime;
-	float m_RedPenaltyTime;
-	readonly float m_PenaltySpeedUp = 10;
+    float gameTime;
+    float redPenaltyTime;
+    readonly float penaltySpeedUp = 10;
    
 	[SerializeField]
-	float m_FoodPenaltyTime;
+    float foodPenaltyTime;
 
     [SerializeField]
-    float m_GameTimePenaltyTime;
+    float gameTimePenaltyTime;
 
     [SerializeField]
-    float m_FoodSuccessPrizeTime;
+    float foodSuccessPrizeTime;
 
 	//Public variable
     public static TimeManager instance = null;
-	public float m_OrderTimeVaryingSpeed;
+	public float orderTimeVaryingSpeed;
 
     #region Getter/Setter
-    public string GameTime(int dec = 0)
-    {
-        return m_GameTime.ToString("n" + dec);
-    }
-
-	public float OrderPenaltyTime() {
-		return m_FoodPenaltyTime;
+	public float FoodPenaltyTime() {
+		return foodPenaltyTime;
 	}
 
-    public float GameTimeF()
+    public float GameTime()
     {
-        return m_GameTime;
+        return gameTime;
     }
 
-	public float RedTimeF()
+	public float RedTime()
 	{
-		return m_RedPenaltyTime;
+		return redPenaltyTime;
 	}
     #endregion
 
@@ -52,59 +47,59 @@ public class TimeManager : MonoBehaviour {
     void Awake()
     {
         instance = this;
-		m_RedPenaltyTime = m_GameTime;
+		redPenaltyTime = gameTime;
     }
     void Update()
     {
-		if (StateManager.instance.InGame()) {
-			DecrementGameTime (Time.deltaTime);
-			DecrementRedTime (Time.deltaTime);
+		if (StateManager.instance.isInGame()) {
+			decrementGameTime (Time.deltaTime);
+			decrementRedTime (Time.deltaTime);
 		}
     }
 
     #endregion
     
     #region Timing
-	void DecrementRedTime(float seconds) {
-		if (m_RedPenaltyTime > m_GameTime) {
-			seconds *= m_PenaltySpeedUp;
-		} else if (m_RedPenaltyTime < m_GameTime) {
-			m_RedPenaltyTime = m_GameTime;
+    void decrementRedTime(float seconds) {
+		if (redPenaltyTime > gameTime) {
+			seconds *= penaltySpeedUp;
+		} else if (redPenaltyTime < gameTime) {
+			redPenaltyTime = gameTime;
 		}
-		m_RedPenaltyTime -= seconds;
+		redPenaltyTime -= seconds;
 
 	}
 
 
-	void DecrementGameTime(float seconds)
+    void decrementGameTime(float seconds)
     {
-        if (m_GameTime - seconds <= 0) {
-            m_GameTime = 0;
-            StateManager.instance.GameOver();
-            this.IsGameOverDelegate();
+        if (gameTime - seconds <= 0) {
+            gameTime = 0;
+            StateManager.instance.gameOver();
+            this.isGameOverDelegate();
 			//TODO - This should call delegate and engine should handle everything
-			ScoreManager.instance.SaveScore ();
+			ScoreManager.instance.saveScore ();
         }
-        m_GameTime -= seconds;
+        gameTime -= seconds;
 
-        this.UpdateTimerUIDelegate();
+        this.updateTimerUIDelegate();
     }
 
-    public void PenaltyGameTime()
+    public void penaltyGameTime()
     {
-        m_GameTime -= m_GameTimePenaltyTime;
+        gameTime -= gameTimePenaltyTime;
 
-        this.UpdateTimerUIDelegate();
+        this.updateTimerUIDelegate();
     }
 
-    public void IncrementGameTime(float time = 0)
+    public void incrementGameTime(float time = 0)
     {
         if (time <= 0)
         {
-            time = m_FoodSuccessPrizeTime;
+            time = foodSuccessPrizeTime;
         }
-        m_GameTime += time;
-        this.UpdateTimerUIDelegate();
+        gameTime += time;
+        this.updateTimerUIDelegate();
     }
 
     #endregion

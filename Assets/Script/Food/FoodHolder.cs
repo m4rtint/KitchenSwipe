@@ -1,83 +1,88 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(FoodTimer))]
 [RequireComponent(typeof(FoodScore))]
-public class FoodHolder : MonoBehaviour {
+public class FoodHolder : MonoBehaviour
+{
 
-    public delegate void FoodHolderOrderDelegate( Direction dir);
-    public FoodHolderOrderDelegate OrderDelegate;
+    public delegate void FoodHolderOrderDelegate(Direction dir);
+    public FoodHolderOrderDelegate orderDelegate;
 
-	public delegate void FoodHolderOrderTimerDelegate(Direction dir);
-	public FoodHolderOrderTimerDelegate OrderTimerDelegate;
+    public delegate void FoodHolderOrderTimerDelegate(Direction dir);
+    public FoodHolderOrderTimerDelegate orderTimerDelegate;
 
-    Food m_StoredFood;
+    Food storedFood;
     Direction direction;
 
     #region Getters/Setter
-    public void SetDirection(int dir)
+    public void Direction(int dir)
     {
         this.direction = (Direction)dir;
     }
 
-	public void SetStoredFood(Food food) {
-		m_StoredFood = food;
-        SetDelegate();
-        GetComponent<FoodTimer>().ResetFoodTimerIfNeeded();
-    }
-
-    void SetDelegate()
+    public void StoredFood(Food food)
     {
-        if (m_StoredFood != null)
-        {
-            m_StoredFood.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate += RemoveFood;
-            m_StoredFood.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate += CompletedFood;
-        }
+        storedFood = food;
+        setDelegate();
+        GetComponent<FoodTimer>().resetFoodTimerIfNeeded();
     }
 
-	public Food GetStoredFood(){
-		return m_StoredFood;
-	}
+    public Food StoredFood()
+    {
+        return storedFood;
+    }
     #endregion
 
     #region UserAction
-    public void CorrectlySwiped()
+    public void correctlySwiped()
     {
         //Decrement level of ingredient
-        m_StoredFood.PlaceIngredient();
+        storedFood.PlaceIngredient();
     }
 
-    void CompletedFood()
+    public void incorrectlySwiped()
     {
-        if (!m_StoredFood.IsFoodInPlay())
+        orderTimerDelegate(this.direction);
+        ScoreManager.instance.resetCombo();
+    }
+
+
+    void removeFood(FoodAnimation food)
+    {
+        food.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate -= removeFood;
+        food.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate -= completedFood;
+        orderDelegate(this.direction);
+    }
+
+    #endregion
+
+    #region helper
+    void completedFood()
+    {
+        if (!storedFood.IsFoodInPlay())
         {
 
-            m_StoredFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
-            m_StoredFood = null;
+            storedFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
+            storedFood = null;
 
             //SCORE
-            int score = ScoreManager.instance.IncrementScore();
-            GetComponent<FoodScore>().RisingScoreAnimation(score);
-            
+            int score = ScoreManager.instance.incrementScore();
+            GetComponent<FoodScore>().risingScoreAnimation(score);
+
             //TIME
-            TimeManager.instance.IncrementGameTime();
+            TimeManager.instance.incrementGameTime();
         }
     }
 
-	public void IncorrectlySwiped(){
-		OrderTimerDelegate (this.direction);
-        ScoreManager.instance.ResetCombo();
-    }
-
-
-    void RemoveFood(FoodAnimation food)
+    void setDelegate()
     {
-        food.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate -= RemoveFood;
-        food.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate -= CompletedFood;
-        OrderDelegate(this.direction);
+        if (storedFood != null)
+        {
+            storedFood.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate += removeFood;
+            storedFood.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate += completedFood;
+        }
     }
-
-#endregion
+    #endregion
 }

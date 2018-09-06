@@ -21,9 +21,9 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     Direction currentDirection;
 
     [SerializeField]
-    float m_DragDistance;
+    float dragDistance;
     bool canSwipe = true;
-    Direction GetDragDirection(Vector3 dragVector)
+    Direction dragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
         float positiveY = Mathf.Abs(dragVector.y);
@@ -41,7 +41,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     bool CanSwipe()
     {
-        return StateManager.instance.InGame() && canSwipe;
+        return StateManager.instance.isInGame() && canSwipe;
     }
 
     public void RunSwipeDelegate()
@@ -59,10 +59,10 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector3 dragVectorDirection = displacement.normalized;
 
         float distance = displacement.magnitude;
-        if (distance > m_DragDistance && CanSwipe())
+        if (distance > dragDistance && canSwipe)
         {
             canSwipe = false;
-            currentDirection = GetDragDirection(dragVectorDirection);
+            currentDirection = dragDirection(dragVectorDirection);
             this.snapOffDelegate(currentDirection);
         } 
     }

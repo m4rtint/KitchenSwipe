@@ -7,22 +7,22 @@ using TMPro;
 public class FoodScore : MonoBehaviour {
 
     [SerializeField]
-    GameObject m_ScoreObject;
-    TextMeshProUGUI m_ScoreText;
+    GameObject scoreObject;
+    TextMeshProUGUI scoreText;
     
     AnimationManager animation;
 
     #region Mono
     private void Awake()
     {
-        m_ScoreText = m_ScoreObject.GetComponent<TextMeshProUGUI>();
+        scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
         animation = AnimationManager.instance;
-        ResetScoreAnimation();
+        resetScoreAnimation();
     }
     #endregion
 
     #region Animation
-    public void RisingScoreAnimation(int score)
+    public void risingScoreAnimation(int score)
     {
 
         Hashtable ht = new Hashtable();
@@ -32,24 +32,24 @@ public class FoodScore : MonoBehaviour {
         ht.Add("easeType", "spring");
 
         //On Start function to call
-        ht.Add("onstart", "SetScoreText");
+        ht.Add("onstart", "ScoreText");
         ht.Add("onstartparams",score);
         ht.Add("onstarttarget", gameObject);
 
         //On complete function to call
         ht.Add("oncompletetarget", gameObject);
-        ht.Add("oncomplete", "ResetScoreAnimation");
-        iTween.ScaleFrom(m_ScoreObject, ht);
+        ht.Add("oncomplete", "resetScoreAnimation");
+        iTween.ScaleFrom(scoreObject, ht);
     }
      
-    void SetScoreText(int score)
+    void ScoreText(int score)
     {
-        m_ScoreText.text = score.ToString()+"pts";
+        scoreText.text = score.ToString()+"pts";
     }
 
-    void ResetScoreAnimation()
+    void resetScoreAnimation()
     {
-        m_ScoreText.text = "";
+        scoreText.text = "";
     }
     #endregion
 }

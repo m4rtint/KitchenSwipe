@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 public class FirebaseAuthentication : MonoBehaviour {
     //Delegate
     public delegate void FirebaseAuthDelegate();
-    public FirebaseAuthDelegate AuthDelegate;
+    public FirebaseAuthDelegate authDelegate;
     public FirebaseAuthDelegate profileUpdateDelegate;
-	public FirebaseAuthDelegate SignOutDelegate;
+    public FirebaseAuthDelegate signOutDelegate;
 
     public delegate void FirebaseAuthErrorDelegate(string error);
     public FirebaseAuthErrorDelegate errorDelegate;
 
     public static FirebaseAuthentication instance = null;
 
-    FirebaseAuth m_Auth;
-    FirebaseUser m_User;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     #region Mono
     private void Awake()
@@ -34,122 +34,122 @@ public class FirebaseAuthentication : MonoBehaviour {
 
     void InitializeFirebase()
     {
-        m_Auth = FirebaseAuth.DefaultInstance;
-        m_Auth.StateChanged += AuthStateChanged;
-        AuthStateChanged(this, null);
+        auth = FirebaseAuth.DefaultInstance;
+        auth.StateChanged += authStateChanged;
+        authStateChanged(this, null);
     }
 
 
-    void AuthStateChanged(object sender, System.EventArgs eventArgs)
+    void authStateChanged(object sender, System.EventArgs eventArgs)
     {
-        if (m_Auth.CurrentUser != m_User)
+        if (auth.CurrentUser != user)
         {
-            bool signedIn = m_Auth.CurrentUser != null;
-            if (!signedIn && m_User != null)
+            bool signedIn = auth.CurrentUser != null;
+            if (!signedIn && user != null)
             {
-                Debug.Log("Signed out " + m_User.UserId);
-				SignOutDelegate ();
+                Debug.Log("Signed out " + user.UserId);
+				signOutDelegate ();
             }
-            m_User = m_Auth.CurrentUser;
+            user = auth.CurrentUser;
             if (signedIn)
             {
-                AuthDelegate();
+                authDelegate();
             }
         }
     }
 
     void OnDestroy()
     {
-        m_Auth.StateChanged -= AuthStateChanged;
-        m_Auth = null;
+        auth.StateChanged -= authStateChanged;
+        auth = null;
     }
     #endregion
 
     #region Getter
-    public string DisplayName()
+    public string displayName()
     {
-        return m_User.DisplayName;
+        return user.DisplayName;
     }
 
-    public string Email()
+    public string email()
     {
-        return m_User.Email;
+        return user.Email;
     }
 
-	public string UserID()
+	public string userID()
 	{
-		return m_User.UserId;
+		return user.UserId;
 	}
     #endregion
 
     #region Public
     //Anonymous Authentication
-    public void AnonAuthentication(string displayName)
+    public void anonAuthentication(string displayName)
     {
-        m_Auth.SignInAnonymouslyAsync().ContinueWith(task => {
-            if (AuthHasError(task))
+        auth.SignInAnonymouslyAsync().ContinueWith(task => {
+            if (authHasError(task))
             {
                 return;
             }
 
-            m_User = task.Result;
+            user = task.Result;
 
-            if (m_User.DisplayName != displayName) { 
-                UpdateProfile(displayName);
+            if (user.DisplayName != displayName) { 
+                updateProfile(displayName);
             }
         });
     }
 
     //Email Authentication
-    public void EmailRegistration(Dictionary<string,string> profile){
-        string email = profile["email"];
+    public void emailRegistration(Dictionary<string,string> profile){
+        string profileEmail = profile["email"];
         string password = profile["password"];
-        m_Auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
-            if (AuthHasError(task))
+        auth.CreateUserWithEmailAndPasswordAsync(profileEmail, password).ContinueWith(task => {
+            if (authHasError(task))
             {
                 return;
             }
 
             // Firebase user has been created.
-            m_User = task.Result;
-			UpdateProfile(profile["displayname"]);
-			FirebaseDB.instance.CreateNewUser(profile,m_User.UserId);
+            user = task.Result;
+			updateProfile(profile["displayname"]);
+			FirebaseDB.instance.CreateNewUser(profile,user.UserId);
 		
         });
     }
 
-    public void EmailAuthentication(Dictionary<string, string> profile)
+    public void emailAuthentication(Dictionary<string, string> profile)
     {
-        string email = profile["email"];
+        string profileEmail = profile["email"];
         string password = profile["password"];
-        m_Auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
-            if (AuthHasError(task))
+        auth.SignInWithEmailAndPasswordAsync(profileEmail, password).ContinueWith(task => {
+            if (authHasError(task))
             {
                 return;
             }
 
-            m_User = task.Result;
+            user = task.Result;
 			profileUpdateDelegate();
         });
     }
 
-	public void LogOut(){
-		m_Auth.SignOut ();
+	public void logOut(){
+		auth.SignOut ();
 	}
 
     #endregion
 
     #region Helper
-    void UpdateProfile(string displayName)
+    void updateProfile(string profileName)
     {
-        FirebaseUser user = m_Auth.CurrentUser;
-        if (user != null)
+        if (auth.CurrentUser != null)
         {
             UserProfile profile = new UserProfile();
-            profile.DisplayName = displayName;
+            profile.DisplayName = profileName;
             user.UpdateUserProfileAsync(profile).ContinueWith(task => {
-                if (AuthHasError(task))
+                if (authHasError(task))
                 {
+                    //Error Auth
                     return;
                 }
 
@@ -159,7 +159,7 @@ public class FirebaseAuthentication : MonoBehaviour {
     }
 
 
-    bool AuthHasError(Task task)
+    bool authHasError(Task task)
     {
         bool isError = task.IsCanceled || task.IsFaulted;
         if (isError)

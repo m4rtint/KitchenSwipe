@@ -62,7 +62,7 @@ public class GameEngineInfinite : GameEngine {
 			scoreUpdate = 2f;
 		}
 
-		TimeManager.instance.m_OrderTimeVaryingSpeed += speedUpdate;
-		ScoreManager.instance.AddToIncrementScoreVariable (scoreUpdate);
+		TimeManager.instance.orderTimeVaryingSpeed += speedUpdate;
+		ScoreManager.instance.addToScoreMultiplier (scoreUpdate);
     }
 }

@@ -69,16 +69,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveTime: 0.2
-  m_PlacementTime: 0.25
-  m_AscensionTime: 0.5
-  m_AscensionAmount: 75
-  m_AscensionFadeTime: 0.2
-  m_RotationTime: 0.5
-  m_CenterFadeOutTime: 0.2
-  m_ComboPopTime: 0.2
-  m_ScoreDelayTime: 0.2
-  m_ScorePopTime: 0.5
+  moveTime: 0.2
+  placementTime: 0.25
+  ascensionTime: 0.5
+  ascensionAmount: 75
+  ascentionFadeTime: 0.2
+  rotationTime: 0.5
+  centerFadeOutTime: 0.2
+  comboPopTime: 0.2
+  scoreDelayTime: 0.2
+  scorePopTime: 0.5
 --- !u!114 &114320809374165192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,11 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9f07e7f197146bbb1fa32ab24bb87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FadedBackgroundObject: {fileID: 0}
-  m_GameOverObject: {fileID: 0}
-  m_PauseScreenObject: {fileID: 0}
-  m_ScoreTextObject: {fileID: 0}
-  m_ComboTextObject: {fileID: 0}
+  fadedBackgroundObject: {fileID: 0}
+  gameOverObject: {fileID: 0}
+  pauseScreenObject: {fileID: 0}
+  scoreTextObject: {fileID: 0}
+  comboTextObject: {fileID: 0}
 --- !u!114 &114900218454613518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,11 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8cae08f9e137f43afb2e7bd0b762ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseScore: 100
-  m_IncrementScoreVariable: 1
-  m_DecrementScoreVariable: 0.5
-  m_ComboStartNumber: 1
-  m_ScoreSpeed: 10
+  baseScore: 100
+  scoreMultiplier: 1
+  decrementScoreVariable: 0.5
+  comboStartNumber: 1
+  scoreSpeed: 10
 --- !u!114 &114974761684145418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameTime: 200
-  m_FoodPenaltyTime: 20
-  m_GameTimePenaltyTime: 5
-  m_FoodSuccessPrizeTime: 10
-  m_OrderTimeVaryingSpeed: 1
+  gameTime: 200
+  foodPenaltyTime: 20
+  gameTimePenaltyTime: 5
+  foodSuccessPrizeTime: 10
+  orderTimeVaryingSpeed: 1

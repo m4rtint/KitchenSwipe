@@ -14,7 +14,7 @@ public class StateManager : MonoBehaviour {
     public static StateManager instance = null;
 
 	[SerializeField]
-    GameState m_CurrentState;
+    GameState currentState;
 
     void Awake()
     {
@@ -35,31 +35,31 @@ public class StateManager : MonoBehaviour {
 	}
 	
 
-	public void StartGame() {
-		m_CurrentState = GameState.Game;
+	public void startGame() {
+		currentState = GameState.Game;
 	}
 
-    public void PauseGame()
+    public void pauseGame()
     {
-        m_CurrentState = GameState.Pause;
+        currentState = GameState.Pause;
     }
 
-    public void SetToMenu()
+    public void setToMenu()
     {
-        m_CurrentState = GameState.Menu;
+        currentState = GameState.Menu;
     }
 
-    public void GameOver() 
+    public void gameOver() 
     {
-        m_CurrentState = GameState.GameOver;
+        currentState = GameState.GameOver;
     }
 
-	public bool InGame(){
-		return m_CurrentState == GameState.Game;
+	public bool isInGame(){
+		return currentState == GameState.Game;
 	}
 
 
-	public bool Paused(){
-		return m_CurrentState == GameState.Pause;
+	public bool isPaused(){
+		return currentState == GameState.Pause;
 	}
 }

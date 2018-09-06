@@ -3439,6 +3439,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840235244}
   m_CullTransparentMesh: 0
+--- !u!1 &862467767 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1781197104971314, guid: 04e8056d0af9ca1489684f074303b275,
+    type: 2}
+  m_PrefabInternal: {fileID: 982854402}
 --- !u!224 &870752285 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224551859207889920, guid: 85389e64d55af4245bb7208240cf8ae8,
@@ -3805,6 +3810,11 @@ Prefab:
       propertyPath: m_AnchorMax.x
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 114873007306697992, guid: 04e8056d0af9ca1489684f074303b275,
+        type: 2}
+      propertyPath: errorTextObj
+      value: 
+      objectReference: {fileID: 862467767}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e8056d0af9ca1489684f074303b275, type: 2}
   m_IsPrefabAsset: 0
@@ -5061,7 +5071,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1831084049}
-        m_MethodName: StartInfiniteGameScene
+        m_MethodName: startInfiniteGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5388,6 +5398,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114602040475131364, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: errorObj
+      value: 
+      objectReference: {fileID: 800553233}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85389e64d55af4245bb7208240cf8ae8, type: 2}
   m_IsPrefabAsset: 0
@@ -7240,8 +7255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d1d8be7cd51e3478f1e48c9e196f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayNameObject: {fileID: 741751456}
-  AuthenticationObject: {fileID: 441476430}
+  displayNameObject: {fileID: 0}
+  authenticationObject: {fileID: 441476430}
 --- !u!1 &1937327533
 GameObject:
   m_ObjectHideFlags: 0
