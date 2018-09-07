@@ -10,8 +10,8 @@ public class LeaderboardRow : MonoBehaviour {
     [SerializeField]
     GameObject columnRight;
 
-    public void setRowText(string name, string points){
-        setTMProText(columnLeft, name);
+    public void setRowText(int number, string name, string points){
+        setTMProText(columnLeft, number+" "+ name);
         setTMProText(columnRight, points);
     }
 

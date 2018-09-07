@@ -8,7 +8,7 @@ using Firebase.Unity.Editor;
 public class FirebaseDB : MonoBehaviour
 {
     //Delegate
-    public delegate void FirebaseDBDelegate(ArrayList list);
+    public delegate void FirebaseDBDelegate(Record[] list);
     public FirebaseDBDelegate loadedLeaderboardDelegate;
 
     public static FirebaseDB instance = null;
@@ -79,7 +79,7 @@ public class FirebaseDB : MonoBehaviour
                             if (task.IsCompleted)
                             {
                                 DataSnapshot snapshot = task.Result;
-                                loadedLeaderboardDelegate(createArrayList(snapshot));
+                                loadedLeaderboardDelegate(createArrayOfRecords(snapshot));
                             }
                             else
                             {
@@ -100,7 +100,7 @@ public class FirebaseDB : MonoBehaviour
     #endregion
 
     #region Helper
-    ArrayList createArrayList(DataSnapshot snap)
+    Record[] createArrayOfRecords(DataSnapshot snap)
     {
         ArrayList listOfRecords = new ArrayList();
 
@@ -114,17 +114,31 @@ public class FirebaseDB : MonoBehaviour
             listOfRecords.Add(new Record(_name, _score, _plates, _combo, _TimeLasted));
         }
 
-        return listOfRecords;
+        Record[] records = new Record[listOfRecords.Count];
+        listOfRecords.CopyTo(records);
+        return records;
     }
 
     string parseSnapshotString(DataSnapshot snap, string key)
     {
-        return (string)snap.Child(key).Value;
+        if (snap.Child(key).Exists) {
+            Debug.Log("FirebaseDB: Successfully parsed: " + key);
+            return (string)snap.Child(key).Value;
+        } else
+        {
+            return "NA";
+        }
     }
 
     int parseSnapshotInteger(DataSnapshot snap, string key)
     {
-        return int.Parse(snap.Child(key).Value.ToString());
+        if (snap.Child(key).Exists) {
+            Debug.Log("FirebaseDB: Successfully parsed: " + key);
+            return int.Parse(snap.Child(key).Value.ToString());
+        } else
+        {
+            return 0;
+        }
     }
 
     #endregion
