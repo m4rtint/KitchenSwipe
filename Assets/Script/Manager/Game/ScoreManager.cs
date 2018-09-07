@@ -30,6 +30,7 @@ public class ScoreManager : MonoBehaviour {
     int reachingNumber;
     int score = 0;
 
+    int maxCombo = 0;
     int combo = 0;
     int plates = 0;
 
@@ -60,6 +61,7 @@ public class ScoreManager : MonoBehaviour {
 
     public void resetCombo()
     {
+        saveHighestComboIfNeeded();
         combo = 0;
         this.comboDelegate();
     }
@@ -140,14 +142,18 @@ public class ScoreManager : MonoBehaviour {
         if (score > HighScore())
         {
             PlayerPrefs.SetInt(INFINITE_MODE_SCORE, score);
-
         }
 
         if (plates > GetHighScorePlate())
         {
             PlayerPrefs.SetInt(INFINITE_MODE_PLATE, plates);
         }
-		FirebaseDB.instance.InsertScoreEntry (score, plates);
+    }
+
+    void saveHighestComboIfNeeded(){
+        if (Combo() > maxCombo) {
+            maxCombo = combo;
+        }
     }
     #endregion
 
