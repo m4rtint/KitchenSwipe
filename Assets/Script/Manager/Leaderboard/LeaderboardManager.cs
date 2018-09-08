@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LeaderboardManager : MonoBehaviour {
+    [SerializeField]
+    GameObject title;
 
     [Header("Leaderboard")]
     [SerializeField]
@@ -13,17 +17,18 @@ public class LeaderboardManager : MonoBehaviour {
     [Header("Loading")]
     [SerializeField]
     GameObject loading;
-    [SerializeField]
-    float spinSpeed;
 
     GameObject[] leaderboardRows;
     float rowHeight;
+
+    Record[] records;
+    GameObject[] rows;
 
     #region mono
     private void Awake()
     {
         setLeaderboardScreen(true);
-        FirebaseDB.instance.loadedLeaderboardDelegate += setLeaderboardText;
+        FirebaseDB.instance.loadedLeaderboardDelegate += loadedLeaderboardStats;
         getRowHeight();
         clearLeaderboard();
     }
@@ -49,26 +54,35 @@ public class LeaderboardManager : MonoBehaviour {
     #endregion
 
     #region SetLeaderboard
-    void setLeaderboardText(Record[] list)
+    void loadedLeaderboardStats(Record[] list)
     {
-        for(int i = 0; i < list.Length; i++)
-        {
-            insertRow(list[i], i);
-        }
-
+        saveRecords(list);
+        insertGameObjectRow();
+        sortAndSetByScore();
         setLeaderboardScreen(false);
     }
 
-    void insertRow(Record record, int index)
+    void saveRecords(Record[] list)
     {
-        GameObject newRow = Instantiate(row, scores.transform);
+        records = list;
+        rows = new GameObject[list.Length];
+    }
 
-        //Set height
-        float height = -index * (rowHeight*2);
-        Vector3 newPosition = newRow.transform.position;
-        newPosition.y += height;
-        newRow.transform.position = newPosition;
-        newRow.GetComponent<LeaderboardRow>().setRowText(index+1, record.Name, record.Score.ToString());
+    void insertGameObjectRow()
+    {
+        for (int i = 0; i < records.Length; i++)
+        {
+            GameObject newRow = Instantiate(row, scores.transform);
+
+            //Set height
+            float height = -i * (rowHeight * 2);
+            Vector3 newPosition = newRow.transform.position;
+            newPosition.y += height;
+            newRow.transform.position = newPosition;
+
+            //Save new row
+            rows[i] = newRow; 
+        }
     }
 
     void clearLeaderboard()
@@ -80,7 +94,65 @@ public class LeaderboardManager : MonoBehaviour {
     }
     #endregion
 
-    #region Loading
+    #region Public
+    public void sortAndSetByScore()
+    {
+        Array.Sort(records,
+           delegate (Record x, Record y)
+           {
+               return y.Score.CompareTo(x.Score);
+           });
+        for (int i = 0; i < rows.Length; i++)
+        {
+            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Score.ToString());
+        }
+        setLeaderboardTitle("POINTS");
+    }
+
+    public void sortAndSetByPlates()
+    {
+        Array.Sort(records,
+           delegate (Record x, Record y)
+           {
+               return y.Plates.CompareTo(x.Plates);
+           });
+        for (int i = 0; i < rows.Length; i++)
+        {
+            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Plates.ToString());
+        }
+        setLeaderboardTitle("PLATES");
+    }
+
+    public void sortAndSetByCombo()
+    {
+        Array.Sort(records,
+           delegate (Record x, Record y)
+           {
+               return y.Combo.CompareTo(x.Combo);
+           });
+        for (int i = 0; i < rows.Length; i++)
+        {
+            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Combo.ToString());
+        }
+        setLeaderboardTitle("COMBO");
+    }
+
+    public void sortAndSetBySecondsLasted()
+    {
+        Array.Sort(records,
+           delegate (Record x, Record y)
+           {
+               return y.TimeLasted.CompareTo(x.TimeLasted);
+           });
+        for (int i = 0; i < rows.Length; i++)
+        {
+            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].TimeLasted.ToString());
+        }
+        setLeaderboardTitle("SECOND LASTED");
+    }
+    #endregion
+
+    #region helper
     void animateLoading()
     {
         Hashtable ht = new Hashtable();
@@ -89,5 +161,11 @@ public class LeaderboardManager : MonoBehaviour {
         ht.Add("looptype", "loop");
         iTween.RotateBy(loading, ht);
     }
+
+    void setLeaderboardTitle(string type)
+    {
+        title.GetComponent<TextMeshProUGUI>().text = type;
+    }
     #endregion
+
 }

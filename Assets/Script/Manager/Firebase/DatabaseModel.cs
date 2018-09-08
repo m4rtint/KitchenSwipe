@@ -32,44 +32,5 @@ public class Record
     }
 }
 
-public class SortByPoints : IComparer
-{
-    public int Compare(object x, object y)
-    {
-        Record r1 = (Record)x;
-        Record r2 = (Record)y;
-        return Comparer.Default.Compare(r2.Score, r1.Score);
-    }
-}
-
-public class SortByPlates : IComparer
-{
-    public int Compare(object x, object y)
-    {
-        Record r1 = (Record)x;
-        Record r2 = (Record)y;
-        return Comparer.Default.Compare(r2.Plates, r1.Plates);
-    }
-}
-
-public class SortByCombo : IComparer
-{
-    public int Compare(object x, object y)
-    {
-        Record r1 = (Record)x;
-        Record r2 = (Record)y;
-        return Comparer.Default.Compare(r2.Combo, r1.Combo);
-    }
-}
-
-public class SortByTime : IComparer
-{
-    public int Compare(object x, object y)
-    {
-        Record r1 = (Record)x;
-        Record r2 = (Record)y;
-        return Comparer.Default.Compare(r2.TimeLasted, r1.TimeLasted);
-    }
-}
 
 
