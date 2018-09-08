@@ -114,11 +114,11 @@ public class LeaderboardManager : MonoBehaviour {
         Array.Sort(records,
            delegate (Record x, Record y)
            {
-               return y.Plates.CompareTo(x.Plates);
+               return y.Dishes.CompareTo(x.Dishes);
            });
         for (int i = 0; i < rows.Length; i++)
         {
-            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Plates.ToString());
+            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Dishes.ToString());
         }
         setLeaderboardTitle("PLATES");
     }

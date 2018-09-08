@@ -18,15 +18,15 @@ public class Record
 {
     public string Name;
     public int Score;
-    public int Plates;
+    public int Dishes;
     public int Combo;
     public int TimeLasted;
 
-    public Record(string name, int score, int plates, int combo, int timeLasted)
+    public Record(string name, int score, int dishes, int combo, int timeLasted)
     {
         this.Name = name;
         this.Score = score;
-        this.Plates = plates;
+        this.Dishes = dishes;
         this.Combo = combo;
         this.TimeLasted = timeLasted;
     }
@@ -36,7 +36,7 @@ public struct ErrorMessages
 {
     public readonly static string LOAD_LEADERBOARD = "Error loading leaderboard, Please try again later";
     public readonly static string GENERIC_ERROR = "An error has occured";
-    public readonly static string SYNC_ERROR = "Unable to Sync Profile, playing in Offline mode";
+    public readonly static string SYNC_ERROR = "Unable to Sync Profile, playing without saving to databse";
 }
 
 public struct PlayerPrefKeys

@@ -14,6 +14,9 @@ public class FirebaseDB : MonoBehaviour
     public delegate void FirebaseDBErrorDelegate(string errorMessage);
     public FirebaseDBErrorDelegate errorDelegate;
 
+    public delegate void FirebaseDBProfileDelegate();
+    public FirebaseDBProfileDelegate profileDelegate;
+
     public static FirebaseDB instance = null;
     readonly string DB_URL = "https://kitchen-swipe.firebaseio.com/";
     readonly string User = "Users";
@@ -91,6 +94,7 @@ public class FirebaseDB : MonoBehaviour
                 {
                     DataSnapshot snapshot = task.Result;
                     parseSnapToPlayerPrefs(snapshot);
+                    profileDelegate();
                 } else
                 {
                     errorDelegate(ErrorMessages.SYNC_ERROR);
