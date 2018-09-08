@@ -6656,13 +6656,23 @@ Prefab:
       objectReference: {fileID: 800553233}
     - target: {fileID: 1360242954986044, guid: 85389e64d55af4245bb7208240cf8ae8, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114602040475131364, guid: 85389e64d55af4245bb7208240cf8ae8,
         type: 2}
       propertyPath: errorObj
       value: 
       objectReference: {fileID: 800553233}
+    - target: {fileID: 114789724718117978, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: emailSignIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 114522923252885488, guid: 85389e64d55af4245bb7208240cf8ae8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: emailRegistration
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85389e64d55af4245bb7208240cf8ae8, type: 2}
   m_IsPrefabAsset: 0

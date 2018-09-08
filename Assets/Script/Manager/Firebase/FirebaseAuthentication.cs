@@ -53,6 +53,7 @@ public class FirebaseAuthentication : MonoBehaviour {
             user = auth.CurrentUser;
             if (signedIn)
             {
+                PlayerPrefs.DeleteAll();
                 authDelegate();
             }
         }
@@ -171,10 +172,15 @@ public class FirebaseAuthentication : MonoBehaviour {
             }
             else
             {
-                errorDelegate("An Error has occured");
+                errorDelegate(ErrorMessages.GENERIC_ERROR);
             }
         }
         return isError;
+    }
+
+    void syncPlayerPrefs()
+    {
+      
     }
     #endregion
 

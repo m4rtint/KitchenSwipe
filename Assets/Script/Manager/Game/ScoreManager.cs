@@ -8,10 +8,6 @@ public class ScoreManager : MonoBehaviour {
     public ScoreDelegate scoreDelegate;
     public ScoreDelegate comboDelegate;
 
-    //Player Pref keys
-    readonly string INFINITE_MODE_SCORE = "Infinite";
-    readonly string INFINITE_MODE_PLATE = "Infinte_Plate";
-
     public static ScoreManager instance = null;
 
     [SerializeField]
@@ -141,12 +137,8 @@ public class ScoreManager : MonoBehaviour {
     {
         if (score > HighScore())
         {
-            PlayerPrefs.SetInt(INFINITE_MODE_SCORE, score);
-        }
-
-        if (plates > GetHighScorePlate())
-        {
-            PlayerPrefs.SetInt(INFINITE_MODE_PLATE, plates);
+            saveHighScresToPlayerPrefs();
+            uploadHighscore();
         }
     }
 
@@ -155,18 +147,44 @@ public class ScoreManager : MonoBehaviour {
             maxCombo = combo;
         }
     }
+
+    void saveHighScresToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, plates);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, maxCombo);
+        int time = TimeManager.instance.SecondsLasted();
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, time);
+    }
+
+    void uploadHighscore()
+    {
+        FirebaseDB.instance.insertScoreEntry(HighScore(), HighScoreDishes(), HighScoreCombo(), HighScoreSecondsLasted());
+    }
     #endregion
 
     #region playerprefs
     public int HighScore()
     {
-        return StoredValues(INFINITE_MODE_SCORE);
+        return StoredValues(PlayerPrefKeys.INFINITE_SCORE);
     }
 
-    public int GetHighScorePlate()
+    public int HighScoreDishes()
     {
-        return StoredValues(INFINITE_MODE_PLATE);
+        return StoredValues(PlayerPrefKeys.INFINITE_DISHES);
     }
+
+    public int HighScoreCombo()
+    {
+        return StoredValues(PlayerPrefKeys.INFINITE_COMBO);
+    }
+
+    public int HighScoreSecondsLasted()
+    {
+        return StoredValues(PlayerPrefKeys.INFINITE_SECONDS);
+    }
+
+
 
     int StoredValues(string key)
     {

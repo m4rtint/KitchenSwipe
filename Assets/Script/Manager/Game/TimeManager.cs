@@ -23,6 +23,9 @@ public class TimeManager : MonoBehaviour {
     [SerializeField]
     float foodSuccessPrizeTime;
 
+    //Highscore time
+    float secondsLasted = 0;
+
 	//Public variable
     public static TimeManager instance = null;
 	public float orderTimeVaryingSpeed;
@@ -41,6 +44,11 @@ public class TimeManager : MonoBehaviour {
 	{
 		return redPenaltyTime;
 	}
+
+    public int SecondsLasted()
+    {
+        return (int)secondsLasted;
+    }
     #endregion
 
     #region Mono
@@ -54,7 +62,9 @@ public class TimeManager : MonoBehaviour {
 		if (StateManager.instance.isInGame()) {
 			decrementGameTime (Time.deltaTime);
 			decrementRedTime (Time.deltaTime);
-		}
+            incrementHighScoreGameTime(Time.deltaTime);
+
+        }
     }
 
     #endregion
@@ -83,6 +93,11 @@ public class TimeManager : MonoBehaviour {
         gameTime -= seconds;
 
         this.updateTimerUIDelegate();
+    }
+
+    void incrementHighScoreGameTime(float seconds)
+    {
+        secondsLasted += seconds;
     }
 
     public void penaltyGameTime()

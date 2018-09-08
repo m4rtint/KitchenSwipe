@@ -52,27 +52,6 @@ public class FirebaseDB : MonoBehaviour
         reference.Child(User).Child(userID).SetRawJsonValueAsync(json);
     }
 
-    public void SyncHighScore(string userId)
-    {
-        FirebaseDatabase.DefaultInstance
-            .GetReference("Leaderboard").Child(userId)
-            .GetValueAsync().ContinueWith(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    // Handle the error...
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result;
-                    int score = int.Parse(snapshot.Child("Score").Value.ToString());
-                    int plates = int.Parse(snapshot.Child("Plates").Value.ToString());
-                    PlayerPrefs.SetInt("InfiniteMode", score);
-                    PlayerPrefs.SetInt("Infinte_Plate", plates);
-                }
-            });
-    }
-
     public void LoadHighScore()
     {
         FirebaseDatabase.DefaultInstance
@@ -101,6 +80,24 @@ public class FirebaseDB : MonoBehaviour
         string json = JsonUtility.ToJson(entry);
         reference.Child(Leaderboard).Child(uid).SetRawJsonValueAsync(json);
     }
+
+    public void syncPlayerPrefs(string userId)
+    {
+        FirebaseDatabase.DefaultInstance
+            .GetReference("Leaderboard").Child(userId)
+            .GetValueAsync().ContinueWith(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    parseSnapToPlayerPrefs(snapshot);
+                } else
+                {
+                    errorDelegate(ErrorMessages.SYNC_ERROR);
+                }
+            });
+    }
+
     #endregion
 
     #region Helper
@@ -123,6 +120,19 @@ public class FirebaseDB : MonoBehaviour
         return records;
     }
 
+    void parseSnapToPlayerPrefs(DataSnapshot snap)
+    {
+        int score = parseSnapshotInteger(snap, "Score");
+        int dishes = parseSnapshotInteger(snap, "Dishes");
+        int combo = parseSnapshotInteger(snap, "Combo");
+        int secondsLasted = parseSnapshotInteger(snap, "TimeLasted");
+
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, combo);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, secondsLasted);
+    }
+
     string parseSnapshotString(DataSnapshot snap, string key)
     {
         if (snap.Child(key).Exists) {
@@ -130,7 +140,7 @@ public class FirebaseDB : MonoBehaviour
             return (string)snap.Child(key).Value;
         } else
         {
-            return "NA";
+            return "N/A";
         }
     }
 
