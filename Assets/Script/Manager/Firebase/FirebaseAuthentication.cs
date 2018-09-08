@@ -54,6 +54,7 @@ public class FirebaseAuthentication : MonoBehaviour {
             if (signedIn)
             {
                 PlayerPrefs.DeleteAll();
+                FirebaseDB.instance.syncPlayerPrefs(userID());
                 authDelegate();
             }
         }
@@ -70,11 +71,6 @@ public class FirebaseAuthentication : MonoBehaviour {
     public string displayName()
     {
         return user.DisplayName;
-    }
-
-    public string email()
-    {
-        return user.Email;
     }
 
 	public string userID()
