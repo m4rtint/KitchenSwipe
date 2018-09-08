@@ -11,6 +11,9 @@ public class FirebaseDB : MonoBehaviour
     public delegate void FirebaseDBDelegate(Record[] list);
     public FirebaseDBDelegate loadedLeaderboardDelegate;
 
+    public delegate void FirebaseDBErrorDelegate(string errorMessage);
+    public FirebaseDBErrorDelegate errorDelegate;
+
     public static FirebaseDB instance = null;
     readonly string DB_URL = "https://kitchen-swipe.firebaseio.com/";
     readonly string User = "Users";
@@ -83,7 +86,8 @@ public class FirebaseDB : MonoBehaviour
                             }
                             else
                             {
-                                //Handle errors  
+                                //Handle errors
+                                errorDelegate(ErrorMessages.LOAD_LEADERBOARD);
                             }
                         });
     }

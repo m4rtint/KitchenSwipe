@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject displayNameObject;
+    GameObject ErrorObject;
 	[SerializeField]
 	GameObject authenticationObject;
 
@@ -18,8 +18,8 @@ public class MainMenuManager : MonoBehaviour
 
     void setupDelegate()
     {
-        FirebaseAuthentication.instance.profileUpdateDelegate += updateDisplayName;
 		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
+        FirebaseDB.instance.errorDelegate += displayError;
     }
     #endregion
 
@@ -30,14 +30,15 @@ public class MainMenuManager : MonoBehaviour
 	#endregion
 
     #region Delegate
-    void updateDisplayName()
-    {
-        displayNameObject.GetComponent<Text>().text = FirebaseAuthentication.instance.displayName();
-    }
-
 	void displayAuth()
 	{
 		authenticationObject.SetActive (true);
 	}
+
+    void displayError(string message)
+    {
+        ErrorObject.SetActive(true);
+        ErrorObject.GetComponent<ErrorManager>().setErrorText(message);
+    }
     #endregion
 }

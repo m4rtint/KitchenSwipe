@@ -32,5 +32,10 @@ public class Record
     }
 }
 
+public struct ErrorMessages
+{
+    public readonly static string LOAD_LEADERBOARD = "Error loading leaderboard, Please try again later";
+}
+
 
 
