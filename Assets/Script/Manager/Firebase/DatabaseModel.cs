@@ -37,5 +37,12 @@ public struct ErrorMessages
     public readonly static string LOAD_LEADERBOARD = "Error loading leaderboard, Please try again later";
 }
 
+public struct PlayerPrefKeys
+{
+    public readonly static string INFINITE_SCORE = "SCORE";
+    public readonly static string INFINITE_PLATES = "PLATES";
+    public readonly static string INFINITE_COMBO = "COMBO";
+    public readonly static string INFINITE_SECONDS = "SECONDSLASTED";
+}
 
 
