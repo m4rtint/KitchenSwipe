@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(IngredientGenerator))]
 public class CenterIngredient : MonoBehaviour
 {
+    [Header("Ingredient Name")]
+    [SerializeField]
+    GameObject ingredientName;
+
     [Header("Dependencies")]
     [SerializeField]
     GameObject UserInput;
     [SerializeField]
     GameObject m_IngredientGeneratorObj;
     IngredientGenerator m_IngredientGenerator;
+       
     
     Vector3 m_StartPosition;
     Ingredient m_CenterIngredient;
@@ -57,12 +63,19 @@ public class CenterIngredient : MonoBehaviour
         GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
         GetComponent<Image>().SetNativeSize();
         m_CenterIngredient = ingredient;
+        setCenterName(ingredient.Get_IngredientName());
+    }
+
+    void setCenterName(string text = "")
+    {
+        ingredientName.GetComponent<TextMeshProUGUI>().text = text;
     }
     #endregion
 
     #region Movement
     void StartCenterAnimation(Direction dir)
     {
+        setCenterName();
         this.m_SwipedDirection = dir;
         Vector3 m_EndPosition = GetIngredientAtSwipedDirectionPosition();
         if (m_CenterIngredient.GetType() == typeof(Sauce))
@@ -137,7 +150,7 @@ public class CenterIngredient : MonoBehaviour
         transform.position = m_StartPosition;
         transform.rotation = Quaternion.identity;
     }
-    
+
     #endregion
 
 }
