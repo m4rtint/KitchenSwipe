@@ -45,6 +45,7 @@ public class GameEngine : MonoBehaviour {
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
 
         SetupHolders ();
+        setupDelegates();
 	}
 
 	protected virtual void Start()
@@ -56,17 +57,22 @@ public class GameEngine : MonoBehaviour {
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 
         //Place First 4 food onto each side
-        SetupIngredients();
+        setupIngredients();
 
         //Choose a random current ingredient
         ChooseNewCurrentIngredient ();
 	}
-	void SetupIngredients() {
+	void setupIngredients() {
 		for(int i = 0; i < 4; i++)
         {
             SetNewFood((Direction)i);
         }
 	}
+
+    void setupDelegates()
+    {
+        TimeManager.instance.isGameOverDelegate += onGameOver;
+    }
 
 	void SetupHolders(){
 		m_PlayerInput.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
@@ -126,6 +132,15 @@ public class GameEngine : MonoBehaviour {
         SetCenterIngredientView();
     }
 
-	#endregion
+    #endregion
 
+    #region Delegate
+    void onGameOver()
+    {
+        StateManager.instance.gameOver();
+        ScoreManager.instance.saveScore();
+        GetComponent<UIManager>().startGameOverScreen();
+
+    }
+    #endregion
 }

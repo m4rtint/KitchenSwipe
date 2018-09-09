@@ -38,6 +38,10 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float scorePopTime;
 
+    [Header("GameOver Screen")]
+    [SerializeField]
+    float goFadeInTime;
+    
     public static AnimationManager instance = null;
 
     #region mono
@@ -103,6 +107,11 @@ public class AnimationManager : MonoBehaviour {
     public float ScorePopTime()
     {
         return scorePopTime;
+    }
+
+    public float GameOverFadeInTime()
+    {
+        return goFadeInTime;
     }
 
     #endregion

@@ -85,10 +85,8 @@ public class TimeManager : MonoBehaviour {
     {
         if (gameTime - seconds <= 0) {
             gameTime = 0;
-            StateManager.instance.gameOver();
             this.isGameOverDelegate();
-			//TODO - This should call delegate and engine should handle everything
-			ScoreManager.instance.saveScore ();
+            return;
         }
         gameTime -= seconds;
 

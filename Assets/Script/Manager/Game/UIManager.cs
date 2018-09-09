@@ -38,7 +38,6 @@ public class UIManager : MonoBehaviour
     {
         m_ScoreManager.scoreDelegate += updateScore;
         m_ScoreManager.comboDelegate += updateCombo;
-        m_TimeManager.isGameOverDelegate += showGameOverScreen;
     }
 
     void initializeUIText()
@@ -49,12 +48,6 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region DelegateMethods
-    void showGameOverScreen()
-    {
-        gameOverObject.SetActive(true);
-        fadedBackgroundObject.SetActive(true);
-    }
- 
     void updateScore(){
         scoreTextObject.GetComponent<Text>().text = m_ScoreManager.Score() + "\n"+ m_ScoreManager.Plates() + " Dishes";
     }
@@ -88,10 +81,16 @@ public class UIManager : MonoBehaviour
         fadedBackgroundObject.SetActive(true);
     }
 
-    public void hidePauseScreen() {
+    public void hidePauseScreen()
+    {
         StateManager.instance.startGame();
         pauseScreenObject.SetActive(false);
         fadedBackgroundObject.SetActive(false);
+    }
+
+    public void startGameOverScreen()
+    {
+        gameOverObject.SetActive(true);
     }
 
     #endregion
