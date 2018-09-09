@@ -20,6 +20,12 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float ascentionFadeTime;
 
+    [Header("Incorrect Food")]
+    [SerializeField]
+    float foodShakeTime;
+    [SerializeField]
+    float foodShakeAmount;
+
     [Header("Center Rotation Time")]
     [SerializeField]
     float rotationTime;
@@ -114,5 +120,14 @@ public class AnimationManager : MonoBehaviour {
         return goFadeInTime;
     }
 
+    public float FoodShakeTime()
+    {
+        return foodShakeTime;
+    }
+
+    public float FoodShakeAmount()
+    {
+        return foodShakeAmount;
+    }
     #endregion
 }

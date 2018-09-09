@@ -67,6 +67,14 @@ public class FoodAnimation : MonoBehaviour {
         SetAlpha();
     }
 
+    public void shakeFood()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("x", animation.FoodShakeAmount());
+        ht.Add("time", animation.FoodShakeTime());
+        iTween.ShakePosition(gameObject, ht);
+    }
+
     #endregion
 
     #region Animation

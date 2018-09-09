@@ -58,6 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Foods:
   - {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e, type: 2}
+  - {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,11 +75,14 @@ MonoBehaviour:
   ascensionTime: 0.5
   ascensionAmount: 75
   ascentionFadeTime: 0.2
+  foodShakeTime: 0.25
+  foodShakeAmount: 50
   rotationTime: 0.5
   centerFadeOutTime: 0.2
   comboPopTime: 0.2
   scoreDelayTime: 0.2
   scorePopTime: 0.5
+  goFadeInTime: 1
 --- !u!114 &114320809374165192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 200
+  gameTime: 100
   foodPenaltyTime: 20
   gameTimePenaltyTime: 5
   foodSuccessPrizeTime: 10

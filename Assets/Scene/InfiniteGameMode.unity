@@ -4867,7 +4867,7 @@ Prefab:
     - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: gameTime
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
@@ -4885,6 +4885,16 @@ Prefab:
       value: 
       objectReference: {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a,
         type: 2}
+    - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: foodShakeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: foodShakeAmount
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0
