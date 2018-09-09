@@ -16,43 +16,43 @@ public class IngredientBun : Ingredient {
         m_BackBun.SetActive(true);
     }
 
-    protected override void SetupPosition()
+    protected override void setupPosition()
     {
-        base.SetupPosition();
-        m_BackBun.transform.position += new Vector3(0, base.m_PlaceDownDistance, 0);
+        base.setupPosition();
+        m_BackBun.transform.position += new Vector3(0, base.placeDownDistance, 0);
     }
 
-    public override void SetAlpha(float percent)
+    public override void setAlpha(float percent)
     {
-        base.SetAlpha(percent);
+        base.setAlpha(percent);
         m_BackBun.GetComponent<Image>().color = new Color(1,1,1,percent);
     }
 
-    public override void StartAnimation()
+    public override void startAnimation()
     {
         Hashtable ht = new Hashtable();
-        ht.Add("y", -base.m_PlaceDownDistance);
+        ht.Add("y", -base.placeDownDistance);
         ht.Add("easeType", "easeInOutExpo");
         ht.Add("time", base.animation.PlacementTime()+0.15);
-        ht.Add("oncomplete", "ResizeAnimation");
+        ht.Add("oncomplete", "resizeAnimation");
         iTween.MoveAdd(m_BackBun, ht);
-        base.StartAnimation();
+        base.startAnimation();
     }
 
-    protected override void ResizeAnimation(){
-        base.ResizeAnimation();
+    protected override void resizeAnimation(){
+        base.resizeAnimation();
         Hashtable ht = new Hashtable();
         ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
         ht.Add("time", animation.PlacementTime());
         ht.Add("easeType", "spring");
-        ht.Add("oncomplete", "WaitForPlaceDelegate");
+        ht.Add("oncomplete", "waitForPlaceDelegate");
         iTween.ScaleFrom(m_BackBun, ht);
 
     }
 
-    protected override void WaitForPlaceDelegate()
+    protected override void waitForPlaceDelegate()
     {
-        base.WaitForPlaceDelegate();
-        PlacementIngredientDelegate();
+        base.waitForPlaceDelegate();
+        placementIngredientDelegate();
     }
 }

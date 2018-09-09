@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cola
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 50
 --- !u!114 &114607396823454440
 MonoBehaviour:
   m_ObjectHideFlags: 1

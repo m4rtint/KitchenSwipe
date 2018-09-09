@@ -63,7 +63,7 @@ public class CenterIngredient : MonoBehaviour
         GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
         GetComponent<Image>().SetNativeSize();
         m_CenterIngredient = ingredient;
-        setCenterName(ingredient.Get_IngredientName());
+        setCenterName(ingredient.IngredientName());
     }
 
     void setCenterName(string text = "")

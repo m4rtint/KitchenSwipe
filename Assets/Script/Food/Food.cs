@@ -23,7 +23,7 @@ public class Food : MonoBehaviour {
     {
         foreach(Ingredient ingredient in m_Ingredients)
         {
-            ingredient.SetAlpha(0.7f);
+            ingredient.setAlpha(0.7f);
             ingredient.gameObject.SetActive(false);
         }
         m_Ingredients[0].gameObject.SetActive(true);
@@ -65,8 +65,8 @@ public class Food : MonoBehaviour {
 
 	#region UserAction
 	public void PlaceIngredient() {
-        GetNeededIngredient().SetAlpha(1);
-        GetNeededIngredient().StartAnimation();
+        GetNeededIngredient().setAlpha(1);
+        GetNeededIngredient().startAnimation();
         m_Level++;
     }
 

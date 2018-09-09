@@ -90,7 +90,7 @@ public class IngredientGenerator : MonoBehaviour {
         Food food = foodHolders[(int)dir].StoredFood();
         if (food != null)
         {
-            bool namesEqual = food.GetNeededIngredient().Get_IngredientName() == swiped.Get_IngredientName();
+            bool namesEqual = food.GetNeededIngredient().IngredientName() == swiped.IngredientName();
             return food.IsFoodInPlay() && namesEqual;
         }
         return false;

@@ -42,7 +42,7 @@ public class FoodAnimation : MonoBehaviour {
     {
         foreach(Ingredient ingredient in m_Ingredients)
         {
-            ingredient.PlacementIngredientDelegate += PlaceIngredientAnimComplete;
+            ingredient.placementIngredientDelegate += PlaceIngredientAnimComplete;
         }
     }
 
