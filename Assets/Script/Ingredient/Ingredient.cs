@@ -49,12 +49,6 @@ public class Ingredient:MonoBehaviour {
     {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
     }
-
-    public virtual void SetCrossFadeAlpha(float duration)
-    {
-        Color white = new Color(1, 1, 1, 0);
-        iTween.ColorTo(gameObject, white, duration);
-    }
     #endregion
 
     #region Animation

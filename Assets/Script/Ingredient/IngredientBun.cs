@@ -55,12 +55,4 @@ public class IngredientBun : Ingredient {
         base.WaitForPlaceDelegate();
         PlacementIngredientDelegate();
     }
-
-
-    public override void SetCrossFadeAlpha(float duration)
-    {
-        base.SetCrossFadeAlpha(duration);
-        Color white = new Color(1, 1, 1, 0);
-        iTween.ColorTo(m_BackBun.gameObject, white, duration);
-    }
 }
