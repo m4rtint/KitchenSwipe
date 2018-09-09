@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
 
     #region DelegateMethods
     void updateScore(){
-        scoreTextObject.GetComponent<Text>().text = m_ScoreManager.Score() + "\n"+ m_ScoreManager.Plates() + " Dishes";
+        scoreTextObject.GetComponent<Text>().text = m_ScoreManager.Score() + "\n"+ m_ScoreManager.Dishes() + " Dishes";
     }
 
     void updateCombo(){

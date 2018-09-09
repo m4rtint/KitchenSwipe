@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour {
 
     int maxCombo = 0;
     int combo = 0;
-    int plates = 0;
+    int dishes = 0;
 
     #region GetterSetter
     public void setScoreMultiplier(float var)
@@ -45,9 +45,9 @@ public class ScoreManager : MonoBehaviour {
         return score;
     }
 
-    public int Plates()
+    public int Dishes()
     {
-        return plates;
+        return dishes;
     }
 
     public int Combo()
@@ -121,7 +121,7 @@ public class ScoreManager : MonoBehaviour {
     #region Score
     public int incrementScore()
     {
-        plates++;
+        dishes++;
         incrementCombo();
         int incrementingScore = (int)(baseScore * scoreMultiplier);        
         reachingNumber += incrementingScore;
@@ -151,7 +151,7 @@ public class ScoreManager : MonoBehaviour {
     void saveHighScresToPlayerPrefs()
     {
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, plates);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, maxCombo);
         int time = TimeManager.instance.SecondsLasted();
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, time);
