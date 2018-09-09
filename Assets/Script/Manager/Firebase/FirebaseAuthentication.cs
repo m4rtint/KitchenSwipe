@@ -47,7 +47,6 @@ public class FirebaseAuthentication : MonoBehaviour {
             bool signedIn = auth.CurrentUser != null;
             if (!signedIn && user != null)
             {
-                Debug.Log("Signed out " + user.UserId);
 				signOutDelegate ();
             }
             user = auth.CurrentUser;

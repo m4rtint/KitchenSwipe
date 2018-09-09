@@ -28,7 +28,6 @@ public class LeaderboardManager : MonoBehaviour {
     private void Awake()
     {
         setLeaderboardScreen(true);
-        FirebaseDB.instance.loadedLeaderboardDelegate += loadedLeaderboardStats;
         getRowHeight();
         clearLeaderboard();
     }
@@ -40,10 +39,17 @@ public class LeaderboardManager : MonoBehaviour {
 
     private void OnEnable()
     {
+        FirebaseDB.instance.loadedLeaderboardDelegate += loadedLeaderboardStats;
+
         clearLeaderboard();
         setLeaderboardScreen(true);
         FirebaseDB.instance.LoadHighScore();
         animateLoading();
+    }
+
+    private void OnDisable()
+    {
+        FirebaseDB.instance.loadedLeaderboardDelegate -= loadedLeaderboardStats;
     }
 
     void setLeaderboardScreen(bool isLoading)
