@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransitionManager : MonoBehaviour {
+public class TransitionManager : MonoBehaviour
+{
     [SerializeField]
     GameObject countDownObject;
 
@@ -27,28 +28,28 @@ public class TransitionManager : MonoBehaviour {
     }
 
 
-    public void startInfiniteGameScene() {
-        onSceneChangeToGame();
-	}
+    public void startInfiniteGameScene()
+    {
+        onSceneChange("changeSceneToGame");
+    }
 
 
     public void startMainMenuScene()
     {
-        SceneManager.LoadScene(0);
-        StateManager.instance.setToMenu();
+        onSceneChange("changeSceneToMenu");
     }
 
-    
+
     #endregion
 
 
-    #region AnimateToPrepareGame
-    void onSceneChangeToGame()
+    #region AnimateToScene
+    void onSceneChange(string methodName)
     {
         Hashtable ht = new Hashtable();
         ht.Add("scale", expanded);
         ht.Add("time", 2);
-        ht.Add("oncomplete", "changeSceneToGame");
+        ht.Add("oncomplete", methodName);
         iTween.ScaleTo(gameObject, ht);
     }
 
@@ -56,6 +57,12 @@ public class TransitionManager : MonoBehaviour {
     {
         StateManager.instance.prepareGame();
         SceneManager.LoadScene("InfiniteGameMode");
+    }
+
+    void changeSceneToMenu()
+    {
+        StateManager.instance.setToMenu();
+        SceneManager.LoadScene(0);
     }
     #endregion
 
@@ -74,5 +81,9 @@ public class TransitionManager : MonoBehaviour {
     {
         countDownObject.GetComponent<CountDownGame>().startCountDownAnimate();
     }
+    #endregion
+
+    #region AnimateBacktoMainMenu
+
     #endregion
 }
