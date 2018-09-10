@@ -4,6 +4,7 @@ using UnityEngine;
 public enum GameState
 {
     Menu,
+    PrepareGame,
     Game,
     Pause,
     GameOver
@@ -34,6 +35,10 @@ public class StateManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 	}
 	
+    public void prepareGame()
+    {
+        currentState = GameState.PrepareGame;
+    }
 
 	public void startGame() {
 		currentState = GameState.Game;
@@ -62,4 +67,9 @@ public class StateManager : MonoBehaviour {
 	public bool isPaused(){
 		return currentState == GameState.Pause;
 	}
+
+    public bool isPreparingGame()
+    {
+        return currentState == GameState.PrepareGame;
+    }
 }

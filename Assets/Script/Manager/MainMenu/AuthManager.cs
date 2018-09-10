@@ -26,6 +26,10 @@ public class AuthManager : MonoBehaviour {
     GameObject registerDisplayNameFieldObj;
     InputField registerDisplayName;
 
+    [Header("Loading")]
+    [SerializeField]
+    GameObject loadingObject;
+
     [Header("Error")]
     [SerializeField]
     GameObject errorObj;
@@ -104,4 +108,20 @@ public class AuthManager : MonoBehaviour {
 
     #endregion
 
+    #region helper
+    void animateLoading()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("z", 1);
+        ht.Add("easeType", "easeInOutBack");
+        ht.Add("looptype", "loop");
+        iTween.RotateBy(loadingObject, ht);
+    }
+
+    void startLoading()
+    {
+        loadingObject.SetActive(true);
+        animateLoading();
+    }
+    #endregion
 }

@@ -50,9 +50,6 @@ public class GameEngine : MonoBehaviour {
 
 	protected virtual void Start()
 	{
-        //Set State
-        StateManager.instance.startGame();
-
         //Get Stack of Food
 		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 

@@ -4,23 +4,75 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour {
+    [SerializeField]
+    GameObject countDownObject;
 
     public static TransitionManager instance = null;
+    readonly Vector3 expanded = new Vector3(100, 100, 0);
 
+    #region mono
     private void Awake()
     {
         instance = this;
+        transform.localScale = Vector3.zero;
+        onSceneLoaded();
+    }
+
+    void onSceneLoaded()
+    {
+        if (StateManager.instance.isPreparingGame())
+        {
+            onGameSceneStart();
+        }
     }
 
 
     public void startInfiniteGameScene() {
-		SceneManager.LoadScene ("InfiniteGameMode");
-        StateManager.instance.startGame ();
+        onSceneChangeToGame();
 	}
+
 
     public void startMainMenuScene()
     {
         SceneManager.LoadScene(0);
         StateManager.instance.setToMenu();
     }
+
+    
+    #endregion
+
+
+    #region AnimateToPrepareGame
+    void onSceneChangeToGame()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", expanded);
+        ht.Add("time", 2);
+        ht.Add("oncomplete", "changeSceneToGame");
+        iTween.ScaleTo(gameObject, ht);
+    }
+
+    void changeSceneToGame()
+    {
+        StateManager.instance.prepareGame();
+        SceneManager.LoadScene("InfiniteGameMode");
+    }
+    #endregion
+
+    #region AnimateStartGame
+    void onGameSceneStart()
+    {
+        transform.localScale = expanded;
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", Vector3.zero);
+        ht.Add("time", 1.0f);
+        ht.Add("oncomplete", "startCountDownAnimation");
+        iTween.ScaleTo(gameObject, ht);
+    }
+
+    void startCountDownAnimation()
+    {
+        countDownObject.GetComponent<CountDownGame>().startCountDownAnimate();
+    }
+    #endregion
 }
