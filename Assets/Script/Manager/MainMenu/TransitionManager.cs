@@ -82,8 +82,5 @@ public class TransitionManager : MonoBehaviour
         countDownObject.GetComponent<CountDownGame>().startCountDownAnimate();
     }
     #endregion
-
-    #region AnimateBacktoMainMenu
-
-    #endregion
+   
 }
