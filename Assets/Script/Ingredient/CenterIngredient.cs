@@ -119,10 +119,11 @@ public class CenterIngredient : MonoBehaviour
     void FadeOutCenter()
     {
         Hashtable ht = new Hashtable();
-        ht.Add("a", 0);
+        ht.Add("alpha", 0);
         ht.Add("time", animation.SauceFadeOutTime());
         ht.Add("oncomplete", "MoveCenterDelegate");
-        iTween.ColorTo(gameObject, ht);
+        ht.Add("includechildren", false);
+        iTween.FadeTo(gameObject, ht);
     }
 
     void MoveCenterToIngredient(Vector3 position)
@@ -133,7 +134,6 @@ public class CenterIngredient : MonoBehaviour
         ht.Add("easeType", "easeOutCubic");
         ht.Add("time", animation.CenterMoveTime());
         ht.Add("oncomplete", "MoveCenterDelegate");
-        //ht.Add("looptype", "loop");
         iTween.MoveBy(gameObject, ht);
     }
 
