@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114297933326874160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Tomato
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114499683967880162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,8 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bun_Bottom
+  m_IngredientName: Bottom Bun
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114707135943579238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114788017987324834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,7 +283,7 @@ MonoBehaviour:
   - {fileID: 114258536307752556}
   - {fileID: 114386477880109676}
   - {fileID: 114869467673699480}
-  m_SecondsToComplete: 40
+  m_SecondsToComplete: 20
 --- !u!114 &114869467673699480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,8 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bun_Top
+  m_IngredientName: Top Bun
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114880172311959184
 MonoBehaviour:
   m_ObjectHideFlags: 1

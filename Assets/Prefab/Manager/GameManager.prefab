@@ -59,6 +59,11 @@ MonoBehaviour:
   m_Foods:
   - {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e, type: 2}
   - {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a, type: 2}
+  - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
+  - {fileID: 114018333196988096, guid: 23a50759ba584754abfffb941aa19b46, type: 2}
+  - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
+  - {fileID: 114355782380500388, guid: c02d091373c7b4433a7e85fd9590beba, type: 2}
+  - {fileID: 114295246241670238, guid: c2c6873edb92f4fcfa7fee97dfbbe525, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 100
+  gameTime: 60
   foodPenaltyTime: 20
   gameTimePenaltyTime: 5
   foodSuccessPrizeTime: 10

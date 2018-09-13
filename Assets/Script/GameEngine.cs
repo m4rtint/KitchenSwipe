@@ -137,7 +137,6 @@ public class GameEngine : MonoBehaviour {
         StateManager.instance.gameOver();
         ScoreManager.instance.saveScore();
         GetComponent<UIManager>().startGameOverScreen();
-
     }
     #endregion
 }

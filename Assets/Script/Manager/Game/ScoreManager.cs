@@ -55,6 +55,11 @@ public class ScoreManager : MonoBehaviour {
         return combo;
     }
 
+    public int MaxCombo()
+    {
+        return maxCombo;
+    }
+
     public void resetCombo()
     {
         saveHighestComboIfNeeded();
@@ -143,8 +148,9 @@ public class ScoreManager : MonoBehaviour {
     }
 
     void saveHighestComboIfNeeded(){
-        if (Combo() > maxCombo) {
+        if (Combo() > MaxCombo()) {
             maxCombo = combo;
+            Debug.Log("Max Combo :" + maxCombo);
         }
     }
 

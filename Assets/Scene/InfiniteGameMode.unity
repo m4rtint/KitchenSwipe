@@ -4514,7 +4514,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: f3fb852ddd9f92e448b9fd7e32c7dfe8, type: 3}
-    m_FontSize: 50
+    m_FontSize: 63
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4553,7 +4553,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -20, y: -27.7}
-  m_SizeDelta: {x: 342, y: 125.4}
+  m_SizeDelta: {x: 390, y: 167.4}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &1574990374
 GameObject:
@@ -4897,6 +4897,10 @@ Prefab:
       propertyPath: countDownObject
       value: 
       objectReference: {fileID: 1574990374}
+    - target: {fileID: 1461966410353090, guid: 5a831c4ffc0927a43a0f229ac3cde2a3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a831c4ffc0927a43a0f229ac3cde2a3, type: 2}
   m_IsPrefabAsset: 0
@@ -5253,7 +5257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 674578485}
         m_MethodName: startInfiniteGameScene
         m_Mode: 1
         m_Arguments:
@@ -5499,6 +5503,11 @@ Prefab:
     - target: {fileID: 4472988226200808, guid: 2a1f88de478f7d143a40587a36979593, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847954021941942, guid: 2a1f88de478f7d143a40587a36979593,
+        type: 2}
+      propertyPath: currentState
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a1f88de478f7d143a40587a36979593, type: 2}
@@ -6134,11 +6143,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 942.55035
@@ -6211,22 +6215,6 @@ Prefab:
       propertyPath: comboTextObject
       value: 
       objectReference: {fileID: 210320935}
-    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: m_Foods.Array.data[2]
-      value: 
-      objectReference: {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1,
-        type: 2}
-    - target: {fileID: 114900218454613518, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: baseScore
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: gameTime
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0

@@ -59,33 +59,38 @@ public class GameOverUIManager : MonoBehaviour {
 
     void setupScore()
     {
-        setTextMesh(hs_Score, scoreManager.HighScore());
+        setTextMesh(hs_Score, scoreManager.HighScore(), true);
         setTextMesh(score, scoreManager.Score());
     }
 
     void setupDishes()
     {
-        setTextMesh(hs_Dishes, scoreManager.HighScoreDishes());
+        setTextMesh(hs_Dishes, scoreManager.HighScoreDishes(), true);
         setTextMesh(dishes, scoreManager.Dishes());
     }
 
     void setupCombo()
     {
-        setTextMesh(hs_Combo, scoreManager.HighScoreCombo());
-        setTextMesh(dishes, scoreManager.Combo());
+        setTextMesh(hs_Combo, scoreManager.HighScoreCombo(), true);
+        setTextMesh(combo, scoreManager.MaxCombo());
     }
 
     void setupTimeLasted()
     {
-        setTextMesh(hs_TimeLasted, scoreManager.HighScoreSecondsLasted());
+        setTextMesh(hs_TimeLasted, scoreManager.HighScoreSecondsLasted(), true);
         setTextMesh(timeLasted, TimeManager.instance.SecondsLasted());
     }
     #endregion
 
     #region helper
-    void setTextMesh(GameObject go, int points)
+    void setTextMesh(GameObject go, int points, bool isHighScore = false)
     {
-        go.GetComponent<TextMeshProUGUI>().text = points.ToString();
+        string text = points.ToString();
+        if (isHighScore) {
+            text = "HS: " + text;
+        }
+
+        go.GetComponent<TextMeshProUGUI>().text = text;
     }
     #endregion
 }

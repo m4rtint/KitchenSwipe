@@ -39,7 +39,6 @@ public class TransitionManager : MonoBehaviour
         onSceneChange("changeSceneToMenu");
     }
 
-
     #endregion
 
 
@@ -79,6 +78,7 @@ public class TransitionManager : MonoBehaviour
 
     void startCountDownAnimation()
     {
+        countDownObject.SetActive(true);
         countDownObject.GetComponent<CountDownGame>().startCountDownAnimate();
     }
     #endregion
