@@ -75,7 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 0.2
   placementTime: 0.25
   ascensionTime: 0.5
   ascensionAmount: 75
@@ -83,6 +82,7 @@ MonoBehaviour:
   foodShakeTime: 0.25
   foodShakeAmount: 50
   rotationTime: 0.5
+  moveTime: 0.1
   centerFadeOutTime: 0.2
   comboPopTime: 0.2
   scoreDelayTime: 0.2

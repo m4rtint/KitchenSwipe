@@ -23,7 +23,8 @@ public class Food : MonoBehaviour {
     {
         foreach(Ingredient ingredient in m_Ingredients)
         {
-            ingredient.setAlpha(0.7f);
+            float alpha = AnimationManager.instance.NeededIngredientAlpha();
+            ingredient.setAlpha(alpha);
             ingredient.gameObject.SetActive(false);
         }
         m_Ingredients[0].gameObject.SetActive(true);

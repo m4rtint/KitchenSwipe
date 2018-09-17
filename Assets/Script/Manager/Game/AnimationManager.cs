@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour {
-
-    [Header("Center Movement")]
-    [SerializeField]
-    float moveTime;
-
     [Header("Ingredient Placement")]
     [SerializeField]
     float placementTime;
+    [SerializeField]
+    float neededIngredientAlpha;
 
     [Header("Complete Food Ascension")]
     [SerializeField]
@@ -26,9 +23,11 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float foodShakeAmount;
 
-    [Header("Center Rotation Time")]
+    [Header("Center")]
     [SerializeField]
     float rotationTime;
+    [SerializeField]
+    float moveTime;
 
     [Header("Sauce Fadeout Time")]
     [SerializeField]
@@ -128,6 +127,11 @@ public class AnimationManager : MonoBehaviour {
     public float FoodShakeAmount()
     {
         return foodShakeAmount;
+    }
+
+    public float NeededIngredientAlpha()
+    {
+        return neededIngredientAlpha;
     }
     #endregion
 }
