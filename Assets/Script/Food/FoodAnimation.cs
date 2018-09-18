@@ -18,9 +18,9 @@ public class FoodAnimation : MonoBehaviour {
     readonly Vector3 m_RiseUp = new Vector3(0, 100, 0);
 
     Ingredient[] m_Ingredients;
-    Food m_Food;
+    Food food;
     AnimationManager animation;
-    Vector3 m_EndPosition;
+    Vector3 endPosition;
     RectTransform m_RectTrans;
 
     #region mono
@@ -28,14 +28,14 @@ public class FoodAnimation : MonoBehaviour {
     {
         animation = AnimationManager.instance;
         m_RectTrans = GetComponent<RectTransform>();
-        m_Food = GetComponent<Food>();
-        m_Ingredients = m_Food.Ingredients();
+        food = GetComponent<Food>();
+        m_Ingredients = food.Ingredients();
         SetupDelegate();
     }
 
     void Start()
     {
-        m_EndPosition = m_RectTrans.transform.localPosition + m_RiseUp;
+        endPosition = m_RectTrans.transform.localPosition + m_RiseUp;
     }
 
     void SetupDelegate()
@@ -49,7 +49,7 @@ public class FoodAnimation : MonoBehaviour {
     void PlaceIngredientAnimComplete()
     {
         CompleteIngredientPlacementAnimationDelegate();
-        m_Food.activeTopIngredientIfNeeded();
+        food.activeTopIngredientIfNeeded();
     }
 
     void CompletedMovingUp()
@@ -75,11 +75,6 @@ public class FoodAnimation : MonoBehaviour {
         iTween.ShakePosition(gameObject, ht);
     }
 
-    public void quicklyChangeFoodColor(Color c) 
-    {
-        iTween.ColorFrom(gameObject, c, animation.FoodShakeTime());
-    }
-
     #endregion
 
     #region Animation
@@ -91,6 +86,11 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("easeType", "easeOutCubic");
         ht.Add("oncomplete", "CompletedMovingUp");
         iTween.MoveAdd(gameObject, ht);
+    }
+
+    public void quicklyChangeFoodColor(Color c)
+    {
+        iTween.ColorFrom(gameObject, c, animation.FoodShakeTime());
     }
 
     void SetAlpha()

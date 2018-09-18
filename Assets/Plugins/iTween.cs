@@ -734,9 +734,11 @@ public class iTween : MonoBehaviour
         {
             foreach (Transform child in target.transform)
             {
-                Hashtable argsCopy = (Hashtable)args.Clone();
-                argsCopy["ischild"] = true;
-                ColorFrom(child.gameObject, argsCopy);
+                if (child.gameObject.activeSelf) { 
+                    Hashtable argsCopy = (Hashtable)args.Clone();
+                    argsCopy["ischild"] = true;
+                    ColorFrom(child.gameObject, argsCopy);
+                }
             }
         }
 
