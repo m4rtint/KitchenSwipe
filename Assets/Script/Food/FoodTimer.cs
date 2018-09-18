@@ -6,10 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(FoodHolder))]
 public class FoodTimer : MonoBehaviour {
 
-    Color hundredPercent;
-    Color fourtyPercent;
-    Color twentyPercent;
-
     //Dependencies
     FoodHolder foodHolder;
 
@@ -22,15 +18,19 @@ public class FoodTimer : MonoBehaviour {
     float redSecondsToComplete;
     readonly float speedUp = 10;
 
+    [Header("Color Bars")]
+    [SerializeField]
+    Sprite greenBar;
+    [SerializeField]
+    Sprite yellowBar;
+    [SerializeField]
+    Sprite redBar;
 
 
     #region mono
     private void Awake()
     {
         foodHolder = GetComponent<FoodHolder>();
-        hundredPercent = convertColor(109, 255, 0);
-        fourtyPercent = convertColor(250, 138, 2);
-        twentyPercent = convertColor(255, 3, 0);
     }
 
     private void Start()
@@ -50,7 +50,7 @@ public class FoodTimer : MonoBehaviour {
     }
     #endregion
 
-    #region gettersetter
+
     float FoodTime()
     {
         Food food = foodHolder.StoredFood();
@@ -89,8 +89,7 @@ public class FoodTimer : MonoBehaviour {
         }
         return ratio;
     }
-
-    #endregion
+    
 
     #region view
     public void updateTimer(float seconds)
@@ -106,8 +105,8 @@ public class FoodTimer : MonoBehaviour {
 
     void updateTimerUI()
     {
-        greenTimerObject.GetComponent<RectTransform>().localScale = new Vector3(calculateRatio(greenSecondsToComplete), 1, 1);
-        redTimerObject.GetComponent<RectTransform>().localScale = new Vector3(calculateRatio(redSecondsToComplete), 1, 1);
+        transformObjectXScale(greenTimerObject, calculateRatio(greenSecondsToComplete));
+        transformObjectXScale(redTimerObject, calculateRatio(redSecondsToComplete));
     }
 
     void updateTimerColor()
@@ -115,13 +114,13 @@ public class FoodTimer : MonoBehaviour {
         float ratio = calculateRatio(greenSecondsToComplete);
         if (ratio > 0.4)
         {
-            greenTimerObject.GetComponent<Image>().color = hundredPercent;
+            barImage(greenBar);
         } else if(ratio > 0.2)
         {
-            greenTimerObject.GetComponent<Image>().color = fourtyPercent;
+            barImage(yellowBar);
         } else
         {
-            greenTimerObject.GetComponent<Image>().color = twentyPercent;
+            barImage(redBar);
         }
     }
 
@@ -136,14 +135,15 @@ public class FoodTimer : MonoBehaviour {
     }
     #endregion
 
-    #region tools
-    Color convertColor(float r, float g, float b)
+    #region Tools
+    void barImage(Sprite sprite)
     {
-        float red = r / 255;
-        float green = g / 255;
-        float blue = b / 255;
-        return new Color(red, green, blue);
-    } 
-    #endregion
+        greenTimerObject.GetComponent<Image>().sprite = sprite;
+    }
 
+    void transformObjectXScale(GameObject obj, float ratio)
+    {
+        obj.GetComponent<RectTransform>().localScale = new Vector3(ratio, 1, 1);
+    }
+    #endregion
 }
