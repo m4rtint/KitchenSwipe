@@ -6,7 +6,7 @@ using TMPro;
 
 public class LeaderboardManager : MonoBehaviour {
     [SerializeField]
-    GameObject title;
+    GameObject userRow;
 
     [Header("Leaderboard")]
     [SerializeField]
@@ -108,11 +108,17 @@ public class LeaderboardManager : MonoBehaviour {
            {
                return y.Score.CompareTo(x.Score);
            });
+
+        int placing = 1;
+        string score = "0";
         for (int i = 0; i < rows.Length; i++)
         {
+            placing = i + 1;
+            Record record = records[i];
+            score = record.Score.ToString();
             rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Score.ToString());
+            setUserScoreIfNeeded(records[i], placing, score);
         }
-        setLeaderboardTitle("POINTS");
     }
 
     public void sortAndSetByPlates()
@@ -122,11 +128,17 @@ public class LeaderboardManager : MonoBehaviour {
            {
                return y.Dishes.CompareTo(x.Dishes);
            });
+
+        int placing = 1;
+        string score = "0";
         for (int i = 0; i < rows.Length; i++)
         {
+            placing = i + 1;
+            Record record = records[i];
+            score = record.Dishes.ToString();
             rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Dishes.ToString());
+            setUserScoreIfNeeded(records[i], placing, score);
         }
-        setLeaderboardTitle("PLATES");
     }
 
     public void sortAndSetByCombo()
@@ -136,11 +148,17 @@ public class LeaderboardManager : MonoBehaviour {
            {
                return y.Combo.CompareTo(x.Combo);
            });
+
+        int placing = 1;
+        string score = "0";
         for (int i = 0; i < rows.Length; i++)
         {
+            placing = i + 1;
+            Record record = records[i];
+            score = record.Combo.ToString();
             rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Combo.ToString());
+            setUserScoreIfNeeded(records[i], placing, score);
         }
-        setLeaderboardTitle("COMBO");
     }
 
     public void sortAndSetBySecondsLasted()
@@ -150,11 +168,25 @@ public class LeaderboardManager : MonoBehaviour {
            {
                return y.TimeLasted.CompareTo(x.TimeLasted);
            });
+
+        int placing = 1;
+        string score = "0";
         for (int i = 0; i < rows.Length; i++)
         {
-            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].TimeLasted.ToString());
+            placing = i + 1;
+            Record record = records[i];
+            score = record.TimeLasted.ToString();
+            rows[i].GetComponent<LeaderboardRow>().setRowText(placing, record.Name, score);
+            setUserScoreIfNeeded(records[i], placing, score);
         }
-        setLeaderboardTitle("SECOND LASTED");
+    }
+
+    void setUserScoreIfNeeded(Record record, int index, string score)
+    {
+        if (record.key == FirebaseAuthentication.instance.userID())
+        {
+            setUserHighScores(index, score);
+        }
     }
     #endregion
 
@@ -168,9 +200,9 @@ public class LeaderboardManager : MonoBehaviour {
         iTween.RotateBy(loading, ht);
     }
 
-    void setLeaderboardTitle(string type)
+    void setUserHighScores(int number, string type)
     {
-        title.GetComponent<TextMeshProUGUI>().text = type;
+        userRow.GetComponent<LeaderboardRow>().setRowText(number, FirebaseAuthentication.instance.displayName(), type);
     }
     #endregion
 

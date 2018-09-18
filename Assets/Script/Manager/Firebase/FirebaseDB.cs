@@ -111,12 +111,13 @@ public class FirebaseDB : MonoBehaviour
 
         foreach (DataSnapshot obj in snap.Children)
         {
+            string _key = obj.Key;
             string _name = parseSnapshotString(obj, "Name");
             int _score = parseSnapshotInteger(obj, "Score");
             int _plates = parseSnapshotInteger(obj, "Plates");
             int _combo = parseSnapshotInteger(obj, "Combo");
             int _TimeLasted = parseSnapshotInteger(obj, "TimeLasted");
-            listOfRecords.Add(new Record(_name, _score, _plates, _combo, _TimeLasted));
+            listOfRecords.Add(new Record(_key, _name, _score, _plates, _combo, _TimeLasted));
         }
 
         Record[] records = new Record[listOfRecords.Count];

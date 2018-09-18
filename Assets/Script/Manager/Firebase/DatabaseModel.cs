@@ -16,6 +16,7 @@ public class User
 
 public class Record
 {
+    public string key;
     public string Name;
     public int Score;
     public int Dishes;
@@ -24,6 +25,16 @@ public class Record
 
     public Record(string name, int score, int dishes, int combo, int timeLasted)
     {
+        this.Name = name;
+        this.Score = score;
+        this.Dishes = dishes;
+        this.Combo = combo;
+        this.TimeLasted = timeLasted;
+    }
+
+    public Record(string key, string name, int score, int dishes, int combo, int timeLasted)
+    {
+        this.key = key;
         this.Name = name;
         this.Score = score;
         this.Dishes = dishes;
