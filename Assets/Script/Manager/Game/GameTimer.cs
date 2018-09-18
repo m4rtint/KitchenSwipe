@@ -50,12 +50,6 @@ public class GameTimer : MonoBehaviour {
         timeManager.updateTimerUIDelegate += updateText;
         timeManager.updateTimerUIDelegate += updateRing;
     }
-
-    void Update()
-    {
-        updateText();
-        updateRing();
-    }
     #endregion
 
     #region UI

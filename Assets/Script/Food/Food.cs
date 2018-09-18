@@ -10,16 +10,18 @@ public class Food : MonoBehaviour {
 	[SerializeField]
 	float m_SecondsToComplete;
 
-	int m_Level;
+	int level;
+    FoodAnimation animation;
 
 	#region Mono
 	void Awake(){
-		SetupIngredientLevel ();
-        SetupIngredientColor();
+		setupIngredientLevel ();
+        setupIngredientColor();
+        animation = GetComponent<FoodAnimation>();
 	}
 
 
-    void SetupIngredientColor()
+    void setupIngredientColor()
     {
         foreach(Ingredient ingredient in m_Ingredients)
         {
@@ -32,34 +34,38 @@ public class Food : MonoBehaviour {
     #endregion
 
     #region Getter/Setter
-    public int MaxIngredientLevel()
-    {
-        return GetIngredients().Length - 1;
+    public FoodAnimation Animation() {
+        return animation;
     }
 
-    public Ingredient[] GetIngredients() {
+    public int maxIngredientLevel()
+    {
+        return Ingredients().Length - 1;
+    }
+
+    public Ingredient[] Ingredients() {
 		return m_Ingredients;
 	}
 
 	public Ingredient GetNeededIngredient() {
-        if (!IsFoodInPlay()){ Debug.Log("Error - Tried to access index out of bounds Ingredient");}
+        if (!isFoodInPlay()){ Debug.Log("Error - Tried to access index out of bounds Ingredient");}
 
-		m_Level = Mathf.Min (MaxIngredientLevel(), m_Level);
-		return m_Ingredients [m_Level];
+        level = Mathf.Min (maxIngredientLevel(), level);
+		return m_Ingredients [level];
 	}
 
-    public bool IsFoodInPlay()
+    public bool isFoodInPlay()
     {
-        return m_Level <= MaxIngredientLevel();
+        return level <= maxIngredientLevel();
     }
 
-	void SetupIngredientLevel() {
-		m_Level = 0;
+    void setupIngredientLevel() {
+		level = 0;
         m_SecondsToComplete += Random.Range(3, 10);
 	}
     
 	//For Order timing on top
-	public float GetSecondsToComplete() {
+	public float SecondsToComplete() {
         return m_SecondsToComplete;
 	}
 	#endregion
@@ -68,11 +74,11 @@ public class Food : MonoBehaviour {
 	public void PlaceIngredient() {
         GetNeededIngredient().setAlpha(1);
         GetNeededIngredient().startAnimation();
-        m_Level++;
+        level++;
     }
 
     public void activeTopIngredientIfNeeded(){
-        if (IsFoodInPlay())
+        if (isFoodInPlay())
         {
             GetNeededIngredient().gameObject.SetActive(true);
         }
