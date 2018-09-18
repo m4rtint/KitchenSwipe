@@ -6227,11 +6227,6 @@ Prefab:
       propertyPath: comboTextObject
       value: 
       objectReference: {fileID: 210320935}
-    - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: neededIngredientAlpha
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0

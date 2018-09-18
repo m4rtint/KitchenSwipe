@@ -7,7 +7,7 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float placementTime;
     [SerializeField]
-    float neededIngredientAlpha;
+    float ingredientAlpha;
 
     [Header("Complete Food Ascension")]
     [SerializeField]
@@ -131,7 +131,7 @@ public class AnimationManager : MonoBehaviour {
 
     public float NeededIngredientAlpha()
     {
-        return neededIngredientAlpha;
+        return ingredientAlpha;
     }
     #endregion
 }

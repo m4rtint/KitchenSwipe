@@ -76,12 +76,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementTime: 0.25
+  neededIngredientAlpha: 0.5
   ascensionTime: 0.5
   ascensionAmount: 75
   ascentionFadeTime: 0.2
   foodShakeTime: 0.25
   foodShakeAmount: 50
-  rotationTime: 0.5
+  rotationTime: 0.1
   moveTime: 0.1
   centerFadeOutTime: 0.2
   comboPopTime: 0.2
