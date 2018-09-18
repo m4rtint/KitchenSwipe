@@ -42,9 +42,10 @@ public class FoodTimer : MonoBehaviour {
     #region InitFoodTimer
     public void resetFoodTimerIfNeeded()
     {
-        if (foodHolder.StoredFood() != null)
+        Food storedFood = foodHolder.StoredFood();
+        if (storedFood != null)
         {
-            greenSecondsToComplete = foodHolder.StoredFood().GetSecondsToComplete();
+            greenSecondsToComplete = storedFood.SecondsToComplete();
             redSecondsToComplete = greenSecondsToComplete;
         }
     }
@@ -59,7 +60,7 @@ public class FoodTimer : MonoBehaviour {
             return -1;
         } else
         {
-            return food.GetSecondsToComplete();
+            return food.SecondsToComplete();
         }
     }
 
@@ -131,6 +132,15 @@ public class FoodTimer : MonoBehaviour {
             ScoreManager.instance.decrementScore();
             TimeManager.instance.penaltyGameTime();
             resetFoodTimerIfNeeded();
+            shakeFoodIfNeeded();
+        }
+    }
+
+    void shakeFoodIfNeeded() {
+        FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
+        if (foodHolder.StoredFood() != null) {
+            foodAnim.shakeFood();
+            foodAnim.quicklyChangeFoodColor(Color.red);
         }
     }
     #endregion

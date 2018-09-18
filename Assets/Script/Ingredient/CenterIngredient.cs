@@ -48,7 +48,7 @@ public class CenterIngredient : MonoBehaviour
         Food food = holder.StoredFood();
         if (food != null)
         {
-            if (food.IsFoodInPlay()){
+            if (food.isFoodInPlay()){
                 Ingredient ingredient = holder.StoredFood().GetNeededIngredient();
                 return ingredient.GetComponent<RectTransform>().position - m_StartPosition;
             }

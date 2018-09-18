@@ -29,7 +29,7 @@ public class FoodAnimation : MonoBehaviour {
         animation = AnimationManager.instance;
         m_RectTrans = GetComponent<RectTransform>();
         m_Food = GetComponent<Food>();
-        m_Ingredients = m_Food.GetIngredients();
+        m_Ingredients = m_Food.Ingredients();
         SetupDelegate();
     }
 
@@ -73,6 +73,11 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("x", animation.FoodShakeAmount());
         ht.Add("time", animation.FoodShakeTime());
         iTween.ShakePosition(gameObject, ht);
+    }
+
+    public void quicklyChangeFoodColor(Color c) 
+    {
+        iTween.ColorFrom(gameObject, c, animation.FoodShakeTime());
     }
 
     #endregion

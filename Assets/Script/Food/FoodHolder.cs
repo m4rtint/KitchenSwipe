@@ -44,7 +44,7 @@ public class FoodHolder : MonoBehaviour
 
     public void incorrectlySwiped()
     {
-        storedFood.GetComponent<FoodAnimation>().shakeFood();
+        storedFood.Animation().shakeFood();
         orderTimerDelegate(this.direction);
         ScoreManager.instance.resetCombo();
     }
@@ -52,8 +52,8 @@ public class FoodHolder : MonoBehaviour
 
     void removeFood(FoodAnimation food)
     {
-        food.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate -= removeFood;
-        food.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate -= completedFood;
+        food.CompleteFoodAnimationDelegate -= removeFood;
+        food.CompleteIngredientPlacementAnimationDelegate -= completedFood;
         orderDelegate(this.direction);
     }
 
@@ -62,10 +62,10 @@ public class FoodHolder : MonoBehaviour
     #region helper
     void completedFood()
     {
-        if (!storedFood.IsFoodInPlay())
+        if (!storedFood.isFoodInPlay())
         {
 
-            storedFood.GetComponent<FoodAnimation>().StartFinishFoodAnimation();
+            storedFood.Animation().StartFinishFoodAnimation();
             storedFood = null;
 
             //SCORE
@@ -81,8 +81,8 @@ public class FoodHolder : MonoBehaviour
     {
         if (storedFood != null)
         {
-            storedFood.GetComponent<FoodAnimation>().CompleteFoodAnimationDelegate += removeFood;
-            storedFood.GetComponent<FoodAnimation>().CompleteIngredientPlacementAnimationDelegate += completedFood;
+            storedFood.Animation().CompleteFoodAnimationDelegate += removeFood;
+            storedFood.Animation().CompleteIngredientPlacementAnimationDelegate += completedFood;
         }
     }
     #endregion
