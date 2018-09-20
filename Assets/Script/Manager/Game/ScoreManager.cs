@@ -140,10 +140,25 @@ public class ScoreManager : MonoBehaviour {
 
     public void saveScore()
     {
-        if (score > HighScore())
+        if (Score() > HighScore())
         {
-            saveHighScresToPlayerPrefs();
             uploadHighscore();
+        }
+
+        if (MaxCombo() > HighScoreCombo())
+        {
+            uploadCombo();
+        }
+
+        if (Dishes() > HighScoreDishes())
+        {
+            uploadDishes();
+        }
+
+        int time = TimeManager.instance.SecondsLasted();
+        if (time > HighScoreSecondsLasted())
+        {
+            uploadTime();
         }
     }
 
@@ -153,18 +168,29 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
-    void saveHighScresToPlayerPrefs()
-    {
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, maxCombo);
-        int time = TimeManager.instance.SecondsLasted();
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, time);
-    }
-
     void uploadHighscore()
     {
-        FirebaseDB.instance.insertScoreEntry(HighScore(), HighScoreDishes(), HighScoreCombo(), HighScoreSecondsLasted());
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
+        FirebaseDB.instance.insertScoreEntry(HighScore());
+    }
+
+    void uploadDishes()
+    {
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
+        FirebaseDB.instance.insertDishesEntry(HighScoreDishes());
+    }
+
+    void uploadTime()
+    {
+        int time = TimeManager.instance.SecondsLasted();
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, time);
+        FirebaseDB.instance.insertTimeEntry(HighScoreSecondsLasted());
+    }
+
+    void uploadCombo()
+    {
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, maxCombo);
+        FirebaseDB.instance.insertComboEntry(HighScoreCombo());
     }
     #endregion
 

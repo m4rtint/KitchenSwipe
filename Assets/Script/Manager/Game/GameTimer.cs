@@ -60,6 +60,11 @@ public class GameTimer : MonoBehaviour {
 
     void updateRing()
     {
+        if (timeManager.GameTime() > fullTime)
+        {
+            fullTime = timeManager.GameTime();
+        }
+
 		redRingImage.fillAmount = timeManager.RedTime () / fullTime;
         greenRingImage.fillAmount = timeManager.GameTime() / fullTime;
     }

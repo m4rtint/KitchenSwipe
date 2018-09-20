@@ -81,14 +81,25 @@ public class FirebaseDB : MonoBehaviour
                         });
     }
 
-    public void insertScoreEntry(int score, int plates, int combo, int timeLasted)
-    {
-        string uid = FirebaseAuthentication.instance.userID();
-        string displayName = FirebaseAuthentication.instance.displayName();
 
-        Record entry = new Record(displayName, score, plates, combo, timeLasted);
-        string json = JsonUtility.ToJson(entry);
-        reference.Child(LEADERBOARD).Child(uid).SetRawJsonValueAsync(json);
+    public void insertScoreEntry(int score)
+    {
+        LeaderboardRef().Child(SCORE).SetValueAsync(score);
+    }
+
+    public void insertDishesEntry(int dishes)
+    {
+        LeaderboardRef().Child(DISHES).SetValueAsync(dishes);
+    }
+
+    public void insertComboEntry(int combo)
+    {
+        LeaderboardRef().Child(COMBO).SetValueAsync(combo);
+    }
+
+    public void insertTimeEntry(int timeLasted)
+    {
+        LeaderboardRef().Child(TIMELASTED).SetValueAsync(timeLasted);
     }
 
     public void syncPlayerPrefs(string userId)
@@ -165,6 +176,15 @@ public class FirebaseDB : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    DatabaseReference LeaderboardRef()
+    {
+        string uid = FirebaseAuthentication.instance.userID();
+        string displayName = FirebaseAuthentication.instance.displayName();
+
+        reference.Child(LEADERBOARD).Child(uid).Child(NAME).SetValueAsync(displayName);
+        return reference.Child(LEADERBOARD).Child(uid);
     }
 
     #endregion
