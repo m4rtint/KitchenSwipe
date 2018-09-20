@@ -150,7 +150,6 @@ public class ScoreManager : MonoBehaviour {
     void saveHighestComboIfNeeded(){
         if (Combo() > MaxCombo()) {
             maxCombo = combo;
-            Debug.Log("Max Combo :" + maxCombo);
         }
     }
 

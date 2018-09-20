@@ -19,8 +19,15 @@ public class FirebaseDB : MonoBehaviour
 
     public static FirebaseDB instance = null;
     readonly string DB_URL = "https://kitchen-swipe.firebaseio.com/";
-    readonly string User = "Users";
-    readonly string Leaderboard = "Leaderboard";
+    readonly string USER = "Users";
+    readonly string LEADERBOARD = "Leaderboard";
+
+    //Properties
+    readonly string NAME = "Name";
+    readonly string SCORE = "Score";
+    readonly string DISHES = "Dishes";
+    readonly string COMBO = "Combo";
+    readonly string TIMELASTED = "TimeLasted";
 
     DatabaseReference reference;
 
@@ -52,7 +59,7 @@ public class FirebaseDB : MonoBehaviour
         User user = new User(profile["displayname"], profile["email"]);
         string json = JsonUtility.ToJson(user);
 
-        reference.Child(User).Child(userID).SetRawJsonValueAsync(json);
+        reference.Child(USER).Child(userID).SetRawJsonValueAsync(json);
     }
 
     public void LoadHighScore()
@@ -81,7 +88,7 @@ public class FirebaseDB : MonoBehaviour
 
         Record entry = new Record(displayName, score, plates, combo, timeLasted);
         string json = JsonUtility.ToJson(entry);
-        reference.Child(Leaderboard).Child(uid).SetRawJsonValueAsync(json);
+        reference.Child(LEADERBOARD).Child(uid).SetRawJsonValueAsync(json);
     }
 
     public void syncPlayerPrefs(string userId)
@@ -114,10 +121,10 @@ public class FirebaseDB : MonoBehaviour
             string _key = obj.Key;
             string _name = parseSnapshotString(obj, "Name");
             int _score = parseSnapshotInteger(obj, "Score");
-            int _plates = parseSnapshotInteger(obj, "Plates");
+            int _dishes = parseSnapshotInteger(obj, "Dishes");
             int _combo = parseSnapshotInteger(obj, "Combo");
             int _TimeLasted = parseSnapshotInteger(obj, "TimeLasted");
-            listOfRecords.Add(new Record(_key, _name, _score, _plates, _combo, _TimeLasted));
+            listOfRecords.Add(new Record(_key, _name, _score, _dishes, _combo, _TimeLasted));
         }
 
         Record[] records = new Record[listOfRecords.Count];
