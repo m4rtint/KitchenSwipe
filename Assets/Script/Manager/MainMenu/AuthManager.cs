@@ -80,6 +80,7 @@ public class AuthManager : MonoBehaviour {
         Dictionary<string, string> profile = new Dictionary<string, string>();
         profile["email"] = loginEmail.text;
         profile["password"] = loginPass.text;
+        loadingObject.SetActive(true);
         FirebaseAuthentication.instance.emailAuthentication(profile);
     }
 
@@ -89,6 +90,7 @@ public class AuthManager : MonoBehaviour {
         profile["email"] = registerEmail.text;
         profile["password"] = registerPass.text;
         profile["displayname"] = registerDisplayName.text;
+        loadingObject.SetActive(true);
         FirebaseAuthentication.instance.emailRegistration(profile);
     }
 
@@ -104,24 +106,8 @@ public class AuthManager : MonoBehaviour {
     {
         errorObj.GetComponent<ErrorManager>().setErrorText(description);
         errorObj.SetActive(true);
+        loadingObject.SetActive(false);
     }
 
-    #endregion
-
-    #region helper
-    void animateLoading()
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("z", 1);
-        ht.Add("easeType", "easeInOutBack");
-        ht.Add("looptype", "loop");
-        iTween.RotateBy(loadingObject, ht);
-    }
-
-    void startLoading()
-    {
-        loadingObject.SetActive(true);
-        animateLoading();
-    }
     #endregion
 }

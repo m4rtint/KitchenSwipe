@@ -44,7 +44,6 @@ public class LeaderboardManager : MonoBehaviour {
         clearLeaderboard();
         setLeaderboardScreen(true);
         FirebaseDB.instance.LoadHighScore();
-        animateLoading();
     }
 
     private void OnDisable()
@@ -191,15 +190,6 @@ public class LeaderboardManager : MonoBehaviour {
     #endregion
 
     #region helper
-    void animateLoading()
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("z", 1);
-        ht.Add("easeType", "easeInOutBack");
-        ht.Add("looptype", "loop");
-        iTween.RotateBy(loading, ht);
-    }
-
     void setUserHighScores(int number, string type)
     {
         userRow.GetComponent<LeaderboardRow>().setRowText(number, FirebaseAuthentication.instance.displayName(), type);

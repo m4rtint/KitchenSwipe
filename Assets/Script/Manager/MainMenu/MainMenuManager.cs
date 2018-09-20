@@ -10,10 +10,14 @@ public class MainMenuManager : MonoBehaviour
 	[SerializeField]
 	GameObject authenticationObject;
 
+    [SerializeField]
+    GameObject[] loadings;
+
     #region Mono
     private void Awake()
     {
         setupDelegate();
+        animateLoading();
     }
 
     void setupDelegate()
@@ -21,10 +25,22 @@ public class MainMenuManager : MonoBehaviour
 		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
         FirebaseDB.instance.errorDelegate += displayError;
     }
+
+    void animateLoading()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("z", 1);
+        ht.Add("easeType", "easeInOutBack");
+        ht.Add("looptype", "loop");
+        foreach (GameObject obj in loadings)
+        {
+            iTween.RotateBy(obj, ht);
+        }
+    }
     #endregion
 
-	#region Public
-	public void LogOut(){
+    #region Public
+    public void LogOut(){
 		FirebaseAuthentication.instance.logOut ();
 	}
 	#endregion
