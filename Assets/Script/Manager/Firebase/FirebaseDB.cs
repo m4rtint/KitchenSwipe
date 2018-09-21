@@ -56,7 +56,7 @@ public class FirebaseDB : MonoBehaviour
     #region Public Interface
     public void CreateNewUser(Dictionary<string, string> profile, string userID)
     {
-        User user = new User(profile["displayname"], profile["email"]);
+        User user = new User(profile[PlayerPrefKeys.DISPLAYNAME], profile["email"]);
         string json = JsonUtility.ToJson(user);
 
         reference.Child(USER).Child(userID).SetRawJsonValueAsync(json);
@@ -65,7 +65,7 @@ public class FirebaseDB : MonoBehaviour
     public void LoadHighScore()
     {
         FirebaseDatabase.DefaultInstance
-                        .GetReference("Leaderboard")
+                        .GetReference(LEADERBOARD)
                         .GetValueAsync().ContinueWith(task =>
                         {
                             if (task.IsCompleted)
@@ -105,14 +105,17 @@ public class FirebaseDB : MonoBehaviour
     public void syncPlayerPrefs(string userId)
     {
         FirebaseDatabase.DefaultInstance
-            .GetReference("Leaderboard").Child(userId)
+            .GetReference(LEADERBOARD).Child(userId)
             .GetValueAsync().ContinueWith(task =>
             {
                 if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    parseSnapToPlayerPrefs(snapshot);
-                    profileDelegate();
+                    if (snapshot.HasChildren)
+                    {
+                        parseSnapToPlayerPrefs(snapshot);
+                        profileDelegate();
+                    }
                 } else
                 {
                     errorDelegate(ErrorMessages.SYNC_ERROR);
@@ -130,12 +133,11 @@ public class FirebaseDB : MonoBehaviour
         foreach (DataSnapshot obj in snap.Children)
         {
             string _key = obj.Key;
-            string _name = parseSnapshotString(obj, "Name");
-            int _score = parseSnapshotInteger(obj, "Score");
-            int _dishes = parseSnapshotInteger(obj, "Dishes");
-            int _combo = parseSnapshotInteger(obj, "Combo");
-            int _TimeLasted = parseSnapshotInteger(obj, "TimeLasted");
-            listOfRecords.Add(new Record(_key, _name, _score, _dishes, _combo, _TimeLasted));
+            string _name = parseSnapshotString(obj,NAME);
+
+            Dictionary<string, int> profile = parseProfile(obj);
+
+            listOfRecords.Add(new Record(_key, _name, profile[SCORE], profile[DISHES], profile[COMBO], profile[TIMELASTED]));
         }
 
         Record[] records = new Record[listOfRecords.Count];
@@ -145,15 +147,15 @@ public class FirebaseDB : MonoBehaviour
 
     void parseSnapToPlayerPrefs(DataSnapshot snap)
     {
-        int score = parseSnapshotInteger(snap, "Score");
-        int dishes = parseSnapshotInteger(snap, "Dishes");
-        int combo = parseSnapshotInteger(snap, "Combo");
-        int secondsLasted = parseSnapshotInteger(snap, "TimeLasted");
+        Dictionary<string, int> profile = parseProfile(snap);
 
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, combo);
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, secondsLasted);
+        string name = parseSnapshotString(snap, NAME);
+
+        PlayerPrefs.SetString(PlayerPrefKeys.DISPLAYNAME, name);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, profile[SCORE]);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, profile[DISHES]);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, profile[COMBO]);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, profile[TIMELASTED]);
     }
 
     string parseSnapshotString(DataSnapshot snap, string key)
@@ -185,6 +187,18 @@ public class FirebaseDB : MonoBehaviour
 
         reference.Child(LEADERBOARD).Child(uid).Child(NAME).SetValueAsync(displayName);
         return reference.Child(LEADERBOARD).Child(uid);
+    }
+
+    Dictionary<string, int> parseProfile(DataSnapshot snap)
+    {
+        Dictionary<string, int> ht = new Dictionary<string, int>();
+
+        ht.Add(SCORE, parseSnapshotInteger(snap, SCORE));
+        ht.Add(DISHES, parseSnapshotInteger(snap, DISHES));
+        ht.Add(COMBO, parseSnapshotInteger(snap, COMBO));
+        ht.Add(TIMELASTED, parseSnapshotInteger(snap, TIMELASTED));
+
+        return ht;
     }
 
     #endregion

@@ -52,6 +52,7 @@ public struct ErrorMessages
 
 public struct PlayerPrefKeys
 {
+    public readonly static string DISPLAYNAME = "DISPLAYNAME";
     public readonly static string INFINITE_SCORE = "SCORE";
     public readonly static string INFINITE_DISHES = "DISHES";
     public readonly static string INFINITE_COMBO = "COMBO";

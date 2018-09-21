@@ -68,8 +68,13 @@ public class FirebaseAuthentication : MonoBehaviour {
 
     #region Getter
     public string displayName()
+    {   Debug.Log(PlayerPrefs.GetString(PlayerPrefKeys.DISPLAYNAME));
+        return PlayerPrefs.GetString(PlayerPrefKeys.DISPLAYNAME);
+    }
+
+    void displayName(string name)
     {
-        return user.DisplayName;
+        PlayerPrefs.SetString(PlayerPrefKeys.DISPLAYNAME, name);
     }
 
 	public string userID()
@@ -80,18 +85,14 @@ public class FirebaseAuthentication : MonoBehaviour {
 
     #region Public
     //Anonymous Authentication
-    public void anonAuthentication(string displayName)
+    public void anonAuthentication()
     {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
-            if (authHasError(task))
+            if (!authHasError(task))
             {
-                return;
-            }
-
-            user = task.Result;
-
-            if (user.DisplayName != displayName) { 
-                updateProfile(displayName);
+                user = task.Result;
+                displayName(generateRandomName());
+                updateProfile();
             }
         });
     }
@@ -101,16 +102,14 @@ public class FirebaseAuthentication : MonoBehaviour {
         string profileEmail = profile["email"];
         string password = profile["password"];
         auth.CreateUserWithEmailAndPasswordAsync(profileEmail, password).ContinueWith(task => {
-            if (authHasError(task))
+            if (!authHasError(task))
             {
-                return;
+                // Firebase user has been created.
+                user = task.Result;
+                displayName(profile["displayname"]);
+                updateProfile();
+                FirebaseDB.instance.CreateNewUser(profile, user.UserId);
             }
-
-            // Firebase user has been created.
-            user = task.Result;
-			updateProfile(profile["displayname"]);
-			FirebaseDB.instance.CreateNewUser(profile,user.UserId);
-		
         });
     }
 
@@ -119,13 +118,11 @@ public class FirebaseAuthentication : MonoBehaviour {
         string profileEmail = profile["email"];
         string password = profile["password"];
         auth.SignInWithEmailAndPasswordAsync(profileEmail, password).ContinueWith(task => {
-            if (authHasError(task))
+            if (!authHasError(task))
             {
-                return;
+                user = task.Result;
+                updateProfile();
             }
-
-            user = task.Result;
-			profileUpdateDelegate();
         });
     }
 
@@ -136,20 +133,17 @@ public class FirebaseAuthentication : MonoBehaviour {
     #endregion
 
     #region Helper
-    void updateProfile(string profileName)
+    void updateProfile()
     {
-        if (auth.CurrentUser != null)
+        if (user.DisplayName == "" )
         {
             UserProfile profile = new UserProfile();
-            profile.DisplayName = profileName;
+            profile.DisplayName = displayName();
             user.UpdateUserProfileAsync(profile).ContinueWith(task => {
-                if (authHasError(task))
+                if (!authHasError(task))
                 {
-                    //Error Auth
-                    return;
+                    profileUpdateDelegate();
                 }
-
-                profileUpdateDelegate();
             });
         }
     }
@@ -173,9 +167,12 @@ public class FirebaseAuthentication : MonoBehaviour {
         return isError;
     }
 
-    void syncPlayerPrefs()
+    string generateRandomName()
     {
-      
+        string result = "Guest ";
+        string num1 = Random.Range(0, 500).ToString();
+        string num2 = Random.Range(500, 999).ToString();
+        return result + num1.ToString() + num2.ToString();
     }
     #endregion
 

@@ -71,8 +71,8 @@ public class AuthManager : MonoBehaviour {
     #region UserInteraction
     public void anonSignIn()
     {
-        string anonName = loginEmail.text;
-        FirebaseAuthentication.instance.anonAuthentication(anonName);
+        loadingObject.SetActive(true);
+        FirebaseAuthentication.instance.anonAuthentication();
     }
 
     public void emailSignIn()

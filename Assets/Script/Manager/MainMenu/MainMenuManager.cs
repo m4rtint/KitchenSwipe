@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MainMenuManager : MonoBehaviour
     GameObject ErrorObject;
 	[SerializeField]
 	GameObject authenticationObject;
+    [SerializeField]
+    GameObject displayname;
 
     [SerializeField]
     GameObject[] loadings;
@@ -22,6 +25,7 @@ public class MainMenuManager : MonoBehaviour
 
     void setupDelegate()
     {
+        FirebaseAuthentication.instance.profileUpdateDelegate += displayUserName;
 		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
         FirebaseDB.instance.errorDelegate += displayError;
     }
@@ -56,5 +60,11 @@ public class MainMenuManager : MonoBehaviour
         ErrorObject.SetActive(true);
         ErrorObject.GetComponent<ErrorManager>().setErrorText(message);
     }
+
+    void displayUserName()
+    {
+        displayname.GetComponent<TextMeshProUGUI>().text = FirebaseAuthentication.instance.displayName();
+    }
+
     #endregion
 }

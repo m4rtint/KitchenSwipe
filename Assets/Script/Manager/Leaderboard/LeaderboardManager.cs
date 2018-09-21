@@ -58,7 +58,7 @@ public class LeaderboardManager : MonoBehaviour {
     }
     #endregion
 
-    #region SetLeaderboard
+    #region Delegate
     void loadedLeaderboardStats(Record[] list)
     {
         saveRecords(list);
