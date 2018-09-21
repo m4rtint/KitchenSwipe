@@ -99,6 +99,7 @@ public class AuthManager : MonoBehaviour {
     #region DelegateFunctions
     void onAuthenticate()
     {
+        loadingObject.SetActive(false);
         gameObject.SetActive(false);
     }
 

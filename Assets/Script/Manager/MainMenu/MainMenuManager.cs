@@ -16,15 +16,22 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject[] loadings;
 
+    [Header("Buttons Animation")]
+    [SerializeField]
+    GameObject[] buttons;
+
     #region Mono
     private void Awake()
     {
         setupDelegate();
         animateLoading();
+        resetButtons();
+        resetDisplayUserName();
     }
 
     void setupDelegate()
     {
+        FirebaseAuthentication.instance.authDelegate += animateButtons;
         FirebaseAuthentication.instance.profileUpdateDelegate += displayUserName;
 		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
         FirebaseDB.instance.errorDelegate += displayError;
@@ -41,16 +48,42 @@ public class MainMenuManager : MonoBehaviour
             iTween.RotateBy(obj, ht);
         }
     }
+
+    void resetButtons()
+    {
+        foreach(GameObject obj in buttons)
+        {
+            obj.transform.localScale = Vector3.zero;
+        }
+    }
+
+    void resetDisplayUserName()
+    {
+        displayname.GetComponent<TextMeshProUGUI>().text = "";
+    }
     #endregion
 
     #region Public
     public void LogOut(){
-		FirebaseAuthentication.instance.logOut ();
+        resetButtons();
+        resetDisplayUserName();
+        FirebaseAuthentication.instance.logOut ();
 	}
 	#endregion
 
     #region Delegate
-	void displayAuth()
+    void animateButtons()
+    {
+        foreach(GameObject obj in buttons) {
+            Hashtable ht = new Hashtable();
+            ht.Add("scale", Vector3.one);
+            ht.Add("easeType", "easeOutBack");
+            ht.Add("time", 0.5f);
+            iTween.ScaleTo(obj, ht);
+        }
+    }
+
+    void displayAuth()
 	{
 		authenticationObject.SetActive (true);
 	}
