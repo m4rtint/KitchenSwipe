@@ -66,6 +66,7 @@ public class FoodHolder : MonoBehaviour
         {
 
             storedFood.Animation().StartFinishFoodAnimation();
+            OverlayParticles.ShowParticles(7, storedFood.transform.position);
             storedFood = null;
 
             //SCORE
