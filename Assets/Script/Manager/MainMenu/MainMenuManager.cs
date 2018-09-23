@@ -33,7 +33,6 @@ public class MainMenuManager : MonoBehaviour
     {
         FirebaseAuthentication.instance.authDelegate += animateButtons;
         FirebaseAuthentication.instance.profileUpdateDelegate += displayUserName;
-		FirebaseAuthentication.instance.signOutDelegate += displayAuth;
         FirebaseDB.instance.errorDelegate += displayError;
     }
 

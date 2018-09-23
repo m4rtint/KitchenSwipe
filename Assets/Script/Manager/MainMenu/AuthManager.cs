@@ -9,22 +9,11 @@ public class AuthManager : MonoBehaviour {
 
     [Header("Login")]
     [SerializeField]
-    GameObject loginEmailFieldObj;
-    InputField loginEmail;
-    [SerializeField]
-    GameObject loginPasswordFieldObj;
-    InputField loginPass;
+    EmailSignInManager emailSignInManager;
 
     [Header("Registration")]
     [SerializeField]
-    GameObject registerEmailFieldObj;
-    InputField registerEmail;
-    [SerializeField]
-    GameObject registerPasswordFieldObj;
-    InputField registerPass;
-    [SerializeField]
-    GameObject registerDisplayNameFieldObj;
-    InputField registerDisplayName;
+    EmailRegisterManager emailRegistrationManager;
 
     [Header("Loading")]
     [SerializeField]
@@ -37,21 +26,11 @@ public class AuthManager : MonoBehaviour {
     #region mono
     private void Awake()
     {
-        setupInputFields();
-		setupDependencies();
+        setupAuthenticationPanel();
+        setupDependencies();
 		setupDelegate();
     }
-
-    void setupInputFields()
-    {
-        loginEmail = loginEmailFieldObj.GetComponent<InputField>();
-        loginPass = loginPasswordFieldObj.GetComponent<InputField>();
-        registerEmail =  registerEmailFieldObj.GetComponent<InputField>();
-        registerPass = registerPasswordFieldObj.GetComponent<InputField>();
-        registerDisplayName = registerDisplayNameFieldObj.GetComponent<InputField>();
-
-    }
-
+    
     void setupDependencies()
     {
 		if (FirebaseAuthentication.instance == null) {
@@ -62,8 +41,15 @@ public class AuthManager : MonoBehaviour {
 
     void setupDelegate()
     {
+        auth.signOutDelegate += onSignOut;
         auth.authDelegate += onAuthenticate;
         auth.errorDelegate += onError;
+    }
+
+    void setupAuthenticationPanel()
+    {
+        emailSignInManager.gameObject.SetActive(false);
+        emailRegistrationManager.gameObject.SetActive(false);
     }
 
     #endregion
@@ -77,21 +63,14 @@ public class AuthManager : MonoBehaviour {
 
     public void emailSignIn()
     {
-        Dictionary<string, string> profile = new Dictionary<string, string>();
-        profile["email"] = loginEmail.text;
-        profile["password"] = loginPass.text;
+        emailSignInManager.emailSignIn();
         loadingObject.SetActive(true);
-        FirebaseAuthentication.instance.emailAuthentication(profile);
     }
 
     public void emailRegistration()
     {
-        Dictionary<string, string> profile = new Dictionary<string, string>();
-        profile["email"] = registerEmail.text;
-        profile["password"] = registerPass.text;
-        profile["displayname"] = registerDisplayName.text;
+        emailRegistrationManager.emailRegistration();
         loadingObject.SetActive(true);
-        FirebaseAuthentication.instance.emailRegistration(profile);
     }
 
     #endregion
@@ -108,6 +87,12 @@ public class AuthManager : MonoBehaviour {
         errorObj.GetComponent<ErrorManager>().setErrorText(description);
         errorObj.SetActive(true);
         loadingObject.SetActive(false);
+    }
+
+    void onSignOut()
+    {
+        setupAuthenticationPanel();
+        gameObject.SetActive(true);
     }
 
     #endregion
