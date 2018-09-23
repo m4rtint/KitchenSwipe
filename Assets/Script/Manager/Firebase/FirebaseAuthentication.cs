@@ -52,6 +52,7 @@ public class FirebaseAuthentication : MonoBehaviour {
             user = auth.CurrentUser;
             if (signedIn)
             {
+                updateProfile();
                 FirebaseDB.instance.syncPlayerPrefs(userID());
                 authDelegate();
             }
@@ -145,6 +146,9 @@ public class FirebaseAuthentication : MonoBehaviour {
                     profileUpdateDelegate();
                 }
             });
+        } else
+        {
+            profileUpdateDelegate();
         }
     }
 

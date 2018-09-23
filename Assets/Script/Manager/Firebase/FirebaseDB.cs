@@ -113,6 +113,7 @@ public class FirebaseDB : MonoBehaviour
                     DataSnapshot snapshot = task.Result;
                     if (snapshot.HasChildren)
                     {
+                        Debug.Log("Found Database children");
                         parseSnapToPlayerPrefs(snapshot);
                         profileDelegate();
                     }
