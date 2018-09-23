@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CountDownGame : MonoBehaviour {
+public class AnnouncementManager : MonoBehaviour {
 
     private void Start()
     {

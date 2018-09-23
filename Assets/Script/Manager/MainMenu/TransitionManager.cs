@@ -75,12 +75,6 @@ public class TransitionManager : MonoBehaviour
         ht.Add("oncomplete", "startCountDownAnimation");
         iTween.ScaleTo(gameObject, ht);
     }
-
-    void startCountDownAnimation()
-    {
-        countDownObject.SetActive(true);
-        countDownObject.GetComponent<CountDownGame>().startCountDownAnimate();
-    }
     #endregion
    
 }

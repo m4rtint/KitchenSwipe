@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 1574990377}
   - component: {fileID: 1574990376}
   m_Layer: 5
-  m_Name: PrepareGame
+  m_Name: AnnouncementManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5243,6 +5243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619475812}
+  - component: {fileID: 1619475813}
   m_Layer: 5
   m_Name: Combo
   m_TagString: Untagged
@@ -5270,6 +5271,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1619475813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1619475811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0274e698bcddbec4c8f8749498232411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboText: {fileID: 210320936}
 --- !u!1 &1659448527
 GameObject:
   m_ObjectHideFlags: 0
@@ -6464,12 +6477,7 @@ Prefab:
         type: 2}
       propertyPath: comboTextObject
       value: 
-      objectReference: {fileID: 210320935}
-    - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: comboPopTime
-      value: 0.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1619475811}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0
