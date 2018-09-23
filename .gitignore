@@ -36,3 +36,4 @@ sysinfo.txt
 *.unitypackage
 .DS_Store
 Assets/StreamingAssets/build_info.txt
+Assets/StreamingAssets/build_info.txt
