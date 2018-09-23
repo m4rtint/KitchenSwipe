@@ -33,7 +33,7 @@ public class IngredientBun : Ingredient {
         Hashtable ht = new Hashtable();
         ht.Add("y", -base.placeDownDistance);
         ht.Add("easeType", "easeInOutExpo");
-        ht.Add("time", base.animation.PlacementTime()+0.15);
+        ht.Add("time", base.animation.PlacementTime());
         ht.Add("oncomplete", "resizeAnimation");
         iTween.MoveAdd(m_BackBun, ht);
         base.startAnimation();

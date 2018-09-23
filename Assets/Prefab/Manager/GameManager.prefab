@@ -85,7 +85,8 @@ MonoBehaviour:
   rotationTime: 0.1
   moveTime: 0.1
   centerFadeOutTime: 0.2
-  comboPopTime: 0.2
+  comboPopTime: 0.5
+  comboPopScale: 4
   scoreDelayTime: 0.2
   scorePopTime: 0.5
   goFadeInTime: 1

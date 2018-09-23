@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject comboTextObject;
 
+
+
     #region Mono
     private void Awake()
     {
@@ -57,16 +59,16 @@ public class UIManager : MonoBehaviour
         }
 
         comboTextObject.SetActive(true);
-        comboTextObject.GetComponent<Text>().text = "COMBO\n" + scoreManager.Combo();
+        comboTextObject.GetComponent<ComboManager>().setComboText("x" + scoreManager.Combo());
         animateCombo();
     }
 
     void animateCombo(){
         Hashtable ht = new Hashtable();
-        ht.Add("scale", new Vector3(1.2f, 1.2f, 0));
+        ht.Add("scale", AnimationManager.instance.ComboPopScale());
         ht.Add("time", AnimationManager.instance.ComboPopTime());
-        ht.Add("easeType", "spring");
-        iTween.ScaleFrom(comboTextObject, ht);
+        ht.Add("easeType", "easeInQuart");
+        iTween.ScaleFrom(comboTextObject.GetComponent<ComboManager>().getTextObject(), ht);
     }
     #endregion
 

@@ -36,6 +36,8 @@ public class AnimationManager : MonoBehaviour {
     [Header("Combo Pop Time")]
     [SerializeField]
     float comboPopTime;
+    [SerializeField]
+    float comboPopScale;
 
     [Header("Score Pop")]
     [SerializeField]
@@ -102,6 +104,11 @@ public class AnimationManager : MonoBehaviour {
     public float ComboPopTime()
     {
         return comboPopTime;
+    }
+
+    public Vector3 ComboPopScale()
+    {
+        return new Vector3(comboPopScale, comboPopScale, 0);
     }
 
     public float ScoreDelayTime()
