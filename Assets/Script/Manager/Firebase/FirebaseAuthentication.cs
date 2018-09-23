@@ -52,7 +52,6 @@ public class FirebaseAuthentication : MonoBehaviour {
             user = auth.CurrentUser;
             if (signedIn)
             {
-                PlayerPrefs.DeleteAll();
                 FirebaseDB.instance.syncPlayerPrefs(userID());
                 authDelegate();
             }
@@ -127,7 +126,8 @@ public class FirebaseAuthentication : MonoBehaviour {
     }
 
 	public void logOut(){
-		auth.SignOut ();
+        PlayerPrefs.DeleteAll();
+        auth.SignOut ();
 	}
 
     #endregion
