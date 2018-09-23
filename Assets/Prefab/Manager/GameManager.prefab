@@ -75,9 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementTime: 0.25
-  neededIngredientAlpha: 0.5
-  ascensionTime: 0.5
+  placementTime: 0.1
+  ingredientAlpha: 0.5
+  ascensionTime: 0.4
   ascensionAmount: 75
   ascentionFadeTime: 0.2
   foodShakeTime: 0.25
