@@ -28,6 +28,11 @@ public class GameEngine : MonoBehaviour {
     [SerializeField]
     GameObject m_Center;
 
+    //Announcement Manager
+    [SerializeField]
+    AnnouncementManager announcementManager;
+    
+
     #region getter/setter
     protected int NumberOfFood() {
         return m_NumberOfFood;
@@ -45,13 +50,14 @@ public class GameEngine : MonoBehaviour {
 		m_IngredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
 
         SetupHolders ();
-        setupDelegates();
-	}
+    }
 
 	protected virtual void Start()
 	{
+        setupDelegates();
+
         //Get Stack of Food
-		m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
+        m_FoodGenerator.FillStackWithRandomFood(m_NumberOfFood);
 
         //Place First 4 food onto each side
         setupIngredients();
@@ -59,6 +65,7 @@ public class GameEngine : MonoBehaviour {
         //Choose a random current ingredient
         ChooseNewCurrentIngredient ();
 	}
+
 	void setupIngredients() {
 		for(int i = 0; i < 4; i++)
         {
@@ -69,6 +76,8 @@ public class GameEngine : MonoBehaviour {
     void setupDelegates()
     {
         TimeManager.instance.isGameOverDelegate += onGameOver;
+        TransitionManager.instance.completedTransition += onCompleteTransition; 
+        announcementManager.onTimesUpComplete += GetComponent<UIManager>().startGameOverScreen;
     }
 
 	void SetupHolders(){
@@ -136,7 +145,14 @@ public class GameEngine : MonoBehaviour {
     {
         StateManager.instance.gameOver();
         ScoreManager.instance.saveScore();
-        GetComponent<UIManager>().startGameOverScreen();
+        announcementManager.gameObject.SetActive(true);
+        Debug.Log("Announcement Manager :"+announcementManager.gameObject.activeSelf);
+        announcementManager.startTimesUpAnimate();
+    }
+
+    void onCompleteTransition()
+    {
+        announcementManager.startCountDownAnimate();
     }
     #endregion
 }

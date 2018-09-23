@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TransitionManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject countDownObject;
-
+    //Delegate
+    public delegate void TransitionDelegate();
+    public TransitionDelegate completedTransition;
+    
     public static TransitionManager instance = null;
     readonly Vector3 expanded = new Vector3(100, 100, 0);
 
@@ -72,8 +73,14 @@ public class TransitionManager : MonoBehaviour
         Hashtable ht = new Hashtable();
         ht.Add("scale", Vector3.zero);
         ht.Add("time", 1.0f);
-        ht.Add("oncomplete", "startCountDownAnimation");
+        ht.Add("oncomplete", "callCompletedTransitionDelegate");
         iTween.ScaleTo(gameObject, ht);
+    }
+
+
+    void callCompletedTransitionDelegate()
+    {
+        completedTransition();
     }
     #endregion
    

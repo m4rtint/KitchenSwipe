@@ -5,14 +5,18 @@ using TMPro;
 
 public class AnnouncementManager : MonoBehaviour {
 
+    public delegate void AnnouncementDelegate();
+    public AnnouncementDelegate onTimesUpComplete;
+
     private void Start()
     {
         resetText();
     }
 
+    #region Public
     public void startCountDownAnimate()
     {
-        changeText("READY?");
+        resetText("READY?");
         Hashtable ht = new Hashtable();
         ht.Add("scale", new Vector3(2, 2, 0));
         ht.Add("time", 1.0f);
@@ -20,10 +24,27 @@ public class AnnouncementManager : MonoBehaviour {
         iTween.ScaleTo(gameObject, ht);
     }
 
+    public void startTimesUpAnimate()
+    {
+        resetText("TIME'S\nUP!");
+        Hashtable ht = new Hashtable();
+        ht.Add("scale", new Vector3(2, 2, 0));
+        ht.Add("time", 1.5f);
+        ht.Add("easetype", "easeOutExpo");
+        ht.Add("oncomplete", "onEndTimesUpAnimate");
+        iTween.ScaleTo(gameObject, ht);
+    }
+    #endregion
+
+    void onEndTimesUpAnimate()
+    {
+        onTimesUpComplete();
+        gameObject.SetActive(false);
+    }
+
     void startGoAnimate()
     {
-        resetText();
-        changeText("GO");
+        resetText("GO");
         Hashtable ht = new Hashtable();
         ht.Add("scale", new Vector3(2, 2, 0));
         ht.Add("time", 1.0f);
@@ -35,7 +56,7 @@ public class AnnouncementManager : MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 0);
-        ht.Add("time", 0.5f);
+        ht.Add("time", 0.2f);
         ht.Add("oncomplete", "changeStateStartGame");
         iTween.FadeTo(gameObject, ht);
     }
@@ -43,14 +64,15 @@ public class AnnouncementManager : MonoBehaviour {
     void changeStateStartGame()
     {
         StateManager.instance.startGame();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     #region helper
-    void resetText()
+    void resetText(string text = "")
     {
-        changeText();
+        changeText(text);
         transform.localScale = Vector3.zero;
+        GetComponent<TextMeshProUGUI>().color = Color.black;
     }
 
     void changeText(string text = "")
