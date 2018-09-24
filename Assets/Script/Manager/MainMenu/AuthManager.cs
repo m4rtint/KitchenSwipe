@@ -84,9 +84,9 @@ public class AuthManager : MonoBehaviour {
 
     void onError(string description)
     {
-        errorObj.GetComponent<ErrorManager>().setErrorText(description);
         errorObj.SetActive(true);
         loadingObject.SetActive(false);
+        errorObj.GetComponent<ErrorManager>().setErrorText(description);
     }
 
     void onSignOut()

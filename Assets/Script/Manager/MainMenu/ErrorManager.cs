@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ErrorManager : MonoBehaviour {
 
     [SerializeField]
-    GameObject errorTextObj;
+    TextMeshProUGUI errorTextObj;
 
 
     public void setErrorText(string text)
     {
-        errorTextObj.GetComponent<Text>().text = text;
+        errorTextObj.text = text;
     }
 }
