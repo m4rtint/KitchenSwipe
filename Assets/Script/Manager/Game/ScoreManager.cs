@@ -140,25 +140,27 @@ public class ScoreManager : MonoBehaviour {
 
     public void saveScore()
     {
-        if (Score() > HighScore())
-        {
-            uploadHighscore();
-        }
+        if (FirebaseDB.instance != null) { 
+            if (Score() > HighScore())
+            {
+                uploadHighscore();
+            }
 
-        if (MaxCombo() > HighScoreCombo())
-        {
-            uploadCombo();
-        }
+            if (MaxCombo() > HighScoreCombo())
+            {
+                uploadCombo();
+            }
 
-        if (Dishes() > HighScoreDishes())
-        {
-            uploadDishes();
-        }
+            if (Dishes() > HighScoreDishes())
+            {
+                uploadDishes();
+            }
 
-        int time = TimeManager.instance.SecondsLasted();
-        if (time > HighScoreSecondsLasted())
-        {
-            uploadTime();
+            int time = TimeManager.instance.SecondsLasted();
+            if (time > HighScoreSecondsLasted())
+            {
+                uploadTime();
+            }
         }
     }
 
