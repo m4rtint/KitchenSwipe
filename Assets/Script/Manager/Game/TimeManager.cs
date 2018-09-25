@@ -83,13 +83,16 @@ public class TimeManager : MonoBehaviour {
 
     void decrementGameTime(float seconds)
     {
-        if (gameTime - seconds <= 0) {
+        float time = gameTime - seconds;
+        if (time <= 0)
+        {
             gameTime = 0;
             this.isGameOverDelegate();
-            return;
         }
-        gameTime -= seconds;
-
+        else
+        {
+            gameTime = time;
+        }
         this.updateTimerUIDelegate();
     }
 

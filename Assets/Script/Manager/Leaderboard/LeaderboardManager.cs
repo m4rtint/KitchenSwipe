@@ -28,6 +28,7 @@ public class LeaderboardManager : MonoBehaviour {
     private void Awake()
     {
         setLeaderboardScreen(true);
+        loading.SetActive(true);
         getRowHeight();
         clearLeaderboard();
     }
@@ -75,6 +76,8 @@ public class LeaderboardManager : MonoBehaviour {
 
     void insertGameObjectRow()
     {
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        float bottom = 0;
         for (int i = 0; i < records.Length; i++)
         {
             GameObject newRow = Instantiate(row, scores.transform);
@@ -85,9 +88,14 @@ public class LeaderboardManager : MonoBehaviour {
             newPosition.y += height;
             newRow.transform.position = newPosition;
 
+            //Set Content Height
+            bottom += -115;
+
             //Save new row
             rows[i] = newRow; 
         }
+
+        rectTransform.offsetMin = new Vector2(rectTransform.offsetMin.x, bottom);
     }
 
     void clearLeaderboard()

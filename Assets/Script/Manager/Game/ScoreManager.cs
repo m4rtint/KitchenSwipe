@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour {
 
     [SerializeField]
     int scoreSpeed;
-    int reachingNumber;
+    int finalScore;
     int score = 0;
 
     int maxCombo = 0;
@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour {
 
     public int Score()
     {
-        return score;
+        return finalScore;
     }
 
     public int Dishes()
@@ -86,7 +86,7 @@ public class ScoreManager : MonoBehaviour {
 
     void setupScoreProperties()
     {
-        reachingNumber = score;
+        finalScore = score;
         if (scoreSpeed == 0)
         {
             scoreSpeed = 10;
@@ -105,16 +105,16 @@ public class ScoreManager : MonoBehaviour {
 
     void animateChangeScore()
     {
-        if (reachingNumber - score < scoreSpeed && reachingNumber != score) 
+        if (finalScore - score < scoreSpeed && finalScore != score) 
         {
-            score = reachingNumber;
+            score = finalScore;
             this.scoreDelegate();
-        } else if (reachingNumber < score)
+        } else if (finalScore < score)
         {
             score -= scoreSpeed;
             this.scoreDelegate();
         }
-        else if (reachingNumber > score)
+        else if (finalScore > score)
         {
             score += scoreSpeed;
             this.scoreDelegate();
@@ -129,13 +129,13 @@ public class ScoreManager : MonoBehaviour {
         dishes++;
         incrementCombo();
         int incrementingScore = (int)(baseScore * scoreMultiplier);        
-        reachingNumber += incrementingScore;
+        finalScore += incrementingScore;
         return incrementingScore;
     }
 
     public void decrementScore()
     {
-        reachingNumber -= (int)(baseScore * decrementScoreVariable);
+        finalScore -= (int)(baseScore * decrementScoreVariable);
     }
 
     public void saveScore()
