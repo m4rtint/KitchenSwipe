@@ -5,18 +5,18 @@ using TMPro;
 public class LeaderboardRow : MonoBehaviour {
 
     [SerializeField]
-    GameObject columnLeft;
+    TextMeshProUGUI columnLeft;
 
     [SerializeField]
-    GameObject columnRight;
+    TextMeshProUGUI columnRight;
 
     public void setRowText(int number, string name, string points){
         setTMProText(columnLeft, number+" "+ name);
         setTMProText(columnRight, points);
     }
 
-    void setTMProText(GameObject obj, string _name){
-        obj.GetComponent<TextMeshProUGUI>().text = _name; 
+    void setTMProText(TextMeshProUGUI obj, string _name){
+        obj.text = _name;
     }
 
 }

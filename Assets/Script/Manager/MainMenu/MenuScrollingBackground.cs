@@ -8,6 +8,9 @@ public class MenuScrollingBackground : MonoBehaviour {
     [SerializeField]
     bool goLeft;
 
+    [SerializeField]
+    bool isSecond;
+
     //Reposition properties
     float groundHorizontalLength;
 
@@ -27,6 +30,7 @@ public class MenuScrollingBackground : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
         groundHorizontalLength = GetComponent<RectTransform>().rect.width;
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
+        setupSecondImageIfNeeded();
     }
 
     private void Update()
@@ -45,6 +49,22 @@ public class MenuScrollingBackground : MonoBehaviour {
         }
     }
 
+    void setupSecondImageIfNeeded()
+    {
+        float x = 0.5f;
+        if (isSecond)
+        {
+            if (goLeft)
+            {
+                x = 1.5f;
+            } else {
+                x = -0.5f;
+            }
+            float yPos = transform.position.y;
+            float xPos = groundHorizontalLength * x;
+            transform.position = new Vector2(xPos, yPos);
+        }
+    }
     #endregion
 
     #region Scrolling
