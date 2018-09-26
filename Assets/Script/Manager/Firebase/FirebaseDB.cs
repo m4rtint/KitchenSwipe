@@ -162,7 +162,6 @@ public class FirebaseDB : MonoBehaviour
     string parseSnapshotString(DataSnapshot snap, string key)
     {
         if (snap.Child(key).Exists) {
-            Debug.Log("FirebaseDB: Successfully parsed: " + key);
             return (string)snap.Child(key).Value;
         } else
         {
@@ -173,7 +172,6 @@ public class FirebaseDB : MonoBehaviour
     int parseSnapshotInteger(DataSnapshot snap, string key)
     {
         if (snap.Child(key).Exists) {
-            Debug.Log("FirebaseDB: Successfully parsed: " + key);
             return int.Parse(snap.Child(key).Value.ToString());
         } else
         {

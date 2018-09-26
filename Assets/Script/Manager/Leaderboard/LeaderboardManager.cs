@@ -6,7 +6,7 @@ using TMPro;
 
 public class LeaderboardManager : MonoBehaviour {
     [SerializeField]
-    GameObject userRow;
+    LeaderboardRow userRow;
 
     [Header("Leaderboard")]
     [SerializeField]
@@ -23,7 +23,7 @@ public class LeaderboardManager : MonoBehaviour {
 
     Record[] records;
     GameObject[] rows;
-
+  
     #region mono
     private void Awake()
     {
@@ -62,6 +62,7 @@ public class LeaderboardManager : MonoBehaviour {
     #region Delegate
     void loadedLeaderboardStats(Record[] list)
     {
+        userRow.setFontSize();
         saveRecords(list);
         insertGameObjectRow();
         sortAndSetByScore();
@@ -89,7 +90,7 @@ public class LeaderboardManager : MonoBehaviour {
             newRow.transform.position = newPosition;
 
             //Set Content Height
-            bottom += -115;
+            bottom += -rowHeight;
 
             //Save new row
             rows[i] = newRow; 
@@ -123,7 +124,7 @@ public class LeaderboardManager : MonoBehaviour {
             placing = i + 1;
             Record record = records[i];
             score = record.Score.ToString();
-            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Score.ToString());
+            rows[i].GetComponent<LeaderboardRow>().setRowText(placing, records[i].Name, records[i].Score.ToString());
             setUserScoreIfNeeded(records[i], placing, score);
         }
     }
@@ -143,7 +144,7 @@ public class LeaderboardManager : MonoBehaviour {
             placing = i + 1;
             Record record = records[i];
             score = record.Dishes.ToString();
-            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Dishes.ToString());
+            rows[i].GetComponent<LeaderboardRow>().setRowText(placing, records[i].Name, records[i].Dishes.ToString());
             setUserScoreIfNeeded(records[i], placing, score);
         }
     }
@@ -163,7 +164,7 @@ public class LeaderboardManager : MonoBehaviour {
             placing = i + 1;
             Record record = records[i];
             score = record.Combo.ToString();
-            rows[i].GetComponent<LeaderboardRow>().setRowText(i + 1, records[i].Name, records[i].Combo.ToString());
+            rows[i].GetComponent<LeaderboardRow>().setRowText(placing, records[i].Name, records[i].Combo.ToString());
             setUserScoreIfNeeded(records[i], placing, score);
         }
     }
@@ -193,6 +194,9 @@ public class LeaderboardManager : MonoBehaviour {
         if (record.key == FirebaseAuthentication.instance.userID())
         {
             setUserHighScores(index, score);
+        } else
+        {
+            userRow.forceSetSize();
         }
     }
     #endregion
@@ -200,7 +204,7 @@ public class LeaderboardManager : MonoBehaviour {
     #region helper
     void setUserHighScores(int number, string type)
     {
-        userRow.GetComponent<LeaderboardRow>().setRowText(number, FirebaseAuthentication.instance.displayName(), type);
+        userRow.setRowText(number, FirebaseAuthentication.instance.displayName(), type);
     }
     #endregion
 

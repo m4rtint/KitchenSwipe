@@ -57,6 +57,7 @@ public struct PlayerPrefKeys
     public readonly static string INFINITE_DISHES = "DISHES";
     public readonly static string INFINITE_COMBO = "COMBO";
     public readonly static string INFINITE_SECONDS = "SECONDSLASTED";
+    public readonly static string FONTSIZE = "FONTSIZE";
 }
 
 
