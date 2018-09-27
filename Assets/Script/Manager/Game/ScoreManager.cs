@@ -140,7 +140,11 @@ public class ScoreManager : MonoBehaviour {
 
     public void saveScore()
     {
-        if (FirebaseDB.instance != null) { 
+        if (FirebaseDB.instance != null) {
+            int s = Score();
+            int hs_score = HighScore();
+            Debug.Log(Score());
+            Debug.Log(HighScore());
             if (Score() > HighScore())
             {
                 uploadHighscore();
@@ -172,13 +176,13 @@ public class ScoreManager : MonoBehaviour {
 
     void uploadHighscore()
     {
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, score);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, Score());
         FirebaseDB.instance.insertScoreEntry(HighScore());
     }
 
     void uploadDishes()
     {
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, dishes);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, Dishes());
         FirebaseDB.instance.insertDishesEntry(HighScoreDishes());
     }
 
@@ -191,7 +195,7 @@ public class ScoreManager : MonoBehaviour {
 
     void uploadCombo()
     {
-        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, maxCombo);
+        PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, MaxCombo());
         FirebaseDB.instance.insertComboEntry(HighScoreCombo());
     }
     #endregion

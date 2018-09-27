@@ -60,9 +60,9 @@ public class TimeManager : MonoBehaviour {
     void Update()
     {
 		if (StateManager.instance.isInGame()) {
-			decrementGameTime (Time.deltaTime);
-			decrementRedTime (Time.deltaTime);
             incrementHighScoreGameTime(Time.deltaTime);
+            decrementGameTime (Time.deltaTime);
+			decrementRedTime (Time.deltaTime);
 
         }
     }

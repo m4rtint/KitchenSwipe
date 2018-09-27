@@ -40,10 +40,10 @@ public class GameOverUIManager : MonoBehaviour {
     void Awake()
     {
         scoreManager = ScoreManager.instance;
-        setuppObjects();
+        setupObjects();
     }
 
-    void setuppObjects()
+    void setupObjects()
     {
         hs_Score.transform.localScale = Vector3.zero;
         score.transform.localScale = Vector3.zero;
