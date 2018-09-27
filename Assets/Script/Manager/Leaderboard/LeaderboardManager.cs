@@ -62,11 +62,18 @@ public class LeaderboardManager : MonoBehaviour {
     #region Delegate
     void loadedLeaderboardStats(Record[] list)
     {
-        userRow.setFontSize();
+        setUserRowSettings();
         saveRecords(list);
         insertGameObjectRow();
         sortAndSetByScore();
         setLeaderboardScreen(false);
+    }
+
+    void setUserRowSettings()
+    {
+        userRow.setFontSize();
+        userRow.forceSetSize();
+        userRow.setDefaultText(FirebaseAuthentication.instance.displayName());
     }
 
     void saveRecords(Record[] list)
@@ -194,10 +201,7 @@ public class LeaderboardManager : MonoBehaviour {
         if (record.key == FirebaseAuthentication.instance.userID())
         {
             setUserHighScores(index, score);
-        } else
-        {
-            userRow.forceSetSize();
-        }
+        } 
     }
     #endregion
 

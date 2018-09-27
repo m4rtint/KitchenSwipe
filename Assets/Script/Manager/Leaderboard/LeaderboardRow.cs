@@ -42,4 +42,10 @@ public class LeaderboardRow : MonoBehaviour {
         columnRight.fontSize = getFontSize();
     }
 
+    public void setDefaultText(string name)
+    {
+        setTMProText(columnLeft, "#. " + name);
+        setTMProText(columnRight, "00000");
+    }
+
 }
