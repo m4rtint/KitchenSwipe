@@ -4,13 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum Direction {
-	Left,
-    Right,
-    Up,
-    Down
-}
-
 public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
@@ -21,8 +14,18 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     Direction currentDirection;
 
     [SerializeField]
+    [Tooltip("Percentage between 0 and 100")]
+    [Range(0, 100)]
+    int dragDistancePercentage;
+
     float dragDistance;
     bool canSwipe = true;
+
+    void Awake()
+    {
+        dragDistance = Screen.width * (dragDistancePercentage / 100);
+    }
+
     Direction dragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
@@ -44,7 +47,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return StateManager.instance.isInGame() && canSwipe;
     }
 
-    public void RunSwipeDelegate()
+    public void runSwipeDelegate()
     {
         this.swipeDelegate(currentDirection);
         canSwipe = true;
@@ -59,7 +62,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector3 dragVectorDirection = displacement.normalized;
 
         float distance = displacement.magnitude;
-        if (distance > dragDistance && canSwipe)
+        if (distance > dragDistance && CanSwipe())
         {
             canSwipe = false;
             currentDirection = dragDirection(dragVectorDirection);

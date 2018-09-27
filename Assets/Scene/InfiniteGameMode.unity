@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f7ea11031894284b719df363e3925a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragDistance: 200
+  dragDistancePercentage: 20
 --- !u!114 &141836063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5990,7 +5990,7 @@ MonoBehaviour:
   foodShakeAmount: 50
   rotationTime: 0.1
   moveTime: 0.1
-  centerFadeOutTime: 0.2
+  centerFadeOutTime: 0.1
   comboPopTime: 0.5
   comboPopScale: 4
   scoreDelayTime: 0.2
@@ -6026,7 +6026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a958e04733c7040a9bc9c106c6b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: 3
+  gameTime: 60
   foodPenaltyTime: 20
   gameTimePenaltyTime: 5
   foodSuccessPrizeTime: 10

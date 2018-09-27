@@ -142,7 +142,7 @@ public class CenterIngredient : MonoBehaviour
     void MoveCenterDelegate()
     {
         ResetCenterAnimation();
-        UserInput.GetComponent<UserInput>().RunSwipeDelegate();
+        UserInput.GetComponent<UserInput>().runSwipeDelegate();
     }
 
     void ResetCenterAnimation()

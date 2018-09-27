@@ -56,7 +56,7 @@ public class AnnouncementManager : MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 0);
-        ht.Add("time", 0.2f);
+        ht.Add("time", 0.05f);
         ht.Add("oncomplete", "changeStateStartGame");
         iTween.FadeTo(gameObject, ht);
     }

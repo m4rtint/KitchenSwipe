@@ -13,6 +13,13 @@ public class User
     }
 }
 
+public enum Direction
+{
+    Left,
+    Right,
+    Up,
+    Down
+}
 
 public class Record
 {
