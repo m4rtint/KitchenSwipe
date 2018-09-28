@@ -6,27 +6,44 @@ using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField]
     GameObject ErrorObject;
 	[SerializeField]
 	GameObject authenticationObject;
     [SerializeField]
-    GameObject displayname;
-
+    GameObject leaderboard;
+    bool isLeaderboardActive;
     [SerializeField]
     GameObject[] loadings;
 
-    [Header("Buttons Animation")]
+    [Header("UI")]
+    [SerializeField]
+    GameObject displayname;
+
+
+    [Header("Buttons")]
     [SerializeField]
     GameObject[] buttons;
+    [SerializeField]
+    Button leaderboardButton;
 
     #region Mono
     private void Awake()
     {
         setupDelegate();
         animateLoading();
-        resetButtons();
+        setupButtons();
         resetDisplayUserName();
+    }
+
+    void setupButtons() {
+        resetButtons();
+        isLeaderboardActive = false;
+        leaderboardButton.onClick.AddListener(delegate {
+            isLeaderboardActive = !isLeaderboardActive;
+            leaderboard.SetActive(isLeaderboardActive);
+        });
     }
 
     void setupDelegate()
