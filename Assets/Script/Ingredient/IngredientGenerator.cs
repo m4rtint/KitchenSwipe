@@ -7,10 +7,15 @@ public class IngredientGenerator : MonoBehaviour {
 	//Food Holder
 	[SerializeField]
     GameObject[] foodHolderObjects;
-    FoodHolder[] foodHolders = new FoodHolder[4];
-    FoodTimer[] foodTimers = new FoodTimer[4];
+    FoodHolder[] foodHolders;
+    FoodTimer[] foodTimers;
 
     #region getter/setter
+    public int foodHolderLength()
+    {
+        return foodHolderObjects.Length;
+    }
+
     public FoodHolder[] FoodHolders()
     {
         return foodHolders;
@@ -23,6 +28,8 @@ public class IngredientGenerator : MonoBehaviour {
 	}
 
 	void initializeFoodHolders() {
+        foodHolders = new FoodHolder[foodHolderLength()];
+        foodTimers = new FoodTimer[foodHolderLength()];
         for (int i = 0; i < foodHolderObjects.Length; i++) {
 			foodHolders [i] = foodHolderObjects [i].GetComponent<FoodHolder> ();
             foodTimers[i] = foodHolderObjects[i].GetComponent<FoodTimer>();
@@ -40,11 +47,8 @@ public class IngredientGenerator : MonoBehaviour {
             Food food = null;
             do
             {
-			    int index = Random.Range(0, 4);
-                if ((int)dir != index) { 
-			        food = foodHolders[index].StoredFood();
-                }
-
+			    int index = Random.Range(0, foodHolderLength());
+			    food = foodHolders[index].StoredFood();
             } while (food == null || !food.isFoodInPlay());
 
             ingredient = ingredientOnTop(food);

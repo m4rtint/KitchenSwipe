@@ -16,14 +16,14 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     [SerializeField]
     [Tooltip("Percentage between 0 and 100")]
     [Range(0, 100)]
-    int dragDistancePercentage;
+    float dragDistancePercentage;
 
     float dragDistance;
     bool canSwipe = true;
 
     void Awake()
     {
-        dragDistance = Screen.width * (dragDistancePercentage / 100);
+        dragDistance = Screen.width * (dragDistancePercentage / 100f);
     }
 
     Direction dragDirection(Vector3 dragVector)
@@ -50,6 +50,11 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void runSwipeDelegate()
     {
         this.swipeDelegate(currentDirection);
+        enableSwipe();
+    }
+
+    public void enableSwipe()
+    {
         canSwipe = true;
     }
 

@@ -13,15 +13,11 @@ public class CenterIngredient : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField]
-    GameObject UserInput;
-    [SerializeField]
-    GameObject m_IngredientGeneratorObj;
-    IngredientGenerator m_IngredientGenerator;
+    IngredientGenerator ingredientGenerator;
        
-    
-    Vector3 m_StartPosition;
-    Ingredient m_CenterIngredient;
-    Direction m_SwipedDirection;
+    Vector3 startPosition;
+    Ingredient centerIngredient;
+    Direction swipedDirection;
     AnimationManager animation;
 
     #region Mono
@@ -29,14 +25,13 @@ public class CenterIngredient : MonoBehaviour
     void Awake()
     {
         animation = AnimationManager.instance;
-        m_StartPosition = transform.position;
-        m_IngredientGenerator = m_IngredientGeneratorObj.GetComponent<IngredientGenerator>();
-        SetupDelegate();
+        startPosition = transform.position;
+        setupDelegate();
     }
 
-    void SetupDelegate()
+    void setupDelegate()
     {
-        UserInput.GetComponent<UserInput>().snapOffDelegate += StartCenterAnimation;
+        GetComponent<UserInput>().snapOffDelegate += startCenterAnimationIfNeeded;
     }
 
     #endregion
@@ -44,17 +39,17 @@ public class CenterIngredient : MonoBehaviour
     #region GetterSetter
     Vector3 GetIngredientAtSwipedDirectionPosition()
     {
-        FoodHolder holder = m_IngredientGenerator.FoodHolders()[(int)m_SwipedDirection];
+        FoodHolder holder = ingredientGenerator.FoodHolders()[(int)swipedDirection];
         Food food = holder.StoredFood();
         if (food != null)
         {
             if (food.isFoodInPlay()){
                 Ingredient ingredient = holder.StoredFood().GetNeededIngredient();
-                return ingredient.GetComponent<RectTransform>().position - m_StartPosition;
+                return ingredient.GetComponent<RectTransform>().position - startPosition;
             }
         } 
 
-        return holder.GetComponent<RectTransform>().position - m_StartPosition;
+        return holder.GetComponent<RectTransform>().position - startPosition;
 
     }
 
@@ -62,7 +57,7 @@ public class CenterIngredient : MonoBehaviour
     {
         GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
         GetComponent<Image>().SetNativeSize();
-        m_CenterIngredient = ingredient;
+        centerIngredient = ingredient;
         setCenterName(ingredient.IngredientName());
     }
 
@@ -73,20 +68,24 @@ public class CenterIngredient : MonoBehaviour
     #endregion
 
     #region Movement
-    void StartCenterAnimation(Direction dir)
+    void startCenterAnimationIfNeeded(Direction dir)
     {
-        setCenterName();
-        this.m_SwipedDirection = dir;
-        Vector3 m_EndPosition = GetIngredientAtSwipedDirectionPosition();
-        if (m_CenterIngredient.GetType() == typeof(Sauce))
+        this.swipedDirection = dir;
+        if (shouldRunSwipe()) {
+            setCenterName();
+            Vector3 endPosition = GetIngredientAtSwipedDirectionPosition();
+            if (centerIngredient.GetType() == typeof(Sauce))
+            {
+                RotateCenterIngredient(dir);
+            }
+            else
+            {
+                MoveCenterToIngredient(endPosition);
+            }
+        } else
         {
-            RotateCenterIngredient(dir);
+            GetComponent<UserInput>().enableSwipe();
         }
-        else
-        {
-            MoveCenterToIngredient(m_EndPosition);
-        }
-
     }
 
     void RotateCenterIngredient(Direction dir)
@@ -142,16 +141,23 @@ public class CenterIngredient : MonoBehaviour
     void MoveCenterDelegate()
     {
         ResetCenterAnimation();
-        UserInput.GetComponent<UserInput>().runSwipeDelegate();
+        GetComponent<UserInput>().runSwipeDelegate();
     }
 
     void ResetCenterAnimation()
     {
         GetComponent<Image>().color = Color.white;
-        transform.position = m_StartPosition;
+        transform.position = startPosition;
         transform.rotation = Quaternion.identity;
     }
 
+    #endregion
+
+    #region tools
+    bool shouldRunSwipe()
+    {
+        return (int)swipedDirection < ingredientGenerator.foodHolderLength();
+    }
     #endregion
 
 }
