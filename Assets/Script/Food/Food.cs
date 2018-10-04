@@ -72,6 +72,11 @@ public class Food : MonoBehaviour {
 
 	#region UserAction
 	public void PlaceIngredient() {
+        //Ingredient not active yet 
+        if (!GetNeededIngredient().gameObject.activeSelf)
+        {
+            activeTopIngredientIfNeeded();
+        }
         GetNeededIngredient().setAlpha(1);
         GetNeededIngredient().startAnimation();
         level++;
