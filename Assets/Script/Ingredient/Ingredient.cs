@@ -61,6 +61,7 @@ public class Ingredient:MonoBehaviour {
     #region Animation
     public virtual void startAnimation()
     {
+        Debug.Log(gameObject.name);
         Hashtable ht = new Hashtable();
         ht.Add("y",-placeDownDistance);
         ht.Add("easeType", "easeInQuint");

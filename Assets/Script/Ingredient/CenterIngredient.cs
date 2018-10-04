@@ -130,8 +130,8 @@ public class CenterIngredient : MonoBehaviour
         Hashtable ht = new Hashtable();
         ht.Add("x", position.x);
         ht.Add("y", position.y);
-        //ht.Add("easeType", "easeOutCubic");
-        ht.Add("easeType", "linear");
+        ht.Add("easeType", "easeOutCubic");
+        //ht.Add("easeType", "linear");
         ht.Add("time", animation.CenterMoveTime());
         ht.Add("oncomplete", "MoveCenterDelegate");
         iTween.MoveBy(gameObject, ht);

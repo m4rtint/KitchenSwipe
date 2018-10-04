@@ -29,8 +29,8 @@ public class GameEngineInfinite : GameEngine {
 
         base.CompleteOrder(food);
 
-        if (foodGenerator.GetChosenFoodStack().Count < 8) {
-            foodGenerator.FillStackWithRandomFood(base.NumberOfFood());
+        if (foodGenerator.ChosenFoodStack().Count < 8) {
+            foodGenerator.fillStackWithRandomFood(base.NumberOfFood());
         }
 
         SetDifficultyIfNeeded();

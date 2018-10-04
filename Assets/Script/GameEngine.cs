@@ -53,7 +53,7 @@ public class GameEngine : MonoBehaviour {
         setupDelegates();
 
         //Get Stack of Food
-        foodGenerator.FillStackWithRandomFood(m_NumberOfFood);
+        foodGenerator.fillStackWithRandomFood(m_NumberOfFood);
 
         //Place First 4 food onto each side
         setupIngredients();
@@ -62,7 +62,14 @@ public class GameEngine : MonoBehaviour {
         ChooseNewCurrentIngredient ();
 	}
 
-	void setupIngredients() {
+    //Start Setup Only
+    void ChooseNewCurrentIngredient()
+    {
+        currentIngredient = ingredientsGenerator.randomlyChooseIngredient();
+        setCenterIngredientView();
+    }
+
+    void setupIngredients() {
         for (int i = 0; i < ingredientsGenerator.foodHolderLength(); i++)
         {
             SetNewFood((Direction)i);
@@ -100,18 +107,13 @@ public class GameEngine : MonoBehaviour {
 	#endregion
 
 	#region Ingredients
-	void ChooseNewCurrentIngredient(){
-		currentIngredient = ingredientsGenerator.randomlyChooseIngredient ();
-		SetCenterIngredientView ();
-	}
-
-	void SetCenterIngredientView() {
+	void setCenterIngredientView() {
         center.GetComponent<CenterIngredient>().SetCenter (currentIngredient);
 	}
 
     void SetNewFood(Direction dir)
     {
-        ingredientsGenerator.insertFoodIntoHolder(foodGenerator.GetChosenFoodStack().Pop(),dir);
+        ingredientsGenerator.insertFoodIntoHolder(foodGenerator.firstFoodOnStack(),dir);
     }
     #endregion
 
@@ -131,7 +133,11 @@ public class GameEngine : MonoBehaviour {
     void PlayerSwiped(Direction dir)
     {
         currentIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
-        SetCenterIngredientView();
+        if (currentIngredient == null)
+        {
+            currentIngredient = foodGenerator.peekFoodOnStack().GetNeededIngredient();
+        }
+        setCenterIngredientView();
     }
 
     #endregion
@@ -142,7 +148,6 @@ public class GameEngine : MonoBehaviour {
         StateManager.instance.gameOver();
         ScoreManager.instance.saveScore();
         announcementManager.gameObject.SetActive(true);
-        Debug.Log("Announcement Manager :"+announcementManager.gameObject.activeSelf);
         announcementManager.startTimesUpAnimate();
     }
 

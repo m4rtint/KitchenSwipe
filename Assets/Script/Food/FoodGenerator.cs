@@ -9,20 +9,31 @@ public class FoodGenerator : MonoBehaviour
 
 	Stack<Food> m_ChosenFoodStack = new Stack<Food>();
    
-	public Stack<Food> GetChosenFoodStack() {
+	public Stack<Food> ChosenFoodStack() {
 		return m_ChosenFoodStack;	
 	}
 
+    public Food firstFoodOnStack()
+    {
+        return ChosenFoodStack().Pop();
+    }
+
+    public Food peekFoodOnStack()
+    {
+        return ChosenFoodStack().Peek();
+    }
+    
+
 	#region Generation
-	public void FillStackWithRandomFood(int num)
+	public void fillStackWithRandomFood(int num)
 	{
 		for (int i = 0; i < num; i++)
 		{
-			ChooseRandomFood();
+			chooseRandomFood();
 		}
 	}
 
-	public void ChooseRandomFood()
+	public void chooseRandomFood()
 	{
 		//Choose random
         int randomFoodIndex = Random.Range(0, m_Foods.Length);

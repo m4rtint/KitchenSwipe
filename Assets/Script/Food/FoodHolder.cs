@@ -44,8 +44,11 @@ public class FoodHolder : MonoBehaviour
 
     public void incorrectlySwiped()
     {
-        storedFood.Animation().shakeFood();
-        orderTimerDelegate(this.direction);
+        if (storedFood != null)
+        {
+            storedFood.Animation().shakeFood();
+            orderTimerDelegate(this.direction);
+        }
         ScoreManager.instance.resetCombo();
     }
 

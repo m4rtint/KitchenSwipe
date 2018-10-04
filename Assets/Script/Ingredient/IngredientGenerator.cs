@@ -43,12 +43,20 @@ public class IngredientGenerator : MonoBehaviour {
     public Ingredient randomlyChooseIngredient(Direction dir = Direction.Down)
     {
         Ingredient ingredient = null;
+        int crashPrevention = 10;
         if (!isEmptyHolders()) {
             Food food = null;
             do
             {
 			    int index = Random.Range(0, foodHolderLength());
 			    food = foodHolders[index].StoredFood();
+
+                crashPrevention--;
+                if (crashPrevention == 0)
+                {
+                    return null;
+                }
+
             } while (food == null || !food.isFoodInPlay());
 
             ingredient = ingredientOnTop(food);
@@ -99,7 +107,7 @@ public class IngredientGenerator : MonoBehaviour {
     bool isIngredientMatch(Direction dir, Ingredient swiped)
     {
         Food food = foodHolders[(int)dir].StoredFood();
-        if (food != null)
+        if (food != null && food.isFoodInPlay())
         {
             bool namesEqual = food.GetNeededIngredient().IngredientName() == swiped.IngredientName();
             return food.isFoodInPlay() && namesEqual;
