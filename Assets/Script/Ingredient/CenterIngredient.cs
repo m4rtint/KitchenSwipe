@@ -14,6 +14,8 @@ public class CenterIngredient : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField]
     IngredientGenerator ingredientGenerator;
+    [SerializeField]
+    UserInput userInput;
        
     Vector3 startPosition;
     Ingredient centerIngredient;
@@ -31,7 +33,7 @@ public class CenterIngredient : MonoBehaviour
 
     void setupDelegate()
     {
-        GetComponent<UserInput>().snapOffDelegate += startCenterAnimationIfNeeded;
+        userInput.snapOffDelegate += startCenterAnimationIfNeeded;
     }
 
     #endregion
@@ -55,10 +57,16 @@ public class CenterIngredient : MonoBehaviour
 
     public void SetCenter(Ingredient ingredient)
     {
-        GetComponent<Image>().sprite = ingredient.CenterSpriteImage();
-        GetComponent<Image>().SetNativeSize();
         centerIngredient = ingredient;
-        setCenterName(ingredient.IngredientName());
+
+        if (centerIngredient != null) {
+            GetComponent<Image>().sprite = centerIngredient.CenterSpriteImage();
+            GetComponent<Image>().SetNativeSize();
+            setCenterName(ingredient.IngredientName());
+        } else {
+            setColorClear();
+            setCenterName();
+        }
     }
 
     void setCenterName(string text = "")
@@ -84,7 +92,7 @@ public class CenterIngredient : MonoBehaviour
             }
         } else
         {
-            GetComponent<UserInput>().enableSwipe();
+            userInput.enableSwipe();
         }
     }
 
@@ -141,7 +149,7 @@ public class CenterIngredient : MonoBehaviour
     void MoveCenterDelegate()
     {
         ResetCenterAnimation();
-        GetComponent<UserInput>().runSwipeDelegate();
+        userInput.runSwipeDelegate();
     }
 
     void ResetCenterAnimation()
@@ -157,6 +165,12 @@ public class CenterIngredient : MonoBehaviour
     bool shouldRunSwipe()
     {
         return (int)swipedDirection < ingredientGenerator.foodHolderLength();
+    }
+
+    void setColorClear()
+    {
+        GetComponent<Image>().sprite = null;
+        GetComponent<Image>().color = Color.clear;
     }
     #endregion
 

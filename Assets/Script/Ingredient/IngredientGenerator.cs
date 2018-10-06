@@ -40,11 +40,11 @@ public class IngredientGenerator : MonoBehaviour {
 
 	#region PlayerActions
 	//Place all filled holders into an array , randomly choose
-    public Ingredient randomlyChooseIngredient(Direction dir = Direction.Down)
+    public Ingredient randomlyChooseIngredient()
     {
         Ingredient ingredient = null;
         int crashPrevention = 10;
-        if (!isEmptyHolders()) {
+        if (!isHoldersEmpty()) {
             Food food = null;
             do
             {
@@ -64,6 +64,19 @@ public class IngredientGenerator : MonoBehaviour {
         return ingredient;
     }
 
+    public Ingredient chooseIngredientFrom(Direction dir) {
+        Ingredient ingredient = null;
+        int index = (int)dir;
+        if (foodHolders.Length > index) {
+            Food food = foodHolders[index].StoredFood();
+            if(food != null) {
+                ingredient = ingredientOnTop(food);
+            }
+        }
+
+        return ingredient;
+    }
+
     public void decrementOrderTimer(Direction dir, float seconds)
     {
         foodTimers[(int)dir].decrementTimeBy(seconds);
@@ -78,7 +91,7 @@ public class IngredientGenerator : MonoBehaviour {
         {
 			foodHolders [(int)dir].incorrectlySwiped ();
         }
-		return randomlyChooseIngredient(dir);
+		return randomlyChooseIngredient();
     }
 
     public void insertFoodIntoHolder(Food food, Direction dir)
@@ -115,11 +128,11 @@ public class IngredientGenerator : MonoBehaviour {
         return false;
     }
 
-    bool isEmptyHolders()
+    public bool isHoldersEmpty()
     {
         for (int i = 0; i < foodHolders.Length; i++)
         {
-            if (foodHolders[i].StoredFood() != null)
+            if (foodHolders[i].StoredFood() != null && foodHolders[i].StoredFood().isFoodInPlay())
             {
                 return false;
             }

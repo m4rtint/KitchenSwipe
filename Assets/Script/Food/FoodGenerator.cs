@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class FoodGenerator : MonoBehaviour
 {
-	[SerializeField]
-	Food[] m_Foods;
+    [SerializeField]
+    Food[] m_Foods;
 
-	Stack<Food> m_ChosenFoodStack = new Stack<Food>();
-   
-	public Stack<Food> ChosenFoodStack() {
-		return m_ChosenFoodStack;	
-	}
+    Stack<Food> chosenFoodStack = new Stack<Food>();
+
+    public Stack<Food> ChosenFoodStack()
+    {
+        return chosenFoodStack;
+    }
 
     public Food firstFoodOnStack()
     {
@@ -22,25 +23,37 @@ public class FoodGenerator : MonoBehaviour
     {
         return ChosenFoodStack().Peek();
     }
-    
 
-	#region Generation
-	public void fillStackWithRandomFood(int num)
-	{
-		for (int i = 0; i < num; i++)
-		{
-			chooseRandomFood();
-		}
-	}
 
-	public void chooseRandomFood()
-	{
-		//Choose random
+    #region Generation
+    public void fillStackWithRandomFood(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            chooseRandomFood();
+        }
+    }
+
+    public void chooseRandomFood()
+    {
+        //Choose random
         int randomFoodIndex = Random.Range(0, m_Foods.Length);
-		//Store
-		m_ChosenFoodStack.Push (m_Foods[randomFoodIndex]);
-	}
+        //Store
+        chosenFoodStack.Push(m_Foods[randomFoodIndex]);
+    }
 
-	#endregion
+    #endregion
+
+    #region tutorial
+    public void fillFoodForTutorial() {
+        if (m_Foods.Length > 1) {
+            chosenFoodStack.Push(m_Foods[0]);
+            chosenFoodStack.Push(m_Foods[1]);
+        } else {
+            //TODO
+            //THrow Exception
+        }
+    }
+    #endregion
 
 }

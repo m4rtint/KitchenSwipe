@@ -14,8 +14,9 @@ public class StateManager : MonoBehaviour {
 
     public static StateManager instance = null;
 
-	[SerializeField]
+    [SerializeField]
     GameState currentState;
+    GameState savedRevertState;
 
     void Awake()
     {
@@ -47,6 +48,12 @@ public class StateManager : MonoBehaviour {
     public void pauseGame()
     {
         currentState = GameState.Pause;
+        savedRevertState = currentState;
+    }
+
+    public void unPausedGame() 
+    {
+        currentState = savedRevertState;
     }
 
     public void setToMenu()

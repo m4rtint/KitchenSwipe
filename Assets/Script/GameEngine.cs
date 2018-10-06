@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour {
 
 	//========================Local
-    Ingredient currentIngredient;
+    protected Ingredient currentIngredient;
 
 	[SerializeField]
 	int m_NumberOfFood;
@@ -18,16 +18,13 @@ public class GameEngine : MonoBehaviour {
 	//Ingredients Generator
 	[SerializeField]
 	GameObject m_FoodHolder;
-	IngredientGenerator ingredientsGenerator;
+	protected IngredientGenerator ingredientsGenerator;
 
     //Center
     [SerializeField]
     GameObject center;
-
-    //Announcement Manager
     [SerializeField]
-    AnnouncementManager announcementManager;
-    
+    UserInput userInput;
 
     #region getter/setter
     protected int NumberOfFood() {
@@ -45,7 +42,7 @@ public class GameEngine : MonoBehaviour {
 		foodGenerator = GetComponent<FoodGenerator>();
 		ingredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
 
-        SetupHolders ();
+        setupHolders ();
     }
 
 	protected virtual void Start()
@@ -69,32 +66,30 @@ public class GameEngine : MonoBehaviour {
         setCenterIngredientView();
     }
 
-    void setupIngredients() {
+    protected void setupIngredients() {
         for (int i = 0; i < ingredientsGenerator.foodHolderLength(); i++)
         {
-            SetNewFood((Direction)i);
+            setNewFood((Direction)i);
         }
 	}
 
-    void setupDelegates()
+    protected virtual void setupDelegates()
     {
         TimeManager.instance.isGameOverDelegate += onGameOver;
-        TransitionManager.instance.completedTransition += onCompleteTransition; 
-        announcementManager.onTimesUpComplete += GetComponent<UIManager>().startGameOverScreen;
     }
 
-	void SetupHolders(){
-		center.GetComponent<UserInput> ().swipeDelegate += PlayerSwiped;
+    void setupHolders(){
+        userInput.swipeDelegate += playerSwiped;
         FoodHolder[] holders = ingredientsGenerator.FoodHolders();
         for (int i = 0; i < holders.Length; i++)
         {
             holders[i].Direction(i);
             holders[i].orderDelegate += CompleteOrder;
-            holders[i].orderTimerDelegate += IncorrectlySwipeIngredient;
+            holders[i].orderTimerDelegate += incorrectlySwipeIngredient;
         }
 	}
 
-	void Update() {
+	protected virtual void Update() {
 		if (StateManager.instance.isInGame ()) {
 			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.orderTimeVaryingSpeed);
 		}
@@ -104,14 +99,15 @@ public class GameEngine : MonoBehaviour {
         //Decrement all timer of food
         ingredientsGenerator.updateFoodTimer(seconds);
     }
-	#endregion
+    #endregion
 
-	#region Ingredients
-	void setCenterIngredientView() {
-        center.GetComponent<CenterIngredient>().SetCenter (currentIngredient);
-	}
+    #region Ingredients
+    protected void setCenterIngredientView()
+    {
+        center.GetComponent<CenterIngredient>().SetCenter(currentIngredient);
+    }
 
-    void SetNewFood(Direction dir)
+    void setNewFood(Direction dir)
     {
         ingredientsGenerator.insertFoodIntoHolder(foodGenerator.firstFoodOnStack(),dir);
     }
@@ -120,17 +116,17 @@ public class GameEngine : MonoBehaviour {
     #region Orders
     protected virtual void CompleteOrder(Direction dir)
     {
-        SetNewFood(dir);
+        setNewFood(dir);
     }
 
-	void IncorrectlySwipeIngredient(Direction dir)
+    protected virtual void incorrectlySwipeIngredient(Direction dir)
 	{
         ingredientsGenerator.decrementOrderTimer (dir, TimeManager.instance.FoodPenaltyTime());
 	}
     #endregion
 
     #region Actions
-    void PlayerSwiped(Direction dir)
+    protected virtual void playerSwiped(Direction dir)
     {
         currentIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
         if (currentIngredient == null)
@@ -143,17 +139,10 @@ public class GameEngine : MonoBehaviour {
     #endregion
 
     #region Delegate
-    void onGameOver()
+    protected virtual void onGameOver()
     {
         StateManager.instance.gameOver();
         ScoreManager.instance.saveScore();
-        announcementManager.gameObject.SetActive(true);
-        announcementManager.startTimesUpAnimate();
-    }
-
-    void onCompleteTransition()
-    {
-        announcementManager.startCountDownAnimate();
     }
     #endregion
 }

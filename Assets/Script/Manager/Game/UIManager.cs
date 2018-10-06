@@ -19,13 +19,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject comboTextObject;
 
+    //StoreStateWhilePaused
+    GameState pausedSavedState;
 
 
     #region Mono
     private void Awake()
     {
         initManagers();
-        initDelegate();
+        if (scoreManager != null) {
+            initDelegate();
+        }
         initializeUIText();
     }
 
@@ -37,13 +41,17 @@ public class UIManager : MonoBehaviour
     void initDelegate()
     {
         scoreManager.scoreDelegate += updateScore;
-        scoreManager.comboDelegate += updateCombo;
+        if (comboTextObject != null) {
+            scoreManager.comboDelegate += updateCombo;
+        }
     }
 
     void initializeUIText()
     {
        scoreTextObject.GetComponent<Text>().text = "000000000\n0 Dishes";
-       comboTextObject.SetActive(false);
+        if (comboTextObject != null) {
+            comboTextObject.SetActive(false);
+        }
     }
     #endregion
 
@@ -83,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     public void hidePauseScreen()
     {
-        StateManager.instance.startGame();
+        StateManager.instance.unPausedGame();
         pauseScreenObject.SetActive(false);
         fadedBackgroundObject.SetActive(false);
     }

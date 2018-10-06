@@ -49,7 +49,10 @@ public class FoodHolder : MonoBehaviour
             storedFood.Animation().shakeFood();
             orderTimerDelegate(this.direction);
         }
-        ScoreManager.instance.resetCombo();
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.resetCombo();
+        }
     }
 
 
@@ -73,11 +76,16 @@ public class FoodHolder : MonoBehaviour
             storedFood = null;
 
             //SCORE
-            int score = ScoreManager.instance.incrementScore();
-            GetComponent<FoodScore>().risingScoreAnimation(score);
+            if (ScoreManager.instance != null)
+            {
+                int score = ScoreManager.instance.incrementScore();
+                GetComponent<FoodScore>().risingScoreAnimation(score);
+            }
 
             //TIME
-            TimeManager.instance.incrementGameTime();
+            if (TimeManager.instance != null) {
+                TimeManager.instance.incrementGameTime();
+            }
         }
     }
 
