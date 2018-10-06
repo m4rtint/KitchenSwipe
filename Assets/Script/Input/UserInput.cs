@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(Images))]
 public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
