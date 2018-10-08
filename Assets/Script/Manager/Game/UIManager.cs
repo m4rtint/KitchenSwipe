@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     //Dependencies
     ScoreManager scoreManager;
+    Text scoreText;
 
     [SerializeField]
     GameObject fadedBackgroundObject;
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
     #region Mono
     private void Awake()
     {
+        
         initManagers();
         if (scoreManager != null) {
             initDelegate();
@@ -36,6 +38,10 @@ public class UIManager : MonoBehaviour
     void initManagers()
     {
         scoreManager = ScoreManager.instance;
+        if (scoreTextObject != null)
+        {
+            scoreText = scoreTextObject.GetComponent<Text>();
+        }
     }
 
     void initDelegate()
@@ -48,7 +54,9 @@ public class UIManager : MonoBehaviour
 
     void initializeUIText()
     {
-       scoreTextObject.GetComponent<Text>().text = "000000000\n0 Dishes";
+        if (scoreText != null) {
+            scoreText.text = "000000000\n0 Dishes";
+        }
         if (comboTextObject != null) {
             comboTextObject.SetActive(false);
         }
@@ -57,7 +65,10 @@ public class UIManager : MonoBehaviour
 
     #region DelegateMethods
     void updateScore(){
-        scoreTextObject.GetComponent<Text>().text = scoreManager.Score() + "\n"+ scoreManager.Dishes() + " Dishes";
+        if (scoreText != null)
+        {
+            scoreText.text = scoreManager.Score() + "\n" + scoreManager.Dishes() + " Dishes";
+        }
     }
 
     void updateCombo(){
