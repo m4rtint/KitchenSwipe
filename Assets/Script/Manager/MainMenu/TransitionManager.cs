@@ -40,6 +40,11 @@ public class TransitionManager : MonoBehaviour
         onSceneChange("changeSceneToMenu");
     }
 
+    public void startTutorialScene() {
+        StateManager.instance.prepareGame();
+        SceneManager.LoadScene("TutorialMode");
+    }
+
     #endregion
 
 

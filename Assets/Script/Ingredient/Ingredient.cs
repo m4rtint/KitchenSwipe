@@ -80,7 +80,19 @@ public class Ingredient:MonoBehaviour {
         iTween.ScaleFrom(gameObject, ht);
     }
 
+    public void pulsingAnimation() {
+        IngredientEffects effects = GetComponent<IngredientEffects>();
+        if (effects != null) {
+            effects.pulsingAnimation();
+        }
+    }
 
+    public void resetScale() {
+        IngredientEffects effects = GetComponent<IngredientEffects>();
+        if (effects != null) {
+            effects.resetScale();
+        }
+    }
 
     protected virtual void waitForPlaceDelegate()
     {

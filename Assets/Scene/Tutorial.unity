@@ -437,6 +437,8 @@ GameObject:
   m_Component:
   - component: {fileID: 152723475}
   - component: {fileID: 152723476}
+  - component: {fileID: 152723478}
+  - component: {fileID: 152723477}
   m_Layer: 5
   m_Name: WholeScreenPlayerInput
   m_TagString: Untagged
@@ -474,6 +476,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragDistancePercentage: 17.8
+--- !u!114 &152723477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 152723474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &152723478
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 152723474}
+  m_CullTransparentMesh: 0
 --- !u!1 &424378569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,8 +2988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Foods:
-  - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
-  - {fileID: 114650146886582986, guid: b636bd03c4d37944e86f4f43d2126c5a, type: 2}
+  - {fileID: 114788017987324834, guid: 1dcf8013579c047698fff7df9be0d63d, type: 2}
+  - {fileID: 114650146886582986, guid: 9d77f9b623b024ec8a0b98a2c73087a5, type: 2}
 --- !u!4 &1727321971
 Transform:
   m_ObjectHideFlags: 0

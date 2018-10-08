@@ -31,6 +31,8 @@ public class GameEngineTutorial : GameEngine
 
         //Choose the ingredient in the middle
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Left);
+        currentIngredient.pulsingAnimation();
+
         //Set center
         setCenterIngredientView();
     }
@@ -57,14 +59,16 @@ public class GameEngineTutorial : GameEngine
         if (currentTutorialStep == 0) {
             ingredientsGenerator.userSwiped(currentIngredient, dir);
             if (dir == Direction.Left) {
-                stepOneCorrect();
+                resetCurrentIngredientScale(dir);
+                onStepOneCorrect();
             } else {
                 instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_ONE_WRONG_SWIPE);
             }
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPERIGHT) {
             randomGeneratedIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
             if (dir == Direction.Right) {
-                stepTwoCorrect(randomGeneratedIngredient);
+                resetCurrentIngredientScale(dir);
+                onStepTwoCorrect(randomGeneratedIngredient);
             } else {
                 instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO_WRONG_SWIPE);
             }
@@ -79,16 +83,21 @@ public class GameEngineTutorial : GameEngine
         base.setCenterIngredientView();
     }
 
-    void stepOneCorrect() {
+    void onStepOneCorrect() {
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Right);
+        currentIngredient.pulsingAnimation();
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO);
         currentTutorialStep++;
     }
 
-    void stepTwoCorrect(Ingredient ingred) {
+    void onStepTwoCorrect(Ingredient ingred) {
         currentIngredient = ingred;
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
         currentTutorialStep++;
+    }
+
+    void resetCurrentIngredientScale(Direction dir){
+        currentIngredient.resetScale();
     }
 
     void stepThreeCorrect() {
