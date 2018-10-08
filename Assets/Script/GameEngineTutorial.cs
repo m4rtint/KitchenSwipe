@@ -16,6 +16,9 @@ public class GameEngineTutorial : GameEngine
     [SerializeField]
     InstructionsPanel instructionsPanel;
 
+    [SerializeField]
+    SwipeAnimation swipeAnimation;
+
     #region mono
     protected override void Start()
     {
@@ -32,6 +35,9 @@ public class GameEngineTutorial : GameEngine
         //Choose the ingredient in the middle
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Left);
         currentIngredient.pulsingAnimation();
+
+        //Swipe animation
+        swipeAnimation.swipe(true);
 
         //Set center
         setCenterIngredientView();
@@ -87,12 +93,14 @@ public class GameEngineTutorial : GameEngine
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Right);
         currentIngredient.pulsingAnimation();
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO);
+        swipeAnimation.swipe(false);
         currentTutorialStep++;
     }
 
     void onStepTwoCorrect(Ingredient ingred) {
         currentIngredient = ingred;
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
+        Destroy(swipeAnimation.gameObject);
         currentTutorialStep++;
     }
 
