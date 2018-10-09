@@ -59,12 +59,25 @@ public struct ErrorMessages
 
 public struct PlayerPrefKeys
 {
+    //Leaderboard score
     public readonly static string DISPLAYNAME = "DISPLAYNAME";
     public readonly static string INFINITE_SCORE = "SCORE";
     public readonly static string INFINITE_DISHES = "DISHES";
     public readonly static string INFINITE_COMBO = "COMBO";
     public readonly static string INFINITE_SECONDS = "SECONDSLASTED";
-    public readonly static string FONTSIZE = "FONTSIZE";
+
+    //Setting UI
+    public readonly static string FONTSIZE = "FONT_SIZE";
+
+    //Check Tutorial
+    public readonly static string DONETUTORIAL = "DONE_TUTORIAL";
+}
+
+public struct SceneNames
+{
+    public readonly static string INFINITE_SCENE_HARD = "InfiniteHard";
+    public readonly static string MAIN_MENU = "MainMenu";
+    public readonly static string TUTORIAL = "Tutorial";
 }
 
 

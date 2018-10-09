@@ -20,6 +20,18 @@ public class GameEngineTutorial : GameEngine
     SwipeAnimation swipeAnimation;
 
     #region mono
+    protected override void Awake()
+    {
+        transitionMenuIfNeeded();
+        base.Awake();
+    }
+
+    void transitionMenuIfNeeded() {
+        if (StateManager.instance.isCompleteTutorial()) {
+            TransitionManager.instance.startMainMenuScene(true);
+        }
+    }
+
     protected override void Start()
     {
         currentTutorialStep = 0;
@@ -89,6 +101,7 @@ public class GameEngineTutorial : GameEngine
         base.setCenterIngredientView();
     }
 
+    //Step 1
     void onStepOneCorrect() {
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Right);
         currentIngredient.pulsingAnimation();
@@ -97,6 +110,7 @@ public class GameEngineTutorial : GameEngine
         currentTutorialStep++;
     }
 
+    //Step 2
     void onStepTwoCorrect(Ingredient ingred) {
         currentIngredient = ingred;
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
@@ -108,11 +122,21 @@ public class GameEngineTutorial : GameEngine
         currentIngredient.resetScale();
     }
 
+    //Step 3
     void stepThreeCorrect() {
+        setInstructionPanel();
+        setStateManager();
+        currentTutorialStep++;
+    }
+
+    void setInstructionPanel() {
         instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_COMPLETE);
         instructionsPanel.setCompletionButtonActive(true);
+    }
+
+    void setStateManager() {
         StateManager.instance.pauseGame();
-        currentTutorialStep++;
+        StateManager.instance.completedTutorial();
     }
 
     bool checkStepThreeCorrect() {

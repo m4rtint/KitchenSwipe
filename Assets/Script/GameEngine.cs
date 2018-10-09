@@ -38,7 +38,7 @@ public class GameEngine : MonoBehaviour {
 
     #region Mono
     // Use this for initialization
-    void Awake () {
+    protected virtual void Awake () {
 		foodGenerator = GetComponent<FoodGenerator>();
 		ingredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
 

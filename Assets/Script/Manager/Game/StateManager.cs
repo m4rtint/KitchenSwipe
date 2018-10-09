@@ -9,7 +9,8 @@ public enum GameState
     Pause,
     GameOver
 }
-public class StateManager : MonoBehaviour {
+public class StateManager : MonoBehaviour
+{
 
 
     public static StateManager instance = null;
@@ -34,16 +35,18 @@ public class StateManager : MonoBehaviour {
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
-	}
-	
+    }
+
+    #region GameStates
     public void prepareGame()
     {
         currentState = GameState.PrepareGame;
     }
 
-	public void startGame() {
-		currentState = GameState.Game;
-	}
+    public void startGame()
+    {
+        currentState = GameState.Game;
+    }
 
     public void pauseGame()
     {
@@ -51,7 +54,7 @@ public class StateManager : MonoBehaviour {
         savedRevertState = currentState;
     }
 
-    public void unPausedGame() 
+    public void unPausedGame()
     {
         currentState = savedRevertState;
     }
@@ -61,22 +64,39 @@ public class StateManager : MonoBehaviour {
         currentState = GameState.Menu;
     }
 
-    public void gameOver() 
+    public void gameOver()
     {
         currentState = GameState.GameOver;
     }
 
-	public bool isInGame(){
-		return currentState == GameState.Game;
-	}
+    public bool isInGame()
+    {
+        return currentState == GameState.Game;
+    }
 
 
-	public bool isPaused(){
-		return currentState == GameState.Pause;
-	}
+    public bool isPaused()
+    {
+        return currentState == GameState.Pause;
+    }
 
     public bool isPreparingGame()
     {
         return currentState == GameState.PrepareGame;
     }
+
+    #endregion
+
+    #region Tutorial
+    public void completedTutorial()
+    {
+        PlayerPrefs.SetInt(PlayerPrefKeys.DONETUTORIAL, 1);
+    }
+
+    public bool isCompleteTutorial()
+    {
+        int done = PlayerPrefs.GetInt(PlayerPrefKeys.DONETUTORIAL);
+        return done != 0;
+    }
+    #endregion
 }

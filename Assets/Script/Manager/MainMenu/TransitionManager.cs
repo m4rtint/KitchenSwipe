@@ -8,7 +8,7 @@ public class TransitionManager : MonoBehaviour
     //Delegate
     public delegate void TransitionDelegate();
     public TransitionDelegate completedTransition;
-    
+
     public static TransitionManager instance = null;
     readonly Vector3 expanded = new Vector3(100, 100, 0);
 
@@ -35,14 +35,12 @@ public class TransitionManager : MonoBehaviour
     }
 
 
-    public void startMainMenuScene()
+    public void startMainMenuScene(bool force = false)
     {
+        if (force) {
+            changeSceneToMenu();
+        }
         onSceneChange("changeSceneToMenu");
-    }
-
-    public void startTutorialScene() {
-        StateManager.instance.prepareGame();
-        SceneManager.LoadScene("TutorialMode");
     }
 
     #endregion
@@ -61,13 +59,13 @@ public class TransitionManager : MonoBehaviour
     void changeSceneToGame()
     {
         StateManager.instance.prepareGame();
-        SceneManager.LoadScene("InfiniteGameMode");
+        SceneManager.LoadScene(SceneNames.INFINITE_SCENE_HARD);
     }
 
     void changeSceneToMenu()
     {
         StateManager.instance.setToMenu();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneNames.MAIN_MENU);
     }
     #endregion
 
@@ -88,5 +86,4 @@ public class TransitionManager : MonoBehaviour
         completedTransition();
     }
     #endregion
-   
 }
