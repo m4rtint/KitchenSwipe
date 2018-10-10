@@ -14,7 +14,7 @@ public class GameEngineTutorial : GameEngine
     TUTORIALSTEP currentTutorialStep;
 
     [SerializeField]
-    InstructionsPanel instructionsPanel;
+    TutorialPanel tutorialPanel;
 
     [SerializeField]
     SwipeAnimation swipeAnimation;
@@ -80,7 +80,7 @@ public class GameEngineTutorial : GameEngine
                 resetCurrentIngredientScale(dir);
                 onStepOneCorrect();
             } else {
-                instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_ONE_WRONG_SWIPE);
+                tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_ONE_WRONG_SWIPE);
             }
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPERIGHT) {
             randomGeneratedIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
@@ -88,7 +88,7 @@ public class GameEngineTutorial : GameEngine
                 resetCurrentIngredientScale(dir);
                 onStepTwoCorrect(randomGeneratedIngredient);
             } else {
-                instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO_WRONG_SWIPE);
+                tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO_WRONG_SWIPE);
             }
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPEUNTILCORRECT) {
             currentIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
@@ -105,7 +105,7 @@ public class GameEngineTutorial : GameEngine
     void onStepOneCorrect() {
         currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Right);
         currentIngredient.pulsingAnimation();
-        instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO);
+        tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO);
         swipeAnimation.swipe(false);
         currentTutorialStep++;
     }
@@ -113,7 +113,7 @@ public class GameEngineTutorial : GameEngine
     //Step 2
     void onStepTwoCorrect(Ingredient ingred) {
         currentIngredient = ingred;
-        instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
+        tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
         Destroy(swipeAnimation.gameObject);
         currentTutorialStep++;
     }
@@ -130,8 +130,8 @@ public class GameEngineTutorial : GameEngine
     }
 
     void setInstructionPanel() {
-        instructionsPanel.setInstructions(InstructionsMessages.TUTORIAL_COMPLETE);
-        instructionsPanel.setCompletionButtonActive(true);
+        tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_COMPLETE);
+        tutorialPanel.setCompletionButtonActive(true);
     }
 
     void setStateManager() {
@@ -146,7 +146,7 @@ public class GameEngineTutorial : GameEngine
 
     #region delegateMethods
     void onCompleteTransition() {
-        instructionsPanel.startPopoutAnimation();
+        tutorialPanel.startPopoutAnimation();
         StateManager.instance.startGame();
     }
     #endregion

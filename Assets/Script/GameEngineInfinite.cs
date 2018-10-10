@@ -17,6 +17,9 @@ public class GameEngineInfinite : GameEngine
     [SerializeField]
     AnnouncementManager announcementManager;
 
+    [SerializeField]
+    GoalPanel goalManager;
+
     #region Mono
     protected override void Start()
     {
@@ -96,7 +99,9 @@ public class GameEngineInfinite : GameEngine
 
     void onCompleteTransition()
     {
-        announcementManager.startCountDownAnimate();
+        //DISPLAY INSTRUCTIONS
+        goalManager.startPopoutAnimation();
+        //announcementManager.startCountDownAnimate();
     }
     #endregion
 
