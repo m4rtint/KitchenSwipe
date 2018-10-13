@@ -22,14 +22,7 @@ public class GameEngineTutorial : GameEngine
     #region mono
     protected override void Awake()
     {
-        transitionMenuIfNeeded();
         base.Awake();
-    }
-
-    void transitionMenuIfNeeded() {
-        if (StateManager.instance.isCompleteTutorial()) {
-            TransitionManager.instance.startMainMenuScene(true);
-        }
     }
 
     protected override void Start()
@@ -136,7 +129,6 @@ public class GameEngineTutorial : GameEngine
 
     void setStateManager() {
         StateManager.instance.pauseGame();
-        StateManager.instance.completedTutorial();
     }
 
     bool checkStepThreeCorrect() {

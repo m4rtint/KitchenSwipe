@@ -68,9 +68,6 @@ public struct PlayerPrefKeys
 
     //Setting UI
     public readonly static string FONTSIZE = "FONT_SIZE";
-
-    //Check Tutorial
-    public readonly static string DONETUTORIAL = "DONE_TUTORIAL";
 }
 
 public struct SceneNames

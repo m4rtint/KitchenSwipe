@@ -23,6 +23,12 @@ public class AuthManager : MonoBehaviour {
     [SerializeField]
     GameObject errorObj;
 
+    [Header("Tutorial Instructions Panel")]
+    [SerializeField]
+    TutorialConfirmation tutorialConfirmation;
+
+
+    bool isTutorialNeeded = false;
     #region mono
     private void Awake()
     {
@@ -57,18 +63,21 @@ public class AuthManager : MonoBehaviour {
     #region UserInteraction
     public void anonSignIn()
     {
+        isTutorialNeeded = true;
         loadingObject.SetActive(true);
         FirebaseAuthentication.instance.anonAuthentication();
     }
 
     public void emailSignIn()
     {
+        isTutorialNeeded = false;
         emailSignInManager.emailSignIn();
         loadingObject.SetActive(true);
     }
 
     public void emailRegistration()
     {
+        isTutorialNeeded = true;
         emailRegistrationManager.emailRegistration();
         loadingObject.SetActive(true);
     }
@@ -78,8 +87,12 @@ public class AuthManager : MonoBehaviour {
     #region DelegateFunctions
     void onAuthenticate()
     {
+        if (isTutorialNeeded) {
+            tutorialConfirmation.showTutorialConfirmation();
+        }
         loadingObject.SetActive(false);
         gameObject.SetActive(false);
+
     }
 
     void onError(string description)

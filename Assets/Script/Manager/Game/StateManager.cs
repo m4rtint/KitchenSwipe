@@ -86,17 +86,4 @@ public class StateManager : MonoBehaviour
     }
 
     #endregion
-
-    #region Tutorial
-    public void completedTutorial()
-    {
-        PlayerPrefs.SetInt(PlayerPrefKeys.DONETUTORIAL, 1);
-    }
-
-    public bool isCompleteTutorial()
-    {
-        int done = PlayerPrefs.GetInt(PlayerPrefKeys.DONETUTORIAL);
-        return done != 0;
-    }
-    #endregion
 }

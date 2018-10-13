@@ -1776,6 +1776,7 @@ MonoBehaviour:
   emailRegistrationManager: {fileID: 114906550203613468}
   loadingObject: {fileID: 1958134571416420}
   errorObj: {fileID: 0}
+  tutorialConfirmation: {fileID: 0}
 --- !u!114 &114374702298946962
 MonoBehaviour:
   m_ObjectHideFlags: 1
