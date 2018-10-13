@@ -35,5 +35,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 .DS_Store
-Assets/StreamingAssets/build_info.txt
-Assets/StreamingAssets/build_info.txt
+build_info.txt
