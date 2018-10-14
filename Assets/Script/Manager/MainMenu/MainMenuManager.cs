@@ -9,8 +9,6 @@ public class MainMenuManager : MonoBehaviour
     [Header("Panels")]
     [SerializeField]
     GameObject ErrorObject;
-	[SerializeField]
-	GameObject authenticationObject;
     [SerializeField]
     GameObject leaderboard;
     bool isLeaderboardActive;
@@ -98,11 +96,6 @@ public class MainMenuManager : MonoBehaviour
             iTween.ScaleTo(obj, ht);
         }
     }
-
-    void displayAuth()
-	{
-		authenticationObject.SetActive (true);
-	}
 
     void displayError(string message)
     {

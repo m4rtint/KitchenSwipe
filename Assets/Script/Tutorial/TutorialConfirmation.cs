@@ -33,14 +33,6 @@ public class TutorialConfirmation : MonoBehaviour {
     }
 
     private void hideTutorialConfirmPanel() {
-        Hashtable ht = new Hashtable();
-        ht.Add("scale", Vector3.zero);
-        ht.Add("oncomplete", "onHidePanel");
-        ht.Add("time", 1f);
-        iTween.ScaleTo(gameObject, ht);
-    }
-
-    private void onHidePanel() {
-        Destroy(gameObject);
+        iTween.ScaleTo(gameObject, Vector3.zero, 1f);
     }
 }
