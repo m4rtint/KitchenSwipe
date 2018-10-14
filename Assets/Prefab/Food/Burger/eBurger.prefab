@@ -212,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Onion
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114171895022709114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bun_Top
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114274604953666610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114321614466397814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,8 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bun_Bottom
+  m_IngredientName: Bottom Bun
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114402414590034492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Lettuce
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114505655146013258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,7 +408,6 @@ MonoBehaviour:
   - {fileID: 114820778422373810}
   - {fileID: 114126449598230662}
   - {fileID: 114204075620498820}
-  m_SecondsToComplete: 40
 --- !u!114 &114544279887424186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Mushroom
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114619514504932388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -457,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: PortoMushroom
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114840057834262206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
+  customPlaceDownDistance: 0
 --- !u!114 &114899228378002032
 MonoBehaviour:
   m_ObjectHideFlags: 1

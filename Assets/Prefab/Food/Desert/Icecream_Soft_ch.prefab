@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Ingredients:
   - {fileID: 114337177681490908}
   - {fileID: 114795602396245178}
-  m_SecondsToComplete: 10
 --- !u!114 &114337177681490908
 MonoBehaviour:
   m_ObjectHideFlags: 1
