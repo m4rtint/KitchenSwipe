@@ -50,8 +50,8 @@ public class StateManager : MonoBehaviour
 
     public void pauseGame()
     {
-        currentState = GameState.Pause;
         savedRevertState = currentState;
+        currentState = GameState.Pause;
     }
 
     public void unPausedGame()

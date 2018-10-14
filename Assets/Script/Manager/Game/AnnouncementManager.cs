@@ -14,16 +14,6 @@ public class AnnouncementManager : MonoBehaviour {
     }
 
     #region Public
-    public void startCountDownAnimate()
-    {
-        resetText("READY?");
-        Hashtable ht = new Hashtable();
-        ht.Add("scale", new Vector3(2, 2, 0));
-        ht.Add("time", 1.0f);
-        ht.Add("oncomplete", "startGoAnimate");
-        iTween.ScaleTo(gameObject, ht);
-    }
-
     public void startTimesUpAnimate()
     {
         resetText("TIME'S\nUP!");
@@ -40,16 +30,6 @@ public class AnnouncementManager : MonoBehaviour {
     {
         onTimesUpComplete();
         gameObject.SetActive(false);
-    }
-
-    void startGoAnimate()
-    {
-        resetText("GO");
-        Hashtable ht = new Hashtable();
-        ht.Add("scale", new Vector3(2, 2, 0));
-        ht.Add("time", 1.0f);
-        ht.Add("oncomplete", "fadeOutObject");
-        iTween.ScaleTo(gameObject, ht);
     }
 
     void fadeOutObject()

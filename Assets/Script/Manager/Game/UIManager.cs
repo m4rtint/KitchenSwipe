@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
     }
 
     void animateCombo(){
+        comboTextObject.transform.localScale = Vector3.one;
         Hashtable ht = new Hashtable();
         ht.Add("scale", AnimationManager.instance.ComboPopScale());
         ht.Add("time", AnimationManager.instance.ComboPopTime());
