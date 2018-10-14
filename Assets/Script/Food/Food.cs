@@ -60,7 +60,7 @@ public class Food : MonoBehaviour {
 
     void setupIngredientLevel() {
 		level = 0;
-        secondsToComplete = m_Ingredients.Length * 10f;
+        secondsToComplete = m_Ingredients.Length * 5f;
 	}
     
 	//For Order timing on top

@@ -141,4 +141,17 @@ public class AnimationManager : MonoBehaviour {
         return ingredientAlpha;
     }
     #endregion
+
+    #region Setter
+    public void incrementSpeed()
+    {
+        float rt = rotationTime - 0.04f;
+        float mt = moveTime - 0.04f;
+        float pt = placementTime - 0.03f;
+
+        rotationTime = Mathf.Max(rt, 0.1f);
+        moveTime = Mathf.Max(mt, 0.1f);
+        placementTime = Mathf.Max(pt, 0.1f);
+    }
+    #endregion
 }

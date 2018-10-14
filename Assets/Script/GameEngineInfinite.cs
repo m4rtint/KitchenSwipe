@@ -9,7 +9,7 @@ public class GameEngineInfinite : GameEngine
 {
 
     [SerializeField]
-    int m_WaveSize;
+    int waveSize;
 
     int numberOfCompletedOrder;
 
@@ -23,9 +23,9 @@ public class GameEngineInfinite : GameEngine
     #region Mono
     protected override void Start()
     {
-        if (base.NumberOfFood() < m_WaveSize)
+        if (base.NumberOfFood() < waveSize)
         {
-            base.NumberOfFood(m_WaveSize);
+            base.NumberOfFood(waveSize);
         }
         base.Start();
     }
@@ -54,13 +54,9 @@ public class GameEngineInfinite : GameEngine
 
     void SetDifficultyIfNeeded()
     {
-        if (numberOfCompletedOrder % m_WaveSize == 0)
+        if (numberOfCompletedOrder % waveSize == 0)
         {
             IncrementDifficulty();
-        }
-        if (numberOfCompletedOrder == 50)
-        {
-            m_WaveSize = 15;
         }
     }
 
@@ -71,18 +67,11 @@ public class GameEngineInfinite : GameEngine
         float speedUpdate = 0;
         float scoreUpdate = 0;
         // - Goes up 
-        if (numberOfCompletedOrder <= m_WaveSize * 6)
+        if (numberOfCompletedOrder <= waveSize * 6)
         {
             speedUpdate = 0.5f;
             scoreUpdate = 0.5f;
-        }
-        else if (numberOfCompletedOrder <= m_WaveSize * 11)
-        {
-            speedUpdate = 0.2f;
-        }
-        if (numberOfCompletedOrder > m_WaveSize * 6 && numberOfCompletedOrder <= m_WaveSize * 9)
-        {
-            scoreUpdate = 2f;
+            AnimationManager.instance.incrementSpeed();
         }
 
         TimeManager.instance.orderTimeVaryingSpeed += speedUpdate;

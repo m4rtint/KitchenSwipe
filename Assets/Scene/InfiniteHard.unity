@@ -6167,7 +6167,7 @@ MonoBehaviour:
   m_FoodHolder: {fileID: 1393380005}
   center: {fileID: 2021354266}
   userInput: {fileID: 141836062}
-  m_WaveSize: 3
+  waveSize: 4
   announcementManager: {fileID: 1574990376}
   goalManager: {fileID: 1740524194}
 --- !u!114 &1727321968
