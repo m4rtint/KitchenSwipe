@@ -4151,6 +4151,10 @@ Prefab:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1681696533666738, guid: 40faf28329d3c4f84b7bbb97ed678bd5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114703313266634064, guid: 40faf28329d3c4f84b7bbb97ed678bd5, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 40faf28329d3c4f84b7bbb97ed678bd5, type: 2}
@@ -6132,15 +6136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4ace3d4e2d5e640807f9af02e06bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementTime: 0.1
+  placementTime: 0.2
   ingredientAlpha: 0.5
   ascensionTime: 0.4
   ascensionAmount: 75
   ascentionFadeTime: 0.2
   foodShakeTime: 0.25
   foodShakeAmount: 50
-  rotationTime: 0.1
-  moveTime: 0.1
+  rotationTime: 0.3
+  moveTime: 0.3
   centerFadeOutTime: 0.1
   comboPopTime: 0.5
   comboPopScale: 4
@@ -6220,6 +6224,7 @@ MonoBehaviour:
   - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
   - {fileID: 114355782380500388, guid: c02d091373c7b4433a7e85fd9590beba, type: 2}
   - {fileID: 114295246241670238, guid: c2c6873edb92f4fcfa7fee97dfbbe525, type: 2}
+  - {fileID: 114526596411210604, guid: d3378dccd59633246867d8992edf492c, type: 2}
 --- !u!4 &1727321971
 Transform:
   m_ObjectHideFlags: 0

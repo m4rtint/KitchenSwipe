@@ -11,7 +11,7 @@ public class GameEngineInfinite : GameEngine
     [SerializeField]
     int m_WaveSize;
 
-    int m_NumberOfCompletedOrder;
+    int numberOfCompletedOrder;
 
     //Announcement Manager
     [SerializeField]
@@ -40,7 +40,7 @@ public class GameEngineInfinite : GameEngine
     #endregion
     protected override void CompleteOrder(Direction food)
     {
-        m_NumberOfCompletedOrder++;
+        numberOfCompletedOrder++;
 
         base.CompleteOrder(food);
 
@@ -54,11 +54,11 @@ public class GameEngineInfinite : GameEngine
 
     void SetDifficultyIfNeeded()
     {
-        if (m_NumberOfCompletedOrder % m_WaveSize == 0)
+        if (numberOfCompletedOrder % m_WaveSize == 0)
         {
             IncrementDifficulty();
         }
-        if (m_NumberOfCompletedOrder == 50)
+        if (numberOfCompletedOrder == 50)
         {
             m_WaveSize = 15;
         }
@@ -71,16 +71,16 @@ public class GameEngineInfinite : GameEngine
         float speedUpdate = 0;
         float scoreUpdate = 0;
         // - Goes up 
-        if (m_NumberOfCompletedOrder <= m_WaveSize * 6)
+        if (numberOfCompletedOrder <= m_WaveSize * 6)
         {
             speedUpdate = 0.5f;
             scoreUpdate = 0.5f;
         }
-        else if (m_NumberOfCompletedOrder <= m_WaveSize * 11)
+        else if (numberOfCompletedOrder <= m_WaveSize * 11)
         {
             speedUpdate = 0.2f;
         }
-        if (m_NumberOfCompletedOrder > m_WaveSize * 6 && m_NumberOfCompletedOrder <= m_WaveSize * 9)
+        if (numberOfCompletedOrder > m_WaveSize * 6 && numberOfCompletedOrder <= m_WaveSize * 9)
         {
             scoreUpdate = 2f;
         }
@@ -101,7 +101,6 @@ public class GameEngineInfinite : GameEngine
     {
         //DISPLAY INSTRUCTIONS
         goalManager.startPopoutAnimation();
-        //announcementManager.startCountDownAnimate();
     }
     #endregion
 

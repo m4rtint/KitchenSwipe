@@ -7,8 +7,7 @@ public class Food : MonoBehaviour {
 
 	[SerializeField]
 	Ingredient[] m_Ingredients;
-	[SerializeField]
-	float m_SecondsToComplete;
+	float secondsToComplete;
 
 	int level;
     FoodAnimation animation;
@@ -61,12 +60,12 @@ public class Food : MonoBehaviour {
 
     void setupIngredientLevel() {
 		level = 0;
-        m_SecondsToComplete += Random.Range(3, 10);
+        secondsToComplete = m_Ingredients.Length * 10f;
 	}
     
 	//For Order timing on top
 	public float SecondsToComplete() {
-        return m_SecondsToComplete;
+        return secondsToComplete;
 	}
 	#endregion
 
