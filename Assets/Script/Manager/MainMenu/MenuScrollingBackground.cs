@@ -56,9 +56,9 @@ public class MenuScrollingBackground : MonoBehaviour {
         {
             if (goLeft)
             {
-                x = 1.5f;
+                x = 1f;
             } else {
-                x = -0.5f;
+                x = -1f;
             }
             float yPos = transform.position.y;
             float xPos = groundHorizontalLength * x;

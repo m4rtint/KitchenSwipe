@@ -7383,17 +7383,24 @@ public class iTween : MonoBehaviour
     /// </param>
     public static void StopByName(GameObject target, string name)
     {
-        Component[] tweens = target.GetComponents<iTween>();
-        foreach (iTween item in tweens)
+        if(target == null)
         {
-            /*string targetType = item.type+item.method;
-			targetType=targetType.Substring(0,type.Length);
-			if(targetType.ToLower() == type.ToLower()){
-				item.Dispose();
-			}*/
-            if (item._name == name)
+            return;
+        }
+        Component[] tweens = target.GetComponents<iTween>();
+        if (tweens != null)
+        {
+            foreach (iTween item in tweens)
             {
-                item.Dispose();
+                /*string targetType = item.type+item.method;
+                targetType=targetType.Substring(0,type.Length);
+                if(targetType.ToLower() == type.ToLower()){
+                    item.Dispose();
+                }*/
+                if (item._name == name)
+                {
+                    item.Dispose();
+                }
             }
         }
     }
