@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MenuScrollingBackground : MonoBehaviour {
@@ -28,41 +29,53 @@ public class MenuScrollingBackground : MonoBehaviour {
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        groundHorizontalLength = GetComponent<RectTransform>().rect.width;
+    }
+
+    private void Start()
+    {
         rigidBody.bodyType = RigidbodyType2D.Kinematic;
-        setupSecondImageIfNeeded();
     }
 
     private void Update()
     {
+        if (groundHorizontalLength == 0)
+        {
+            groundHorizontalLength = GetComponent<RectTransform>().rect.width;
+        }
+
         if (goLeft)
         {
-            if (transform.position.x < -groundHorizontalLength * 0.5f)
+            if (!isSecond)
             {
-                respositionBackground();
-            }
-        } else {
-            if (transform.position.x > groundHorizontalLength * 1.5f)
-            {
-                respositionBackground();
-            }
-        }
-    }
+                if (transform.position.x < 0)
+                {
+                    respositionBackground();
+                }
 
-    void setupSecondImageIfNeeded()
-    {
-        float x = 0.5f;
-        if (isSecond)
-        {
-            if (goLeft)
+            } else
             {
-                x = 1f;
-            } else {
-                x = -1f;
+                if (transform.position.x < -groundHorizontalLength)
+                {
+                    respositionBackground();
+                }
             }
-            float yPos = transform.position.y;
-            float xPos = groundHorizontalLength * x;
-            transform.position = new Vector2(xPos, yPos);
+            
+        } else {
+
+            if (!isSecond)
+            {
+                if (transform.position.x > 0)
+                {
+                    respositionBackground();
+                }
+            }
+            else
+            {
+                if (transform.position.x > groundHorizontalLength)
+                {
+                    respositionBackground();
+                }
+            }
         }
     }
     #endregion
