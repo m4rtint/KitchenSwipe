@@ -61,17 +61,17 @@ public class MenuScrollingBackground : MonoBehaviour {
             }
             
         } else {
-
+            RectTransform trans = GetComponent<RectTransform>();
             if (!isSecond)
             {
-                if (transform.position.x > 0)
+                if (trans.position.x > Screen.width)
                 {
                     respositionBackground();
                 }
             }
             else
             {
-                if (transform.position.x > groundHorizontalLength)
+                if (trans.position.x > Screen.width + groundHorizontalLength)
                 {
                     respositionBackground();
                 }
