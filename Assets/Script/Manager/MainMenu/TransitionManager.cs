@@ -40,6 +40,9 @@ public class TransitionManager : MonoBehaviour
 
     public void startMainMenuScene(bool force = false)
     {
+        if (TimeManager.instance != null && TimeManager.instance.SecondsLasted() > 0) {
+            FbAnalytics.instance.timeBeforeQuit(TimeManager.instance.SecondsLasted());
+        }
         if (force) {
             changeSceneToMenu();
         }

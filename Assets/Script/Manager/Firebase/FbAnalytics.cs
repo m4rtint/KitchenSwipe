@@ -72,12 +72,6 @@ public class FbAnalytics : MonoBehaviour
         };
         logEvent("time_before_quit", param);
     }
-
-
-    //    wrong swipe 
-    //Leaderboard button pressed
-    //Game result - score, time, dishes...etc
-    //Quit - How long played before quitting 
     #endregion
 
     #region Tools

@@ -11,6 +11,9 @@ public class FirebaseLoader : MonoBehaviour {
     [SerializeField]
     GameObject database;
 
+    [SerializeField]
+    GameObject analytics;
+
     private void Awake()
     {
 		instantiateFirebaseModules();
@@ -26,6 +29,11 @@ public class FirebaseLoader : MonoBehaviour {
 		if (FirebaseDB.instance == null)
         {
             Instantiate(database);
+        }
+
+        if (FbAnalytics.instance == null)
+        {
+            Instantiate(analytics);
         }
     }
 

@@ -117,15 +117,22 @@ public class IngredientGenerator : MonoBehaviour {
         return food.GetNeededIngredient();
     }
 
-    bool isIngredientMatch(Direction dir, Ingredient swiped)
+    bool isIngredientMatch(Direction dir, Ingredient center)
     {
-        Food food = foodHolders[(int)dir].StoredFood();
-        if (food != null && food.isFoodInPlay())
+        bool result = false;
+        Food sideFood = foodHolders[(int)dir].StoredFood();
+        if (sideFood != null && sideFood.isFoodInPlay())
         {
-            bool namesEqual = food.GetNeededIngredient().IngredientName() == swiped.IngredientName();
-            return food.isFoodInPlay() && namesEqual;
+            Ingredient sideIngredient = sideFood.GetNeededIngredient();
+            bool namesEqual = sideIngredient.IngredientName() == center.IngredientName();
+            result = sideFood.isFoodInPlay() && namesEqual;
+            //ANALYTICS
+            if (!result)
+            {
+                FbAnalytics.instance.wrongSwipe(dir, center.IngredientName(), sideIngredient.IngredientName());
+            }
         }
-        return false;
+        return result;
     }
 
     public bool isHoldersEmpty()

@@ -41,10 +41,10 @@ public class LeaderboardManager : MonoBehaviour {
     private void OnEnable()
     {
         FirebaseDB.instance.loadedLeaderboardDelegate += loadedLeaderboardStats;
-
         clearLeaderboard();
         setLeaderboardScreen(true);
         FirebaseDB.instance.LoadHighScore();
+        FbAnalytics.instance.openedLeaderboard();
     }
 
     private void OnDisable()

@@ -143,8 +143,6 @@ public class ScoreManager : MonoBehaviour {
         if (FirebaseDB.instance != null) {
             int s = Score();
             int hs_score = HighScore();
-            Debug.Log(Score());
-            Debug.Log(HighScore());
             if (Score() > HighScore())
             {
                 uploadHighscore();
@@ -166,6 +164,14 @@ public class ScoreManager : MonoBehaviour {
                 uploadTime();
             }
         }
+
+        if (FbAnalytics.instance != null) {
+            uploadAnalytics();
+        }
+    }
+
+    void uploadAnalytics() {
+        FbAnalytics.instance.gameResult(Score(), Dishes(), TimeManager.instance.SecondsLasted(), MaxCombo());
     }
 
     void saveHighestComboIfNeeded(){
