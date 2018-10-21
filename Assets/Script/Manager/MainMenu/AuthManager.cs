@@ -35,6 +35,7 @@ public class AuthManager : MonoBehaviour {
         setupAuthenticationPanel();
         setupDependencies();
 		setupDelegate();
+        iTween.ScaleTo(gameObject, Vector3.one, 0.5f);
     }
     
     void setupDependencies()
