@@ -123,8 +123,9 @@ MonoBehaviour:
   fadedBackgroundObject: {fileID: 0}
   gameOverObject: {fileID: 0}
   pauseScreenObject: {fileID: 0}
-  scoreTextObject: {fileID: 0}
+  scoreText: {fileID: 0}
   comboTextObject: {fileID: 0}
+  dishesText: {fileID: 0}
 --- !u!114 &114900218454613518
 MonoBehaviour:
   m_ObjectHideFlags: 1

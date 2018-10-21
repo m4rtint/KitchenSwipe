@@ -127,7 +127,7 @@ public class IngredientGenerator : MonoBehaviour {
             bool namesEqual = sideIngredient.IngredientName() == center.IngredientName();
             result = sideFood.isFoodInPlay() && namesEqual;
             //ANALYTICS
-            if (!result)
+            if (!result && FbAnalytics.instance != null)
             {
                 FbAnalytics.instance.wrongSwipe(dir, center.IngredientName(), sideIngredient.IngredientName());
             }

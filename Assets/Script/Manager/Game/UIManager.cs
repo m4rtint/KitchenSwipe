@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
 
     //Dependencies
     ScoreManager scoreManager;
-    Text scoreText;
 
     [SerializeField]
     GameObject fadedBackgroundObject;
@@ -16,9 +15,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject pauseScreenObject;
     [SerializeField]
-    GameObject scoreTextObject;
+    Text scoreText;
     [SerializeField]
     GameObject comboTextObject;
+    [SerializeField]
+    Text dishesText;
 
     //StoreStateWhilePaused
     GameState pausedSavedState;
@@ -38,10 +39,6 @@ public class UIManager : MonoBehaviour
     void initManagers()
     {
         scoreManager = ScoreManager.instance;
-        if (scoreTextObject != null)
-        {
-            scoreText = scoreTextObject.GetComponent<Text>();
-        }
     }
 
     void initDelegate()
@@ -55,7 +52,8 @@ public class UIManager : MonoBehaviour
     void initializeUIText()
     {
         if (scoreText != null) {
-            scoreText.text = "000000000\n0 Dishes";
+            scoreText.text = "000000000";
+            dishesText.text = "0 DISHES";
         }
         if (comboTextObject != null) {
             comboTextObject.SetActive(false);
@@ -67,7 +65,8 @@ public class UIManager : MonoBehaviour
     void updateScore(){
         if (scoreText != null)
         {
-            scoreText.text = scoreManager.Score() + "\n" + scoreManager.Dishes() + " Dishes";
+            scoreText.text = scoreManager.Score().ToString();
+            dishesText.text = scoreManager.Dishes() + " Dishes";
         }
     }
 
