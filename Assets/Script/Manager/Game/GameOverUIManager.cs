@@ -171,7 +171,7 @@ public class GameOverUIManager : MonoBehaviour {
     {
         string text = points.ToString();
         if (isHighScore) {
-            text = "HS: " + text;
+            text = "<color=black>~</color>" + text;
         }
 
         go.GetComponent<TextMeshProUGUI>().text = text;
