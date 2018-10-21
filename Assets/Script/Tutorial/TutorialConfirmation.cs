@@ -18,7 +18,7 @@ public class TutorialConfirmation : MonoBehaviour {
     }
 
     public void showTutorialConfirmation() {
-        iTween.ScaleTo(gameObject, Vector3.one, 1f);
+        iTween.ScaleTo(gameObject, Vector3.one, 0.5f);
     } 
 
     void setupButton() {
@@ -33,6 +33,6 @@ public class TutorialConfirmation : MonoBehaviour {
     }
 
     private void hideTutorialConfirmPanel() {
-        iTween.ScaleTo(gameObject, Vector3.zero, 1f);
+        iTween.ScaleTo(gameObject, Vector3.zero, 0.5f);
     }
 }

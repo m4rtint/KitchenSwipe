@@ -11,13 +11,16 @@ public class MainMenuManager : MonoBehaviour
     GameObject ErrorObject;
     [SerializeField]
     GameObject leaderboard;
-    bool isLeaderboardActive;
+    [SerializeField]
+    GameObject signOut;
+    [SerializeField]
+    GameObject background;
     [SerializeField]
     GameObject[] loadings;
 
     [Header("UI")]
     [SerializeField]
-    GameObject displayname;
+    TextMeshProUGUI displayname;
 
 
     [Header("Buttons")]
@@ -25,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
     GameObject[] buttons;
     [SerializeField]
     Button leaderboardButton;
+    [SerializeField]
+    Button signOutButton;
 
     #region Mono
     private void Awake()
@@ -37,16 +42,22 @@ public class MainMenuManager : MonoBehaviour
 
     void setupButtons() {
         resetButtons();
-        isLeaderboardActive = false;
-        leaderboardButton.onClick.AddListener(delegate {
-            isLeaderboardActive = !isLeaderboardActive;
-            leaderboard.SetActive(isLeaderboardActive);
+        leaderboardButton.onClick.AddListener(delegate
+        {
+            hideButtons();
+            leaderboard.SetActive(true);
+        });
+
+        signOutButton.onClick.AddListener(delegate
+        {
+            hideButtons();
+            iTween.ScaleTo(signOut, Vector3.one, 0.5f);
         });
     }
 
     void setupDelegate()
     {
-        FirebaseAuthentication.instance.authDelegate += animateButtons;
+        FirebaseAuthentication.instance.authDelegate += showButtons;
         FirebaseAuthentication.instance.profileUpdateDelegate += displayUserName;
         FirebaseDB.instance.errorDelegate += displayError;
     }
@@ -73,7 +84,13 @@ public class MainMenuManager : MonoBehaviour
 
     void resetDisplayUserName()
     {
-        displayname.GetComponent<TextMeshProUGUI>().text = "";
+        displayname.text = "";
+    }
+
+    void hideButtons()
+    {
+        background.SetActive(true);
+        animateButtons(false);
     }
     #endregion
 
@@ -81,16 +98,41 @@ public class MainMenuManager : MonoBehaviour
     public void LogOut(){
         resetButtons();
         resetDisplayUserName();
+        signOut.SetActive(false);
+        background.SetActive(false);
         FirebaseAuthentication.instance.logOut ();
 	}
+
+    public void closePanels()
+    {
+        if (leaderboard.activeSelf)
+        {
+            leaderboard.SetActive(false);
+        }
+        
+        if (signOut.activeSelf)
+        {
+            signOut.SetActive(false);
+        }
+
+        background.SetActive(false);
+        showButtons();
+    }
 	#endregion
 
     #region Delegate
-    void animateButtons()
+    void showButtons()
     {
-        foreach(GameObject obj in buttons) {
+        animateButtons(true);
+    }
+
+    void animateButtons(bool open)
+    {
+        Vector3 size = open ? Vector3.one : Vector3.zero;
+        foreach (GameObject obj in buttons)
+        {
             Hashtable ht = new Hashtable();
-            ht.Add("scale", Vector3.one);
+            ht.Add("scale", size);
             ht.Add("easeType", "easeOutBack");
             ht.Add("time", 0.5f);
             iTween.ScaleTo(obj, ht);
@@ -105,7 +147,7 @@ public class MainMenuManager : MonoBehaviour
 
     void displayUserName()
     {
-        displayname.GetComponent<TextMeshProUGUI>().text = FirebaseAuthentication.instance.displayName();
+        displayname.text = FirebaseAuthentication.instance.displayName();
     }
 
     #endregion
