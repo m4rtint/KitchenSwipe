@@ -92,15 +92,28 @@ public class MainMenuManager : MonoBehaviour
         background.SetActive(true);
         animateButtons(false);
     }
+
+    void animateButtons(bool open)
+    {
+        Vector3 size = open ? Vector3.one : Vector3.zero;
+        foreach (GameObject obj in buttons)
+        {
+            Hashtable ht = new Hashtable();
+            ht.Add("scale", size);
+            ht.Add("easeType", "easeOutBack");
+            ht.Add("time", 0.5f);
+            iTween.ScaleTo(obj, ht);
+        }
+    }
     #endregion
 
     #region Public
     public void LogOut(){
         resetButtons();
         resetDisplayUserName();
+        FirebaseAuthentication.instance.logOut();
         signOut.SetActive(false);
         background.SetActive(false);
-        FirebaseAuthentication.instance.logOut ();
 	}
 
     public void closePanels()
@@ -118,25 +131,13 @@ public class MainMenuManager : MonoBehaviour
         background.SetActive(false);
         showButtons();
     }
+
 	#endregion
 
     #region Delegate
     void showButtons()
     {
         animateButtons(true);
-    }
-
-    void animateButtons(bool open)
-    {
-        Vector3 size = open ? Vector3.one : Vector3.zero;
-        foreach (GameObject obj in buttons)
-        {
-            Hashtable ht = new Hashtable();
-            ht.Add("scale", size);
-            ht.Add("easeType", "easeOutBack");
-            ht.Add("time", 0.5f);
-            iTween.ScaleTo(obj, ht);
-        }
     }
 
     void displayError(string message)
