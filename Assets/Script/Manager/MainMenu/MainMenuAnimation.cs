@@ -11,7 +11,7 @@ public class MainMenuAnimation : MonoBehaviour {
     float speed;
 
     #region Mono
-    private void Awake()
+    private void Start()
     {
         setSpeedOfScrolling();
     }

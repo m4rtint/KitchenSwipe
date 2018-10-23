@@ -6,7 +6,7 @@ public class ParticlesPlayer : MonoBehaviour
 	public ParticleSystem particles;
 
 	public void ShowParticles(int count = 10)
-	{
+    {
 		particles.Emit(count);
 	}
 
@@ -16,9 +16,14 @@ public class ParticlesPlayer : MonoBehaviour
 		particles.Play();
 	}
 
-	public void StopEmission()
+	public void StopEmission() 
 	{
 		particles.loop = false;
 		particles.Stop();
 	}
+
+    public float getDuration()
+    {
+        return particles.main.duration;
+    }
 }

@@ -17,6 +17,7 @@ public class OverlayParticles : MonoBehaviour
         if (displayer == null)
         {
             displayer = GameObject.FindObjectOfType<ParticlesDisplayer>();
+            displayer.setDuration(player.getDuration());
         }
     }
 
