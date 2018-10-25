@@ -40,13 +40,18 @@ public class TransitionManager : MonoBehaviour
 
     public void startMainMenuScene(bool force = false)
     {
-        if (TimeManager.instance != null && TimeManager.instance.SecondsLasted() > 0) {
+        if (canTrackGame()) {
             FbAnalytics.instance.timeBeforeQuit(TimeManager.instance.SecondsLasted());
         }
         if (force) {
             changeSceneToMenu();
         }
         onSceneChange("changeSceneToMenu");
+    }
+
+    bool canTrackGame()
+    {
+        return FbAnalytics.instance != null && TimeManager.instance != null && TimeManager.instance.SecondsLasted() > 0;
     }
 
     #endregion
