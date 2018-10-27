@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bun_Top
+  m_IngredientName: T. Bun
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!114 &114274604953666610
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bottom Bun
+  m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!114 &114402414590034492

@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Top Baguette
+  m_IngredientName: T. Baguette
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!114 &114631865859800910
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Bottom Baguette
+  m_IngredientName: B. Baguette
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!114 &114817584578036866

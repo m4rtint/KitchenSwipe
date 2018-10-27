@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Square Cone
+  m_IngredientName: Short Cone
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!114 &114374631130128980
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fda58449b334149b0341f7ee68978f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IngredientName: Vanilla Softserve
+  m_IngredientName: Vanilla
   m_CenterImage: {fileID: 0}
   customPlaceDownDistance: 0
 --- !u!222 &222466814133919628
