@@ -133,19 +133,21 @@ public class FoodTimer : MonoBehaviour {
         {
             ScoreManager.instance.decrementScore();
             TimeManager.instance.penaltyGameTime();
-            resetFoodTimerIfNeeded();
-            shakeFoodIfNeeded();
+            moveFoodToTrashIfneeded();
             foodTimerRanOutDelegate();
+
+            //TODO - Get new food
+            //Destroy current one
         }
     }
 
-    void shakeFoodIfNeeded()
+    void moveFoodToTrashIfneeded()
     {
-        FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
         if (foodHolder.StoredFood() != null)
         {
-            foodAnim.shakeFood();
-            foodAnim.quicklyChangeFoodColor(Color.red);
+            FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
+            Vector3 position = AnimationManager.instance.TrashPosition() - transform.localPosition;
+            foodAnim.moveToTrash(position);
         }
     }
     #endregion

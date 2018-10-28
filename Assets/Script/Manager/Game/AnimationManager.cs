@@ -48,20 +48,20 @@ public class AnimationManager : MonoBehaviour {
     [Header("GameOver Screen")]
     [SerializeField]
     float goFadeInTime;
-    
+
+    Vector3 trashPosition = Vector3.zero;
     public static AnimationManager instance = null;
 
     #region mono
     void Awake()
     {
         instance = this;
-        SetupAscensionFadedIfNeeded();
+        setupAscensionFadedIfNeeded();
     }
 
-    void SetupAscensionFadedIfNeeded()
+    void setupAscensionFadedIfNeeded()
     {
         if (ascentionFadeTime > ascensionTime) { ascentionFadeTime = ascensionTime / 2; }
-
     }
     #endregion
 
@@ -140,6 +140,11 @@ public class AnimationManager : MonoBehaviour {
     {
         return ingredientAlpha;
     }
+
+    public Vector3 TrashPosition()
+    {
+        return trashPosition;
+    }
     #endregion
 
     #region Setter
@@ -152,6 +157,13 @@ public class AnimationManager : MonoBehaviour {
         rotationTime = Mathf.Max(rt, 0.1f);
         moveTime = Mathf.Max(mt, 0.1f);
         placementTime = Mathf.Max(pt, 0.1f);
+    }
+
+    public void setTrashPosition(Vector3 pos)
+    {
+        if (trashPosition == Vector3.zero) { 
+            trashPosition = pos;
+        }
     }
     #endregion
 }

@@ -15,6 +15,7 @@ public class FoodHolder : MonoBehaviour
 
     Food storedFood;
     Direction direction;
+    Vector3 trashPosition;
 
     #region Getters/Setter
     public FoodTimer FoodTimer()

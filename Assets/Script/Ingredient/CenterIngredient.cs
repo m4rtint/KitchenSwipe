@@ -20,7 +20,6 @@ public class CenterIngredient : MonoBehaviour
     TrashInput trashInput;
        
     Vector3 startPosition;
-    Vector3 trashPosition;
     Ingredient centerIngredient;
     Direction swipedDirection;
     AnimationManager animation;
@@ -31,7 +30,7 @@ public class CenterIngredient : MonoBehaviour
     {
         animation = AnimationManager.instance;
         startPosition = transform.position;
-        trashPosition = trashInput.transform.localPosition;
+        animation.setTrashPosition(trashInput.transform.localPosition);
         setupDelegate();
     }
 
@@ -158,7 +157,7 @@ public class CenterIngredient : MonoBehaviour
         //Size
         iTween.ScaleTo(gameObject, Vector3.one * 0.5f, animation.CenterMoveTime());
         //Movement
-        moveCenterTo(trashPosition, "moveToTrashDelegate");
+        moveCenterTo(animation.TrashPosition(), "moveToTrashDelegate");
     }
 
     void moveToTrashDelegate()

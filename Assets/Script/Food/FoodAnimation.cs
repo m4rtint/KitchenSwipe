@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Food))]
 public class FoodAnimation : MonoBehaviour {
 
-
     //Delegate
     public delegate void FoodAnimationDelegate(FoodAnimation food);
     public FoodAnimationDelegate CompleteFoodAnimationDelegate;
@@ -73,6 +72,21 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("x", animation.FoodShakeAmount());
         ht.Add("time", animation.FoodShakeTime());
         iTween.ShakePosition(gameObject, ht);
+    }
+
+    public void moveToTrash(Vector3 position)
+    {
+        //Scale
+        iTween.ScaleTo(gameObject, Vector3.one * 0.5f, animation.CenterMoveTime());
+
+        Hashtable ht = new Hashtable();
+        ht.Add("x", position.x);
+        ht.Add("y", position.y);
+        ht.Add("easeType", "easeOutCubic");
+        ht.Add("time", animation.CenterMoveTime());
+        iTween.MoveBy(gameObject, ht);
+
+        //TODO - Onccomplete - Destroy
     }
 
     #endregion
