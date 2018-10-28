@@ -9,7 +9,7 @@ public class GameEngine : MonoBehaviour {
     protected Ingredient currentIngredient;
 
 	[SerializeField]
-	int m_NumberOfFood;
+	int numberOfFood;
 
     //========================Dependencies
 	//Food Generator
@@ -26,13 +26,17 @@ public class GameEngine : MonoBehaviour {
     [SerializeField]
     UserInput userInput;
 
+    //Game Timer
+    [SerializeField]
+    GameTimer gameTimer;
+
     #region getter/setter
     protected int NumberOfFood() {
-        return m_NumberOfFood;
+        return numberOfFood;
     }
 
     protected void NumberOfFood(int size){
-        m_NumberOfFood = size;
+        numberOfFood = size;
     }
     #endregion
 
@@ -50,7 +54,7 @@ public class GameEngine : MonoBehaviour {
         setupDelegates();
 
         //Get Stack of Food
-        foodGenerator.fillStackWithRandomFood(m_NumberOfFood);
+        foodGenerator.fillStackWithRandomFood(numberOfFood);
 
         //Place First 4 food onto each side
         setupIngredients();
@@ -86,6 +90,7 @@ public class GameEngine : MonoBehaviour {
             holders[i].Direction(i);
             holders[i].orderDelegate += CompleteOrder;
             holders[i].orderTimerDelegate += incorrectlySwipeIngredient;
+            holders[i].FoodTimer().foodTimerRanOutDelegate += gameTimer.shakeRedText;
         }
 	}
 

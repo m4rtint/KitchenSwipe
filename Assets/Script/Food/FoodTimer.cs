@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(FoodHolder))]
 public class FoodTimer : MonoBehaviour {
+    //Delegate
+    public delegate void TimerDelegate();
+    public TimerDelegate foodTimerRanOutDelegate;
 
     //Dependencies
     FoodHolder foodHolder;
@@ -132,6 +135,7 @@ public class FoodTimer : MonoBehaviour {
             TimeManager.instance.penaltyGameTime();
             resetFoodTimerIfNeeded();
             shakeFoodIfNeeded();
+            foodTimerRanOutDelegate();
         }
     }
 

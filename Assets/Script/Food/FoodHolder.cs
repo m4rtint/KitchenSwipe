@@ -17,6 +17,11 @@ public class FoodHolder : MonoBehaviour
     Direction direction;
 
     #region Getters/Setter
+    public FoodTimer FoodTimer()
+    {
+        return GetComponent<FoodTimer>();
+    }
+
     public void Direction(int dir)
     {
         this.direction = (Direction)dir;

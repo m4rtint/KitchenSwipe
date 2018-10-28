@@ -19,6 +19,7 @@ public class GameTimer : MonoBehaviour {
 
     //Dependencies
     TimeManager timeManager;
+    AnimationManager animation;
 
     float fullTime = -1;
 
@@ -29,6 +30,7 @@ public class GameTimer : MonoBehaviour {
 		redRingImage = redRingObject.GetComponent<Image>();
         timeText = timeTextObject.GetComponent<Text>();
         timeManager = TimeManager.instance;
+        animation = AnimationManager.instance;
         initDelegate();
     }
 
@@ -67,6 +69,19 @@ public class GameTimer : MonoBehaviour {
 
 		redRingImage.fillAmount = timeManager.RedTime () / fullTime;
         greenRingImage.fillAmount = timeManager.GameTime() / fullTime;
+    }
+    #endregion
+
+    #region Animation
+    public void shakeRedText()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("x", animation.FoodShakeAmount());
+        ht.Add("time", animation.FoodShakeTime());
+        iTween.ShakePosition(timeTextObject, ht);
+
+        timeTextObject.GetComponent<Text>().color = Color.white;
+        iTween.ColorFrom(timeTextObject, Color.red, animation.FoodShakeTime());
     }
     #endregion
 

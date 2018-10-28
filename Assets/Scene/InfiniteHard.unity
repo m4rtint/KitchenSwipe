@@ -718,6 +718,21 @@ Prefab:
       propertyPath: comboPopScale
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: numberOfFood
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: gameTimer
+      value: 
+      objectReference: {fileID: 1416252379}
+    - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: foodPenaltyTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0
@@ -940,6 +955,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1586313212522138, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
     type: 2}
   m_PrefabInternal: {fileID: 238269178}
+--- !u!114 &1416252379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114433152119537204, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 238269178}
+  m_Script: {fileID: 11500000, guid: d2a4eb21ba7210e4cb20dff5c31258ed, type: 3}
 --- !u!114 &1464047553 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114792280315723654, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
