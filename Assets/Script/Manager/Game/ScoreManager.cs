@@ -165,13 +165,14 @@ public class ScoreManager : MonoBehaviour {
             }
         }
 
-        if (FbAnalytics.instance != null) {
-            uploadAnalytics();
-        }
+        uploadAnalyticsIfNeeded();
     }
 
-    void uploadAnalytics() {
-        FbAnalytics.instance.gameResult(Score(), Dishes(), TimeManager.instance.SecondsLasted(), MaxCombo());
+    void uploadAnalyticsIfNeeded() {
+        if (FbAnalytics.instance != null && Score() > 0)
+        {
+            FbAnalytics.instance.gameResult(Score(), Dishes(), TimeManager.instance.SecondsLasted(), MaxCombo());
+        }
     }
 
     void saveHighestComboIfNeeded(){
