@@ -78,12 +78,14 @@ public class FoodAnimation : MonoBehaviour {
         iTween.ScaleTo(gameObject, Vector3.one * 0.5f, animation.CenterMoveTime());
 
         Hashtable ht = new Hashtable();
-        ht.Add("x", position.x);
-        ht.Add("y", position.y);
+       // ht.Add("x", position.x);
+        //ht.Add("y", position.y);
+        ht.Add("position", position);
+        ht.Add("islocal", true);
         ht.Add("easeType", "easeOutCubic");
-        ht.Add("time", animation.CenterMoveTime());
+        ht.Add("time", animation.MoveToTrashTime());
         ht.Add("oncomplete", "removeFood");
-        iTween.MoveBy(gameObject, ht);
+        iTween.MoveTo(gameObject, ht);
     }
 
     #endregion

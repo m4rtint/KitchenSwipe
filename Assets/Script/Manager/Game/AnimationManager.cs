@@ -22,6 +22,8 @@ public class AnimationManager : MonoBehaviour {
     float foodShakeTime;
     [SerializeField]
     float foodShakeAmount;
+    [SerializeField]
+    float moveToTrashTime;
 
     [Header("Center")]
     [SerializeField]
@@ -134,6 +136,11 @@ public class AnimationManager : MonoBehaviour {
     public float FoodShakeAmount()
     {
         return foodShakeAmount;
+    }
+
+    public float MoveToTrashTime()
+    {
+        return moveToTrashTime;
     }
 
     public float NeededIngredientAlpha()

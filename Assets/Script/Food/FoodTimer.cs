@@ -122,8 +122,8 @@ public class FoodTimer : MonoBehaviour {
         if (foodHolder.StoredFood() != null)
         {
             FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
-            Vector3 position = AnimationManager.instance.TrashPosition() - transform.localPosition;
-            foodAnim.moveToTrash(position);
+ 
+            foodAnim.moveToTrash(AnimationManager.instance.TrashPosition() - transform.localPosition);
         }
     }
     #endregion
