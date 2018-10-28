@@ -37,7 +37,7 @@ public class CenterIngredient : MonoBehaviour
     void setupDelegate()
     {
         userInput.snapOffDelegate += startCenterAnimationIfNeeded;
-        trashInput.animateDoubleTapDelegate += moveToTrashIfNeeded;
+        trashInput.animateDoubleTapDelegate += moveToTrash;
     }
 
     #endregion
@@ -92,12 +92,24 @@ public class CenterIngredient : MonoBehaviour
             }
             else
             {
-                moveCenterTo(endPosition, "moveCenterDelegate");
+                moveCenterTo(endPosition);
             }
         } else
         {
             userInput.enableSwipe();
         }
+    }
+
+    void moveCenterTo(Vector3 position)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("x", position.x);
+        ht.Add("y", position.y);
+        ht.Add("easeType", "easeOutCubic");
+
+        ht.Add("time", animation.CenterMoveTime());
+        ht.Add("oncomplete", "moveCenterDelegate");
+        iTween.MoveBy(gameObject, ht);
     }
 
     void RotateCenterIngredient(Direction dir)
@@ -127,6 +139,16 @@ public class CenterIngredient : MonoBehaviour
         return angle / 360;
     }
 
+    void FadeOutCenter()
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("alpha", 0);
+        ht.Add("time", animation.SauceFadeOutTime());
+        ht.Add("oncomplete", "moveCenterDelegate");
+        ht.Add("includechildren", false);
+        iTween.FadeTo(gameObject, ht);
+    }
+
 
     void moveCenterDelegate()
     {
@@ -144,20 +166,18 @@ public class CenterIngredient : MonoBehaviour
     #endregion
 
     #region Trash
-    void moveToTrashIfNeeded()
-    {
-        if (centerIngredient != null)
-        {
-            moveToTrash();
-        }
-    }
-
     void moveToTrash()
     {
         //Size
         iTween.ScaleTo(gameObject, Vector3.one * 0.5f, animation.CenterMoveTime());
         //Movement
-        moveCenterTo(animation.TrashPosition(), "moveToTrashDelegate");
+        Hashtable ht = new Hashtable();
+        ht.Add("position", animation.TrashPosition());
+        ht.Add("easeType", "easeInBack");
+        ht.Add("islocal", true);
+        ht.Add("time", animation.CenterMoveTime());
+        ht.Add("oncomplete", "moveToTrashDelegate");
+        iTween.MoveTo(gameObject, ht);
     }
 
     void moveToTrashDelegate()
@@ -178,17 +198,6 @@ public class CenterIngredient : MonoBehaviour
     {
         GetComponent<Image>().sprite = null;
         GetComponent<Image>().color = Color.clear;
-    }
-
-    void moveCenterTo(Vector3 position, string onComplete)
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("x", position.x);
-        ht.Add("y", position.y);
-        ht.Add("easeType", "easeOutCubic");
-        ht.Add("time", animation.CenterMoveTime());
-        ht.Add("oncomplete", onComplete);
-        iTween.MoveBy(gameObject, ht);
     }
     #endregion
 

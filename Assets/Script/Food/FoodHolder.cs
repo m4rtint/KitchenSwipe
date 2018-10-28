@@ -15,6 +15,13 @@ public class FoodHolder : MonoBehaviour
     Direction direction;
     Vector3 trashPosition;
 
+    #region mono
+    private void Start()
+    {
+        trashPosition = AnimationManager.instance.TrashPosition() - transform.localPosition;
+    }
+    #endregion
+
     #region Getters/Setter
     public FoodTimer FoodTimer()
     {
@@ -38,6 +45,16 @@ public class FoodHolder : MonoBehaviour
     {
         return storedFood;
     }
+
+    bool isStoredFoodNull()
+    {
+        return storedFood == null;
+    }
+
+    void removeStoredFood()
+    {
+        storedFood = null;
+    }
     #endregion
 
     #region UserAction
@@ -49,7 +66,7 @@ public class FoodHolder : MonoBehaviour
 
     public void incorrectlySwiped()
     {
-        if (storedFood != null)
+        if (!isStoredFoodNull())
         {
             storedFood.Animation().shakeFood();
             orderTimerDelegate(this.direction);
@@ -68,17 +85,35 @@ public class FoodHolder : MonoBehaviour
         orderDelegate(this.direction);
     }
 
+    public void moveFoodToTrashIfneeded()
+    {
+        if (!isStoredFoodNull())
+        {
+            FoodAnimation foodAnim = StoredFood().Animation();
+            foodAnim.moveToTrash(trashPosition);
+            removeStoredFood();
+            disableFoodTimer();
+        }
+    }
+
     #endregion
 
     #region helper
+
+    void disableFoodTimer()
+    {
+        FoodTimer().resetFoodTimerIfNeeded();
+        FoodTimer().TimerObject().SetActive(false);
+    }
+
     void completedFood()
     {
-        if (!storedFood.isFoodInPlay())
+        if (!isStoredFoodNull() && !storedFood.isFoodInPlay())
         {
 
             storedFood.Animation().StartFinishFoodAnimation();
             OverlayParticles.ShowParticles(7, storedFood.transform.position);
-            storedFood = null;
+            removeStoredFood();
 
             //SCORE
             if (ScoreManager.instance != null)

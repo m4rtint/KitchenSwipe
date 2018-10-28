@@ -43,7 +43,7 @@ public class GameEngineInfinite : GameEngine
     protected override void CompleteOrder(Direction food)
     {
         FoodHolder holder = ingredientsGenerator.FoodHolders()[(int)food];
-        if (!(holder.StoredFood() == null)) {
+        if (holder.StoredFood() != null) {
             numberOfCompletedOrder++;
         }
 
@@ -59,7 +59,7 @@ public class GameEngineInfinite : GameEngine
 
     void SetDifficultyIfNeeded()
     {
-        if (numberOfCompletedOrder % waveSize == 0)
+        if (numberOfCompletedOrder % waveSize == 0 && numberOfCompletedOrder > 0)
         {
             IncrementDifficulty();
         }

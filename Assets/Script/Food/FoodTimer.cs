@@ -30,6 +30,8 @@ public class FoodTimer : MonoBehaviour {
     Sprite redBar;
 
 
+
+
     #region mono
     private void Awake()
     {
@@ -104,28 +106,11 @@ public class FoodTimer : MonoBehaviour {
             ScoreManager.instance.decrementScore();
             TimeManager.instance.penaltyGameTime();
 
-            moveFoodToTrashIfneeded();
+            foodHolder.moveFoodToTrashIfneeded();
             foodTimerRanOutDelegate();
-
-            disableFoodTimer();
-
         }
     }
 
-    void disableFoodTimer() {
-        resetFoodTimerIfNeeded();
-        TimerObject().SetActive(false);
-    }
-
-    void moveFoodToTrashIfneeded()
-    {
-        if (foodHolder.StoredFood() != null)
-        {
-            FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
- 
-            foodAnim.moveToTrash(AnimationManager.instance.TrashPosition() - transform.localPosition);
-        }
-    }
     #endregion
 
     #region helper
