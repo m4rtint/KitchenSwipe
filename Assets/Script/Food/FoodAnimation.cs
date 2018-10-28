@@ -8,38 +8,36 @@ public class FoodAnimation : MonoBehaviour {
 
     //Delegate
     public delegate void FoodAnimationDelegate(FoodAnimation food);
-    public FoodAnimationDelegate CompleteFoodAnimationDelegate;
+    public FoodAnimationDelegate completeFoodAnimationDelegate;
 
     public delegate void IngredientPlacedDelegate();
-    public IngredientPlacedDelegate CompleteIngredientPlacementAnimationDelegate;
+    public IngredientPlacedDelegate completeIngredientPlacementAnimationDelegate;
 
     //Fade out
-    readonly Vector3 m_RiseUp = new Vector3(0, 100, 0);
+    readonly Vector3 riseUp = new Vector3(0, 100, 0);
 
-    Ingredient[] m_Ingredients;
+    Ingredient[] ingredients;
     Food food;
     AnimationManager animation;
     Vector3 endPosition;
-    RectTransform m_RectTrans;
 
     #region mono
     void Awake()
     {
         animation = AnimationManager.instance;
-        m_RectTrans = GetComponent<RectTransform>();
         food = GetComponent<Food>();
-        m_Ingredients = food.Ingredients();
-        SetupDelegate();
+        ingredients = food.Ingredients();
+        setupDelegate();
     }
 
     void Start()
     {
-        endPosition = m_RectTrans.transform.localPosition + m_RiseUp;
+        endPosition = transform.localPosition + riseUp;
     }
 
-    void SetupDelegate()
+    void setupDelegate()
     {
-        foreach(Ingredient ingredient in m_Ingredients)
+        foreach(Ingredient ingredient in ingredients)
         {
             ingredient.placementIngredientDelegate += PlaceIngredientAnimComplete;
         }
@@ -47,13 +45,13 @@ public class FoodAnimation : MonoBehaviour {
 
     void PlaceIngredientAnimComplete()
     {
-        CompleteIngredientPlacementAnimationDelegate();
+        completeIngredientPlacementAnimationDelegate();
         food.activeTopIngredientIfNeeded();
     }
 
-    void CompletedMovingUp()
+    void removeFood()
     {
-        CompleteFoodAnimationDelegate(this);
+        completeFoodAnimationDelegate(this);
         Destroy(gameObject);
 
     }
@@ -63,7 +61,7 @@ public class FoodAnimation : MonoBehaviour {
     public void StartFinishFoodAnimation()
     {
         ascendUpwards();
-        SetAlpha();
+        setAlpha();
     }
 
     public void shakeFood()
@@ -84,9 +82,8 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("y", position.y);
         ht.Add("easeType", "easeOutCubic");
         ht.Add("time", animation.CenterMoveTime());
+        ht.Add("oncomplete", "removeFood");
         iTween.MoveBy(gameObject, ht);
-
-        //TODO - Onccomplete - Destroy
     }
 
     #endregion
@@ -98,7 +95,7 @@ public class FoodAnimation : MonoBehaviour {
         ht.Add("y", animation.AscensionAmount());
         ht.Add("time", animation.AscensionTime());
         ht.Add("easeType", "easeOutCubic");
-        ht.Add("oncomplete", "CompletedMovingUp");
+        ht.Add("oncomplete", "removeFood");
         iTween.MoveAdd(gameObject, ht);
     }
 
@@ -107,7 +104,7 @@ public class FoodAnimation : MonoBehaviour {
         iTween.ColorFrom(gameObject, c, animation.FoodShakeTime());
     }
 
-    void SetAlpha()
+    void setAlpha()
     {
         iTween.FadeTo(gameObject, 0, animation.AscensionFade());
     }

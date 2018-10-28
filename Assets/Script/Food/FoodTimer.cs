@@ -53,48 +53,18 @@ public class FoodTimer : MonoBehaviour {
     }
     #endregion
 
-
-    float FoodTime()
-    {
-        Food food = foodHolder.StoredFood();
-        if (food == null)
-        {
-            return -1;
-        } else
-        {
-            return food.SecondsToComplete();
-        }
-    }
+    #region view
 
     public void decrementTimeBy(float seconds)
     {
         greenSecondsToComplete -= seconds;
     }
 
-    void decrementRedTimeBy(float seconds)
+    public GameObject TimerObject()
     {
-        if (redSecondsToComplete > greenSecondsToComplete)
-        {
-            redSecondsToComplete -= seconds*speedUp;
-        } else if (redSecondsToComplete < greenSecondsToComplete)
-        {
-            redSecondsToComplete = greenSecondsToComplete;
-        }
-        redSecondsToComplete -= seconds;
+        return greenTimerObject.transform.parent.gameObject;
     }
 
-    float calculateRatio(float seconds)
-    {
-        float ratio = 0;
-        if (FoodTime() > 0 && greenSecondsToComplete >= 0)
-        {
-            ratio = seconds / FoodTime();
-        }
-        return ratio;
-    }
-    
-
-    #region view
     public void updateTimer(float seconds)
     {
         if (foodHolder.StoredFood() != null) {
@@ -133,12 +103,18 @@ public class FoodTimer : MonoBehaviour {
         {
             ScoreManager.instance.decrementScore();
             TimeManager.instance.penaltyGameTime();
+
             moveFoodToTrashIfneeded();
             foodTimerRanOutDelegate();
 
-            //TODO - Get new food
-            //Destroy current one
+            disableFoodTimer();
+
         }
+    }
+
+    void disableFoodTimer() {
+        resetFoodTimerIfNeeded();
+        TimerObject().SetActive(false);
     }
 
     void moveFoodToTrashIfneeded()
@@ -148,6 +124,44 @@ public class FoodTimer : MonoBehaviour {
             FoodAnimation foodAnim = foodHolder.StoredFood().Animation();
             Vector3 position = AnimationManager.instance.TrashPosition() - transform.localPosition;
             foodAnim.moveToTrash(position);
+        }
+    }
+    #endregion
+
+    #region helper
+    void decrementRedTimeBy(float seconds)
+    {
+        if (redSecondsToComplete > greenSecondsToComplete)
+        {
+            redSecondsToComplete -= seconds * speedUp;
+        }
+        else if (redSecondsToComplete < greenSecondsToComplete)
+        {
+            redSecondsToComplete = greenSecondsToComplete;
+        }
+        redSecondsToComplete -= seconds;
+    }
+
+    float calculateRatio(float seconds)
+    {
+        float ratio = 0;
+        if (FoodTime() > 0 && greenSecondsToComplete >= 0)
+        {
+            ratio = seconds / FoodTime();
+        }
+        return ratio;
+    }
+
+    float FoodTime()
+    {
+        Food food = foodHolder.StoredFood();
+        if (food == null)
+        {
+            return -1;
+        }
+        else
+        {
+            return food.SecondsToComplete();
         }
     }
     #endregion

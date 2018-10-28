@@ -9,9 +9,7 @@ public class FoodHolder : MonoBehaviour
 
     public delegate void FoodHolderOrderDelegate(Direction dir);
     public FoodHolderOrderDelegate orderDelegate;
-
-    public delegate void FoodHolderOrderTimerDelegate(Direction dir);
-    public FoodHolderOrderTimerDelegate orderTimerDelegate;
+    public FoodHolderOrderDelegate orderTimerDelegate;
 
     Food storedFood;
     Direction direction;
@@ -32,6 +30,7 @@ public class FoodHolder : MonoBehaviour
     {
         storedFood = food;
         setDelegate();
+        GetComponent<FoodTimer>().TimerObject().SetActive(true);
         GetComponent<FoodTimer>().resetFoodTimerIfNeeded();
     }
 
@@ -64,8 +63,8 @@ public class FoodHolder : MonoBehaviour
 
     void removeFood(FoodAnimation food)
     {
-        food.CompleteFoodAnimationDelegate -= removeFood;
-        food.CompleteIngredientPlacementAnimationDelegate -= completedFood;
+        food.completeFoodAnimationDelegate -= removeFood;
+        food.completeIngredientPlacementAnimationDelegate -= completedFood;
         orderDelegate(this.direction);
     }
 
@@ -99,8 +98,8 @@ public class FoodHolder : MonoBehaviour
     {
         if (storedFood != null)
         {
-            storedFood.Animation().CompleteFoodAnimationDelegate += removeFood;
-            storedFood.Animation().CompleteIngredientPlacementAnimationDelegate += completedFood;
+            storedFood.Animation().completeFoodAnimationDelegate += removeFood;
+            storedFood.Animation().completeIngredientPlacementAnimationDelegate += completedFood;
         }
     }
     #endregion
