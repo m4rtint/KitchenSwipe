@@ -7,28 +7,27 @@ public class GameEngine : MonoBehaviour {
 
 	//========================Local
     protected Ingredient currentIngredient;
-
+    [Header("Local")]
 	[SerializeField]
 	int numberOfFood;
 
     //========================Dependencies
-	//Food Generator
-	protected FoodGenerator foodGenerator;
-
-	//Ingredients Generator
-	[SerializeField]
-	GameObject m_FoodHolder;
+    //Food Generator
+    protected FoodGenerator foodGenerator;
+    //Ingredients Generator
+    [Header("Dependencies")]
+    [SerializeField]
 	protected IngredientGenerator ingredientsGenerator;
-
-    //Center
     [SerializeField]
-    GameObject center;
-    [SerializeField]
-    UserInput userInput;
-
-    //Game Timer
+    CenterIngredient center;
     [SerializeField]
     GameTimer gameTimer;
+
+    [Header("Input")]
+    [SerializeField]
+    UserInput userInput;
+    [SerializeField]
+    TrashInput trashInput;
 
     #region getter/setter
     protected int NumberOfFood() {
@@ -44,9 +43,9 @@ public class GameEngine : MonoBehaviour {
     // Use this for initialization
     protected virtual void Awake () {
 		foodGenerator = GetComponent<FoodGenerator>();
-		ingredientsGenerator = m_FoodHolder.GetComponent<IngredientGenerator> ();
 
-        setupHolders ();
+        setupHolders();
+        setupUserInput();
     }
 
 	protected virtual void Start()
@@ -62,8 +61,7 @@ public class GameEngine : MonoBehaviour {
         //Choose a random current ingredient
         ChooseNewCurrentIngredient ();
 	}
-
-    //Start Setup Only
+    
     void ChooseNewCurrentIngredient()
     {
         currentIngredient = ingredientsGenerator.randomlyChooseIngredient();
@@ -82,8 +80,13 @@ public class GameEngine : MonoBehaviour {
         TimeManager.instance.isGameOverDelegate += onGameOver;
     }
 
-    void setupHolders(){
+    void setupUserInput()
+    {
         userInput.swipeDelegate += playerSwiped;
+        trashInput.doubleTapDelegate += ChooseNewCurrentIngredient;
+    }
+
+    void setupHolders(){
         FoodHolder[] holders = ingredientsGenerator.FoodHolders();
         for (int i = 0; i < holders.Length; i++)
         {
@@ -109,7 +112,7 @@ public class GameEngine : MonoBehaviour {
     #region Ingredients
     protected void setCenterIngredientView()
     {
-        center.GetComponent<CenterIngredient>().SetCenter(currentIngredient);
+        center.Center(currentIngredient);
     }
 
     void setNewFood(Direction dir)
@@ -140,7 +143,6 @@ public class GameEngine : MonoBehaviour {
         }
         setCenterIngredientView();
     }
-
     #endregion
 
     #region Delegate

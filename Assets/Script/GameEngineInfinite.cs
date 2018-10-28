@@ -8,12 +8,14 @@ using UnityEngine;
 public class GameEngineInfinite : GameEngine
 {
 
+    [Header("Infinite Local")]
     [SerializeField]
     int waveSize;
 
     int numberOfCompletedOrder;
 
     //Announcement Manager
+    [Header("Infinite Dependencies")]
     [SerializeField]
     AnnouncementManager announcementManager;
 

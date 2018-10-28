@@ -42,7 +42,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         return draggedDir;
     }
 
-    bool CanSwipe()
+    public bool CanSwipe()
     {
         return StateManager.instance.isInGame() && canSwipe;
     }
@@ -58,6 +58,11 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canSwipe = true;
     }
 
+    public void disableSwipe()
+    {
+        canSwipe = false;
+    }
+
 
     #region Events
     //Do this when the user stops dragging this UI Element.
@@ -69,7 +74,7 @@ public class UserInput : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         float distance = displacement.magnitude;
         if (distance > dragDistance && CanSwipe())
         {
-            canSwipe = false;
+            disableSwipe();
             currentDirection = dragDirection(dragVectorDirection);
             this.snapOffDelegate(currentDirection);
         } 

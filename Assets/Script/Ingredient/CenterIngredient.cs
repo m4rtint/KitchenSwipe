@@ -16,8 +16,11 @@ public class CenterIngredient : MonoBehaviour
     IngredientGenerator ingredientGenerator;
     [SerializeField]
     UserInput userInput;
+    [SerializeField]
+    TrashInput trashInput;
        
     Vector3 startPosition;
+    Vector3 trashPosition;
     Ingredient centerIngredient;
     Direction swipedDirection;
     AnimationManager animation;
@@ -28,12 +31,14 @@ public class CenterIngredient : MonoBehaviour
     {
         animation = AnimationManager.instance;
         startPosition = transform.position;
+        trashPosition = trashInput.transform.localPosition;
         setupDelegate();
     }
 
     void setupDelegate()
     {
         userInput.snapOffDelegate += startCenterAnimationIfNeeded;
+        trashInput.animateDoubleTapDelegate += moveToTrashIfNeeded;
     }
 
     #endregion
@@ -55,7 +60,7 @@ public class CenterIngredient : MonoBehaviour
 
     }
 
-    public void SetCenter(Ingredient ingredient)
+    public void Center(Ingredient ingredient)
     {
         centerIngredient = ingredient;
 
@@ -88,7 +93,7 @@ public class CenterIngredient : MonoBehaviour
             }
             else
             {
-                MoveCenterToIngredient(endPosition);
+                moveCenterTo(endPosition, "moveCenterDelegate");
             }
         } else
         {
@@ -99,14 +104,14 @@ public class CenterIngredient : MonoBehaviour
     void RotateCenterIngredient(Direction dir)
     {
         Hashtable ht = new Hashtable();
-        ht.Add("z", AngleForRotation(dir));
+        ht.Add("z", angleForRotation(dir));
         ht.Add("easeType", "easeInOutBack");
         ht.Add("time", animation.RotationTime());
         ht.Add("oncomplete", "FadeOutCenter");
         iTween.RotateBy(gameObject, ht);
     }
 
-    float AngleForRotation(Direction dir)
+    float angleForRotation(Direction dir)
     {
         float angle = 40;
         switch (dir)
@@ -123,40 +128,43 @@ public class CenterIngredient : MonoBehaviour
         return angle / 360;
     }
 
-    void FadeOutCenter()
-    {
-        Hashtable ht = new Hashtable();
-        ht.Add("alpha", 0);
-        ht.Add("time", animation.SauceFadeOutTime());
-        ht.Add("oncomplete", "MoveCenterDelegate");
-        ht.Add("includechildren", false);
-        iTween.FadeTo(gameObject, ht);
-    }
 
-    void MoveCenterToIngredient(Vector3 position)
+    void moveCenterDelegate()
     {
-        Hashtable ht = new Hashtable();
-        ht.Add("x", position.x);
-        ht.Add("y", position.y);
-        ht.Add("easeType", "easeOutCubic");
-        //ht.Add("easeType", "linear");
-        ht.Add("time", animation.CenterMoveTime());
-        ht.Add("oncomplete", "MoveCenterDelegate");
-        iTween.MoveBy(gameObject, ht);
-    }
-
-
-    void MoveCenterDelegate()
-    {
-        ResetCenterAnimation();
+        resetCenterAnimation();
         userInput.runSwipeDelegate();
     }
 
-    void ResetCenterAnimation()
+    void resetCenterAnimation()
     {
         GetComponent<Image>().color = Color.white;
         transform.position = startPosition;
         transform.rotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
+    }
+    #endregion
+
+    #region Trash
+    void moveToTrashIfNeeded()
+    {
+        if (centerIngredient != null)
+        {
+            moveToTrash();
+        }
+    }
+
+    void moveToTrash()
+    {
+        //Size
+        iTween.ScaleTo(gameObject, Vector3.one * 0.5f, animation.CenterMoveTime());
+        //Movement
+        moveCenterTo(trashPosition, "moveToTrashDelegate");
+    }
+
+    void moveToTrashDelegate()
+    {
+        resetCenterAnimation();
+        trashInput.runDoubleTapDelegate();
     }
 
     #endregion
@@ -171,6 +179,17 @@ public class CenterIngredient : MonoBehaviour
     {
         GetComponent<Image>().sprite = null;
         GetComponent<Image>().color = Color.clear;
+    }
+
+    void moveCenterTo(Vector3 position, string onComplete)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("x", position.x);
+        ht.Add("y", position.y);
+        ht.Add("easeType", "easeOutCubic");
+        ht.Add("time", animation.CenterMoveTime());
+        ht.Add("oncomplete", onComplete);
+        iTween.MoveBy(gameObject, ht);
     }
     #endregion
 

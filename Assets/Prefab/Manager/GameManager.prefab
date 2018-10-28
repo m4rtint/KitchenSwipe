@@ -87,7 +87,7 @@ MonoBehaviour:
   moveTime: 0.3
   centerFadeOutTime: 0.1
   comboPopTime: 0.5
-  comboPopScale: 4
+  comboPopScale: 2
   scoreDelayTime: 0.2
   scorePopTime: 0.5
   goFadeInTime: 1
@@ -102,10 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002145ac1c5516f48b8dd2911cdfe641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NumberOfFood: 10
-  m_FoodHolder: {fileID: 0}
+  numberOfFood: 10
+  ingredientsGenerator: {fileID: 0}
   center: {fileID: 0}
+  gameTimer: {fileID: 0}
   userInput: {fileID: 0}
+  trashInput: {fileID: 0}
   waveSize: 4
   announcementManager: {fileID: 0}
   goalManager: {fileID: 0}
@@ -154,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 60
-  foodPenaltyTime: 20
+  foodPenaltyTime: 5
   gameTimePenaltyTime: 5
   foodSuccessPrizeTime: 10
   orderTimeVaryingSpeed: 1
