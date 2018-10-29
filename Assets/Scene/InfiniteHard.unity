@@ -235,82 +235,82 @@ Prefab:
     - target: {fileID: 114755266805875372, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114755266805875372, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114238205746392530, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114238205746392530, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114674081447022092, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114674081447022092, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114264368928295726, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114264368928295726, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114526542156571458, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114526542156571458, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114507147966131946, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114507147966131946, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114772920177939480, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114772920177939480, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114421220318871950, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114421220318871950, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224947736168001560, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
         type: 2}
@@ -336,6 +336,11 @@ Prefab:
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507147966131946, guid: 98e5ae7b9189d4d2d80435a30e0140e4,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98e5ae7b9189d4d2d80435a30e0140e4, type: 2}
@@ -379,6 +384,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: fadedBackgroundObject
+      value: 
+      objectReference: {fileID: 424378569}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: gameOverObject
+      value: 
+      objectReference: {fileID: 673128778}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: pauseScreenObject
+      value: 
+      objectReference: {fileID: 1117235597}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1464047553}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: comboTextObject
+      value: 
+      objectReference: {fileID: 1619475811}
+    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: dishesText
+      value: 
+      objectReference: {fileID: 107203968}
     - target: {fileID: 114320809374165192, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: ingredientsGenerator
@@ -414,46 +449,6 @@ Prefab:
       propertyPath: goalManager
       value: 
       objectReference: {fileID: 1740524194}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: fadedBackgroundObject
-      value: 
-      objectReference: {fileID: 424378569}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: gameOverObject
-      value: 
-      objectReference: {fileID: 673128778}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: pauseScreenObject
-      value: 
-      objectReference: {fileID: 1117235597}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: scoreText
-      value: 
-      objectReference: {fileID: 1464047553}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: comboTextObject
-      value: 
-      objectReference: {fileID: 1619475811}
-    - target: {fileID: 114609220818088158, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: dishesText
-      value: 
-      objectReference: {fileID: 107203968}
-    - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: gameTimePenaltyTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
-        type: 2}
-      propertyPath: moveToTrashTime
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0

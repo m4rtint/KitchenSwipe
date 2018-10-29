@@ -83,6 +83,7 @@ MonoBehaviour:
   ascentionFadeTime: 0.2
   foodShakeTime: 0.25
   foodShakeAmount: 50
+  moveToTrashTime: 0.5
   rotationTime: 0.3
   moveTime: 0.3
   centerFadeOutTime: 0.1
@@ -157,6 +158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTime: 60
   foodPenaltyTime: 5
-  gameTimePenaltyTime: 5
+  gameTimePenaltyTime: 1
   foodSuccessPrizeTime: 10
   orderTimeVaryingSpeed: 1

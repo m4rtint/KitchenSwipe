@@ -12,7 +12,7 @@ public class FoodHolder : MonoBehaviour
     public FoodHolderOrderDelegate orderTimerDelegate;
 
     Food storedFood;
-    Direction direction;
+    public Direction direction;
     Vector3 trashPosition;
 
     #region mono
@@ -33,11 +33,16 @@ public class FoodHolder : MonoBehaviour
         this.direction = (Direction)dir;
     }
 
+    public int Direction()
+    {
+        return (int)this.direction;
+    }
+
     public void StoredFood(Food food)
     {
         storedFood = food;
         setDelegate();
-        FoodTimer().TimerObject(true);
+        FoodTimer().TimerObject().SetActive(true);
         FoodTimer().resetFoodTimerIfNeeded();
     }
 
@@ -107,7 +112,7 @@ public class FoodHolder : MonoBehaviour
     void disableFoodTimer()
     {
         FoodTimer().pause();
-        FoodTimer().TimerObject(false);
+        FoodTimer().TimerObject().SetActive(false);
     }
 
     void completedFood()

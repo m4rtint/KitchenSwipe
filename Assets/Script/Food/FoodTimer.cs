@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(FoodHolder))]
 public class FoodTimer : MonoBehaviour {
+
     //Delegate
     public delegate void TimerDelegate();
     public TimerDelegate foodTimerRanOutDelegate;
@@ -29,14 +30,15 @@ public class FoodTimer : MonoBehaviour {
     [SerializeField]
     Sprite redBar;
 
+    string shakeTween = null;
     bool isRunning = true;
-
-
+    bool[] currColor = new bool[] { true, true, true };
 
     #region mono
     private void Awake()
     {
         foodHolder = GetComponent<FoodHolder>();
+        shakeTween = "redShake" + foodHolder.Direction();
     }
 
     private void Start()
@@ -65,6 +67,8 @@ public class FoodTimer : MonoBehaviour {
             greenSecondsToComplete = foodHolder.StoredFood().SecondsToComplete();
             redSecondsToComplete = greenSecondsToComplete;
             run();
+            currColor = new bool[] { true, true, true };
+            stopBarShake();
         }
     }
     #endregion
@@ -75,9 +79,9 @@ public class FoodTimer : MonoBehaviour {
         greenSecondsToComplete -= seconds;
     }
 
-    public void TimerObject(bool active = true)
+    public GameObject TimerObject()
     {
-        greenTimerObject.transform.parent.gameObject.SetActive(active);
+        return greenTimerObject.transform.parent.gameObject;
     }
 
     public void updateTimer(float seconds)
@@ -102,13 +106,23 @@ public class FoodTimer : MonoBehaviour {
         float ratio = calculateRatio(greenSecondsToComplete);
         if (ratio > 0.4)
         {
-            barImage(greenBar);
-        } else if(ratio > 0.2)
+            if (currColor[0]) { 
+                barImage(greenBar);
+                currColor[0] = false;
+            }
+
+        } else if(ratio > 0.25)
         {
-            barImage(yellowBar);
-        } else
+            if (currColor[1]) { 
+                barImage(yellowBar);
+                currColor[1] = false;
+                shakeBar(2f);
+            }
+        } else if (currColor[2])
         {
             barImage(redBar);
+            currColor[2] = false;
+            shakeBar(5f);
         }
     }
 
@@ -123,7 +137,23 @@ public class FoodTimer : MonoBehaviour {
             foodTimerRanOutDelegate();
         }
     }
+    #endregion
 
+    #region shake
+    void shakeBar(float amount)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("name", shakeTween);
+        ht.Add("x", amount);
+        ht.Add("looptype", "loop");
+        ht.Add("time", 30f);
+        iTween.ShakePosition(TimerObject(), ht);
+    }
+
+    void stopBarShake()
+    {
+        iTween.StopByName(shakeTween);
+    }
     #endregion
 
     #region helper
