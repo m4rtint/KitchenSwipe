@@ -1173,12 +1173,12 @@ Prefab:
     - target: {fileID: 224066723200022706, guid: 1afbe5c14f05c4cc18bd7cc910a777e9,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224066723200022706, guid: 1afbe5c14f05c4cc18bd7cc910a777e9,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224066723200022706, guid: 1afbe5c14f05c4cc18bd7cc910a777e9,
         type: 2}
