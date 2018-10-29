@@ -18,9 +18,28 @@ public class TrashInput : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.clickCount == doubleTap && userInput.CanSwipe())
         {
-            animateDoubleTapDelegate();
-            userInput.disableSwipe();
+            doubleTapped();
         }
+    }
+
+    void Update()
+    {
+        for (var i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                if (Input.GetTouch(i).tapCount == 2)
+                {
+                    doubleTapped();
+                }
+            }
+        }
+    }
+
+    void doubleTapped()
+    {
+        animateDoubleTapDelegate();
+        userInput.disableSwipe();
     }
 
     public void runDoubleTapDelegate()
