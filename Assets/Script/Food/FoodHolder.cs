@@ -37,8 +37,8 @@ public class FoodHolder : MonoBehaviour
     {
         storedFood = food;
         setDelegate();
-        GetComponent<FoodTimer>().TimerObject().SetActive(true);
-        GetComponent<FoodTimer>().resetFoodTimerIfNeeded();
+        FoodTimer().TimerObject(true);
+        FoodTimer().resetFoodTimerIfNeeded();
     }
 
     public Food StoredFood()
@@ -62,6 +62,10 @@ public class FoodHolder : MonoBehaviour
     {
         //Decrement level of ingredient
         storedFood.PlaceIngredient();
+        if (!storedFood.isFoodInPlay())
+        {
+            FoodTimer().pause();
+        } 
     }
 
     public void incorrectlySwiped()
@@ -102,15 +106,14 @@ public class FoodHolder : MonoBehaviour
 
     void disableFoodTimer()
     {
-        FoodTimer().resetFoodTimerIfNeeded();
-        FoodTimer().TimerObject().SetActive(false);
+        FoodTimer().pause();
+        FoodTimer().TimerObject(false);
     }
 
     void completedFood()
     {
         if (!isStoredFoodNull() && !storedFood.isFoodInPlay())
         {
-
             storedFood.Animation().StartFinishFoodAnimation();
             OverlayParticles.ShowParticles(7, storedFood.transform.position);
             removeStoredFood();

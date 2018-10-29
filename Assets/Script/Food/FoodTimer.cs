@@ -29,6 +29,7 @@ public class FoodTimer : MonoBehaviour {
     [SerializeField]
     Sprite redBar;
 
+    bool isRunning = true;
 
 
 
@@ -44,6 +45,18 @@ public class FoodTimer : MonoBehaviour {
     }
     #endregion
 
+    #region getter/setter
+    public void run()
+    {
+        isRunning = true;
+    }
+
+    public void pause()
+    {
+        isRunning = false;
+    }
+    #endregion
+
     #region InitFoodTimer
     public void resetFoodTimerIfNeeded()
     {
@@ -51,25 +64,25 @@ public class FoodTimer : MonoBehaviour {
         {
             greenSecondsToComplete = foodHolder.StoredFood().SecondsToComplete();
             redSecondsToComplete = greenSecondsToComplete;
+            run();
         }
     }
     #endregion
 
-    #region view
-
+    #region View
     public void decrementTimeBy(float seconds)
     {
         greenSecondsToComplete -= seconds;
     }
 
-    public GameObject TimerObject()
+    public void TimerObject(bool active = true)
     {
-        return greenTimerObject.transform.parent.gameObject;
+        greenTimerObject.transform.parent.gameObject.SetActive(active);
     }
 
     public void updateTimer(float seconds)
     {
-        if (foodHolder.StoredFood() != null) {
+        if (foodHolder.StoredFood() != null && isRunning) {
             decrementTimeBy(seconds);
             decrementRedTimeBy(seconds);
             updateTimerUI();
