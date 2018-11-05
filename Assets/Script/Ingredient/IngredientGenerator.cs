@@ -10,6 +10,8 @@ public class IngredientGenerator : MonoBehaviour {
     FoodHolder[] foodHolders;
     FoodTimer[] foodTimers;
 
+    int lastIndex;
+
     #region getter/setter
     public int foodHolderLength()
     {
@@ -46,9 +48,10 @@ public class IngredientGenerator : MonoBehaviour {
         int crashPrevention = 10;
         if (!isHoldersEmpty()) {
             Food food = null;
+            int index;
             do
             {
-			    int index = Random.Range(0, foodHolderLength());
+			    index = Random.Range(0, foodHolderLength());
 			    food = foodHolders[index].StoredFood();
 
                 crashPrevention--;
@@ -57,8 +60,9 @@ public class IngredientGenerator : MonoBehaviour {
                     return null;
                 }
 
-            } while (food == null || !food.isFoodInPlay());
+            } while (food == null || !food.isFoodInPlay() || index == lastIndex);
 
+            lastIndex = index;
             ingredient = ingredientOnTop(food);
         }
         return ingredient;

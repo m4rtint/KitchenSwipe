@@ -19,6 +19,8 @@ public class GameEngine : MonoBehaviour {
     [SerializeField]
 	protected IngredientGenerator ingredientsGenerator;
     [SerializeField]
+    NextIngredient nextIngredient;
+    [SerializeField]
     CenterIngredient center;
     [SerializeField]
     GameTimer gameTimer;
@@ -59,13 +61,21 @@ public class GameEngine : MonoBehaviour {
         setupIngredients();
 
         //Choose a random current ingredient
-        ChooseNewCurrentIngredient ();
+        setNextIngredientAsRandom();
+        
+        setNextIngredientAsCenter();
 	}
     
-    void ChooseNewCurrentIngredient()
+    void setNextIngredientAsCenter()
     {
-        currentIngredient = ingredientsGenerator.randomlyChooseIngredient();
+        currentIngredient = nextIngredient.Ingredient();
+        setNextIngredientAsRandom();
         setCenterIngredientView();
+    }
+
+    void setNextIngredientAsRandom()
+    {
+        nextIngredient.Ingredient(ingredientsGenerator.randomlyChooseIngredient());
     }
 
     protected void setupIngredients() {
@@ -83,7 +93,7 @@ public class GameEngine : MonoBehaviour {
     void setupUserInput()
     {
         userInput.swipeDelegate += playerSwiped;
-        trashInput.doubleTapDelegate += ChooseNewCurrentIngredient;
+        trashInput.doubleTapDelegate += setNextIngredientAsCenter;
     }
 
     void setupHolders(){
@@ -136,11 +146,14 @@ public class GameEngine : MonoBehaviour {
     #region Actions
     protected virtual void playerSwiped(Direction dir)
     {
-        currentIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
-        if (currentIngredient == null)
+        Ingredient next = ingredientsGenerator.userSwiped(currentIngredient, dir);
+        if (next == null)
         {
-            currentIngredient = foodGenerator.peekFoodOnStack().GetNeededIngredient();
+            next = foodGenerator.peekFoodOnStack().GetNeededIngredient();
         }
+
+        currentIngredient = nextIngredient.Ingredient();
+        nextIngredient.Ingredient(next);
         setCenterIngredientView();
     }
     #endregion
