@@ -26,6 +26,7 @@ public class Food : MonoBehaviour {
         {
             float alpha = AnimationManager.instance.NeededIngredientAlpha();
             ingredient.setAlpha(alpha);
+            ingredient.setOutlineImage(true);
             ingredient.gameObject.SetActive(false);
         }
         m_Ingredients[0].gameObject.SetActive(true);
@@ -77,6 +78,7 @@ public class Food : MonoBehaviour {
             activeTopIngredientIfNeeded();
         }
         GetNeededIngredient().setAlpha(1);
+        GetNeededIngredient().setOutlineImage(false);
         GetNeededIngredient().startAnimation();
         level++;
     }

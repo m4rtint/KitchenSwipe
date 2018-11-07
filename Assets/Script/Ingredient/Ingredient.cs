@@ -16,6 +16,9 @@ public class Ingredient:MonoBehaviour {
     Sprite m_CenterImage;
 
     [SerializeField]
+    Sprite outlineSprite;
+
+    [SerializeField]
     float customPlaceDownDistance;
 
     protected float placeDownDistance = 100;
@@ -50,6 +53,12 @@ public class Ingredient:MonoBehaviour {
         } else { 
             return GetComponent<Image>().sprite;
         }
+    }
+
+    public void setOutlineImage(bool outline)
+    {
+        Sprite img = outline ? outlineSprite : null;
+        GetComponent<Image>().overrideSprite = img;
     }
 
     public virtual void setAlpha(float percent)
