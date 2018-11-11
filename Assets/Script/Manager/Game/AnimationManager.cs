@@ -47,6 +47,12 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float scorePopTime;
 
+    [Header("Penalty Time")]
+    [SerializeField]
+    float penaltyRiseAmount;
+    [SerializeField]
+    float penaltyRiseTime;
+
     [Header("GameOver Screen")]
     [SerializeField]
     float goFadeInTime;
@@ -121,6 +127,16 @@ public class AnimationManager : MonoBehaviour {
     public float ScorePopTime()
     {
         return scorePopTime;
+    }
+
+    public float PenaltyRiseAmount()
+    {
+        return penaltyRiseAmount;
+    }
+
+    public float PenaltyRiseTime()
+    {
+        return penaltyRiseTime;
     }
 
     public float GameOverFadeInTime()

@@ -86,6 +86,8 @@ MonoBehaviour:
   comboPopScale: 2
   scoreDelayTime: 0.2
   scorePopTime: 0.5
+  penaltyRiseAmount: 100
+  penaltyRiseTime: 0.5
   goFadeInTime: 1
 --- !u!114 &114320809374165192
 MonoBehaviour:

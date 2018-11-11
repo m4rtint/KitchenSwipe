@@ -55,8 +55,9 @@ public class FoodScore : MonoBehaviour {
         TimeText(time);
 
         Hashtable ht = new Hashtable();
-        ht.Add("y", 100);
-        ht.Add("time", 0.5f);
+        ht.Add("y", animation.PenaltyRiseAmount());
+        ht.Add("time", animation.PenaltyRiseTime());
+        ht.Add("easeType", "easeOutExpo");
 
         //On complete function call
         ht.Add("oncompletetarget", gameObject);
