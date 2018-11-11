@@ -234,6 +234,11 @@ Prefab:
       propertyPath: dishesText
       value: 
       objectReference: {fileID: 107203968}
+    - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: gameTimePenaltyTime
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0

@@ -7,8 +7,7 @@ public class MainMenuAnimation : MonoBehaviour {
     [SerializeField]
     GameObject[] scrolls;
 
-    [SerializeField]
-    float speed;
+    readonly float speedRatio = 2.88f;
 
     #region Mono
     private void Start()
@@ -22,6 +21,7 @@ public class MainMenuAnimation : MonoBehaviour {
     {
         foreach (GameObject obj in scrolls)
         {
+            float speed = Screen.width / speedRatio;
             obj.GetComponent<MenuScrollingBackground>().setScrollingSpeed(speed);
         }
     }
