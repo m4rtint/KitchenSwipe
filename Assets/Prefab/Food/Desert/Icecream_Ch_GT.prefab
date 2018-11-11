@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cone
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 62bbb9d3eb1d9ec43879b493483d476c, type: 3}
   customPlaceDownDistance: 50
 --- !u!114 &114146920392352320
 MonoBehaviour:
@@ -109,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Chocolate
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 641f30402f251ee41aff2a65776c56c1, type: 3}
   customPlaceDownDistance: 50
 --- !u!114 &114355782380500388
 MonoBehaviour:
@@ -203,6 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: GreenTea
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: e5dae8d1dfc240a4c9bdd79b569b7197, type: 3}
   customPlaceDownDistance: 50
 --- !u!114 &114990919938819682
 MonoBehaviour:
