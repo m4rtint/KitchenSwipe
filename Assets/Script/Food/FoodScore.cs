@@ -9,6 +9,10 @@ public class FoodScore : MonoBehaviour {
     [SerializeField]
     GameObject scoreObject;
     TextMeshProUGUI scoreText;
+
+    [SerializeField]
+    GameObject timeObject;
+    TextMeshProUGUI timeText;
     
     AnimationManager animation;
 
@@ -16,14 +20,17 @@ public class FoodScore : MonoBehaviour {
     private void Awake()
     {
         scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
+        timeText = timeObject.GetComponent<TextMeshProUGUI>();
         animation = AnimationManager.instance;
-        resetScoreAnimation();
+        resetScoreText();
+        resetTimeText();
     }
     #endregion
 
     #region Animation
-    public void risingScoreAnimation(int score)
+    public void popScoreAnimation(int score)
     {
+        ScoreText(score);
 
         Hashtable ht = new Hashtable();
         ht.Add("delay", AnimationManager.instance.ScoreDelayTime());
@@ -31,23 +38,44 @@ public class FoodScore : MonoBehaviour {
         ht.Add("time", AnimationManager.instance.ScorePopTime());
         ht.Add("easeType", "spring");
 
-        //On Start function to call
-        ht.Add("onstart", "ScoreText");
-        ht.Add("onstartparams",score);
-        ht.Add("onstarttarget", gameObject);
-
         //On complete function to call
         ht.Add("oncompletetarget", gameObject);
-        ht.Add("oncomplete", "resetScoreAnimation");
+        ht.Add("oncomplete", "resetScoreText");
         iTween.ScaleFrom(scoreObject, ht);
     }
-     
+
+    //Called in iTween animation
     void ScoreText(int score)
     {
-        scoreText.text = score.ToString()+"pts";
+        scoreText.text = score.ToString() + "pts";
     }
 
-    void resetScoreAnimation()
+    public void risingLostTime(int time)
+    {
+        TimeText(time);
+
+        Hashtable ht = new Hashtable();
+        ht.Add("y", 100);
+        ht.Add("time", 0.5f);
+
+        //On complete function call
+        ht.Add("oncompletetarget", gameObject);
+        ht.Add("oncomplete", "resetTimeText");
+        iTween.MoveAdd(timeObject, ht);
+    }
+
+    //Called in iTween animation
+    void TimeText(int time)
+    {
+        timeText.text = "- " + time + " Seconds";
+    }
+     
+    void resetTimeText()
+    {
+        timeText.text = "";
+    }
+
+    void resetScoreText()
     {
         scoreText.text = "";
     }

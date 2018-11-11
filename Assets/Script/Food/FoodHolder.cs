@@ -102,6 +102,7 @@ public class FoodHolder : MonoBehaviour
             foodAnim.moveToTrash(trashPosition);
             removeStoredFood();
             disableFoodTimer();
+            GetComponent<FoodScore>().risingLostTime(5);
         }
     }
 
@@ -127,7 +128,7 @@ public class FoodHolder : MonoBehaviour
             if (ScoreManager.instance != null)
             {
                 int score = ScoreManager.instance.incrementScore();
-                GetComponent<FoodScore>().risingScoreAnimation(score);
+                GetComponent<FoodScore>().popScoreAnimation(score);
             }
 
             //TIME
