@@ -49,6 +49,11 @@ public class TimeManager : MonoBehaviour {
     {
         return (int)secondsLasted;
     }
+
+    public float GameTimePenalty()
+    {
+        return gameTimePenaltyTime;
+    }
     #endregion
 
     #region Mono

@@ -102,7 +102,7 @@ public class FoodHolder : MonoBehaviour
             foodAnim.moveToTrash(trashPosition);
             removeStoredFood();
             disableFoodTimer();
-            GetComponent<FoodScore>().risingLostTime(5);
+            GetComponent<FoodScore>().risingLostTime();
         }
     }
 

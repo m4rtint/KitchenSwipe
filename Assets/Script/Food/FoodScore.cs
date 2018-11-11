@@ -50,8 +50,9 @@ public class FoodScore : MonoBehaviour {
         scoreText.text = score.ToString() + "pts";
     }
 
-    public void risingLostTime(int time)
+    public void risingLostTime()
     {
+        int time = (int)TimeManager.instance.GameTimePenalty();
         TimeText(time);
 
         Hashtable ht = new Hashtable();
