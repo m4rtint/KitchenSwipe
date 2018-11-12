@@ -77,17 +77,7 @@ public class UIManager : MonoBehaviour
         }
 
         comboTextObject.SetActive(true);
-        comboTextObject.GetComponent<ComboManager>().setComboText("x" + scoreManager.Combo());
-        animateCombo();
-    }
-
-    void animateCombo(){
-        comboTextObject.transform.localScale = Vector3.one;
-        Hashtable ht = new Hashtable();
-        ht.Add("scale", AnimationManager.instance.ComboPopScale());
-        ht.Add("time", AnimationManager.instance.ComboPopTime());
-        ht.Add("easeType", "easeInQuart");
-        iTween.ScaleFrom(comboTextObject.GetComponent<ComboManager>().getTextObject(), ht);
+        comboTextObject.GetComponent<ComboManager>().animateCombo(scoreManager.Combo());
     }
     #endregion
 
