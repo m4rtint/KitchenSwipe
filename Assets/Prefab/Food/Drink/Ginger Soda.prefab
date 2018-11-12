@@ -74,6 +74,7 @@ MonoBehaviour:
   m_CenterImage: {fileID: 0}
   outlineSprite: {fileID: 21300000, guid: 40b91ae8f06e9fb4f880f052abe76e50, type: 3}
   customPlaceDownDistance: 50
+  isUpNextSizeChangeNeeded: 1
 --- !u!114 &114288622227055360
 MonoBehaviour:
   m_ObjectHideFlags: 1

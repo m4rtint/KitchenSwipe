@@ -20,6 +20,8 @@ public class Ingredient:MonoBehaviour {
 
     [SerializeField]
     float customPlaceDownDistance;
+    
+    public bool isUpNextSizeChangeNeeded;
 
     protected float placeDownDistance = 100;
     protected AnimationManager animation;
@@ -60,7 +62,7 @@ public class Ingredient:MonoBehaviour {
         Sprite img = outline ? outlineSprite : null;
         GetComponent<Image>().overrideSprite = img;
     }
-
+   
     public virtual void setAlpha(float percent)
     {
         GetComponent<Image>().color = new Color(1, 1, 1, percent);
