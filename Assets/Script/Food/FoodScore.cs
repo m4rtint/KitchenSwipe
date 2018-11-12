@@ -11,8 +11,8 @@ public class FoodScore : MonoBehaviour {
     TextMeshProUGUI scoreText;
 
     [SerializeField]
-    GameObject timeObject;
-    TextMeshProUGUI timeText;
+    GameObject penaltyObject;
+    TextMeshProUGUI penaltyText;
     
     AnimationManager animation;
 
@@ -20,7 +20,7 @@ public class FoodScore : MonoBehaviour {
     private void Awake()
     {
         scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
-        timeText = timeObject.GetComponent<TextMeshProUGUI>();
+        penaltyText = penaltyObject.GetComponent<TextMeshProUGUI>();
         animation = AnimationManager.instance;
         resetScoreText();
         resetTimeText();
@@ -63,18 +63,18 @@ public class FoodScore : MonoBehaviour {
         //On complete function call
         ht.Add("oncompletetarget", gameObject);
         ht.Add("oncomplete", "resetTimeText");
-        iTween.MoveAdd(timeObject, ht);
+        iTween.MoveAdd(penaltyObject, ht);
     }
 
     //Called in iTween animation
     void TimeText(int time)
     {
-        timeText.text = "- " + time + " Seconds";
+        penaltyText.text = "- " + time + " Seconds";
     }
      
     void resetTimeText()
     {
-        timeText.text = "";
+        penaltyText.text = "";
     }
 
     void resetScoreText()
