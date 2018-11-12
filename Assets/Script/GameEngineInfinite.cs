@@ -42,11 +42,8 @@ public class GameEngineInfinite : GameEngine
     #endregion
     protected override void CompleteOrder(Direction food)
     {
-        FoodHolder holder = ingredientsGenerator.FoodHolders()[(int)food];
-        if (holder.StoredFood() != null) {
-            numberOfCompletedOrder++;
-        }
-
+        numberOfCompletedOrder++;
+      
         base.CompleteOrder(food);
 
         if (foodGenerator.ChosenFoodStack().Count < 8)
