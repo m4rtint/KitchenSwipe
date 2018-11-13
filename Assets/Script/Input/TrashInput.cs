@@ -18,11 +18,11 @@ public class TrashInput : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(delegate
         {
-            doubleTapped();
+            tapped();
         });
     }
 
-    public void doubleTapped()
+    public void tapped()
     {
         if (userInput.CanSwipe())
         {
@@ -36,6 +36,4 @@ public class TrashInput : MonoBehaviour
         doubleTapDelegate();
         userInput.enableSwipe();
     }
-
-
 }

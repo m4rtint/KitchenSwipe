@@ -7,6 +7,7 @@ public class GameEngineTutorial : GameEngine
     enum TUTORIALSTEP {
         SWIPELEFT,
         SWIPERIGHT,
+        PRESSTRASH,
         SWIPEUNTILCORRECT,
         TUTORIALCOMPLETE
     }
@@ -18,6 +19,12 @@ public class GameEngineTutorial : GameEngine
 
     [SerializeField]
     SwipeAnimation swipeAnimation;
+
+    [Header("TUTORIAL")]
+    [SerializeField]
+    Ingredient wrongIngredient;
+    [SerializeField]
+    GameObject screenBlock;
 
     #region mono
     protected override void Awake()
@@ -34,25 +41,39 @@ public class GameEngineTutorial : GameEngine
         //Setup stack of food
         foodGenerator.fillFoodForTutorial();
 
-        //Place ingredients onto the sides
-        base.setupIngredients();
-
-        //Choose the ingredient in the middle
-        currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Left);
-        currentIngredient.pulsingAnimation();
+        setGameSpaceIngredients();
 
         //Swipe animation
         swipeAnimation.swipe(true);
 
         //Set center
         setCenterIngredientView();
+
+        screenBlocking(false);
     }
+
+    void setGameSpaceIngredients()
+    {
+        //Place ingredients onto the sides
+        base.setupIngredients();
+
+        //Choose the up next 
+        base.setNextIngredient(ingredientsGenerator.chooseIngredientFrom(Direction.Left));
+        //Set center
+        base.setNextIngredientAsCenter();
+        //Choose 2nd up next
+        base.setNextIngredient(ingredientsGenerator.chooseIngredientFrom(Direction.Right));
+        //Left ingredient is pulsing
+        currentIngredient.pulsingAnimation();
+    }
+
 
     protected override void Update() { }
 
     protected override void setupDelegates()
     {
         TransitionManager.instance.completedTransition += onCompleteTransition;
+        Trash().GetComponent<TrashInput>().doubleTapDelegate += onPressTrash;
     }
     #endregion
 
@@ -66,7 +87,6 @@ public class GameEngineTutorial : GameEngine
     #region Actions
     protected override void playerSwiped(Direction dir)
     {
-        Ingredient randomGeneratedIngredient = null;
         if (currentTutorialStep == 0) {
             ingredientsGenerator.userSwiped(currentIngredient, dir);
             if (dir == Direction.Left) {
@@ -76,17 +96,21 @@ public class GameEngineTutorial : GameEngine
                 tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_ONE_WRONG_SWIPE);
             }
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPERIGHT) {
-            randomGeneratedIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
+            ingredientsGenerator.userSwiped(currentIngredient, dir);
             if (dir == Direction.Right) {
                 resetCurrentIngredientScale(dir);
-                onStepTwoCorrect(randomGeneratedIngredient);
+                onStepTwoCorrect();
             } else {
                 tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO_WRONG_SWIPE);
             }
+        } else if(currentTutorialStep == TUTORIALSTEP.PRESSTRASH) {
+            return;
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPEUNTILCORRECT) {
-            currentIngredient = ingredientsGenerator.userSwiped(currentIngredient, dir);
+            ingredientsGenerator.userSwiped(currentIngredient, dir);
+            base.setNextIngredientAsCenter();
+            
             if (checkStepThreeCorrect()){
-                stepThreeCorrect();
+                stepFourCorrect();
             }
         }
 
@@ -96,27 +120,76 @@ public class GameEngineTutorial : GameEngine
 
     //Step 1
     void onStepOneCorrect() {
-        currentIngredient = ingredientsGenerator.chooseIngredientFrom(Direction.Right);
-        currentIngredient.pulsingAnimation();
+        //Ingredients setting
+        base.setNextIngredientAsCenter();
+        base.setNextIngredient(wrongIngredient);
+
+        //Set tutorial message
         tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_TWO);
+
+        //Pulsing
+        currentIngredient.pulsingAnimation();
+
+        //Tutorial Animation
         swipeAnimation.swipe(false);
+
         currentTutorialStep++;
     }
 
     //Step 2
-    void onStepTwoCorrect(Ingredient ingred) {
-        currentIngredient = ingred;
+    void onStepTwoCorrect() {
+        //Ingredients setting
+        base.setNextIngredientAsCenter();
+
+        //Set tutorial message
         tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_THREE);
+
+        //Pulsing
+        trashAppears();
+        //Screen block
+        screenBlocking(true);
+
+        //Tutorial Animation
         Destroy(swipeAnimation.gameObject);
+
         currentTutorialStep++;
+    }
+
+    void screenBlocking(bool on)
+    {
+        if (on)
+        {
+            screenBlock.transform.localScale = Vector3.one;
+        } else
+        {
+            screenBlock.transform.localScale = Vector3.zero;
+        }
     }
 
     void resetCurrentIngredientScale(Direction dir){
         currentIngredient.resetScale();
     }
 
+    void trashAppears()
+    {
+        base.Trash().transform.localScale = Vector3.one;
+        base.Trash().GetComponent<PulsingEffects>().pulsingAnimation();
+    }
+
     //Step 3
-    void stepThreeCorrect() {
+    void onPressTrash()
+    {
+        if(currentTutorialStep == TUTORIALSTEP.PRESSTRASH)
+        {
+            base.Trash().GetComponent<PulsingEffects>().resetScale();
+            tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_FOUR);
+            screenBlocking(false);
+            currentTutorialStep++;
+        }
+    }
+
+    //Step 4
+    void stepFourCorrect() {
         setInstructionPanel();
         setStateManager();
         currentTutorialStep++;

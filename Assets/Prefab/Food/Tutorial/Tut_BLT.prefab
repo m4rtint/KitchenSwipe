@@ -213,7 +213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Tomato
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: d3897392378dbac47937de056fba8005, type: 3}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114289582024869354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bacon
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 7574973be6a041040b02e60377fde666, type: 3}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114342616310423830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,7 +272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bottom Baguette
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: e35613b5165a38146890220a0c093c21, type: 3}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114457974218344608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -348,7 +354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Top baguette
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 523c0c55c6ddbf24483c3fa7ca3e030e, type: 3}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114999133814798056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,7 +370,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Lettuce
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: f8a40232e4553ed40a41f158ab8f4432, type: 3}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!222 &222159014973181534
 CanvasRenderer:
   m_ObjectHideFlags: 1

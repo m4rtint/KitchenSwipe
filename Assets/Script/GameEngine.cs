@@ -39,6 +39,11 @@ public class GameEngine : MonoBehaviour {
     protected void NumberOfFood(int size){
         numberOfFood = size;
     }
+
+    protected GameObject Trash()
+    {
+        return trashInput.gameObject;
+    }
     #endregion
 
     #region Mono
@@ -47,7 +52,7 @@ public class GameEngine : MonoBehaviour {
 		foodGenerator = GetComponent<FoodGenerator>();
 
         setupHolders();
-        setupUserInput();
+        setupUserInputDelegates();
     }
 
 	protected virtual void Start()
@@ -61,21 +66,25 @@ public class GameEngine : MonoBehaviour {
         setupIngredients();
 
         //Choose a random current ingredient
-        setNextIngredientAsRandom();
+        setNextIngredient();
         
         setNextIngredientAsCenter();
 	}
     
-    void setNextIngredientAsCenter()
+    protected void setNextIngredientAsCenter()
     {
         currentIngredient = nextIngredient.Ingredient();
-        setNextIngredientAsRandom();
+        setNextIngredient();
         setCenterIngredientView();
     }
 
-    void setNextIngredientAsRandom()
+    protected void setNextIngredient(Ingredient ingredient = null)
     {
-        nextIngredient.Ingredient(ingredientsGenerator.randomlyChooseIngredient());
+        if (ingredient == null) {
+            nextIngredient.Ingredient(ingredientsGenerator.randomlyChooseIngredient());
+        } else {
+            nextIngredient.Ingredient(ingredient);
+        }
     }
 
     protected void setupIngredients() {
@@ -90,7 +99,7 @@ public class GameEngine : MonoBehaviour {
         TimeManager.instance.isGameOverDelegate += onGameOver;
     }
 
-    void setupUserInput()
+    void setupUserInputDelegates()
     {
         userInput.swipeDelegate += playerSwiped;
         trashInput.doubleTapDelegate += setNextIngredientAsCenter;
@@ -103,11 +112,18 @@ public class GameEngine : MonoBehaviour {
             holders[i].Direction(i);
             holders[i].orderDelegate += CompleteOrder;
             holders[i].orderTimerDelegate += incorrectlySwipeIngredient;
-            holders[i].FoodTimer().foodTimerRanOutDelegate += gameTimer.shakeRedText;
+            setupGameTimerDelegateIfNeeded(holders[i]);
         }
 	}
+    
+    void setupGameTimerDelegateIfNeeded(FoodHolder holder)
+    {
+        if (gameTimer != null) { 
+            holder.FoodTimer().foodTimerRanOutDelegate += gameTimer.shakeRedText;
+        }
+    }
 
-	protected virtual void Update() {
+    protected virtual void Update() {
 		if (StateManager.instance.isInGame ()) {
 			RunDownOrderTimer (Time.deltaTime * TimeManager.instance.orderTimeVaryingSpeed);
 		}

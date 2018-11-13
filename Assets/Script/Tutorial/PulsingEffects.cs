@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngredientEffects : MonoBehaviour {
+public class PulsingEffects : MonoBehaviour {
 
-    readonly float pulsingScale = 1.5f;
+    readonly float pulsingScale = 1.2f;
     readonly string pulseName = "pulseAnimation";
 
     public void pulsingAnimation() {
         Hashtable ht = new Hashtable();
         ht.Add("name", pulseName);
         ht.Add("scale", Vector3.one * pulsingScale);
-        ht.Add("time", 1f);
+        ht.Add("time", 0.7f);
         ht.Add("easetype", "linear");
         ht.Add("looptype", "pingPong");
         iTween.ScaleTo(gameObject, ht);

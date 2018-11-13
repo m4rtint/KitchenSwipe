@@ -91,14 +91,14 @@ public class Ingredient:MonoBehaviour {
     }
 
     public void pulsingAnimation() {
-        IngredientEffects effects = GetComponent<IngredientEffects>();
+        PulsingEffects effects = GetComponent<PulsingEffects>();
         if (effects != null) {
             effects.pulsingAnimation();
         }
     }
 
     public void resetScale() {
-        IngredientEffects effects = GetComponent<IngredientEffects>();
+        PulsingEffects effects = GetComponent<PulsingEffects>();
         if (effects != null) {
             effects.resetScale();
         }
