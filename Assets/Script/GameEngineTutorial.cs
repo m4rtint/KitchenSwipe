@@ -106,10 +106,13 @@ public class GameEngineTutorial : GameEngine
         } else if(currentTutorialStep == TUTORIALSTEP.PRESSTRASH) {
             return;
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPEUNTILCORRECT) {
-            ingredientsGenerator.userSwiped(currentIngredient, dir);
-            base.setNextIngredientAsCenter();
-            
-            if (checkStepThreeCorrect()){
+            Ingredient next = ingredientsGenerator.userSwiped(currentIngredient, dir);
+
+            currentIngredient = nextIngredient.Ingredient();
+            nextIngredient.Ingredient(next);
+            setCenterIngredientView();
+
+            if (checkStepFourCorrect()){
                 stepFourCorrect();
             }
         }
@@ -204,7 +207,7 @@ public class GameEngineTutorial : GameEngine
         StateManager.instance.pauseGame();
     }
 
-    bool checkStepThreeCorrect() {
+    bool checkStepFourCorrect() {
         return ingredientsGenerator.isHoldersEmpty();
     }
     #endregion

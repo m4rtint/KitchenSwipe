@@ -19,7 +19,7 @@ public class GameEngine : MonoBehaviour {
     [SerializeField]
 	protected IngredientGenerator ingredientsGenerator;
     [SerializeField]
-    NextIngredient nextIngredient;
+    protected NextIngredient nextIngredient;
     [SerializeField]
     CenterIngredient center;
     [SerializeField]

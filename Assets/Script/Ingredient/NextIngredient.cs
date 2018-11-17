@@ -20,7 +20,7 @@ public class NextIngredient : MonoBehaviour {
             setSizeIfNeeded();
         } else
         {
-            GetComponent<Image>().sprite = null;
+            GetComponent<Image>().color = Color.clear;
         }
     }
 
