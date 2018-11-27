@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreObject: {fileID: 1938603691}
-  penaltyObject: {fileID: 0}
+  penaltyObject: {fileID: 556624841}
 --- !u!114 &263223207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4548,7 +4548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreObject: {fileID: 187958412}
-  penaltyObject: {fileID: 0}
+  penaltyObject: {fileID: 108321559}
 --- !u!114 &896488658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5162,7 +5162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreObject: {fileID: 398133899}
-  penaltyObject: {fileID: 0}
+  penaltyObject: {fileID: 429325957}
 --- !u!114 &1078714168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7550,7 +7550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreObject: {fileID: 1998198104}
-  penaltyObject: {fileID: 0}
+  penaltyObject: {fileID: 1037412143}
 --- !u!114 &1714888843
 MonoBehaviour:
   m_ObjectHideFlags: 0
