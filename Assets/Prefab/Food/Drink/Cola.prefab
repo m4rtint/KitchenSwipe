@@ -70,7 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cola
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 50
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114607396823454440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Ingredients:
   - {fileID: 114545190068971756}
+  name: 6
 --- !u!114 &114819256169489306
 MonoBehaviour:
   m_ObjectHideFlags: 1

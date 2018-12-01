@@ -59,6 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Ingredients:
   - {fileID: 114216683152108802}
+  name: 7
 --- !u!114 &114216683152108802
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -185,7 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114060253499716382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,6 +300,7 @@ MonoBehaviour:
   - {fileID: 114790109387867206}
   - {fileID: 114771473749588698}
   - {fileID: 114407712194142492}
+  name: 3
 --- !u!114 &114407712194142492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,7 +314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Top Bun
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114412670768314854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +330,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bacon
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114494205079149264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Banana Peppers
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114561392172508208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,7 +362,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114707160919881508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,7 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Pickles
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114790109387867206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -462,7 +475,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Onion
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114791649500801804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -530,7 +545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!222 &222027011066727420
 CanvasRenderer:
   m_ObjectHideFlags: 1

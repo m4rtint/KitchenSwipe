@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Ingredients:
   - {fileID: 114337177681490908}
   - {fileID: 114795602396245178}
+  name: 5
 --- !u!114 &114337177681490908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,7 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Short Cone
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!114 &114374631130128980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,7 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Vanilla
   m_CenterImage: {fileID: 0}
+  outlineSprite: {fileID: 0}
   customPlaceDownDistance: 0
+  isUpNextSizeChangeNeeded: 0
 --- !u!222 &222466814133919628
 CanvasRenderer:
   m_ObjectHideFlags: 1

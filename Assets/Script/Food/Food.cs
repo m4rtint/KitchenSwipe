@@ -7,7 +7,9 @@ public class Food : MonoBehaviour {
 
 	[SerializeField]
 	Ingredient[] m_Ingredients;
-	float secondsToComplete;
+    [SerializeField]
+    FoodName name;
+    float secondsToComplete;
 
 	int level;
     FoodAnimation animation;
@@ -41,6 +43,11 @@ public class Food : MonoBehaviour {
     public int maxIngredientLevel()
     {
         return Ingredients().Length - 1;
+    }
+
+    public FoodName getName()
+    {
+        return name;
     }
 
     public Ingredient[] Ingredients() {
