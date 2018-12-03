@@ -8,7 +8,9 @@ public class Food : MonoBehaviour {
 	[SerializeField]
 	Ingredient[] m_Ingredients;
     [SerializeField]
-    FoodName name;
+    FoodName enumName;
+    [SerializeField]
+    string foodName;
     float secondsToComplete;
 
 	int level;
@@ -47,7 +49,7 @@ public class Food : MonoBehaviour {
 
     public FoodName getName()
     {
-        return name;
+        return enumName;
     }
 
     public Ingredient[] Ingredients() {

@@ -86,7 +86,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Ingredients:
   - {fileID: 114545190068971756}
-  name: 6
+  enumName: 6
+  foodName: Cola Soda
 --- !u!114 &114819256169489306
 MonoBehaviour:
   m_ObjectHideFlags: 1

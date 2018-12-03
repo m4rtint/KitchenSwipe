@@ -282,7 +282,8 @@ MonoBehaviour:
   - {fileID: 114063441671626170}
   - {fileID: 114764485884926790}
   - {fileID: 114038689069870524}
-  name: 11
+  enumName: 11
+  foodName: Hot Dog
 --- !u!222 &222108800307832966
 CanvasRenderer:
   m_ObjectHideFlags: 1

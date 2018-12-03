@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Ingredients:
   - {fileID: 114337177681490908}
   - {fileID: 114795602396245178}
-  name: 5
+  enumName: 5
+  foodName: Chocolate Soft Serve
 --- !u!114 &114337177681490908
 MonoBehaviour:
   m_ObjectHideFlags: 1

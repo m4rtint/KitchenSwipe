@@ -129,7 +129,8 @@ MonoBehaviour:
   - {fileID: 114137183105784078}
   - {fileID: 114835208293599124}
   - {fileID: 114146920392352320}
-  name: 4
+  enumName: 4
+  foodName: Chocolate Green Tea Icecream
 --- !u!114 &114475486089279672
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -418,7 +418,8 @@ MonoBehaviour:
   - {fileID: 114820778422373810}
   - {fileID: 114126449598230662}
   - {fileID: 114204075620498820}
-  name: 1
+  enumName: 1
+  foodName: Mushroom Burger
 --- !u!114 &114544279887424186
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -300,7 +300,8 @@ MonoBehaviour:
   - {fileID: 114790109387867206}
   - {fileID: 114771473749588698}
   - {fileID: 114407712194142492}
-  name: 3
+  enumName: 3
+  foodName: Spicy Meat Burger
 --- !u!114 &114407712194142492
 MonoBehaviour:
   m_ObjectHideFlags: 1

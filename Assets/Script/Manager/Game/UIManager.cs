@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region DelegateMethods
-    void updateScore(){
+    void updateScore() {
         if (scoreText != null)
         {
             scoreText.text = scoreManager.Score().ToString();
@@ -70,14 +70,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void updateCombo(){
-        if (scoreManager.Combo() == 0) {
-            comboTextObject.SetActive(false);
-            return;
+    void updateCombo() {
+        bool isComboShown = scoreManager.Combo() > 0;
+        comboTextObject.SetActive(isComboShown);
+        if (isComboShown) {
+            comboTextObject.GetComponent<ComboManager>().animateCombo(scoreManager.Combo());
         }
-
-        comboTextObject.SetActive(true);
-        comboTextObject.GetComponent<ComboManager>().animateCombo(scoreManager.Combo());
     }
     #endregion
 

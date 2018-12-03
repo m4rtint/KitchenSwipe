@@ -361,7 +361,8 @@ MonoBehaviour:
   - {fileID: 114720877952250354}
   - {fileID: 114521086502804988}
   - {fileID: 114571353104710688}
-  name: 10
+  enumName: 10
+  foodName: Meat Lover Sandwhich
 --- !u!222 &222132648860276156
 CanvasRenderer:
   m_ObjectHideFlags: 1

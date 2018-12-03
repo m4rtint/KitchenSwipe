@@ -74,6 +74,7 @@ public class ScoreManager : MonoBehaviour {
         {
             this.comboDelegate();
         }
+        QuestManager.instance.checkCombo(combo);
     }
     #endregion
 
@@ -128,9 +129,14 @@ public class ScoreManager : MonoBehaviour {
     {
         dishes++;
         incrementCombo();
-        int incrementingScore = (int)(baseScore * scoreMultiplier);        
-        finalScore += incrementingScore;
+        int incrementingScore = (int)(baseScore * scoreMultiplier);
+        incrementFinalScore(incrementingScore);
         return incrementingScore;
+    }
+
+    public void incrementFinalScore(int score)
+    {
+        finalScore += score;
     }
 
     public void decrementScore()

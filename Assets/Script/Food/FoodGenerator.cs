@@ -24,6 +24,11 @@ public class FoodGenerator : MonoBehaviour
         return ChosenFoodStack().Peek();
     }
 
+    public Food[] Foods()
+    {
+        return m_Foods;
+    }
+
 
     #region Generation
     public void fillStackWithRandomFood(int num)

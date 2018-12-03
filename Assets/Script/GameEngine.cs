@@ -24,6 +24,8 @@ public class GameEngine : MonoBehaviour {
     CenterIngredient center;
     [SerializeField]
     GameTimer gameTimer;
+    //Quest Generator
+    protected QuestManager questManager;
 
     [Header("Input")]
     [SerializeField]
@@ -50,6 +52,7 @@ public class GameEngine : MonoBehaviour {
     // Use this for initialization
     protected virtual void Awake () {
 		foodGenerator = GetComponent<FoodGenerator>();
+        questManager = GetComponent<QuestManager>();
 
         setupHolders();
         setupUserInputDelegates();

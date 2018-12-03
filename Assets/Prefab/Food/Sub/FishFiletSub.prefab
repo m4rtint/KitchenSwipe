@@ -334,7 +334,8 @@ MonoBehaviour:
   - {fileID: 114631865859800910}
   - {fileID: 114017673414414936}
   - {fileID: 114515241827702512}
-  name: 9
+  enumName: 9
+  foodName: Fish Filet Sandwhich
 --- !u!114 &114913309498832658
 MonoBehaviour:
   m_ObjectHideFlags: 1

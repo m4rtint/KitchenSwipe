@@ -30,6 +30,7 @@ public class GameEngineInfinite : GameEngine
             base.NumberOfFood(waveSize);
         }
         base.Start();
+        questManager.setupQuestManager(foodGenerator.Foods());
     }
 
     protected override void setupDelegates()

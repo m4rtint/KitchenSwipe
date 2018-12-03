@@ -329,7 +329,8 @@ MonoBehaviour:
   - {fileID: 114275608712318062}
   - {fileID: 114289582024869354}
   - {fileID: 114929181491369184}
-  name: 8
+  enumName: 8
+  foodName: Bacon Lettuce Tomato Sandwhich
 --- !u!114 &114929181491369184
 MonoBehaviour:
   m_ObjectHideFlags: 1

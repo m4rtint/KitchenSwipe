@@ -135,7 +135,8 @@ MonoBehaviour:
   - {fileID: 114541900246709210}
   - {fileID: 114770697852182418}
   - {fileID: 114959541484375700}
-  name: 2
+  enumName: 2
+  foodName: Fried Chicken Burger
 --- !u!114 &114042005468596020
 MonoBehaviour:
   m_ObjectHideFlags: 1
