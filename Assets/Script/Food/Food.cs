@@ -47,9 +47,14 @@ public class Food : MonoBehaviour {
         return Ingredients().Length - 1;
     }
 
-    public FoodName getName()
+    public FoodName getEnumName()
     {
         return enumName;
+    }
+
+    public string getFoodName()
+    {
+        return foodName;
     }
 
     public Ingredient[] Ingredients() {

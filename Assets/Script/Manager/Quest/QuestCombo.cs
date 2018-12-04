@@ -39,6 +39,11 @@ public class QuestCombo : Quest
             new Missions(30, 6400)
         };
     }
+
+    public override string getQuestText()
+    {
+        return string.Format(this.questText, missions[missionsPosition].quest);
+    }
     #endregion
 
     #region helper

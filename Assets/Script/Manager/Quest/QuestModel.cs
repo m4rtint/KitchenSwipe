@@ -11,10 +11,10 @@ public enum QuestType
 }
 
 public class QuestModel {
-    public static string COMBO_QUEST = "Obtain a combo of %d";
-    public static string POINT_QUEST = "Obtain a totall amount of %d points";
-    public static string DISH_QUEST = "Finish %d amount of dishes";
-    public static string FOOD_QUEST = "Complete %d %ss";
+    public static string COMBO_QUEST = "Obtain a combo of {0}";
+    public static string POINT_QUEST = "Obtain a total amount of {0} points";
+    public static string DISH_QUEST = "Finish {0} amount of dishes";
+    public static string FOOD_QUEST = "Complete {0} {1}s";
 }
 
 

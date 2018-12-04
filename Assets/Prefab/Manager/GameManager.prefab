@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refreshQuests: 1
+  activeAmountOfQuests: 3
+  mainGameQuestText: {fileID: 0}
+  endGoalPanel: {fileID: 0}
 --- !u!114 &114069557465405260
 MonoBehaviour:
   m_ObjectHideFlags: 1

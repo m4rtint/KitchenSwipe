@@ -1,37 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour {
 
+    [Header("Settings")]
     [SerializeField]
     bool refreshQuests;
+    [SerializeField]
+    int activeAmountOfQuests = 3;
 
-    FoodName[] listOfFood = null;
+    [Header("Dependencies")]
+    [SerializeField]
+    Text mainGameQuestText;
+
+    string mainQuests;
+    Food[] listOfFood = null;
 
     Quest[] quests = new Quest[3];
-    readonly int differentQuests = 3;
+    readonly int differentTypesOfQuests = 3;
 
     public static QuestManager instance = null;
 
     private void Awake()
     {
         instance = this;
+        setInGameQuestText();
+    }
+
+    void setInGameQuestText(string text = "")
+    {
+        if (mainGameQuestText != null)
+        {
+            mainGameQuestText.text = text;
+        }
     }
 
     public void setupQuestManager(Food[] foods)
     {
-        listOfFood = new FoodName[foods.Length];
-        for(int i = 0; i < foods.Length; i++)
-        {
-            listOfFood[i] = foods[i].getName();
-        }
+        this.listOfFood = foods;
 
-        for (int i = 0; i < listOfFood.Length-1; i++)
+        for (int i = 0; i < activeAmountOfQuests; i++)
         {
             generateNewQuest(i);
         }
     }
+    #region Helper
+    public string getListOfQuestText()
+    {
+        string listOfQuests = "";
+        for(int i = 0; i < quests.Length; i++)
+        {
+            listOfQuests += string.Format("- {0}\n", quests[i].getQuestText());
+        }
+        return listOfQuests;
+    }
+    #endregion
 
     #region QuestGeneration
     public void generateNewQuest(int index)
@@ -41,7 +66,8 @@ public class QuestManager : MonoBehaviour {
             Debug.LogWarning("MUST PASS IN LIST OF FOOD BEFORE GENERATING ANYTHING");
         }
 
-        QuestType type = (QuestType) Random.Range(0, differentQuests - 1);
+        QuestType type = (QuestType) Random.Range(0, differentTypesOfQuests);
+        Debug.Log(type);
         generateQuest(index, type);
     } 
 

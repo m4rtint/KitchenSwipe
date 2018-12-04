@@ -8,7 +8,7 @@ public abstract class Quest {
 
     protected int missionsPosition;
     QuestType type;
-    string questText;
+    protected string questText;
 
     protected Quest(QuestType type, string questString)
     {
@@ -57,5 +57,6 @@ public abstract class Quest {
     }
 
     public abstract bool isQuestComplete(object p);
+    public abstract string getQuestText();
 
 }

@@ -11,16 +11,16 @@ public class GameEngineInfinite : GameEngine
     [Header("Infinite Local")]
     [SerializeField]
     int waveSize;
-
     int numberOfCompletedOrder;
 
     //Announcement Manager
     [Header("Infinite Dependencies")]
     [SerializeField]
     AnnouncementManager announcementManager;
-
     [SerializeField]
     GoalPanel goalManager;
+
+    readonly string startingGoal = "GET THE HIGHEST SCORE POSSIBLE\n\nCOMPLETE QUESTS FOR EXTRA POINTS\n\n";
 
     #region Mono
     protected override void Start()
@@ -31,6 +31,7 @@ public class GameEngineInfinite : GameEngine
         }
         base.Start();
         questManager.setupQuestManager(foodGenerator.Foods());
+        goalManager.setInstructions(startingGoal+questManager.getListOfQuestText());
     }
 
     protected override void setupDelegates()
