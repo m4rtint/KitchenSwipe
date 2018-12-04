@@ -120,6 +120,12 @@ public class FoodHolder : MonoBehaviour
     {
         if (!isStoredFoodNull() && !storedFood.isFoodInPlay())
         {
+            //Quest
+            if (QuestManager.instance != null)
+            {
+                QuestManager.instance.checkFoodCompleted(StoredFood().getEnumName());
+            }
+
             storedFood.Animation().StartFinishFoodAnimation();
             OverlayParticles.ShowParticles(7, storedFood.transform.position);
             removeStoredFood();

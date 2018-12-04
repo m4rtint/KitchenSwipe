@@ -132,7 +132,7 @@ public class QuestManager : MonoBehaviour {
                 {
                     if (quests[i].isQuestComplete(obj))
                     {
-                        generateNewQuest(i);
+                        onCompleteQuest(i);
                     }
                 }
             }

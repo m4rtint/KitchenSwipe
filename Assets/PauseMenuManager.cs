@@ -14,7 +14,10 @@ public class PauseMenuManager : MonoBehaviour {
     private void Awake()
     {
         menuButton.onClick.AddListener(() => TransitionManager.instance.startMainMenuScene());
-        questsText.text = QuestManager.instance.getListOfQuestText();
     }
 
+    private void OnEnable()
+    {
+        questsText.text = QuestManager.instance.getListOfQuestText();
+    }
 }

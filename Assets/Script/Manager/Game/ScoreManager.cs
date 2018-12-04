@@ -127,11 +127,20 @@ public class ScoreManager : MonoBehaviour {
     #region Score
     public int incrementScore()
     {
-        dishes++;
+        onFinishDish();
         incrementCombo();
         int incrementingScore = (int)(baseScore * scoreMultiplier);
         incrementFinalScore(incrementingScore);
         return incrementingScore;
+    }
+
+    void onFinishDish()
+    {
+        dishes++;
+        if (QuestManager.instance != null)
+        {
+            QuestManager.instance.checkDishes(dishes);
+        }
     }
 
     public void incrementFinalScore(int score)
