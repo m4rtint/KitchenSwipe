@@ -17,12 +17,12 @@ public class QuestDishes : Quest {
     {
         missions = new Missions[]
         {
-            new Missions(10, 500),
-            new Missions(20, 1500),
-            new Missions(30, 2500),
-            new Missions(40, 3500),
-            new Missions(50, 4500),
-            new Missions(60, 5500),
+            new Missions(1, 500),
+            new Missions(6, 1500),
+            new Missions(10, 2500),
+            new Missions(12, 3500),
+            new Missions(15, 4500),
+            new Missions(20, 5500),
         };
     }
 

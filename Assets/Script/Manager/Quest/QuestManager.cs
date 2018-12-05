@@ -13,7 +13,7 @@ public class QuestManager : MonoBehaviour {
 
     [Header("Dependencies")]
     [SerializeField]
-    Text mainGameQuestText;
+    QuestTextAnimation mainGameQuestText;
 
     string mainQuests;
     Food[] listOfFood = null;
@@ -33,7 +33,7 @@ public class QuestManager : MonoBehaviour {
     {
         if (mainGameQuestText != null)
         {
-            mainGameQuestText.text = text;
+            mainGameQuestText.setQuestText(text);
         }
     }
 
@@ -67,7 +67,6 @@ public class QuestManager : MonoBehaviour {
         }
 
         QuestType type = (QuestType) Random.Range(0, differentTypesOfQuests);
-        Debug.Log(type);
         generateQuest(index, type);
     } 
 
@@ -92,6 +91,9 @@ public class QuestManager : MonoBehaviour {
                     break;
             }
         }
+
+        //Animation
+        mainGameQuestText.onStateChange(quests[index]);
     }
     #endregion
 
@@ -141,6 +143,8 @@ public class QuestManager : MonoBehaviour {
 
     void onCompleteQuest(int index)
     {
+        //Animation
+        mainGameQuestText.onStateChange(quests[index]);
         if (refreshQuests) { 
             generateNewQuest(index);
         }

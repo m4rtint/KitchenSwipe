@@ -8,6 +8,7 @@ public abstract class Quest {
 
     protected int missionsPosition;
     QuestType type;
+    QuestState state = QuestState.NEW;
     protected string questText;
 
     protected Quest(QuestType type, string questString)
@@ -21,6 +22,11 @@ public abstract class Quest {
     public QuestType Type()
     {
         return type;
+    }
+
+    public QuestState State()
+    {
+        return state;
     }
 
     protected virtual void setMissions()
@@ -51,6 +57,7 @@ public abstract class Quest {
         bool isComplete = points == missions[missionsPosition].quest;
         if (isComplete)
         {
+            this.state = QuestState.COMPLETE;
             onQuestComplete();
         }
         return isComplete;

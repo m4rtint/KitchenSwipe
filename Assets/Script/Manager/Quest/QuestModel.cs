@@ -10,6 +10,13 @@ public enum QuestType
     POINTS,
 }
 
+public enum QuestState
+{
+    COMPLETE,
+    NEW,
+    FAILED
+}
+
 public class QuestModel {
     public static string COMBO_QUEST = "Obtain a combo of {0}";
     public static string POINT_QUEST = "Obtain a total amount of {0} points";

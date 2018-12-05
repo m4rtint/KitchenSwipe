@@ -31,12 +31,12 @@ public class QuestCombo : Quest
     protected override void setMissions()
     {
         base.missions = new Missions[] {
-            new Missions(5, 200),
-            new Missions(10, 400),
-            new Missions(15, 800),
-            new Missions(20, 1600),
-            new Missions(25, 3200),
-            new Missions(30, 6400)
+            new Missions(1, 200),
+            new Missions(8, 400),
+            new Missions(11, 800),
+            new Missions(13, 1600),
+            new Missions(15, 3200),
+            new Missions(20, 6400)
         };
     }
 
