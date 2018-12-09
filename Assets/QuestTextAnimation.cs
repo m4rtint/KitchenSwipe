@@ -78,7 +78,7 @@ public class QuestTextAnimation : MonoBehaviour {
     {
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 0);
-        ht.Add("time", 0.5f);
+        ht.Add("time", 2f);
         ht.Add("oncomplete", "completedAnimation");
         iTween.FadeTo(gameObject, ht);
     }

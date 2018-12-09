@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: GreenTea
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: e5dae8d1dfc240a4c9bdd79b569b7197, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 47d55b0b862ab4ce3b85d2810d8f7097, type: 3}
   customPlaceDownDistance: 50
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114990919938819682
