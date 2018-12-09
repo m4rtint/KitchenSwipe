@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Ham
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 4ca323a4b58013043aa1f393de7f06e4, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114122133417980652
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Avacado
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: f2c6129be1b5ed4449c71b6a2d34b00f, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114549392218841458
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Baguette
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 72a7958b907890642bf427892ac38d19, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114571353104710688
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: T. Baguette
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 4c5ea7ec2a815ff4da083fdac72d0e1b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114597829257158948
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bacon
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 09336ba9c5fa5d643b3076b170f2893a, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114919761922864740

@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Tomato
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: d3897392378dbac47937de056fba8005, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 9229f7f2b1736df45b24b826c0d5349b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114289582024869354
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bacon
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: 7574973be6a041040b02e60377fde666, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 09336ba9c5fa5d643b3076b170f2893a, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114342616310423830
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bottom Baguette
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: e35613b5165a38146890220a0c093c21, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 72a7958b907890642bf427892ac38d19, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114457974218344608
@@ -330,6 +330,8 @@ MonoBehaviour:
   - {fileID: 114275608712318062}
   - {fileID: 114289582024869354}
   - {fileID: 114929181491369184}
+  enumName: 0
+  foodName: 
 --- !u!114 &114694876291045798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Top baguette
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: 523c0c55c6ddbf24483c3fa7ca3e030e, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 4c5ea7ec2a815ff4da083fdac72d0e1b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114999133814798056
@@ -370,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Lettuce
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: f8a40232e4553ed40a41f158ab8f4432, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 5456e7b8574ec5745b0776359f1d42f3, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!222 &222159014973181534

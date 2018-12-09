@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cone
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: 62bbb9d3eb1d9ec43879b493483d476c, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 7aa29e002fae1b745a4de1a29e3bd28f, type: 3}
   customPlaceDownDistance: 50
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114146920392352320
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Chocolate
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: 641f30402f251ee41aff2a65776c56c1, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 23ac4b7b558a4f14ba37f13531e93778, type: 3}
   customPlaceDownDistance: 50
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114355782380500388

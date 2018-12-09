@@ -30,6 +30,7 @@ public class Ingredient:MonoBehaviour {
     private void Awake()
     {
         animation = AnimationManager.instance;
+        if (outlineSprite == null) { Debug.LogWarning(gameObject.name + " is missing an outlineSprite"); }
         setupPosition();
     }
 

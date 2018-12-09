@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: cfae43600070d5946bd91502f75d2a2e, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 5ba616b0d9a1cc148825861ae586887b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114297933326874160
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Tomato
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: d3897392378dbac47937de056fba8005, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 9229f7f2b1736df45b24b826c0d5349b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114499683967880162
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: f6122676f2994a049b000f97db0b2e46, type: 3}
+  outlineSprite: {fileID: 21300000, guid: dac835744ecbe5045a8d0c1076f3dfbe, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114707135943579238
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: 63a80b84ab9b3c94db24418ccae937df, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 234225ec50edcbf4a98e790b8cd79122, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114788017987324834
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: T. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 21300000, guid: fe29ae278258d5149b0389f64da44c68, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 55560619a9318c34f8b6d3d8d2b9c4aa, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114880172311959184

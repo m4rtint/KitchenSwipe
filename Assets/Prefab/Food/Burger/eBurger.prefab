@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Onion
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 0acef10029d16f9489969cb0a8a96301, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114171895022709114
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: T. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 55560619a9318c34f8b6d3d8d2b9c4aa, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114274604953666610
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 234225ec50edcbf4a98e790b8cd79122, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114321614466397814
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: dac835744ecbe5045a8d0c1076f3dfbe, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114402414590034492
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Lettuce
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 5456e7b8574ec5745b0776359f1d42f3, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114505655146013258
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Mushroom
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 47a84c86dcc98224595d67bcc14f5b44, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114619514504932388
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: PortoMushroom
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 30e53de15970f0a478021bad446c0bbb, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114840057834262206
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 5ba616b0d9a1cc148825861ae586887b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114899228378002032

@@ -20,7 +20,7 @@ public class QuestTextAnimation : MonoBehaviour {
     #region public
     public void setQuestText(string text)
     {
-        questText.text = text;
+        GetComponent<Text>().text = text;
     }
 
     public void onStateChange(Quest q)

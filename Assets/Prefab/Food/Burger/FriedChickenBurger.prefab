@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Lettuce
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 5456e7b8574ec5745b0776359f1d42f3, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114279689567610750
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: dac835744ecbe5045a8d0c1076f3dfbe, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114541900246709210
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Fried Chicken
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 297c1be9e951b1d4692e5d60dafaad9d, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114558601030298522
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Onion Rings
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 9c5fc98cb8bbcc941be6b4ab9c5e2d79, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114800196396244418
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: T. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 55560619a9318c34f8b6d3d8d2b9c4aa, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114961916224168478

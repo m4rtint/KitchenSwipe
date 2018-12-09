@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Mustard
   m_CenterImage: {fileID: 21300000, guid: d863eb5090eda2b40a5e4a2d2f4b3e81, type: 3}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: b734a5b735e79554aa873186126b77d9, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114063441671626170
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Hotdog Bun
   m_CenterImage: {fileID: 21300000, guid: 5cf70e46af2539942ad8a98c4ac49fd4, type: 3}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: c8efff2d13186f648bd0e9aad05a0d77, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
   m_BackBun: {fileID: 1879535859867538}
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Sausage
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 50c52c7198979054c80bdd147a5bff97, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114995058337330914

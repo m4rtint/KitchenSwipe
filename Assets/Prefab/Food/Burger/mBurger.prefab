@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Cheese
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 5ba616b0d9a1cc148825861ae586887b, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114060253499716382
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Top Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 55560619a9318c34f8b6d3d8d2b9c4aa, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114412670768314854
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Bacon
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 09336ba9c5fa5d643b3076b170f2893a, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114494205079149264
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Banana Peppers
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 0d60ee07584a01149badadb314671e18, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114561392172508208
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: B. Bun
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: dac835744ecbe5045a8d0c1076f3dfbe, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114707160919881508
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Pickles
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 12475e9254534e344bda5f82458a0444, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114790109387867206
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Onion
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 0acef10029d16f9489969cb0a8a96301, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114791649500801804
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 234225ec50edcbf4a98e790b8cd79122, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!222 &222027011066727420

@@ -42,7 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IngredientName: Banana Peppers
   m_CenterImage: {fileID: 0}
-  outlineSprite: {fileID: 0}
+  outlineSprite: {fileID: 21300000, guid: 0d60ee07584a01149badadb314671e18, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
 --- !u!114 &114641913847935790

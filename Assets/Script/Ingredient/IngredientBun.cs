@@ -13,7 +13,7 @@ public class IngredientBun : Ingredient {
 
     private void OnEnable()
     {
-        m_BackBun.SetActive(true);
+        m_BackBun.SetActive(false);
     }
 
     protected override void setupPosition()
@@ -30,6 +30,7 @@ public class IngredientBun : Ingredient {
 
     public override void startAnimation()
     {
+        m_BackBun.SetActive(true);
         Hashtable ht = new Hashtable();
         ht.Add("y", -base.placeDownDistance);
         ht.Add("easeType", "easeInOutExpo");

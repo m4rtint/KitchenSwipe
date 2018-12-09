@@ -1741,6 +1741,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 942.55035
@@ -1848,6 +1853,12 @@ Prefab:
       propertyPath: dishesText
       value: 
       objectReference: {fileID: 107203968}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[3]
+      value: 
+      objectReference: {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0
