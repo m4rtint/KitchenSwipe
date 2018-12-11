@@ -35,6 +35,10 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float centerFadeOutTime;
 
+    [Header("Quest Times")]
+    [SerializeField]
+    float questRiseUpTime;
+
     [Header("Combo Pop Time")]
     [SerializeField]
     float comboPopTime;
@@ -107,6 +111,11 @@ public class AnimationManager : MonoBehaviour {
     public float SauceFadeOutTime()
     {
         return centerFadeOutTime;
+    }
+
+    public float QuestRiseUpTime()
+    {
+        return questRiseUpTime;
     }
 
     public float ComboPopTime()

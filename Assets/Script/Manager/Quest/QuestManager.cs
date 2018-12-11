@@ -22,19 +22,15 @@ public class QuestManager : MonoBehaviour {
     readonly int differentTypesOfQuests = 3;
 
     public static QuestManager instance = null;
+    int numberOfCompletedQuest = 0;
+    bool isAnimationNeeded
+    {
+        get { return numberOfCompletedQuest != 0;}
+    }
 
     private void Awake()
     {
         instance = this;
-        setInGameQuestText();
-    }
-
-    void setInGameQuestText(string text = "")
-    {
-        if (mainGameQuestText != null)
-        {
-            mainGameQuestText.setQuestText(text);
-        }
     }
 
     public void setupQuestManager(Food[] foods)
@@ -93,7 +89,9 @@ public class QuestManager : MonoBehaviour {
         }
 
         //Animation
-        mainGameQuestText.onStateChange(quests[index]);
+        if (isAnimationNeeded) { 
+            mainGameQuestText.onStateChange(quests[index]);
+        }
     }
     #endregion
 
@@ -144,6 +142,7 @@ public class QuestManager : MonoBehaviour {
     void onCompleteQuest(int index)
     {
         //Animation
+        numberOfCompletedQuest++;
         mainGameQuestText.onStateChange(quests[index]);
         if (refreshQuests) { 
             generateNewQuest(index);

@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour {
     [SerializeField]
     int comboStartNumber;
 
+    [Header("Score Animation")]
     [SerializeField]
     int scoreSpeed;
     int finalScore;
@@ -43,6 +44,11 @@ public class ScoreManager : MonoBehaviour {
     public int Score()
     {
         return finalScore;
+    }
+
+    public int AnimatedScore()
+    {
+        return score;
     }
 
     public int Dishes()

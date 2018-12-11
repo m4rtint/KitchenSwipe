@@ -65,9 +65,20 @@ public class UIManager : MonoBehaviour
     void updateScore() {
         if (scoreText != null)
         {
-            scoreText.text = scoreManager.Score().ToString();
+            scoreText.text = getFullLengthScore(scoreManager.AnimatedScore());
             dishesText.text = scoreManager.Dishes() + " Dishes";
         }
+    }
+
+    string getFullLengthScore(int score)
+    {
+        string scoreString = score.ToString();
+        while (scoreString.Length < 9)
+        {
+            scoreString = "0" + scoreString;
+        }
+        return scoreString;
+
     }
 
     void updateCombo() {

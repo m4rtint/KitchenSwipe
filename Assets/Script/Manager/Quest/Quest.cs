@@ -63,6 +63,11 @@ public abstract class Quest {
         return isComplete;
     }
 
+    public int getQuestPoints()
+    {
+        return missions[missionsPosition].points;
+    }
+
     public abstract bool isQuestComplete(object p);
     public abstract string getQuestText();
 

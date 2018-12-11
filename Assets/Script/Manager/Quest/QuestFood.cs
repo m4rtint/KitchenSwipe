@@ -37,9 +37,9 @@ public class QuestFood : Quest
     {
         missions = new Missions[]
         {
-            new Missions(2, 500),
-            new Missions(4, 1000),
-            new Missions(6, 1500)
+            new Missions(1, 500),
+            new Missions(2, 1000),
+            new Missions(3, 1500)
         };
     }
 

@@ -32,11 +32,11 @@ public class QuestCombo : Quest
     {
         base.missions = new Missions[] {
             new Missions(1, 200),
-            new Missions(8, 400),
-            new Missions(11, 800),
-            new Missions(13, 1600),
-            new Missions(15, 3200),
-            new Missions(20, 6400)
+            new Missions(2, 400),
+            new Missions(3, 800),
+            new Missions(4, 1600),
+            new Missions(5, 3200),
+            new Missions(6, 6400)
         };
     }
 

@@ -75,6 +75,7 @@ MonoBehaviour:
   - {fileID: 114788017987324834, guid: 3a433dc8bcb794e309b24d61d7eba3b1, type: 2}
   - {fileID: 114172591135039800, guid: b414e0f0104a1ab4e894270dbb1b695a, type: 2}
   - {fileID: 114355782380500388, guid: c02d091373c7b4433a7e85fd9590beba, type: 2}
+  - {fileID: 114995058337330914, guid: 62745335a9a368f489956c90079440d5, type: 2}
 --- !u!114 &114196023701877964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,6 +98,7 @@ MonoBehaviour:
   rotationTime: 0.3
   moveTime: 0.3
   centerFadeOutTime: 0.1
+  questRiseUpTime: 1
   comboPopTime: 0.5
   comboPopScale: 2
   scoreDelayTime: 0.2
