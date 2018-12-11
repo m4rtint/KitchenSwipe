@@ -56,14 +56,14 @@ public class FoodScore : MonoBehaviour {
         TimeText(time);
 
         Hashtable ht = new Hashtable();
-        ht.Add("y", animation.PenaltyRiseAmount());
+        ht.Add("y", -animation.PenaltyRiseAmount());
         ht.Add("time", animation.PenaltyRiseTime());
         ht.Add("easeType", "easeOutExpo");
 
         //On complete function call
         ht.Add("oncompletetarget", gameObject);
         ht.Add("oncomplete", "resetTimeText");
-        iTween.MoveAdd(penaltyObject, ht);
+        iTween.MoveFrom(penaltyObject, ht);
     }
 
     //Called in iTween animation

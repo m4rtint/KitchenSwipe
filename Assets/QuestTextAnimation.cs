@@ -148,7 +148,8 @@ public class QuestTextAnimation : MonoBehaviour {
         ht.Add("delay", AnimationManager.instance.QuestRiseUpTime());
         ht.Add("time", AnimationManager.instance.QuestRiseUpTime());
         ht.Add("includechildren", false);
-        if (isNeedOnComplete) { 
+        if (isNeedOnComplete) {
+            ht.Add("oncompletetarget", gameObject);
             ht.Add("oncomplete", "completedAnimation");
         }
         iTween.FadeTo(obj, ht);
