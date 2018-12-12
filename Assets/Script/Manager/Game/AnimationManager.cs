@@ -38,6 +38,8 @@ public class AnimationManager : MonoBehaviour {
     [Header("Quest Times")]
     [SerializeField]
     float questRiseUpTime;
+    [SerializeField]
+    float questDelayTime;
 
     [Header("Combo Pop Time")]
     [SerializeField]
@@ -116,6 +118,11 @@ public class AnimationManager : MonoBehaviour {
     public float QuestRiseUpTime()
     {
         return questRiseUpTime;
+    }
+
+    public float QuestDelayTime()
+    {
+        return questDelayTime;
     }
 
     public float ComboPopTime()

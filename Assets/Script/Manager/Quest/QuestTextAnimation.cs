@@ -13,6 +13,8 @@ public class QuestTextAnimation : MonoBehaviour {
     Text questText;
     Color questTextColor;
 
+    AnimationManager animation;
+
     [SerializeField]
     TextMeshProUGUI pointsText;
     Vector3 pointsLocation;
@@ -23,6 +25,7 @@ public class QuestTextAnimation : MonoBehaviour {
         setQuestText();
         setPointText();
         pointsLocation = pointsText.gameObject.transform.position;
+        animation = AnimationManager.instance;
     }
     #region Setter
     void setQuestText(string text = "")
@@ -111,7 +114,7 @@ public class QuestTextAnimation : MonoBehaviour {
         Debug.Log("Animation: Fade In");
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 1);
-        ht.Add("time", AnimationManager.instance.QuestRiseUpTime());
+        ht.Add("time", animation.QuestRiseUpTime());
         iTween.FadeTo(gameObject, ht);
     }
 
@@ -121,7 +124,7 @@ public class QuestTextAnimation : MonoBehaviour {
         Hashtable ht = new Hashtable();
         ht.Add("position", new Vector3(0, -100, 0));
         ht.Add("easetype", "easeOutCubic");
-        ht.Add("time", AnimationManager.instance.QuestRiseUpTime());
+        ht.Add("time", animation.QuestRiseUpTime());
         if (oncompleted != null)
         {
             ht.Add("oncomplete", oncompleted);
@@ -133,8 +136,8 @@ public class QuestTextAnimation : MonoBehaviour {
     {
         Debug.Log("Animation: Move Up From Original");
         Hashtable ht = new Hashtable();
-        ht.Add("time", AnimationManager.instance.QuestRiseUpTime());
-        ht.Add("delay", AnimationManager.instance.QuestRiseUpTime());
+        ht.Add("time", animation.QuestRiseUpTime());
+        ht.Add("delay", animation.QuestRiseUpTime() + animation.QuestDelayTime());
         ht.Add("easetype", "easeOutCubic");
         ht.Add("y", 200);
         iTween.MoveAdd(pointsText.gameObject, ht);
@@ -145,8 +148,8 @@ public class QuestTextAnimation : MonoBehaviour {
         Debug.Log("Animation: Fade Out");
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 0);
-        ht.Add("delay", AnimationManager.instance.QuestRiseUpTime());
-        ht.Add("time", AnimationManager.instance.QuestRiseUpTime());
+        ht.Add("delay", animation.QuestRiseUpTime()+ animation.QuestDelayTime());
+        ht.Add("time", animation.QuestRiseUpTime());
         ht.Add("includechildren", false);
         if (isNeedOnComplete) {
             ht.Add("oncompletetarget", gameObject);
