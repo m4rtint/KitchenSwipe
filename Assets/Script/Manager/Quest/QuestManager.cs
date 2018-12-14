@@ -33,6 +33,11 @@ public class QuestManager : MonoBehaviour {
         instance = this;
     }
 
+    public Quest[] Quests()
+    {
+        return quests;
+    }
+
     public void setupQuestManager(Food[] foods)
     {
         this.listOfFood = foods;
@@ -48,7 +53,7 @@ public class QuestManager : MonoBehaviour {
         string listOfQuests = "";
         for(int i = 0; i < quests.Length; i++)
         {
-            listOfQuests += string.Format("- {0}\n", quests[i].getQuestText());
+            listOfQuests += string.Format("- {0}\n", quests[i].GetQuestText());
         }
         return listOfQuests;
     }

@@ -10,6 +10,7 @@ public abstract class Quest {
     QuestType type;
     QuestState state = QuestState.NEW;
     protected string questText;
+    int questId;
 
     protected Quest(QuestType type, string questString)
     {
@@ -17,6 +18,12 @@ public abstract class Quest {
         generateQuest();
         this.type = type;
         this.questText = questString;
+        this.questId = Random.Range(int.MinValue, int.MaxValue);
+    }
+
+    public int QuestID()
+    {
+        return questId;
     }
     
     public QuestType Type()
@@ -69,6 +76,6 @@ public abstract class Quest {
     }
 
     public abstract bool isQuestComplete(object p);
-    public abstract string getQuestText();
-
+    public abstract string GetQuestText();
+    public abstract int getCurrentMissionValue();
 }

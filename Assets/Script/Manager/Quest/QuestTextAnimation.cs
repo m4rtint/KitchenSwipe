@@ -85,7 +85,7 @@ public class QuestTextAnimation : MonoBehaviour {
     {
         int points = isPointsNeeded ? currentQuest.getQuestPoints() : -1;
         setPointText(points);
-        setQuestText(currentQuest.getQuestText());
+        setQuestText(currentQuest.GetQuestText());
         questText.color = questTextColor;
         pointsText.color = questTextColor;
     }

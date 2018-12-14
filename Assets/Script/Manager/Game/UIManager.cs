@@ -95,14 +95,14 @@ public class UIManager : MonoBehaviour
     public void showPauseScreen()
     {
         StateManager.instance.pauseGame();
-        pauseScreenObject.SetActive(true);
+        pauseScreenObject.GetComponent<PauseMenuManager>().setMenuOpen(true);
         fadedBackgroundObject.SetActive(true);
     }
 
     public void hidePauseScreen()
     {
         StateManager.instance.unPausedGame();
-        pauseScreenObject.SetActive(false);
+        pauseScreenObject.GetComponent<PauseMenuManager>().setMenuOpen(false);
         fadedBackgroundObject.SetActive(false);
     }
 

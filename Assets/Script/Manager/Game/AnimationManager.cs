@@ -63,6 +63,10 @@ public class AnimationManager : MonoBehaviour {
     [SerializeField]
     float goFadeInTime;
 
+    [Header("Pause Menu")]
+    [SerializeField]
+    float pauseMenuOpenTime;
+
     Vector3 trashPosition = Vector3.zero;
     public static AnimationManager instance = null;
 
@@ -160,6 +164,11 @@ public class AnimationManager : MonoBehaviour {
         return goFadeInTime;
     }
 
+    public float PauseMenuOpenTime()
+    {
+        return pauseMenuOpenTime;
+    }
+
     public float FoodShakeTime()
     {
         return foodShakeTime;
@@ -184,6 +193,7 @@ public class AnimationManager : MonoBehaviour {
     {
         return trashPosition;
     }
+
     #endregion
 
     #region Setter

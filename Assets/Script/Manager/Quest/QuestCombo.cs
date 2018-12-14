@@ -40,7 +40,7 @@ public class QuestCombo : Quest
         };
     }
 
-    public override string getQuestText()
+    public override string GetQuestText()
     {
         return string.Format(this.questText, missions[missionsPosition].quest);
     }
@@ -50,6 +50,11 @@ public class QuestCombo : Quest
     void comboReset()
     {
         currentCombo = 0;
+    }
+
+    public override int getCurrentMissionValue()
+    {
+        return missionCombo;
     }
     #endregion
 
