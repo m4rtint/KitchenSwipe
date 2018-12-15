@@ -28,6 +28,11 @@ public class QuestManager : MonoBehaviour {
         get { return numberOfCompletedQuest != 0;}
     }
 
+    public int NumberOfCompletedQuest()
+    {
+        return numberOfCompletedQuest;
+    }
+
     private void Awake()
     {
         instance = this;

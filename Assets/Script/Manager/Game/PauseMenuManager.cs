@@ -21,6 +21,7 @@ public class PauseMenuManager : MonoBehaviour {
     GameObject background;
 
     QuestManager questManager;
+    readonly string completedQuest = "Completed Quests: ";
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class PauseMenuManager : MonoBehaviour {
     private void Start()
     {
         setupQuests();
+        setCompletedNumberOfQuest(0);
     }
 
     public void setMenuOpen(bool isOpen)
@@ -42,16 +44,22 @@ public class PauseMenuManager : MonoBehaviour {
         ht.Add("time", AnimationManager.instance.PauseMenuOpenTime());
         ht.Add("scale", size);
         if (isOpen) {
-            ht.Add("oncomplete", "checkOffQuestsCompletedIfNeeded");
+            ht.Add("oncomplete", "onMenuOpen");
         }
         iTween.ScaleTo(gameObject, ht);
 
         background.SetActive(isOpen);
     }
 
+    void setCompletedNumberOfQuest(int num)
+    {
+        completedQuestsText.text = completedQuest + num.ToString();
+    }
+
     void onMenuOpen()
     {
         checkOffQuestsCompletedIfNeeded();
+        setCompletedNumberOfQuest(QuestManager.instance.NumberOfCompletedQuest());
     }
 
     void setupQuests()
@@ -68,6 +76,7 @@ public class PauseMenuManager : MonoBehaviour {
         foreach(MenuQuestAnimation quest in questsText)
         {
             quest.onAnimationCompleteDelegate += onCompleteQuestAnimation;
+            quest.onAnimationNewQuestDelegate += onNewQuestAnimationEnd;
         }
     }
 
@@ -105,7 +114,11 @@ public class PauseMenuManager : MonoBehaviour {
 
     void onCompleteQuestAnimation()
     {
-        startQuestAnimationIfneeded();
         setQuestTextProperties(indexOfQuest.Dequeue());
+    }
+
+    void onNewQuestAnimationEnd()
+    {
+        startQuestAnimationIfneeded();
     }
 }

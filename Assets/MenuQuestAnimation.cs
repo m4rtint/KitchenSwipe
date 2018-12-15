@@ -7,6 +7,7 @@ public class MenuQuestAnimation : MonoBehaviour {
 
     public delegate void MenuQuestDelegate();
     public MenuQuestDelegate onAnimationCompleteDelegate;
+    public MenuQuestDelegate onAnimationNewQuestDelegate;
 
     [SerializeField]
     TextMeshProUGUI questText;
@@ -26,13 +27,13 @@ public class MenuQuestAnimation : MonoBehaviour {
     public void setQuestText(string text)
     {
         questText.text = text;
-        scaleFrom("", questText.gameObject);
+        scaleFrom("onNewQuestPlaced", questText.gameObject);
     }
 
     public void questCompleteAnimation()
     {
         setCheckMarkAppear(true);
-        scaleFrom("animationComplete", checkMark);
+        scaleFrom("onQuestCompleted", checkMark);
     }
 
 
@@ -45,14 +46,19 @@ public class MenuQuestAnimation : MonoBehaviour {
         if (onComplete.Length > 0)
         {
             ht.Add("oncompletetarget", gameObject);
-            ht.Add("oncomplete", "animationComplete");
+            ht.Add("oncomplete", onComplete);
         }
         iTween.ScaleFrom(scaleObj, ht);
     }
 
-    void animationComplete()
+    void onQuestCompleted()
     {
         onAnimationCompleteDelegate();
+    }
+
+    void onNewQuestPlaced()
+    {
+        onAnimationNewQuestDelegate();
     }
 
     public void setCheckMarkAppear(bool isAppear)
