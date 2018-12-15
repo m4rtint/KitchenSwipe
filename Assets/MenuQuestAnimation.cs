@@ -26,18 +26,33 @@ public class MenuQuestAnimation : MonoBehaviour {
     public void setQuestText(string text)
     {
         questText.text = text;
+        scaleFrom("", questText.gameObject);
     }
 
     public void questCompleteAnimation()
     {
         setCheckMarkAppear(true);
+        scaleFrom("animationComplete", checkMark);
+    }
 
+
+    void scaleFrom(string onComplete, GameObject scaleObj)
+    {
         Hashtable ht = new Hashtable();
         ht.Add("scale", Vector3.one * 3);
         ht.Add("easetype", "easeOutBack");
         ht.Add("time", 1f);
-        ht.Add("oncomplete", "onAnimationCompleteDelegate");
-        iTween.ScaleFrom(checkMark, ht);
+        if (onComplete.Length > 0)
+        {
+            ht.Add("oncompletetarget", gameObject);
+            ht.Add("oncomplete", "animationComplete");
+        }
+        iTween.ScaleFrom(scaleObj, ht);
+    }
+
+    void animationComplete()
+    {
+        onAnimationCompleteDelegate();
     }
 
     public void setCheckMarkAppear(bool isAppear)

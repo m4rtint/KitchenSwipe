@@ -7,6 +7,7 @@ using TMPro;
 public class PauseMenuManager : MonoBehaviour {
 
     Queue<MenuQuestAnimation> listOfQuestsAnimation = new Queue<MenuQuestAnimation>();
+    Queue<int> indexOfQuest = new Queue<int>();
 
     [SerializeField]
     Button menuButton;
@@ -86,6 +87,7 @@ public class PauseMenuManager : MonoBehaviour {
             if (listOfQuests[i].QuestID() != questsText[i].questId)
             {
                 listOfQuestsAnimation.Enqueue(questsText[i]);
+                indexOfQuest.Enqueue(i);
             }
         }
 
@@ -104,5 +106,6 @@ public class PauseMenuManager : MonoBehaviour {
     void onCompleteQuestAnimation()
     {
         startQuestAnimationIfneeded();
+        setQuestTextProperties(indexOfQuest.Dequeue());
     }
 }
