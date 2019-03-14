@@ -157,6 +157,7 @@ public class IngredientGenerator : MonoBehaviour {
     Food instantiateFoodInHolder(Food food, int index) {
 		GameObject holder = foodHolderObjects[index];
 		GameObject generatedFood = Instantiate (food.gameObject, holder.transform);
+        generatedFood.transform.SetAsFirstSibling();
 		return generatedFood.GetComponent<Food> ();
 	}
 	#endregion

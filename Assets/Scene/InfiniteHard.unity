@@ -1960,6 +1960,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4163979825090454, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 942.55035
@@ -2092,6 +2097,30 @@ Prefab:
       propertyPath: pauseMenuOpenTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[4]
+      value: 
+      objectReference: {fileID: 114908631789422314, guid: bbe7cb02e91bdde4b9c30449c527da1d,
+        type: 2}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[2]
+      value: 
+      objectReference: {fileID: 114295246241670238, guid: c2c6873edb92f4fcfa7fee97dfbbe525,
+        type: 2}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[5]
+      value: 
+      objectReference: {fileID: 114607396823454440, guid: 8f9d19a2bfd1c2342b94ceff2873554e,
+        type: 2}
+    - target: {fileID: 114069557465405260, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: m_Foods.Array.data[6]
+      value: 
+      objectReference: {fileID: 114018333196988096, guid: 23a50759ba584754abfffb941aa19b46,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
   m_IsPrefabAsset: 0
@@ -7139,8 +7168,8 @@ RectTransform:
   m_Father: {fileID: 1227385276}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05, y: 0}
-  m_AnchorMax: {x: 0.8, y: 0.1}
+  m_AnchorMin: {x: 0.05, y: 0.05}
+  m_AnchorMax: {x: 0.8, y: 0.15}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.25, y: 0}
