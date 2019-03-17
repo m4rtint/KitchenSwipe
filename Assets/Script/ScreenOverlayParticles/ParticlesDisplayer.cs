@@ -4,18 +4,24 @@ using UnityEngine.UI;
 
 public class ParticlesDisplayer : MonoBehaviour 
 {
-	public RectTransform imageTransform;
-    RawImage image;
+    [SerializeField]
+	RectTransform imageTransform;
+    RawImage rawImage;
     float duration;
 
     private void Awake()
     {
-        image = imageTransform.gameObject.GetComponent<RawImage>();
+        rawImage = imageTransform.gameObject.GetComponent<RawImage>();
     }
 
     private void Start()
     {
         StateManager.stateChangedDelegate += onStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        StateManager.stateChangedDelegate -= onStateChanged;
     }
 
     public void setDuration(float dur)
@@ -55,11 +61,11 @@ public class ParticlesDisplayer : MonoBehaviour
 
     public void setSolidImage()
     {
-        image.color = Color.white;
+        rawImage.color = Color.white;
     }
 
     public void setTransparentImage()
     {
-        image.color = Color.clear;
+        rawImage.color = Color.clear;
     }
 }
