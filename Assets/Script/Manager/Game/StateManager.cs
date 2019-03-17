@@ -11,12 +11,26 @@ public enum GameState
 }
 public class StateManager : MonoBehaviour
 {
-
-
     public static StateManager instance = null;
+    public delegate void OnStateChangeDelegate();
+    public static event OnStateChangeDelegate stateChangedDelegate;
 
     [SerializeField]
-    GameState currentState;
+    GameState _CurrentState;
+    public GameState currentState
+    {
+        get
+        {
+            return _CurrentState;
+        }
+
+        private set
+        {
+            _CurrentState = value;
+            stateChangedDelegate();
+        }
+    }
+
     GameState savedRevertState;
 
     void Awake()

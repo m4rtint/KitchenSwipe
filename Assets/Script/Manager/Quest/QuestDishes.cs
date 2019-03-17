@@ -26,7 +26,7 @@ public class QuestDishes : Quest {
         };
     }
 
-    public override string GetQuestText()
+    public override string getQuestText()
     {
         return string.Format(this.questText, missions[missionsPosition].quest);
     }

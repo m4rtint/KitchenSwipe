@@ -59,12 +59,12 @@ public class PauseMenuManager : MonoBehaviour {
     void onMenuOpen()
     {
         checkOffQuestsCompletedIfNeeded();
-        setCompletedNumberOfQuest(QuestManager.instance.NumberOfCompletedQuest());
+        setCompletedNumberOfQuest(QuestManager.instance.numberOfCompletedQuest);
     }
 
     void setupQuests()
     {
-        Quest[] quest = questManager.Quests();
+        Quest[] quest = questManager.quests;
         for (int i = 0; i < questsText.Length; i++)
         {
             setQuestTextProperties(i);
@@ -82,15 +82,15 @@ public class PauseMenuManager : MonoBehaviour {
 
     private void setQuestTextProperties(int index)
     {
-        Quest quest = questManager.Quests()[index];
-        questsText[index].setQuestText(quest.GetQuestText());
+        Quest quest = questManager.quests[index];
+        questsText[index].setQuestText(quest.getQuestText());
         questsText[index].setCheckMarkAppear(false);
         questsText[index].questId = quest.QuestID();
     }
     
     private void checkOffQuestsCompletedIfNeeded()
     {
-        Quest[] listOfQuests = questManager.Quests();
+        Quest[] listOfQuests = questManager.quests;
         for(int i = 0; i < questsText.Length; i++)
         {
             if (listOfQuests[i].QuestID() != questsText[i].questId)

@@ -16,32 +16,27 @@ public class QuestManager : MonoBehaviour {
     QuestTextAnimation mainGameQuestText;
 
     string mainQuests;
+    public ArrayList completedQuests { get; private set; }
     Food[] listOfFood = null;
 
-    Quest[] quests = new Quest[3];
+    public Quest[] quests { get; private set; }
     readonly int differentTypesOfQuests = 3;
 
     public static QuestManager instance = null;
-    int numberOfCompletedQuest = 0;
+    public int numberOfCompletedQuest { get; private set; }
+
     bool isAnimationNeeded
     {
         get { return numberOfCompletedQuest != 0;}
     }
 
-    public int NumberOfCompletedQuest()
-    {
-        return numberOfCompletedQuest;
-    }
-
     private void Awake()
     {
         instance = this;
+        completedQuests = new ArrayList();
+        quests = new Quest[3];
     }
 
-    public Quest[] Quests()
-    {
-        return quests;
-    }
 
     public void setupQuestManager(Food[] foods)
     {
@@ -58,9 +53,14 @@ public class QuestManager : MonoBehaviour {
         string listOfQuests = "";
         for(int i = 0; i < quests.Length; i++)
         {
-            listOfQuests += string.Format("- {0}\n", quests[i].GetQuestText());
+            listOfQuests += string.Format("- {0}\n", quests[i].getQuestText());
         }
         return listOfQuests;
+    }
+
+    public void addToCompletedList(Quest quest)
+    {
+        completedQuests.Add(quest.getQuestText());
     }
     #endregion
 
@@ -138,12 +138,9 @@ public class QuestManager : MonoBehaviour {
         {
             for (int i = 0; i < quests.Length; i++)
             {
-                if (quests[i].Type() == type)
+                if (quests[i].Type() == type && quests[i].isQuestComplete(obj))
                 {
-                    if (quests[i].isQuestComplete(obj))
-                    {
-                        onCompleteQuest(i);
-                    }
+                    onCompleteQuest(i);
                 }
             }
         }
@@ -154,6 +151,7 @@ public class QuestManager : MonoBehaviour {
         //Animation
         numberOfCompletedQuest++;
         mainGameQuestText.onStateChange(quests[index]);
+        addToCompletedList(quests[index]);
         if (refreshQuests) { 
             generateNewQuest(index);
         }

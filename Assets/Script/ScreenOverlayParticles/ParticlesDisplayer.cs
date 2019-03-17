@@ -13,6 +13,11 @@ public class ParticlesDisplayer : MonoBehaviour
         image = imageTransform.gameObject.GetComponent<RawImage>();
     }
 
+    private void Start()
+    {
+        StateManager.stateChangedDelegate += onStateChanged;
+    }
+
     public void setDuration(float dur)
     {
         duration = dur;
@@ -26,15 +31,26 @@ public class ParticlesDisplayer : MonoBehaviour
 	public void MoveToPosition(Vector3 pos)
 	{
         setSolidImage();
-        StopCoroutine("waitUntilEfxFin");
-        StartCoroutine("waitUntilEfxFin");
+        StopCoroutine("waitUntilEfxFinish");
+        StartCoroutine("waitUntilEfxFinish");
         imageTransform.position = pos;
 	}
 
-    IEnumerator waitUntilEfxFin()
+    IEnumerator waitUntilEfxFinish()
     {
         yield return new WaitForSeconds(duration);
         setTransparentImage();
+    }
+
+    void onStateChanged()
+    {
+        if (!StateManager.instance.isInGame())
+        {
+            setTransparentImage();
+        } else
+        {
+            setSolidImage();
+        }
     }
 
     public void setSolidImage()

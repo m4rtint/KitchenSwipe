@@ -76,6 +76,6 @@ public abstract class Quest {
     }
 
     public abstract bool isQuestComplete(object p);
-    public abstract string GetQuestText();
+    public abstract string getQuestText();
     public abstract int getCurrentMissionValue();
 }
