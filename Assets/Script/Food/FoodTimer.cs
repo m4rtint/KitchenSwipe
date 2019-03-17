@@ -130,7 +130,6 @@ public class FoodTimer : MonoBehaviour {
     {
         if (greenSecondsToComplete <= 0)
         {
-            ScoreManager.instance.decrementScore();
             TimeManager.instance.penaltyGameTime();
 
             foodHolder.moveFoodToTrashIfneeded();

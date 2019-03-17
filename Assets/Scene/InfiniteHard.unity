@@ -2657,7 +2657,7 @@ Prefab:
     - target: {fileID: 114900218454613518, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: scoreSpeed
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
@@ -2697,6 +2697,11 @@ Prefab:
         type: 2}
       propertyPath: foodPenaltyTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114900218454613518, guid: e0cc552f4d1004830acd96948944f79f,
+        type: 2}
+      propertyPath: decrementScoreVariable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0cc552f4d1004830acd96948944f79f, type: 2}
@@ -2859,7 +2864,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 51.6
+  m_fontSize: 48
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7474,7 +7479,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60.15
+  m_fontSize: 55.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

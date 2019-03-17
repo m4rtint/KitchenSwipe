@@ -111,7 +111,6 @@ public class QuestTextAnimation : MonoBehaviour {
 
     void fadeIn()
     {
-        Debug.Log("Animation: Fade In");
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 1);
         ht.Add("time", animation.QuestRiseUpTime());
@@ -120,7 +119,6 @@ public class QuestTextAnimation : MonoBehaviour {
 
     void moveUpToOriginal(string oncompleted = null)
     {
-        Debug.Log("Animation: Move Up To Original");
         Hashtable ht = new Hashtable();
         ht.Add("position", new Vector3(0, -100, 0));
         ht.Add("easetype", "easeOutCubic");
@@ -134,7 +132,6 @@ public class QuestTextAnimation : MonoBehaviour {
 
     void moveUpFromOriginal()
     {
-        Debug.Log("Animation: Move Up From Original");
         Hashtable ht = new Hashtable();
         ht.Add("time", animation.QuestRiseUpTime());
         ht.Add("delay", animation.QuestRiseUpTime() + animation.QuestDelayTime());
@@ -145,7 +142,6 @@ public class QuestTextAnimation : MonoBehaviour {
 
     void fadeOut(GameObject obj, bool isNeedOnComplete = true)
     {
-        Debug.Log("Animation: Fade Out");
         Hashtable ht = new Hashtable();
         ht.Add("alpha", 0);
         ht.Add("delay", animation.QuestRiseUpTime()+ animation.QuestDelayTime());

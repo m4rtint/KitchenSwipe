@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
     string getFullLengthScore(int score)
     {
         string scoreString = score.ToString();
-        while (scoreString.Length < 9)
+        while (scoreString.Length < 8)
         {
             scoreString = "0" + scoreString;
         }

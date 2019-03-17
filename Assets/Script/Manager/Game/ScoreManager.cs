@@ -15,9 +15,6 @@ public class ScoreManager : MonoBehaviour {
     [Header("Score Multiplier")]
     [SerializeField]
     float scoreMultiplier;
-    [Header("Decrement Score Variable")]
-    [SerializeField]
-    float decrementScoreVariable;
     [SerializeField]
     int comboStartNumber;
 
@@ -116,16 +113,13 @@ public class ScoreManager : MonoBehaviour {
         {
             score = finalScore;
             this.scoreDelegate();
-        } else if (finalScore < score)
-        {
-            score -= scoreSpeed;
-            this.scoreDelegate();
         }
         else if (finalScore > score)
         {
             score += scoreSpeed;
             this.scoreDelegate();
         }
+        
     }
 
     #endregion
@@ -152,11 +146,6 @@ public class ScoreManager : MonoBehaviour {
     public void incrementFinalScore(int score)
     {
         finalScore += score;
-    }
-
-    public void decrementScore()
-    {
-        finalScore -= (int)(baseScore * decrementScoreVariable);
     }
 
     public void saveScore()
