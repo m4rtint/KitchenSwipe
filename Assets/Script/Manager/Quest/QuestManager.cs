@@ -148,10 +148,10 @@ public class QuestManager : MonoBehaviour {
 
     void onCompleteQuest(int index)
     {
-        //Animation
         numberOfCompletedQuest++;
-        mainGameQuestText.onStateChange(quests[index]);
-        addToCompletedList(quests[index]);
+        Quest quest = quests[index];
+        mainGameQuestText.onStateChange(quest);
+        addToCompletedList(quest);
         if (refreshQuests) { 
             generateNewQuest(index);
         }

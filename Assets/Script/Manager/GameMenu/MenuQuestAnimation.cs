@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MenuQuestAnimation : MonoBehaviour {
@@ -27,28 +28,47 @@ public class MenuQuestAnimation : MonoBehaviour {
     public void setQuestText(string text)
     {
         questText.text = text;
-        scaleFrom("onNewQuestPlaced", questText.gameObject);
+        checkMark.GetComponent<Image>().color = Color.white;
+        fadeInOut(questText.gameObject, 1f, "onNewQuestPlaced");
     }
 
     public void questCompleteAnimation()
     {
         setCheckMarkAppear(true);
-        scaleFrom("onQuestCompleted", checkMark);
+        scaleFrom(checkMark, "fadeOutCompletedQuest");
     }
 
 
-    void scaleFrom(string onComplete, GameObject scaleObj)
+    void scaleFrom(GameObject scaleObj, string onComplete = null)
     {
         Hashtable ht = new Hashtable();
         ht.Add("scale", Vector3.one * 3);
         ht.Add("easetype", "easeOutBack");
         ht.Add("time", 1f);
-        if (onComplete.Length > 0)
+        if (onComplete != null)
         {
             ht.Add("oncompletetarget", gameObject);
             ht.Add("oncomplete", onComplete);
         }
         iTween.ScaleFrom(scaleObj, ht);
+    }
+
+    void fadeOutCompletedQuest()
+    {
+        fadeInOut(checkMark);
+        fadeInOut(questText.gameObject, onComplete: "onQuestCompleted");
+    }
+
+    void fadeInOut(GameObject fadeObj, float alpha = 0f, string onComplete = null)
+    {
+        Hashtable ht = new Hashtable();
+        ht.Add("alpha", alpha);
+        ht.Add("time", 0.5f);
+        if (onComplete != null) {
+            ht.Add("oncompletetarget", gameObject);
+            ht.Add("oncomplete", onComplete);
+        }
+        iTween.FadeTo(fadeObj, ht);
     }
 
     void onQuestCompleted()

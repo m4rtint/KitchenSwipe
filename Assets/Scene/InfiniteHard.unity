@@ -2652,12 +2652,12 @@ Prefab:
     - target: {fileID: 114974761684145418, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: gameTime
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114900218454613518, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
       propertyPath: scoreSpeed
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114196023701877964, guid: e0cc552f4d1004830acd96948944f79f,
         type: 2}
@@ -2859,7 +2859,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48
+  m_fontSize: 51.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7474,7 +7474,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 55.95
+  m_fontSize: 60.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
