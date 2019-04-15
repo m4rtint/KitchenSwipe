@@ -18,7 +18,7 @@ public class GameEngineTutorial : GameEngine
     TutorialPanel tutorialPanel;
 
     [SerializeField]
-    SwipeAnimation swipeAnimation;
+    TutorialHelperAnimation tutorialHelperAnimation;
 
     [Header("TUTORIAL")]
     [SerializeField]
@@ -44,7 +44,7 @@ public class GameEngineTutorial : GameEngine
         setGameSpaceIngredients();
 
         //Swipe animation
-        swipeAnimation.swipe(true);
+        tutorialHelperAnimation.swipe(true);
 
         //Set center
         setCenterIngredientView();
@@ -106,15 +106,16 @@ public class GameEngineTutorial : GameEngine
         } else if(currentTutorialStep == TUTORIALSTEP.PRESSTRASH) {
             return;
         } else if (currentTutorialStep == TUTORIALSTEP.SWIPEUNTILCORRECT) {
-            Ingredient next = ingredientsGenerator.userSwiped(currentIngredient, dir);
-
-            currentIngredient = nextIngredient.Ingredient();
-            nextIngredient.Ingredient(next);
-            setCenterIngredientView();
+            Ingredient next = this.ingredientsGenerator.userSwiped(currentIngredient, dir);
+            this.currentIngredient = nextIngredient.Ingredient();
+            base.setCenterIngredientView();
+            this.nextIngredient.Ingredient(next);
 
             if (checkStepFourCorrect()){
                 stepFourCorrect();
             }
+
+            return;
         }
 
         //Set current Ingredient
@@ -134,7 +135,7 @@ public class GameEngineTutorial : GameEngine
         currentIngredient.pulsingAnimation();
 
         //Tutorial Animation
-        swipeAnimation.swipe(false);
+        tutorialHelperAnimation.swipe(false);
 
         currentTutorialStep++;
     }
@@ -153,20 +154,14 @@ public class GameEngineTutorial : GameEngine
         screenBlocking(true);
 
         //Tutorial Animation
-        Destroy(swipeAnimation.gameObject);
+        Destroy(tutorialHelperAnimation.gameObject);
 
         currentTutorialStep++;
     }
 
     void screenBlocking(bool on)
     {
-        if (on)
-        {
-            screenBlock.transform.localScale = Vector3.one;
-        } else
-        {
-            screenBlock.transform.localScale = Vector3.zero;
-        }
+        screenBlock.transform.localScale = on ? Vector3.one : Vector3.zero;
     }
 
     void resetCurrentIngredientScale(Direction dir){
@@ -185,7 +180,9 @@ public class GameEngineTutorial : GameEngine
         if(currentTutorialStep == TUTORIALSTEP.PRESSTRASH)
         {
             base.Trash().GetComponent<PulsingEffects>().resetScale();
+            this.tutorialHelperAnimation.destroyTrashFinger();
             tutorialPanel.setInstructions(InstructionsMessages.TUTORIAL_STEP_FOUR);
+            currentIngredient.pulsingAnimation();
             screenBlocking(false);
             currentTutorialStep++;
         }

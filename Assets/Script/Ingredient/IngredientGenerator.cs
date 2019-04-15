@@ -60,12 +60,30 @@ public class IngredientGenerator : MonoBehaviour {
                     return null;
                 }
 
-            } while (food == null || !food.isFoodInPlay() || index == lastIndex);
+            } while (isRechoosingIngredientNeeded(food, index));
 
             lastIndex = index;
             ingredient = ingredientOnTop(food);
         }
         return ingredient;
+    }
+
+    private bool isRechoosingIngredientNeeded(Food food, int index)
+    {
+        int numberOfHoldersLeft = 0;
+        foreach (FoodHolder holder in this.foodHolders)
+        {
+            Food holdersFood = holder.StoredFood();
+            if (holdersFood != null)
+            {
+                if (holdersFood.isFoodInPlay())
+                {
+                    numberOfHoldersLeft++;
+                }
+            }
+        }
+
+        return food == null || !food.isFoodInPlay() || (index == lastIndex && numberOfHoldersLeft > 1);
     }
 
     public Ingredient chooseIngredientFrom(Direction dir) {

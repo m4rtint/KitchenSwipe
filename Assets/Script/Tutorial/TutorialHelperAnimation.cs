@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeAnimation : MonoBehaviour {
+public class TutorialHelperAnimation : MonoBehaviour {
 
     [SerializeField]
     GameObject leftArrow;
@@ -13,6 +13,10 @@ public class SwipeAnimation : MonoBehaviour {
     [SerializeField]
     GameObject finger;
     Vector3 originalPosition;
+
+    [SerializeField]
+    GameObject trashFinger;
+    const string trashFingerAnim = "TrashFingerAnimation";
 
     readonly string swipeName = "SwipeAnim";
 
@@ -57,5 +61,10 @@ public class SwipeAnimation : MonoBehaviour {
 
     void stopAnimation() {
         iTween.StopByName(swipeName);
+    }
+
+    public void destroyTrashFinger()
+    {
+        Destroy(trashFinger);
     }
 }

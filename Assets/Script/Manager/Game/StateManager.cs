@@ -27,7 +27,9 @@ public class StateManager : MonoBehaviour
         private set
         {
             _CurrentState = value;
-            stateChangedDelegate();
+            if (stateChangedDelegate != null) { 
+                stateChangedDelegate();
+            }
         }
     }
 
