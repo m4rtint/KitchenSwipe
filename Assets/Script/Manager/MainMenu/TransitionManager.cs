@@ -63,6 +63,7 @@ public class TransitionManager : MonoBehaviour
         Hashtable ht = new Hashtable();
         ht.Add("scale", expanded);
         ht.Add("time", 2);
+        ht.Add("easetype", "easeInQuad");
         ht.Add("oncomplete", methodName);
         iTween.ScaleTo(gameObject, ht);
     }
