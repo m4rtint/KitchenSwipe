@@ -8,6 +8,18 @@ public class FoodGenerator : MonoBehaviour
     [SerializeField]
     Food[] m_Foods;
 
+    [SerializeField]
+    Food[] burgers;
+    [SerializeField]
+    Food[] subs;
+    [SerializeField]
+    Food[] drinks;
+    [SerializeField]
+    Food[] deserts;
+    [SerializeField]
+    Food[] hotdogs;
+
+
     Stack<Food> chosenFoodStack = new Stack<Food>();
 
     public Stack<Food> ChosenFoodStack()
@@ -42,10 +54,21 @@ public class FoodGenerator : MonoBehaviour
 
     public void chooseRandomFood()
     {
-        //Choose random
-        int randomFoodIndex = Random.Range(0, m_Foods.Length);
-        //Store
-        chosenFoodStack.Push(m_Foods[randomFoodIndex]);
+        chooseRandomFoodFromStack(burgers);
+        chooseRandomFoodFromStack(drinks);
+        chooseRandomFoodFromStack(deserts);
+        chooseRandomFoodFromStack(subs);
+        chooseRandomFoodFromStack(hotdogs);
+    }
+
+    private void chooseRandomFoodFromStack(Food[] foods)
+    {
+        int chooseTimes = foods.Length;
+        for (int i = 0; i < chooseTimes/2; i++)
+        {
+            int randomFoodIndex = Random.Range(0, chooseTimes);
+            chosenFoodStack.Push(foods[randomFoodIndex]);
+        }
     }
 
     #endregion
