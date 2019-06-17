@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameOverUIManager : MonoBehaviour {
@@ -35,12 +36,31 @@ public class GameOverUIManager : MonoBehaviour {
     [SerializeField]
     GameObject playButton;
 
+    [Header("GameOver Panels")]
+    [SerializeField]
+    GameOverPanels scorePanel;
+    [SerializeField]
+    GameOverPanels questPanel;
+
     ScoreManager scoreManager;
+
+
     #region mono
     void Awake()
     {
         scoreManager = ScoreManager.instance;
         setupObjects();
+        scorePanel.tab.onClick.AddListener(delegate
+        {
+            scorePanel.activatePanel(true);
+            questPanel.activatePanel(false);
+        });
+
+        questPanel.tab.onClick.AddListener(delegate
+        {
+            scorePanel.activatePanel(false);
+            questPanel.activatePanel(true);
+        });
     }
 
     void setupObjects()

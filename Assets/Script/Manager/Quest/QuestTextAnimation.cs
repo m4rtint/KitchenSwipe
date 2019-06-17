@@ -19,6 +19,8 @@ public class QuestTextAnimation : MonoBehaviour {
     TextMeshProUGUI pointsText;
     Vector3 pointsLocation;
 
+    private readonly Color completeQuestColor = new Color(0, 149/255, 255);
+
     void Awake()
     {
         questText = GetComponent<Text>();
@@ -61,7 +63,7 @@ public class QuestTextAnimation : MonoBehaviour {
             switch (currentQuest.State())
             {
                 case QuestState.COMPLETE:
-                    questTextColor = Color.green;
+                    questTextColor = completeQuestColor;
                     updateQuestText(true);
                     onStartQuestCompleteAnimation();
                     break;
