@@ -13,15 +13,16 @@ public class Ingredient:MonoBehaviour {
 	string m_IngredientName;
 
     [SerializeField]
-    Sprite m_CenterImage;
-
-    [SerializeField]
     Sprite outlineSprite;
 
     [SerializeField]
     float customPlaceDownDistance;
     
     public bool isUpNextSizeChangeNeeded;
+
+    [Header("IF NEEDED (SAUCES)")]
+    [SerializeField]
+    private Sprite m_CenterImage;
 
     protected float placeDownDistance = 100;
     protected AnimationManager animation;

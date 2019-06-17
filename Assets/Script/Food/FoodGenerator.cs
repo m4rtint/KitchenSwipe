@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class FoodGenerator : MonoBehaviour
 {
@@ -55,8 +56,7 @@ public class FoodGenerator : MonoBehaviour
             chosenFoodStack.Push(m_Foods[0]);
             chosenFoodStack.Push(m_Foods[1]);
         } else {
-            //TODO
-            //THrow Exception
+            Assert.AreEqual(m_Foods.Length, 2);
         }
     }
     #endregion
