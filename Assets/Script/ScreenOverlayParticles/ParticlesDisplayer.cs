@@ -12,6 +12,7 @@ public class ParticlesDisplayer : MonoBehaviour
     private void Awake()
     {
         rawImage = imageTransform.gameObject.GetComponent<RawImage>();
+        setTransparentImage();
     }
 
     private void Start()
