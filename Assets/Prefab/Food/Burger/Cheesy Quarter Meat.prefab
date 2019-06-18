@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IngredientName: Patty
-  outlineSprite: {fileID: 21300000, guid: 5456e7b8574ec5745b0776359f1d42f3, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 234225ec50edcbf4a98e790b8cd79122, type: 3}
   customPlaceDownDistance: 0
   isUpNextSizeChangeNeeded: 0
   m_CenterImage: {fileID: 0}

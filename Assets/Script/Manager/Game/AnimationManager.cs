@@ -200,12 +200,12 @@ public class AnimationManager : MonoBehaviour {
     public void incrementSpeed()
     {
         float rt = rotationTime - 0.04f;
-        float mt = moveTime - 0.04f;
-        float pt = placementTime - 0.03f;
+        float mt = moveTime - 0.02f;
+        float pt = placementTime - 0.02f;
 
-        rotationTime = Mathf.Max(rt, 0.1f);
-        moveTime = Mathf.Max(mt, 0.1f);
-        placementTime = Mathf.Max(pt, 0.1f);
+        rotationTime = Mathf.Max(rt, 0.2f);
+        moveTime = Mathf.Max(mt, 0.2f);
+        placementTime = Mathf.Max(pt, 0.2f);
     }
 
     public void setTrashPosition(Vector3 pos)

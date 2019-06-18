@@ -170,10 +170,21 @@ public class GameEngine : MonoBehaviour {
         {
             next = foodGenerator.peekFoodOnStack().GetNeededIngredient();
         }
-
-        this.currentIngredient = nextIngredient.Ingredient();
-        nextIngredient.Ingredient(next);
+        do
+        { 
+            if (this.currentIngredient == null)
+            {
+                StartCoroutine(waitForIngredient());
+            }
+            this.currentIngredient = nextIngredient.Ingredient();
+            nextIngredient.Ingredient(next);
+        } while(this.currentIngredient == null);
         setCenterIngredientView();
+    }
+
+    IEnumerator waitForIngredient()
+    {
+        yield return new WaitForSeconds(1f);
     }
     #endregion
 
