@@ -165,13 +165,13 @@ public class GameEngine : MonoBehaviour {
     #region Actions
     protected virtual void playerSwiped(Direction dir)
     {
-        Ingredient next = ingredientsGenerator.userSwiped(currentIngredient, dir);
+        Ingredient next = ingredientsGenerator.userSwiped(this.currentIngredient, dir);
         if (next == null)
         {
             next = foodGenerator.peekFoodOnStack().GetNeededIngredient();
         }
 
-        currentIngredient = nextIngredient.Ingredient();
+        this.currentIngredient = nextIngredient.Ingredient();
         nextIngredient.Ingredient(next);
         setCenterIngredientView();
     }

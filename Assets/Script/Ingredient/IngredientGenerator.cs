@@ -55,7 +55,11 @@ public class IngredientGenerator : MonoBehaviour {
 			    food = foodHolders[index].StoredFood();
 
                 crashPrevention--;
-                if (crashPrevention == 0)
+                if (crashPrevention == 5)
+                {
+                    IEnumerator wait = waitToChoose();
+                    StartCoroutine(wait);
+                } else if (crashPrevention == 0)
                 {
                     return null;
                 }
@@ -66,6 +70,11 @@ public class IngredientGenerator : MonoBehaviour {
             ingredient = ingredientOnTop(food);
         }
         return ingredient;
+    }
+
+    private IEnumerator waitToChoose()
+    {
+        yield return new WaitForSeconds(1.0f);
     }
 
     private bool isRechoosingIngredientNeeded(Food food, int index)
