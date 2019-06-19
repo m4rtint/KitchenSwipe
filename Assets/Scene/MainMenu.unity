@@ -408,6 +408,16 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114761566558218128, guid: 2e327297db430ef4bac6a326a66d10a7,
+        type: 3}
+      propertyPath: m_text
+      value: Food Swiper
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761566558218128, guid: 2e327297db430ef4bac6a326a66d10a7,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e327297db430ef4bac6a326a66d10a7, type: 3}
 --- !u!1 &175603449 stripped
@@ -861,6 +871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114653266237787790, guid: 6ce8aee0f1b5f4df19e448ecfee23715,
+        type: 3}
+      propertyPath: m_Text
+      value: FOOD SWIPER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ce8aee0f1b5f4df19e448ecfee23715, type: 3}

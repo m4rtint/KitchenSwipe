@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: MartinTsang
-  productName: Food Swipe
+  productName: Kitchen Swiper
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.7254902, g: 0.8980393, b: 0.9960785, a: 1}
@@ -154,7 +154,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.MartinTsang.KitchenSwipe
-    iOS: com.MartinTsang.KitchenSwipe
+    iOS: com.MartinTsang.FoodSwiper
   buildNumber:
     iOS: 1
   AndroidBundleVersionCode: 3
