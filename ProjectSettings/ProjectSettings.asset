@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0.0
+  bundleVersion: 1.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -157,8 +157,8 @@ PlayerSettings:
     iOS: com.MartinTsang.KitchenSwipe
   buildNumber:
     iOS: 1
-  AndroidBundleVersionCode: 3
-  AndroidMinSdkVersion: 28
+  AndroidBundleVersionCode: 5
+  AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -243,10 +243,10 @@ PlayerSettings:
   clonedFromGUID: 00000000000000000000000000000000
   templatePackageId: 
   templateDefaultScene: 
-  AndroidTargetArchitectures: 7
+  AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/th3in/Dropbox/Project/BirdyHop/BirdyHopKeyStore.keystore
+  AndroidKeystoreName: /Users/martin/Dropbox/Project/BirdyHop/BirdyHopKeyStore.keystore
   AndroidKeyaliasName: lofike
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1

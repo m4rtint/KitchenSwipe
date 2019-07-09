@@ -1660,6 +1660,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 071e521ca7257664ca661d15940fcccf,
         type: 3}
+    - target: {fileID: 114912296217271664, guid: 1f670cb3d42174e1f9c7c54b13147f54,
+        type: 3}
+      propertyPath: m_Text
+      value: LET'S GO !
+      objectReference: {fileID: 0}
     - target: {fileID: 224452252356513024, guid: 1f670cb3d42174e1f9c7c54b13147f54,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2927,6 +2932,11 @@ MonoBehaviour:
   m_Foods:
   - {fileID: 114788017987324834, guid: 1dcf8013579c047698fff7df9be0d63d, type: 3}
   - {fileID: 114650146886582986, guid: 9d77f9b623b024ec8a0b98a2c73087a5, type: 3}
+  burgers: []
+  subs: []
+  drinks: []
+  deserts: []
+  hotdogs: []
 --- !u!4 &1727321971
 Transform:
   m_ObjectHideFlags: 0
