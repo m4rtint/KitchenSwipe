@@ -143,46 +143,33 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
+    public void saveScore()
+    {
+        if (Score() > HighScore())
+        {
+            uploadHighscore();
+        }
+
+        if (MaxCombo() > HighScoreCombo())
+        {
+            uploadCombo();
+        }
+
+        if (Dishes() > HighScoreDishes())
+        {
+            uploadDishes();
+        }
+
+        int time = TimeManager.instance.SecondsLasted();
+        if (time > HighScoreSecondsLasted())
+        {
+            uploadTime();
+        }
+    }
+
     public void incrementFinalScore(int score)
     {
         finalScore += score;
-    }
-
-    public void saveScore()
-    {
-        if (FirebaseDB.instance != null) {
-            int s = Score();
-            int hs_score = HighScore();
-            if (Score() > HighScore())
-            {
-                uploadHighscore();
-            }
-
-            if (MaxCombo() > HighScoreCombo())
-            {
-                uploadCombo();
-            }
-
-            if (Dishes() > HighScoreDishes())
-            {
-                uploadDishes();
-            }
-
-            int time = TimeManager.instance.SecondsLasted();
-            if (time > HighScoreSecondsLasted())
-            {
-                uploadTime();
-            }
-        }
-
-        uploadAnalyticsIfNeeded();
-    }
-
-    void uploadAnalyticsIfNeeded() {
-        if (FbAnalytics.instance != null && Score() > 0)
-        {
-            FbAnalytics.instance.gameResult(Score(), Dishes(), TimeManager.instance.SecondsLasted(), MaxCombo());
-        }
     }
 
     void saveHighestComboIfNeeded(){
@@ -194,26 +181,23 @@ public class ScoreManager : MonoBehaviour {
     void uploadHighscore()
     {
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SCORE, Score());
-        FirebaseDB.instance.insertScoreEntry(HighScore());
     }
+
 
     void uploadDishes()
     {
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_DISHES, Dishes());
-        FirebaseDB.instance.insertDishesEntry(HighScoreDishes());
     }
 
     void uploadTime()
     {
         int time = TimeManager.instance.SecondsLasted();
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_SECONDS, time);
-        FirebaseDB.instance.insertTimeEntry(HighScoreSecondsLasted());
     }
 
     void uploadCombo()
     {
         PlayerPrefs.SetInt(PlayerPrefKeys.INFINITE_COMBO, MaxCombo());
-        FirebaseDB.instance.insertComboEntry(HighScoreCombo());
     }
     #endregion
 

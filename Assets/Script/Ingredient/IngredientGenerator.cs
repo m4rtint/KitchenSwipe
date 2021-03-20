@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IngredientGenerator : MonoBehaviour {
 
@@ -149,11 +147,6 @@ public class IngredientGenerator : MonoBehaviour {
             Ingredient sideIngredient = sideFood.GetNeededIngredient();
             bool namesEqual = sideIngredient.IngredientName() == center.IngredientName();
             result = sideFood.isFoodInPlay() && namesEqual;
-            //ANALYTICS
-            if (!result && FbAnalytics.instance != null)
-            {
-                FbAnalytics.instance.wrongSwipe(dir, center.IngredientName(), sideIngredient.IngredientName());
-            }
         }
         return result;
     }
